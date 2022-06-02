@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
     /**
@@ -122,7 +122,7 @@ public class RegisterServlet extends HttpServlet {
                     newAcc.setPassword(password);
                     session.setAttribute("code", code);
                     session.setAttribute("tempacc", newAcc);
-                    
+
                     String subject = "Authenticate gmail";
                     String message = "<!DOCTYPE html>\n"
                             + "<html lang=\"en\">\n"
@@ -142,7 +142,7 @@ public class RegisterServlet extends HttpServlet {
                             + "</html>";
                     SendMailRegister.send(email, subject, message, sendEmail.getUser(), sendEmail.getPass());
                     response.sendRedirect("verificationemail");
-                    
+
                 }
             }
         }

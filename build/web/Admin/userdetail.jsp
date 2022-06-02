@@ -74,7 +74,8 @@
                     </td>
                 </tr>
             </table>  
-            <input type="submit" value="Save Change" />
+            <input type="submit" value="Save Change" /><br/>
+            <a href="userlist"><input type="submit" value="Back to UserList" /></a>
         </form>
     </body>
 </html>

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DUC THINH
  */
-public class SaleDashBoardServlet extends HttpServlet {
+public class SaleDashboardServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +35,10 @@ public class SaleDashBoardServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SaleDashBoardServlet</title>");            
+            out.println("<title>Servlet SaleDashboardServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SaleDashBoardServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SaleDashboardServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

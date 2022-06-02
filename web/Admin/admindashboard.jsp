@@ -12,8 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="homepage.jsp">HomePage</a>
+        <a href="home">HomePage</a>
         <h1 style="color: red">Hello ADMIN</h1>
+        <a href="userlist">User List</a><br/><br/>
         <a href="logout">Logout</a>
     </body>
 </html>

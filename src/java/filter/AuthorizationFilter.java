@@ -107,21 +107,64 @@ public class AuthorizationFilter implements Filter {
         }
         
         doBeforeProcessing(request, response);
-                HttpServletRequest httpRequest = (HttpServletRequest)request;
-        HttpServletResponse httpResponse = (HttpServletResponse)response;
+              HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
-        if(url.equals("/admindashboard.jsp")){
-            HttpSession session = httpRequest.getSession();
-            Account a = (Account)session.getAttribute("account");
-            if(a==null){
+        HttpSession session = httpRequest.getSession();
+        Account a = (Account) session.getAttribute("account");
+
+        if (url.equals("/admindashboard") || url.equals("/userdetail") || url.equals("/userlist")) {
+            if (a == null) {
                 httpResponse.sendRedirect("login");
-            }else{
-                if(a.getRole().equalsIgnoreCase("admin")){
+            } else {
+                if (a.getRole().equalsIgnoreCase("admin")) {
                     chain.doFilter(request, response);
-                }else{
-                httpResponse.sendRedirect("login");
+                } else {
+                    if (a.getRole().equalsIgnoreCase("customer")) {
+                        httpResponse.sendRedirect("home");
+                    } else if (a.getRole().equalsIgnoreCase("saler")) {
+                        httpResponse.sendRedirect("saledashboard");
+                    } else {
+                        httpResponse.sendRedirect("marketingdashboard");
+                    }
                 }
-            }      
+            }
+        }
+
+        if (url.equals("/saledashboard")) {
+            if (a == null) {
+                httpResponse.sendRedirect("login");
+            } else {
+                if (a.getRole().equalsIgnoreCase("saler")) {
+                    chain.doFilter(request, response);
+                } else {
+                    if (a.getRole().equalsIgnoreCase("customer")) {
+                        httpResponse.sendRedirect("home");
+                    } else if (a.getRole().equalsIgnoreCase("admin")) {
+                        httpResponse.sendRedirect("admindashboard");
+                    } else {
+                        httpResponse.sendRedirect("marketingdashboard");
+                    }
+                }
+            }
+        }
+
+        if (url.equals("/marketingdashboard")) {
+            if (a == null) {
+                httpResponse.sendRedirect("login");
+            } else {
+                if (a.getRole().equalsIgnoreCase("marketer")) {
+                    chain.doFilter(request, response);
+                } else {
+                    if (a.getRole().equalsIgnoreCase("customer")) {
+                        httpResponse.sendRedirect("home");
+                    } else if (a.getRole().equalsIgnoreCase("admin")) {
+                        httpResponse.sendRedirect("admindashboard");
+                    } else {
+                        httpResponse.sendRedirect("saledashboard");
+                    }
+                }
+            }
         }
         
         Throwable problem = null;

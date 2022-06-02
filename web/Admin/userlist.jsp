@@ -286,7 +286,8 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="#"><input type="submit" value="Add User" /></a>
+        <a href="#"><input type="submit" value="Add User" /></a><br/>
+        <a href="admindashboard"><input type="submit" value="Back to Admin DashBoard" /></a>
 
         <!-- Footer Section Begin -->
 <!--        <footer class="footer-section">

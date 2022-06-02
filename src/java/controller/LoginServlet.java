@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
@@ -75,22 +75,26 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         AccountDAO ad = new AccountDAO();
         Account account = ad.checkAccount(username, password);
-        if(account==null){
+        if (account == null) {
             request.setAttribute("mess", "Invalid Account");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-        else{
+        } else {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-            if(account.getRole().equalsIgnoreCase("admin")){
-                response.sendRedirect("admindashboard.jsp");
-            }else{
-            response.sendRedirect("homepage.jsp");
+            if (account.getRole().equalsIgnoreCase("admin")) {
+                response.sendRedirect("admindashboard");
+            } else if (account.getRole().equalsIgnoreCase("saler")) {
+                response.sendRedirect("saledashboard");
+            } else if (account.getRole().equalsIgnoreCase("marketer")) {
+                response.sendRedirect("marketingdashboard");
+            } else {
+                response.sendRedirect("home");
             }
         }
+
     }
 
     /**
