@@ -505,9 +505,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
+                    <c:forEach items="${requestScope.blog}" var="b">
+                        <div class="col-lg-4 col-md-6">
                         <div class="single-latest-blog">
-                            <img src="img/latest-1.jpg" alt="">
+                            <img src="${b.imgURL}" alt="">
                             <div class="latest-text">
                                 <div class="tag-list">
                                     <div class="tag-item">
@@ -519,14 +520,17 @@
                                         5
                                     </div>
                                 </div>
-                                <a href="#">
-                                    <h4>The Best Street Style From London Fashion Week</h4>
+                                <a href="blogdetail?blogID=${b.id}">
+                                    <h4>${b.title}</h4>
                                 </a>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                <!--<p>${b.content} </p>-->
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    </c:forEach>
+                    
+                    
+<!--                    <div class="col-lg-4 col-md-6">
                         <div class="single-latest-blog">
                             <img src="img/latest-2.jpg" alt="">
                             <div class="latest-text">
@@ -567,7 +571,7 @@
                                 <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="benefit-items">
                     <div class="row">
