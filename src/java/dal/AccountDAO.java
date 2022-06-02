@@ -340,6 +340,75 @@ public class AccountDAO extends DBContext {
    
     }
 
+    public void changePass(String Username, String newPass) {
+        String sql = "UPDATE [dbo].[Account] \n"
+                + "SET [Password] = ?\n"
+                + "WHERE Username = ?";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(2, Username);
+            ps.setString(1, newPass);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public Account getAccountByUser(String username) {
+        String sql = "select * from Account where Username = ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Account account = new Account(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getBoolean(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getBoolean(10),
+                        rs.getString(9));
+                return account;
+            }
+
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
+    
+
+    public Account getAccountByEmailUsername(String username, String email) {
+        String sql = "select * from Account where Username = ? and Email = ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, email);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Account account = new Account(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getBoolean(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getBoolean(10),
+                        rs.getString(9));
+                return account;
+            }
+
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
+    
     public static void main(String[] args) {
         AccountDAO a = new AccountDAO();
 //        List<Account> list = new ArrayList<>();
@@ -370,16 +439,16 @@ public class AccountDAO extends DBContext {
 //        }
     }
 
-    public Account checkUserExist(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Account checkEmailExist(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void registerNewAcc(Account tempacc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public Account checkUserExist(String username) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    public Account checkEmailExist(String email) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    public void registerNewAcc(Account tempacc) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
 }

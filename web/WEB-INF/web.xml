@@ -13,10 +13,6 @@
         <servlet-class>controller.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangePassServlet</servlet-name>
-        <servlet-class>controller.ChangePassServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UserListServlet</servlet-name>
         <servlet-class>AdminController.UserListServlet</servlet-class>
     </servlet>
@@ -45,7 +41,6 @@
         <servlet-class>controller.ProductServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
@@ -76,15 +71,18 @@
     <servlet>
         <servlet-name>BlogDetailServlet</servlet-name>
         <servlet-class>controller.BlogDetailServlet</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassServlet</servlet-name>
+        <servlet-class>AccountController.ChangePassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassServlet</servlet-name>
+        <servlet-class>AccountController.ResetPassServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePassServlet</servlet-name>
-        <url-pattern>/changepass</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserListServlet</servlet-name>
@@ -115,7 +113,6 @@
         <url-pattern>/product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
@@ -146,7 +143,14 @@
     <servlet-mapping>
         <servlet-name>BlogDetailServlet</servlet-name>
         <url-pattern>/blogdetail</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassServlet</servlet-name>
+        <url-pattern>/changepass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassServlet</servlet-name>
+        <url-pattern>/resetpass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

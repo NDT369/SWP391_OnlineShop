@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package AccountController;
 
 import dal.AccountDAO;
 import java.io.IOException;
@@ -12,14 +12,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Account;
 
 /**
  *
  * @author MSI
  */
-public class ChangePassServlet extends HttpServlet {
+public class ResetPassServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class ChangePassServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePassServlet</title>");            
+            out.println("<title>Servlet ForgetPassServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangePassServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ForgetPassServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,8 +58,8 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
+        request.setAttribute("pageInclude", "resetpass.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     /**
@@ -74,15 +73,25 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String userName = request.getParameter("username");
+        String email = request.getParameter("email");
+
         AccountDAO dao = new AccountDAO();
-        HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("account");
-        String oldPass = request.getParameter("oldPass");
-        String newPass = request.getParameter("newPass");
-        if(oldPass.equals(a.getPassword())){
-            dao.changePass(a.getAccountID() ,newPass);
+        Account a = dao.getAccountByEmailUsername(userName, email);
+        if (a != null) {
+            SendEmail sendEmail = new SendEmail();
+            String pass = sendEmail.getRandom();
+            sendEmail.sendResetPass(a, pass);
+            dao.changePass(userName, pass);
+            request.setAttribute("send", "Check your mail, login and change password");
+            request.setAttribute("pageInclude", "resetpass.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        } else {
+            request.setAttribute("error", "Username or Email incorrect!");
+            request.setAttribute("pageInclude", "resetpass.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-        
     }
 
     /**
