@@ -3,7 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import model.Account;
 
 public final class homepage_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -52,7 +51,6 @@ public final class homepage_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -244,45 +242,8 @@ public final class homepage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <li><a href=\"./shopping-cart.html\">Shopping Cart</a></li>\r\n");
       out.write("                                    <li><a href=\"./check-out.html\">Checkout</a></li>\r\n");
       out.write("                                    <li><a href=\"./faq.html\">Faq</a></li>\r\n");
-      out.write("                                    ");
- 
-                                        Account a = (Account)session.getAttribute("account");
-                                        if(a!=null){
-                                        if(a.getRole().toLowerCase().equals("admin")){
-                                    
-      out.write("\r\n");
-      out.write("                                    <li><a href=\"admindashboard\">Admin DashBoard</a></li>\r\n");
-      out.write("                                    ");
-
-                                        }
-                                    
-      out.write("\r\n");
-      out.write("                                   ");
-    
-                                        if(a.getRole().toLowerCase().equals("saler")){
-                                    
-      out.write("\r\n");
-      out.write("                                    <li><a href=\"saledashboard\">Sale DashBoard</a></li>\r\n");
-      out.write("                                    ");
-
-                                        }
-                                    
-      out.write("\r\n");
-      out.write("                                    \r\n");
-      out.write("                                    ");
-    
-                                    if(a.getRole().toLowerCase().equals("marketer")){
-                                    
-      out.write("\r\n");
-      out.write("                                    <li><a href=\"marketingdashboard\">Marketing DashBoard</a></li>\r\n");
-      out.write("                                    ");
-
-                                        }
-                                    }
-                                    
-      out.write("\r\n");
-      out.write("                                    <li><a href=\"logout\">Logout</a></li>\r\n");
-      out.write("                                    \r\n");
+      out.write("                                    <li><a href=\"./register.html\">Register</a></li>\r\n");
+      out.write("                                    <li><a href=\"./login.html\">Login</a></li>\r\n");
       out.write("                                </ul>\r\n");
       out.write("                            </li>\r\n");
       out.write("                        </ul>\r\n");
@@ -296,11 +257,11 @@ public final class homepage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- Hero Section Begin -->\r\n");
       out.write("        <section class=\"hero-section\">\r\n");
       out.write("            <div class=\"hero-items owl-carousel\">\r\n");
-      out.write("                <div class=\"single-hero-items set-bg\" data-setbg=\"img/slide1.jpg\">\r\n");
+      out.write("                <div class=\"single-hero-items set-bg\" data-setbg=\"img/hero-1.jpg\">\r\n");
       out.write("                    <div class=\"container\">\r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-lg-5\">\r\n");
-      out.write("                                <span>Laptop</span>\r\n");
+      out.write("                                <span>Bag,kids</span>\r\n");
       out.write("                                <h1>Black friday</h1>\r\n");
       out.write("                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\r\n");
       out.write("                                    incididunt ut labore et dolore</p>\r\n");
@@ -312,7 +273,7 @@ public final class homepage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
-      out.write("                <div class=\"single-hero-items set-bg\" data-setbg=\"img/slide3.jpg\">\r\n");
+      out.write("                <div class=\"single-hero-items set-bg\" data-setbg=\"img/hero-2.jpg\">\r\n");
       out.write("                    <div class=\"container\">\r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-lg-5\">\r\n");

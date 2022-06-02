@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="homepage.jsp">
+                            <a href="./index.html">
                                 <img src="img/logo.png" alt="">
                             </a>
                         </div>
@@ -166,7 +166,7 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="homepage.jsp">Home</a></li>
+                        <li><a href="./index.html">Home</a></li>
                         <li><a href="./shop.html">Shop</a></li>
                         <li><a href="#">Collection</a>
                             <ul class="dropdown">
@@ -217,9 +217,6 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="login-form">
                         <h2>Login</h2>
-                        <c:if test="${requestScope.mess!=null}">
-                        <h3 style="color: red">${requestScope.mess}</h3>
-                        </c:if>
                         <form action="login" method="post">
                             <div class="group-input">
                                 <label for="username">Username or email address *</label>
@@ -242,7 +239,7 @@
                             <button type="submit" class="site-btn login-btn">Sign In</button>
                         </form>
                         <div class="switch-login">
-                            <a href="register" class="or-login">Or Create An Account</a>
+                            <a href="./register.html" class="or-login">Or Create An Account</a>
                         </div>
                     </div>
                 </div>

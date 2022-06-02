@@ -73,28 +73,24 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String username = request.getParameter("username");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+        
         AccountDAO ad = new AccountDAO();
         Account account = ad.checkAccount(username, password);
-        if (account == null) {
+        if(account==null){
             request.setAttribute("mess", "Invalid Account");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
+        }
+        else{
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-            if (account.getRole().equalsIgnoreCase("admin")) {
-                response.sendRedirect("admindashboard");
-            } else if (account.getRole().equalsIgnoreCase("saler")) {
-                response.sendRedirect("saledashboard");
-            } else if (account.getRole().equalsIgnoreCase("marketer")) {
-                response.sendRedirect("marketingdashboard");
-            } else {
-                response.sendRedirect("homepage.jsp");
+            if(account.getRole().equalsIgnoreCase("admin")){
+                response.sendRedirect("admindashboard.jsp");
+            }else{
+            response.sendRedirect("homepage.jsp");
             }
         }
-
     }
 
     /**
