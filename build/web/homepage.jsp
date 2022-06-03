@@ -350,8 +350,9 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
-                                            <span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span>
+                                            
                                         </div>
+                                        <div class="product-price"><span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span></div>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -434,8 +435,9 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
-                                            <span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span>
+                                            
                                         </div>
+                                        <div class="product-price"><span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span></div>
                                     </div>
                                 </div>
                             </c:forEach>
