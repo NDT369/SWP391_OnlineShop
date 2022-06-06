@@ -195,7 +195,7 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                     <li><a href="./shopping-cart.html">Shopping Cart</a></li>
                                     <li><a href="./check-out.html">Checkout</a></li>
-                                    <li><a href="./faq.html">Faq</a></li>
+                                    <li><a href="changepass">Change Password</a></li>
                                     <li><a href="register">Register</a></li>
                                     <% 
                                         Account a = (Account)session.getAttribute("account");
@@ -351,8 +351,9 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
-                                            <span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span>
+                                            
                                         </div>
+                                        <div class="product-price"><span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span></div>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -435,8 +436,9 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
-                                            <span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span>
+                                            
                                         </div>
+                                        <div class="product-price"><span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span></div>
                                     </div>
                                 </div>
                             </c:forEach>

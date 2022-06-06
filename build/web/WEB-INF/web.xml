@@ -13,10 +13,6 @@
         <servlet-class>controller.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangePassServlet</servlet-name>
-        <servlet-class>controller.ChangePassServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UserListServlet</servlet-name>
         <servlet-class>AdminController.UserListServlet</servlet-class>
     </servlet>
@@ -79,14 +75,18 @@
     <servlet>
         <servlet-name>UserProfileServlet</servlet-name>
         <servlet-class>CustomerController.UserProfileServlet</servlet-class>
+           </servlet>
+    <servlet>
+        <servlet-name>ChangePassServlet</servlet-name>
+        <servlet-class>AccountController.ChangePassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassServlet</servlet-name>
+        <servlet-class>AccountController.ResetPassServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePassServlet</servlet-name>
-        <url-pattern>/changepass</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserListServlet</servlet-name>
@@ -151,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>UserProfileServlet</servlet-name>
         <url-pattern>/userprofile</url-pattern>
+        </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassServlet</servlet-name>
+        <url-pattern>/changepass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassServlet</servlet-name>
+        <url-pattern>/resetpass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
