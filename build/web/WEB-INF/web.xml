@@ -45,7 +45,6 @@
         <servlet-class>controller.ProductServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
@@ -76,7 +75,10 @@
     <servlet>
         <servlet-name>BlogDetailServlet</servlet-name>
         <servlet-class>controller.BlogDetailServlet</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>UserProfileServlet</servlet-name>
+        <servlet-class>CustomerController.UserProfileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -115,7 +117,6 @@
         <url-pattern>/product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
@@ -146,7 +147,10 @@
     <servlet-mapping>
         <servlet-name>BlogDetailServlet</servlet-name>
         <url-pattern>/blogdetail</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserProfileServlet</servlet-name>
+        <url-pattern>/userprofile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

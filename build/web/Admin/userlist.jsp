@@ -139,7 +139,7 @@
                                     </ul>
                                 </div>-->
             </div>
-            <a href="admin"><button type="button" class="btn btn-primary">Back to home</button>
+            <a href="admindashboard"><button type="button" class="btn btn-primary">Back to home</button>
 
         </div>
         <!-- Edit Modal HTML -->

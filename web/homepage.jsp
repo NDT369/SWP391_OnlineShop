@@ -187,10 +187,11 @@
                                     <li><a href="#">Kid's</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="blog">Blog</a></li>
                             <li><a href="./contact.html">Contact</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
+                                    <li><a href="userprofile">User Profile</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                     <li><a href="./shopping-cart.html">Shopping Cart</a></li>
                                     <li><a href="./check-out.html">Checkout</a></li>
