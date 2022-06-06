@@ -73,6 +73,10 @@
         <servlet-class>controller.BlogDetailServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UserProfileServlet</servlet-name>
+        <servlet-class>CustomerController.UserProfileServlet</servlet-class>
+           </servlet>
+    <servlet>
         <servlet-name>ChangePassServlet</servlet-name>
         <servlet-class>AccountController.ChangePassServlet</servlet-class>
     </servlet>
@@ -144,6 +148,10 @@
         <servlet-name>BlogDetailServlet</servlet-name>
         <url-pattern>/blogdetail</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserProfileServlet</servlet-name>
+        <url-pattern>/userprofile</url-pattern>
+        </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ChangePassServlet</servlet-name>
         <url-pattern>/changepass</url-pattern>

@@ -37,7 +37,12 @@ public class AccountDAO extends DBContext {
                 Account account = new Account();
                 account.setUsername(username);
                 account.setPassword(password);
+                account.setAccountID(rs.getInt(1));
                 account.setName(rs.getString(4));
+                account.setGender(rs.getBoolean(5));
+                account.setEmail(rs.getString(6));
+                account.setPhone(rs.getString(7));
+                account.setAddress(rs.getString(8));
                 account.setRole(rs.getString(12));
                 return account;
             }
@@ -253,7 +258,6 @@ public class AccountDAO extends DBContext {
 //        }
 //        return list;
 //    }
-
     public Account getAcountByID(int id) {
         String sql = "  select * from Account a\n"
                 + "  join Role_Account r  on a.Role_ID = r.Role_ID\n"
@@ -273,26 +277,27 @@ public class AccountDAO extends DBContext {
     }
 
     public void UpdateUserRole(String id, String role) {
-        String sql = "update Account set Role_ID = " + role +" where Account_ID = " + id ;
-        
+        String sql = "update Account set Role_ID = " + role + " where Account_ID = " + id;
+
         try {
             ps = connection.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
-    
-      public void UpdateUserStatus(String id, String status) {
-        String sql = "update Account set Account_Status = " + status +" where Account_ID = " + id ;        
+
+    public void UpdateUserStatus(String id, String status) {
+        String sql = "update Account set Account_Status = " + status + " where Account_ID = " + id;
         try {
             ps = connection.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
-          public Account checkUserExist(String username){
+
+    public Account checkUserExist(String username) {
         String sql = "select * from Account where Username = ?";
-        try{
+        try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             rs = ps.executeQuery();
@@ -300,16 +305,15 @@ public class AccountDAO extends DBContext {
                 Account account = new Account();
                 return account;
             }
-        }catch(SQLException ex){
-            
+        } catch (SQLException ex) {
+
         }
         return null;
     }
-    
-       
-    public Account checkEmailExist(String email){
+
+    public Account checkEmailExist(String email) {
         String sql = "select * from Account where Email = ?";
-        try{
+        try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -317,15 +321,15 @@ public class AccountDAO extends DBContext {
                 Account account = new Account();
                 return account;
             }
-        }catch(SQLException ex){
-            
+        } catch (SQLException ex) {
+
         }
         return null;
     }
-    
-    public void registerNewAcc(Account a){
+
+    public void registerNewAcc(Account a) {
         String sql = "insert into Account values(?,?,?,?,?,?,?,2,1)";
-        try{
+        try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, a.getUsername());
             ps.setString(2, a.getPassword());
@@ -335,9 +339,20 @@ public class AccountDAO extends DBContext {
             ps.setString(6, a.getPhone());
             ps.setString(7, a.getAddress());
             ps.executeUpdate();
-        }catch(SQLException ex){   
+        } catch (SQLException ex) {
         }
-   
+
+    }
+
+    public void updateInfor(String id, String name, boolean gender, String email, String phone, String address) {
+        String sql = "update Account set Name = '" + name + "',"
+                + " Gender = '" + gender + "', Email='" + email + "', Phone = '" + phone + "',"
+                + " Address = '" + address + "' where Account_ID = " + id;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 
     public void changePass(String Username, String newPass) {
@@ -438,17 +453,5 @@ public class AccountDAO extends DBContext {
 //            System.out.println(i);
 //        }
     }
-
-//    public Account checkUserExist(String username) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    public Account checkEmailExist(String email) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    public void registerNewAcc(Account tempacc) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
 
 }
