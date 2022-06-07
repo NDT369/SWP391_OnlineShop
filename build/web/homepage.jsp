@@ -9,6 +9,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
+
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -40,198 +42,8 @@
         </div>
 
         <!-- Header Section Begin -->
-        <header class="header-section">
-            <div class="header-top">
-                <div class="container">
-                    <div class="ht-left">
-                        <div class="mail-service">
-                            <i class=" fa fa-envelope"></i>
-                            hello.colorlib@gmail.com
-                        </div>
-                        <div class="phone-service">
-                            <i class=" fa fa-phone"></i>
-                            +65 11.188.888
-                        </div>
-                    </div>
-                    <div class="ht-right">
-                        <c:if test="${sessionScope.account==null}">
-                            <a href="login" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                        </c:if>
-                        <c:if test="${sessionScope.account!=null}">       
-                            <a class="login-panel"><i class="fa fa-user"></i>Hello ${sessionScope.account.name}</a> -
-
-
-                        </c:if> 
-                        <div class="lan-selector">
-                            <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                                <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                        data-title="English">English</option>
-                                <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                        data-title="Bangladesh">German </option>
-                            </select>
-                        </div>
-                        <div class="top-social">
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-twitter-alt"></i></a>
-                            <a href="#"><i class="ti-linkedin"></i></a>
-                            <a href="#"><i class="ti-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="inner-header">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2">
-                            <div class="logo">
-                                <a href="home">
-                                    <img src="img/logo.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7">
-                            <div class="advanced-search">
-                                <button type="button" class="category-btn">All Categories</button>
-                                <div class="input-group">
-                                    <input type="text" placeholder="What do you need?">
-                                    <button type="button"><i class="ti-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 text-right col-md-3">
-                            <ul class="nav-right">
-                                <li class="heart-icon">
-                                    <a href="#">
-                                        <i class="icon_heart_alt"></i>
-                                        <span>1</span>
-                                    </a>
-                                </li>
-                                <li class="cart-icon">
-                                    <a href="#">
-                                        <i class="icon_bag_alt"></i>
-                                        <span>3</span>
-                                    </a>
-                                    <div class="cart-hover">
-                                        <div class="select-items">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
-                                                        <td class="si-text">
-                                                            <div class="product-selected">
-                                                                <p>$60.00 x 1</p>
-                                                                <h6>Kabino Bedside Table</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td class="si-close">
-                                                            <i class="ti-close"></i>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                                        <td class="si-text">
-                                                            <div class="product-selected">
-                                                                <p>$60.00 x 1</p>
-                                                                <h6>Kabino Bedside Table</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td class="si-close">
-                                                            <i class="ti-close"></i>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="select-total">
-                                            <span>total:</span>
-                                            <h5>$120.00</h5>
-                                        </div>
-                                        <div class="select-button">
-                                            <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                            <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="cart-price">$150.00</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="nav-item">
-                <div class="container">
-                    <div class="nav-depart">
-                        <div class="depart-btn">
-                            <i class="ti-menu"></i>
-                            <span>All departments</span>
-                            <ul class="depart-hover">
-                                <li class="active"><a href="#">Women’s Clothing</a></li>
-                                <li><a href="#">Men’s Clothing</a></li>
-                                <li><a href="#">Underwear</a></li>
-                                <li><a href="#">Kid's Clothing</a></li>
-                                <li><a href="#">Brand Fashion</a></li>
-                                <li><a href="#">Accessories/Shoes</a></li>
-                                <li><a href="#">Luxury Brands</a></li>
-                                <li><a href="#">Brand Outdoor Apparel</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <nav class="nav-menu mobile-menu">
-                        <ul>
-                            <li class="active"><a href="home">Home</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
-                            <li><a href="#">Collection</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Men's</a></li>
-                                    <li><a href="#">Women's</a></li>
-                                    <li><a href="#">Kid's</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                    <li><a href="./check-out.html">Checkout</a></li>
-                                    <li><a href="changepass">Change Password</a></li>
-                                    <li><a href="register">Register</a></li>
-                                    <% 
-                                        Account a = (Account)session.getAttribute("account");
-                                        if(a!=null){
-                                        if(a.getRole().toLowerCase().equals("admin")){
-                                    %>
-                                    <li><a href="admindashboard">Admin DashBoard</a></li>
-                                    <%
-                                        }
-                                    %>
-                                   <%    
-                                        if(a.getRole().toLowerCase().equals("saler")){
-                                    %>
-                                    <li><a href="saledashboard">Sale DashBoard</a></li>
-                                    <%
-                                        }
-                                    %>
-                                    
-                                    <%    
-                                    if(a.getRole().toLowerCase().equals("marketer")){
-                                    %>
-                                    <li><a href="marketingdashboard">Marketing DashBoard</a></li>
-                                    <%
-                                        }
-                                    }
-                                    %>
-                                    <c:if test="${sessionScope.account!=null}">
-                                    <li><a href="logout">Logout</a></li>
-                                    </c:if>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div id="mobile-menu-wrap"></div>
-                </div>
-            </div>
-        </header>
+        <c:set value="${cart}" var="c"/>
+        <%@include file="Components/header.jsp" %>
         <!-- Header End -->
 
         <!-- Hero Section Begin -->
@@ -350,7 +162,7 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
-                                            
+
                                         </div>
                                         <div class="product-price"><span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span></div>
                                     </div>
@@ -423,7 +235,7 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="w-icon active"><a href="buy?productID=${l.id}"><i class="icon_bag_alt"></i></a></li>
                                             <li class="quick-view"><a href="#">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
@@ -435,7 +247,7 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
-                                            
+
                                         </div>
                                         <div class="product-price"><span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span></div>
                                     </div>
@@ -456,44 +268,44 @@
         <!-- Man Banner Section End -->
 
         <!-- Instagram Section Begin -->
-<!--        <div class="instagram-photo">
-            <div class="insta-item set-bg" data-setbg="img/insta-1.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
-            </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-2.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
-            </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-3.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
-            </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-4.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
-            </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-5.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
-            </div>
-            <div class="insta-item set-bg" data-setbg="img/insta-6.jpg">
-                <div class="inside-text">
-                    <i class="ti-instagram"></i>
-                    <h5><a href="#">colorlib_Collection</a></h5>
-                </div>
-            </div>
-        </div>-->
+        <!--        <div class="instagram-photo">
+                    <div class="insta-item set-bg" data-setbg="img/insta-1.jpg">
+                        <div class="inside-text">
+                            <i class="ti-instagram"></i>
+                            <h5><a href="#">colorlib_Collection</a></h5>
+                        </div>
+                    </div>
+                    <div class="insta-item set-bg" data-setbg="img/insta-2.jpg">
+                        <div class="inside-text">
+                            <i class="ti-instagram"></i>
+                            <h5><a href="#">colorlib_Collection</a></h5>
+                        </div>
+                    </div>
+                    <div class="insta-item set-bg" data-setbg="img/insta-3.jpg">
+                        <div class="inside-text">
+                            <i class="ti-instagram"></i>
+                            <h5><a href="#">colorlib_Collection</a></h5>
+                        </div>
+                    </div>
+                    <div class="insta-item set-bg" data-setbg="img/insta-4.jpg">
+                        <div class="inside-text">
+                            <i class="ti-instagram"></i>
+                            <h5><a href="#">colorlib_Collection</a></h5>
+                        </div>
+                    </div>
+                    <div class="insta-item set-bg" data-setbg="img/insta-5.jpg">
+                        <div class="inside-text">
+                            <i class="ti-instagram"></i>
+                            <h5><a href="#">colorlib_Collection</a></h5>
+                        </div>
+                    </div>
+                    <div class="insta-item set-bg" data-setbg="img/insta-6.jpg">
+                        <div class="inside-text">
+                            <i class="ti-instagram"></i>
+                            <h5><a href="#">colorlib_Collection</a></h5>
+                        </div>
+                    </div>
+                </div>-->
         <!-- Instagram Section End -->
 
         <!-- Latest Blog Section Begin -->
@@ -509,71 +321,71 @@
                 <div class="row">
                     <c:forEach items="${requestScope.blog}" var="b">
                         <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-blog">
-                            <img src="${b.imgURL}" alt="">
-                            <div class="latest-text">
-                                <div class="tag-list">
-                                    <div class="tag-item">
-                                        <i class="fa fa-calendar-o"></i>
-                                        May 4,2019
+                            <div class="single-latest-blog">
+                                <img src="${b.imgURL}" alt="">
+                                <div class="latest-text">
+                                    <div class="tag-list">
+                                        <div class="tag-item">
+                                            <i class="fa fa-calendar-o"></i>
+                                            May 4,2019
+                                        </div>
+                                        <div class="tag-item">
+                                            <i class="fa fa-comment-o"></i>
+                                            5
+                                        </div>
                                     </div>
-                                    <div class="tag-item">
-                                        <i class="fa fa-comment-o"></i>
-                                        5
-                                    </div>
+                                    <a href="blogdetail?blogID=${b.id}">
+                                        <h4>${b.title}</h4>
+                                    </a>
+                                    <!--<p>${b.content} </p>-->
                                 </div>
-                                <a href="blogdetail?blogID=${b.id}">
-                                    <h4>${b.title}</h4>
-                                </a>
-                                <!--<p>${b.content} </p>-->
                             </div>
                         </div>
-                    </div>
                     </c:forEach>
-                    
-                    
-<!--                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-blog">
-                            <img src="img/latest-2.jpg" alt="">
-                            <div class="latest-text">
-                                <div class="tag-list">
-                                    <div class="tag-item">
-                                        <i class="fa fa-calendar-o"></i>
-                                        May 4,2019
-                                    </div>
-                                    <div class="tag-item">
-                                        <i class="fa fa-comment-o"></i>
-                                        5
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
-                                </a>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-blog">
-                            <img src="img/latest-3.jpg" alt="">
-                            <div class="latest-text">
-                                <div class="tag-list">
-                                    <div class="tag-item">
-                                        <i class="fa fa-calendar-o"></i>
-                                        May 4,2019
-                                    </div>
-                                    <div class="tag-item">
-                                        <i class="fa fa-comment-o"></i>
-                                        5
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
-                                </a>
-                                <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                            </div>
-                        </div>
-                    </div>-->
+
+
+                    <!--                    <div class="col-lg-4 col-md-6">
+                                            <div class="single-latest-blog">
+                                                <img src="img/latest-2.jpg" alt="">
+                                                <div class="latest-text">
+                                                    <div class="tag-list">
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-calendar-o"></i>
+                                                            May 4,2019
+                                                        </div>
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-comment-o"></i>
+                                                            5
+                                                        </div>
+                                                    </div>
+                                                    <a href="#">
+                                                        <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
+                                                    </a>
+                                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="single-latest-blog">
+                                                <img src="img/latest-3.jpg" alt="">
+                                                <div class="latest-text">
+                                                    <div class="tag-list">
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-calendar-o"></i>
+                                                            May 4,2019
+                                                        </div>
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-comment-o"></i>
+                                                            5
+                                                        </div>
+                                                    </div>
+                                                    <a href="#">
+                                                        <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
+                                                    </a>
+                                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                                </div>
+                                            </div>
+                                        </div>-->
                 </div>
                 <div class="benefit-items">
                     <div class="row">

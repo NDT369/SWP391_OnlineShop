@@ -58,7 +58,8 @@ public class BuyServlet extends HttpServlet {
         Cookie c = new Cookie("cart", txt);
         c.setMaxAge(60*5);
         response.addCookie(c);
-        request.getRequestDispatcher("home").forward(request, response);
+//        request.getRequestDispatcher("home").forward(request, response);
+        response.sendRedirect("home");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

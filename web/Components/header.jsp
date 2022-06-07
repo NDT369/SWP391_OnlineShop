@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <header class="header-section">
             <div class="header-top">
@@ -72,53 +74,59 @@
                                         <span>1</span>
                                     </a>
                                 </li>
+                                <c:set value="${cart}" var="c"/>
+
                                 <li class="cart-icon">
-                                    <a href="#">
+                                    <a href="shoppingcart">
                                         <i class="icon_bag_alt"></i>
-                                        <span>3</span>
+                                        <span>${c.totalQuantity}</span>
                                     </a>
-                                    <div class="cart-hover">
-                                        <div class="select-items">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="si-pic"><img src="../img/select-product-1.jpg" alt=""></td>
-                                                        <td class="si-text">
-                                                            <div class="product-selected">
-                                                                <p>$60.00 x 1</p>
-                                                                <h6>Kabino Bedside Table</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td class="si-close">
-                                                            <i class="ti-close"></i>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="si-pic"><img src="../img/select-product-2.jpg" alt=""></td>
-                                                        <td class="si-text">
-                                                            <div class="product-selected">
-                                                                <p>$60.00 x 1</p>
-                                                                <h6>Kabino Bedside Table</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td class="si-close">
-                                                            <i class="ti-close"></i>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                    
+                                        <div class="cart-hover">
+                                            <div class="select-items">
+                                                <table>
+                                                    <tbody>
+                                                        <c:forEach items="${c.item}" var="i">
+                                                        <tr>
+                                                            <td class="si-pic"><img src="${i.product.imgURL}" alt=""></td>
+                                                            <td class="si-text">
+                                                                <div class="product-selected">
+                                                                    <p><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" /> VND x ${i.quantity}</p>
+                                                                    <h6>${i.product.name}</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td class="si-close">
+                                                                <i class="ti-close"></i>
+                                                            </td>
+                                                        </tr>
+                                                        </c:forEach>  
+<!--                                                        <tr>
+                                                            <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
+                                                            <td class="si-text">
+                                                                <div class="product-selected">
+                                                                    <p><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" /> VND x ${i.quantity}</p>
+                                                                    <h6>Kabino Bedside Table</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td class="si-close">
+                                                                <i class="ti-close"></i>
+                                                            </td>
+                                                        </tr>-->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="select-total">
+                                                <span>total:</span>
+                                                <h5><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" /> VND</h5>
+                                            </div>
+                                            <div class="select-button">
+                                                <a href="shoppingcart" class="primary-btn view-card">VIEW CART</a>
+                                                <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                            </div>
                                         </div>
-                                        <div class="select-total">
-                                            <span>total:</span>
-                                            <h5>$120.00</h5>
-                                        </div>
-                                        <div class="select-button">
-                                            <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                            <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                        </div>
-                                    </div>
+                                                      
                                 </li>
-                                <li class="cart-price">$150.00</li>
+                                <!--<li class="cart-price"><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" /> VND</li>-->
                             </ul>
                         </div>
                     </div>
@@ -144,8 +152,8 @@
                     </div>
                     <nav class="nav-menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
+                            <li class="active"><a href="home">Home</a></li>
+                            <li><a href="product">Shop</a></li>
                             <li><a href="#">Collection</a>
                                 <ul class="dropdown">
                                     <li><a href="#">Men's</a></li>

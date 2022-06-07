@@ -88,6 +88,18 @@
         <servlet-name>BuyServlet</servlet-name>
         <servlet-class>CartController.BuyServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartHeaderServlet</servlet-name>
+        <servlet-class>CartController.CartHeaderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShoppingCartServlet</servlet-name>
+        <servlet-class>CartController.ShoppingCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessServlet</servlet-name>
+        <servlet-class>CartController.ProcessServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -167,6 +179,18 @@
     <servlet-mapping>
         <servlet-name>BuyServlet</servlet-name>
         <url-pattern>/buy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartHeaderServlet</servlet-name>
+        <url-pattern>/cartheader</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShoppingCartServlet</servlet-name>
+        <url-pattern>/shoppingcart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessServlet</servlet-name>
+        <url-pattern>/process</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
