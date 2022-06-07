@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
 
-    <body>
+    <body >
         <!-- Page Preloder -->
         <div id="preloder">
             <div class="loader"></div>
