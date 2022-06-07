@@ -19,13 +19,14 @@ public class Account {
     private String email;
     private String phone;
     private String address;
+   
+    private Role role;
     private boolean status;
-    private String role;
 
     public Account() {
     }
 
-    public Account(int accountID, String username, String password, String name, boolean gender, String email, String phone, String address, boolean status, String role) {
+    public Account(int accountID, String username, String password, String name, boolean gender, String email, String phone, String address, Role role, boolean status) {
         this.accountID = accountID;
         this.username = username;
         this.password = password;
@@ -34,8 +35,8 @@ public class Account {
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.status = status;
         this.role = role;
+        this.status = status;
     }
 
     public int getAccountID() {
@@ -102,6 +103,14 @@ public class Account {
         this.address = address;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public boolean isStatus() {
         return status;
     }
@@ -110,16 +119,5 @@ public class Account {
         this.status = status;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" + "accountID=" + accountID + ", username=" + username + ", password=" + password + ", name=" + name + ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", address=" + address + ", status=" + status + ", role=" + role + '}';
-    }
+   
 }

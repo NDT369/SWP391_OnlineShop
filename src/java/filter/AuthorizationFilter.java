@@ -107,7 +107,7 @@ public class AuthorizationFilter implements Filter {
         }
         
         doBeforeProcessing(request, response);
-              HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String url = httpRequest.getServletPath();
         HttpSession session = httpRequest.getSession();
@@ -117,12 +117,12 @@ public class AuthorizationFilter implements Filter {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
-                if (a.getRole().equalsIgnoreCase("admin")) {
+                if (a.getRole().getRoleName().equalsIgnoreCase("admin")) {
                     chain.doFilter(request, response);
                 } else {
-                    if (a.getRole().equalsIgnoreCase("customer")) {
+                    if (a.getRole().getRoleName().equalsIgnoreCase("customer")) {
                         httpResponse.sendRedirect("home");
-                    } else if (a.getRole().equalsIgnoreCase("saler")) {
+                    } else if (a.getRole().getRoleName().equalsIgnoreCase("saler")) {
                         httpResponse.sendRedirect("saledashboard");
                     } else {
                         httpResponse.sendRedirect("marketingdashboard");
@@ -135,12 +135,12 @@ public class AuthorizationFilter implements Filter {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
-                if (a.getRole().equalsIgnoreCase("saler")) {
+                if (a.getRole().getRoleName().equalsIgnoreCase("saler")) {
                     chain.doFilter(request, response);
                 } else {
-                    if (a.getRole().equalsIgnoreCase("customer")) {
+                    if (a.getRole().getRoleName().equalsIgnoreCase("customer")) {
                         httpResponse.sendRedirect("home");
-                    } else if (a.getRole().equalsIgnoreCase("admin")) {
+                    } else if (a.getRole().getRoleName().equalsIgnoreCase("admin")) {
                         httpResponse.sendRedirect("admindashboard");
                     } else {
                         httpResponse.sendRedirect("marketingdashboard");
@@ -153,17 +153,24 @@ public class AuthorizationFilter implements Filter {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
-                if (a.getRole().equalsIgnoreCase("marketer")) {
+                if (a.getRole().getRoleName().equalsIgnoreCase("marketer")) {
                     chain.doFilter(request, response);
                 } else {
-                    if (a.getRole().equalsIgnoreCase("customer")) {
+                    if (a.getRole().getRoleName().equalsIgnoreCase("customer")) {
                         httpResponse.sendRedirect("home");
-                    } else if (a.getRole().equalsIgnoreCase("admin")) {
+                    } else if (a.getRole().getRoleName().equalsIgnoreCase("admin")) {
                         httpResponse.sendRedirect("admindashboard");
                     } else {
                         httpResponse.sendRedirect("saledashboard");
                     }
                 }
+            }
+        }
+        if(url.equals("/changepass") || url.equals("/userprofile")){
+            if(a==null){
+                 httpResponse.sendRedirect("login");
+            }else{
+                chain.doFilter(request, response);
             }
         }
         

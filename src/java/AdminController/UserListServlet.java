@@ -65,10 +65,20 @@ public class UserListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         AccountDAO a = new AccountDAO();
-        List<Account> listAccount = a.getAll();
+        String index_raw = request.getParameter("index");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+        int index = Integer.parseInt(index_raw);
+        List<Account> listAccount = a.listPaging(index);
         List<Integer> listGender = a.getAllGender();
         List<Role> listRole = a.getAllRole();
-//        List<Integer> listStatus = a.getAllStatus();
+
+        int total = a.getTotalAccount();
+        int page = total / 5;
+        if (total % 5 != 0) {
+            page += 1;
+        }
 
         String gender = "";
         String role = "";
@@ -87,10 +97,10 @@ public class UserListServlet extends HttpServlet {
         request.setAttribute("role", role);
         request.setAttribute("status", status);
 
+        request.setAttribute("page", page);
         request.setAttribute("sort", "");
         request.setAttribute("GenderList", listGender);
         request.setAttribute("RoleList", listRole);
-//        request.setAttribute("StatusList", listStatus);
         request.setAttribute("UserList", listAccount);
         request.getRequestDispatcher("Admin/userlist.jsp").forward(request, response);
     }

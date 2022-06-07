@@ -17,21 +17,21 @@ public class Product {
     private int quantity;
     private String imgURL;
     private String description;
-    private String brand;
-    private String category;
-    private String  os;
-    private String ram;
-    private String cpu;
-    private String display;
-    private String capacity;
-    private String card;
+    private Brand brand;
+    private Category category;
+    private OperatingSystem os;
+    private RAM ram;
+    private CPU cpu;
+    private Display display;
+    private Capacity capacity;
+    private Card card;
     private String createdate;
     private boolean status;
 
     public Product() {
     }
 
-    public Product(int id, String name, double price, double saleprice, int quantity, String imgURL, String description, String brand, String category, String os, String ram, String cpu, String display, String capacity, String card, String createdate, boolean status) {
+    public Product(int id, String name, double price, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -107,67 +107,67 @@ public class Product {
         this.description = description;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public String getOs() {
+    public OperatingSystem getOs() {
         return os;
     }
 
-    public void setOs(String os) {
+    public void setOs(OperatingSystem os) {
         this.os = os;
     }
 
-    public String getRam() {
+    public RAM getRam() {
         return ram;
     }
 
-    public void setRam(String ram) {
+    public void setRam(RAM ram) {
         this.ram = ram;
     }
 
-    public String getCpu() {
+    public CPU getCpu() {
         return cpu;
     }
 
-    public void setCpu(String cpu) {
+    public void setCpu(CPU cpu) {
         this.cpu = cpu;
     }
 
-    public String getDisplay() {
+    public Display getDisplay() {
         return display;
     }
 
-    public void setDisplay(String display) {
+    public void setDisplay(Display display) {
         this.display = display;
     }
 
-    public String getCapacity() {
+    public Capacity getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(String capacity) {
+    public void setCapacity(Capacity capacity) {
         this.capacity = capacity;
     }
 
-    public String getCard() {
+    public Card getCard() {
         return card;
     }
 
-    public void setCard(String card) {
+    public void setCard(Card card) {
         this.card = card;
     }
 
@@ -192,8 +192,5 @@ public class Product {
         return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", saleprice=" + saleprice + ", quantity=" + quantity + ", imgURL=" + imgURL + ", description=" + description + ", brand=" + brand + ", category=" + category + ", os=" + os + ", ram=" + ram + ", cpu=" + cpu + ", display=" + display + ", capacity=" + capacity + ", card=" + card + ", createdate=" + createdate + ", status=" + status + '}';
     }
 
-    
-    
-    
     
 }

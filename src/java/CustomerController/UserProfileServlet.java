@@ -88,7 +88,7 @@ public class UserProfileServlet extends HttpServlet {
 
         AccountDAO a = new AccountDAO();
         a.updateInfor(id, name, gender_role, email, phone, address);
-        
+
         HttpSession session = request.getSession();
         AccountDAO ad = new AccountDAO();
         Account account = ad.getAcountByID(Integer.parseInt(id));

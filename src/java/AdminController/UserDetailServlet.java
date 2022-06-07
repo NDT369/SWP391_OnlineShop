@@ -73,7 +73,7 @@ public class UserDetailServlet extends HttpServlet {
             listStatus.add(0);
             
             for (int i = 0; i < listRole.size(); i++) {
-                if(listRole.get(i).getRoleName().equalsIgnoreCase(ac.getRole())){
+                if(listRole.get(i).getRoleName().equalsIgnoreCase(ac.getRole().getRoleName())){
                     listRole.remove(listRole.get(i));
                 }
             }

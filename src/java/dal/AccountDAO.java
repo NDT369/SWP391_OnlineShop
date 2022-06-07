@@ -20,8 +20,7 @@ import model.Role;
  * @author DUC THINH
  */
 public class AccountDAO extends DBContext {
-
-    private PreparedStatement ps;
+private PreparedStatement ps;
     private ResultSet rs;
 
     public Account checkAccount(String username, String password) {
@@ -35,15 +34,18 @@ public class AccountDAO extends DBContext {
             rs = ps.executeQuery();
             if (rs.next()) {
                 Account account = new Account();
+                account.setAccountID(rs.getInt(1));
                 account.setUsername(username);
                 account.setPassword(password);
-                account.setAccountID(rs.getInt(1));
                 account.setName(rs.getString(4));
                 account.setGender(rs.getBoolean(5));
                 account.setEmail(rs.getString(6));
                 account.setPhone(rs.getString(7));
                 account.setAddress(rs.getString(8));
-                account.setRole(rs.getString(12));
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
+                account.setRole(r);
                 return account;
             }
 
@@ -67,13 +69,17 @@ public class AccountDAO extends DBContext {
 
     public List<Account> getAll() { // giang
         List<Account> list = new ArrayList<>();
-        String sql = "select * from Account";
+        String sql = " select * from Account a\n"
+                + "  join Role_Account r on a.Role_ID = r.Role_ID";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
                 list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(10), rs.getString(9)));
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
             }
 
         } catch (Exception e) {
@@ -83,13 +89,17 @@ public class AccountDAO extends DBContext {
 
     public List<Account> getByGender(int gender) {
         List<Account> list = new ArrayList<>();
-        String sql = "select * from Account where Gender = ?";
+        String sql = "select * from Account a join Role_Account r on a.Role_ID = r.Role_ID"
+                + "where Gender = ?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, gender);
             while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
                 list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(10), rs.getString(9)));
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
             }
         } catch (Exception e) {
         }
@@ -103,8 +113,10 @@ public class AccountDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, role);
             while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
                 list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(10), rs.getString(9)));
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
             }
         } catch (Exception e) {
         }
@@ -118,8 +130,10 @@ public class AccountDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, status);
             while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
                 list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(10), rs.getString(9)));
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
             }
         } catch (Exception e) {
         }
@@ -144,7 +158,7 @@ public class AccountDAO extends DBContext {
                     return o1.getPhone().compareTo(o2.getPhone());
                 }
                 if (str.equals("Role_ID")) {
-                    return o1.getRole().compareTo(o2.getRole());
+                    return o1.getRole().getRoleName().compareTo(o2.getRole().getRoleName());
                 }
                 return o1.getAccountID() > o2.getAccountID() ? 1 : -1;
             }
@@ -172,7 +186,7 @@ public class AccountDAO extends DBContext {
         }
         if (role != "") {
             for (int i = list.size() - 1; i >= 0; i--) {
-                if (!list.get(i).getRole().equals(role)) {
+                if (!(list.get(i).getRole().getRoleID() == Integer.parseInt(role))) {
                     list.remove(list.get(i));
                 }
             }
@@ -206,8 +220,10 @@ public class AccountDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
                 list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(10), rs.getString(9)));
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
             }
         } catch (Exception e) {
         }
@@ -268,8 +284,11 @@ public class AccountDAO extends DBContext {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
                 return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(10), rs.getString(12));
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10));
             }
         } catch (Exception e) {
         }
@@ -344,17 +363,6 @@ public class AccountDAO extends DBContext {
 
     }
 
-    public void updateInfor(String id, String name, boolean gender, String email, String phone, String address) {
-        String sql = "update Account set Name = '" + name + "',"
-                + " Gender = '" + gender + "', Email='" + email + "', Phone = '" + phone + "',"
-                + " Address = '" + address + "' where Account_ID = " + id;
-        try {
-            ps = connection.prepareStatement(sql);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
-
     public void changePass(String Username, String newPass) {
         String sql = "UPDATE [dbo].[Account] \n"
                 + "SET [Password] = ?\n"
@@ -376,6 +384,8 @@ public class AccountDAO extends DBContext {
             ps.setString(1, username);
             rs = ps.executeQuery();
             if (rs.next()) {
+                 Role r = new Role();
+                r.setRoleID(rs.getInt(9));
                 Account account = new Account(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -384,8 +394,8 @@ public class AccountDAO extends DBContext {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getBoolean(10),
-                        rs.getString(9));
+                        r,
+                        rs.getBoolean(10));
                 return account;
             }
 
@@ -393,8 +403,6 @@ public class AccountDAO extends DBContext {
         }
         return null;
     }
-
-    
 
     public Account getAccountByEmailUsername(String username, String email) {
         String sql = "select * from Account where Username = ? and Email = ?";
@@ -405,6 +413,8 @@ public class AccountDAO extends DBContext {
             ps.setString(2, email);
             rs = ps.executeQuery();
             if (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
                 Account account = new Account(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -413,8 +423,8 @@ public class AccountDAO extends DBContext {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getBoolean(10),
-                        rs.getString(9));
+                        r,
+                        rs.getBoolean(10));
                 return account;
             }
 
@@ -423,7 +433,51 @@ public class AccountDAO extends DBContext {
         return null;
     }
 
-    
+    public void updateInfor(String id, String name, boolean gender, String email, String phone, String address) {
+        String sql = "update Account set Name = '" + name + "',"
+                + " Gender = '" + gender + "', Email='" + email + "', Phone = '" + phone + "',"
+                + " Address = '" + address + "' where Account_ID = " + id;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public List<Account> listPaging(int index) {
+        List<Account> list = new ArrayList<>();
+        String sql = "select * from Account order by Account_ID\n"
+                + "offset  ? row fetch next 5 rows only;";
+        try {
+            ps = connection.prepareCall(sql);
+            ps.setInt(1, (index - 1) * 5);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+
+    }
+
+    public int getTotalAccount() {
+        String sql = "select count(*) from Account";
+        int total = 0;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
     public static void main(String[] args) {
         AccountDAO a = new AccountDAO();
 //        List<Account> list = new ArrayList<>();

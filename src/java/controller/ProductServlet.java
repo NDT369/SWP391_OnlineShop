@@ -5,12 +5,15 @@
  */
 package controller;
 
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Product;
 
 /**
  *
@@ -35,7 +38,7 @@ public class ProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductServlet</title>");            
+            out.println("<title>Servlet ProductServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ProductServlet at " + request.getContextPath() + "</h1>");
@@ -56,6 +59,22 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProductDAO p = new ProductDAO();
+        String index_raw = request.getParameter("index");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+        int index = Integer.parseInt(index_raw);
+
+        int total = p.getTotalProduct();
+        int page = total / 9;
+        if (total % 9 != 0) {
+            page += 1;
+        }
+        List<Product> list = p.listProPaging(index);
+        
+        request.setAttribute("page", page);
+        request.setAttribute("productList", list);
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 

@@ -84,11 +84,11 @@ public class LoginServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
-            if (account.getRole().equalsIgnoreCase("admin")) {
+            if (account.getRole().getRoleName().equalsIgnoreCase("admin")) {
                 response.sendRedirect("admindashboard");
-            } else if (account.getRole().equalsIgnoreCase("saler")) {
+            } else if (account.getRole().getRoleName().equalsIgnoreCase("saler")) {
                 response.sendRedirect("saledashboard");
-            } else if (account.getRole().equalsIgnoreCase("marketer")) {
+            } else if (account.getRole().getRoleName().equalsIgnoreCase("marketer")) {
                 response.sendRedirect("marketingdashboard");
             } else {
                 response.sendRedirect("home");
