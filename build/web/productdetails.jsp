@@ -40,6 +40,7 @@
         </div>
 
         <!-- Header Section Begin -->
+        <c:set value="${cart}" var="c"/>
         <%@include file="Components/header.jsp" %>
         <!-- Header End -->
 
@@ -60,6 +61,7 @@
         <!-- Breadcrumb Section Begin -->
 
         <!-- Product Shop Section Begin -->
+
         <c:set value="${requestScope.product}" var="p"></c:set>
             <section class="product-shop spad page-details">
                 <div class="container">
@@ -139,35 +141,35 @@
                                 </div>
                                 <a href="#" class="filter-btn">Filter</a>
                             </div>
-<!--                            <div class="filter-widget">
-                                <h4 class="fw-title">Color</h4>
-                                <div class="fw-color-choose">
-                                    <div class="cs-item">
-                                        <input type="radio" id="cs-black">
-                                        <label class="cs-black" for="cs-black">Black</label>
-                                    </div>
-                                    <div class="cs-item">
-                                        <input type="radio" id="cs-violet">
-                                        <label class="cs-violet" for="cs-violet">Violet</label>
-                                    </div>
-                                    <div class="cs-item">
-                                        <input type="radio" id="cs-blue">
-                                        <label class="cs-blue" for="cs-blue">Blue</label>
-                                    </div>
-                                    <div class="cs-item">
-                                        <input type="radio" id="cs-yellow">
-                                        <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                                    </div>
-                                    <div class="cs-item">
-                                        <input type="radio" id="cs-red">
-                                        <label class="cs-red" for="cs-red">Red</label>
-                                    </div>
-                                    <div class="cs-item">
-                                        <input type="radio" id="cs-green">
-                                        <label class="cs-green" for="cs-green">Green</label>
-                                    </div>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="filter-widget">
+                                                            <h4 class="fw-title">Color</h4>
+                                                            <div class="fw-color-choose">
+                                                                <div class="cs-item">
+                                                                    <input type="radio" id="cs-black">
+                                                                    <label class="cs-black" for="cs-black">Black</label>
+                                                                </div>
+                                                                <div class="cs-item">
+                                                                    <input type="radio" id="cs-violet">
+                                                                    <label class="cs-violet" for="cs-violet">Violet</label>
+                                                                </div>
+                                                                <div class="cs-item">
+                                                                    <input type="radio" id="cs-blue">
+                                                                    <label class="cs-blue" for="cs-blue">Blue</label>
+                                                                </div>
+                                                                <div class="cs-item">
+                                                                    <input type="radio" id="cs-yellow">
+                                                                    <label class="cs-yellow" for="cs-yellow">Yellow</label>
+                                                                </div>
+                                                                <div class="cs-item">
+                                                                    <input type="radio" id="cs-red">
+                                                                    <label class="cs-red" for="cs-red">Red</label>
+                                                                </div>
+                                                                <div class="cs-item">
+                                                                    <input type="radio" id="cs-green">
+                                                                    <label class="cs-green" for="cs-green">Green</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                             <div class="filter-widget">
                                 <h4 class="fw-title">Display</h4>
                                 <div class="fw-size-choose">
@@ -240,54 +242,65 @@
                                         <span>(5)</span>
                                     </div>
                                     <div class="pd-desc">
-<!--                                        <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
-                                            sit amet, consectetur adipisicing elit, sed do mod tempor</p>-->
+                                        <!--                                        <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
+                                                                                    sit amet, consectetur adipisicing elit, sed do mod tempor</p>-->
                                         <h4>
                                             <fmt:formatNumber pattern="###,###,###" value="${p.saleprice}" /> VND
                                             <span><fmt:formatNumber pattern="###,###,###" value="${p.price}" /> VND</span>
                                         </h4>
                                     </div>
-<!--                                    <div class="pd-color">
-                                        <h6>Color</h6>
-                                        <div class="pd-color-choose">
-                                            <div class="cc-item">
-                                                <input type="radio" id="cc-black">
-                                                <label for="cc-black"></label>
+                                    <!--                                    <div class="pd-color">
+                                                                            <h6>Color</h6>
+                                                                            <div class="pd-color-choose">
+                                                                                <div class="cc-item">
+                                                                                    <input type="radio" id="cc-black">
+                                                                                    <label for="cc-black"></label>
+                                                                                </div>
+                                                                                <div class="cc-item">
+                                                                                    <input type="radio" id="cc-yellow">
+                                                                                    <label for="cc-yellow" class="cc-yellow"></label>
+                                                                                </div>
+                                                                                <div class="cc-item">
+                                                                                    <input type="radio" id="cc-violet">
+                                                                                    <label for="cc-violet" class="cc-violet"></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>-->
+                                    <!--                                    <div class="pd-size-choose">
+                                                                            <div class="sc-item">
+                                                                                <input type="radio" id="sm-size">
+                                                                                <label for="sm-size">s</label>
+                                                                            </div>
+                                                                            <div class="sc-item">
+                                                                                <input type="radio" id="md-size">
+                                                                                <label for="md-size">m</label>
+                                                                            </div>
+                                                                            <div class="sc-item">
+                                                                                <input type="radio" id="lg-size">
+                                                                                <label for="lg-size">l</label>
+                                                                            </div>
+                                                                            <div class="sc-item">
+                                                                                <input type="radio" id="xl-size">
+                                                                                <label for="xl-size">xs</label>
+                                                                            </div>
+                                                                        </div>-->
+                                    <form name="addCart" action="" method="post">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input id="num" name="num" type="text" value="1">
                                             </div>
-                                            <div class="cc-item">
-                                                <input type="radio" id="cc-yellow">
-                                                <label for="cc-yellow" class="cc-yellow"></label>
-                                            </div>
-                                            <div class="cc-item">
-                                                <input type="radio" id="cc-violet">
-                                                <label for="cc-violet" class="cc-violet"></label>
-                                            </div>
+
+                                            <!--<a href="buy?productID=${p.id}&num=1"  class="primary-btn pd-cart">Add To Cart</a>-->
+                                            <input type="button" onclick="buyDetail('${p.id}')" value="Add To Cart" class="primary-btn pd-cart"/>
                                         </div>
-                                    </div>-->
-<!--                                    <div class="pd-size-choose">
-                                        <div class="sc-item">
-                                            <input type="radio" id="sm-size">
-                                            <label for="sm-size">s</label>
-                                        </div>
-                                        <div class="sc-item">
-                                            <input type="radio" id="md-size">
-                                            <label for="md-size">m</label>
-                                        </div>
-                                        <div class="sc-item">
-                                            <input type="radio" id="lg-size">
-                                            <label for="lg-size">l</label>
-                                        </div>
-                                        <div class="sc-item">
-                                            <input type="radio" id="xl-size">
-                                            <label for="xl-size">xs</label>
-                                        </div>
-                                    </div>-->
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                        <a href="#" class="primary-btn pd-cart">Add To Cart</a>
-                                    </div>
+                                    </form>
+                                    <script type="text/javascript">
+                                        function buyDetail(productID) {
+                                            var q = document.getElementById("num").value;
+                                            document.addCart.action = "buydetail?productID=" + productID + "&num=" + q;
+                                            document.addCart.submit();
+                                        }
+                                    </script>
                                     <ul class="pd-tags">
                                         <li><span>CATEGORIES</span>: ${p.category.getName()}</li>
                                         <!--<li><span>TAGS</span>: Clothing, T-shirt, Woman</li>-->
@@ -325,19 +338,19 @@
                                                 <div class="col-lg-7">
                                                     <h5>Introduction</h5>
                                                     <p>${p.description}</p>
-<!--                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                        aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
-                                                    <h5>Features</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                        aliquip ex ea commodo consequat. Duis aute irure dolor in </p>-->
+                                                    <!--                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                                                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                                                                                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                                                                                            aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
+                                                                                                        <h5>Features</h5>
+                                                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                                                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                                                                                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                                                                                            aliquip ex ea commodo consequat. Duis aute irure dolor in </p>-->
                                                 </div>
-<!--                                                <div class="col-lg-5">
-                                                    <img src="img/product-single/tab-desc.jpg" alt="">
-                                                </div>-->
+                                                <!--                                                <div class="col-lg-5">
+                                                                                                    <img src="img/product-single/tab-desc.jpg" alt="">
+                                                                                                </div>-->
                                             </div>
                                         </div>
                                     </div>
@@ -473,120 +486,121 @@
                 </div>
             </div>
         </section>
+
         <!-- Product Shop Section End -->
 
         <!-- Related Products Section End -->
-<!--        <div class="related-products spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>Related Products</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
+        <!--        <div class="related-products spad">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="section-title">
+                                    <h2>Related Products</h2>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="img/products/women-1.jpg" alt="">
+                                        <div class="sale">Sale</div>
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">Coat</div>
+                                        <a href="#">
+                                            <h5>Pure Pineapple</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            $14.00
+                                            <span>$35.00</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
                             </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="img/products/women-2.jpg" alt="">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">Shoes</div>
+                                        <a href="#">
+                                            <h5>Guangzhou sweater</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            $13.00
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="img/products/women-3.jpg" alt="">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">Towel</div>
+                                        <a href="#">
+                                            <h5>Pure Pineapple</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            $34.00
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="img/products/women-4.jpg" alt="">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">Towel</div>
+                                        <a href="#">
+                                            <h5>Converse Shoes</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            $34.00
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+                </div>-->
         <!-- Related Products Section End -->
 
         <!-- Partner Logo Section Begin -->
@@ -638,6 +652,8 @@
         <script src="js/jquery.slicknav.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
+
+
     </body>
 
 </html>

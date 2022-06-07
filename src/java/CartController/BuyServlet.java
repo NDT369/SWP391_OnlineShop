@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package CartController;
 
-import dal.BlogDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,15 +14,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Blog;
-import model.Cart;
 import model.Product;
 
 /**
  *
- * @author Pham Minh Giang
+ * @author MSI
  */
-public class HomeServlet extends HttpServlet {
+public class BuyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,19 +33,33 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        ProductDAO dao = new ProductDAO();
+        List<Product> listProduct =dao.getAll();
+
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) {
+                if (o.getName().equals("cart")) {
+                    txt += o.getValue();
+                    o.setMaxAge(0);
+                    response.addCookie(o);
+                }
+            }
         }
+        String productID = request.getParameter("productID");
+        
+        if(txt.isEmpty()){
+            txt = productID +":1";
+        }
+        else{
+            txt += ","+productID+":1";
+        }
+        Cookie c = new Cookie("cart", txt);
+        c.setMaxAge(60*5);
+        response.addCookie(c);
+//        request.getRequestDispatcher("home").forward(request, response);
+        response.sendRedirect("home");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,31 +74,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO p = new ProductDAO();
-        BlogDAO b = new BlogDAO();
-        List<Product> listTop = p.getSaleProduct();
-        List<Product> listNew = p.getNewProduct();
-        List<Blog> blog = b.getAll();
-        
-        
-        List<Product> listProduct = p.getAll();
-        Cookie[] arr = request.getCookies();
-        String txt = "";
-        if(arr != null){
-            for (Cookie c : arr) {
-                if(c.getName().equals("cart")){
-                    txt += c.getValue();
-                }
-            }
-        }
-        
-        Cart cart = new Cart(txt, listProduct);
-        request.setAttribute("cart", cart);
-        request.setAttribute("blog", blog);
-        request.setAttribute("listTop", listTop);
-        request.setAttribute("listNew", listNew);
-//        request.setAttribute("pageInclude", "homepage.jsp");
-        request.getRequestDispatcher("homepage.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

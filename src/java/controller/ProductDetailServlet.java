@@ -8,10 +8,13 @@ package controller;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cart;
 import model.Product;
 
 /**
@@ -61,7 +64,19 @@ public class ProductDetailServlet extends HttpServlet {
         String id = request.getParameter("id");
         ProductDAO d = new ProductDAO();
         Product product = d.getProductByID(id);
+        List<Product> listProduct = d.getAll();
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for (Cookie c : arr) {
+                if(c.getName().equals("cart")){
+                    txt += c.getValue();
+                }
+            }
+        }
         
+        Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
         request.setAttribute("product", product);
         request.getRequestDispatcher("productdetails.jsp").forward(request, response);
     }

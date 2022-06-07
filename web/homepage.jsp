@@ -9,6 +9,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
+
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -39,6 +41,7 @@
             <div class="loader"></div>
         </div>
         <!-- Header Section Begin -->
+        <c:set value="${cart}" var="c"/>
         <%@include file="Components/header.jsp" %>
         <!-- Header End -->
 
@@ -146,7 +149,7 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="w-icon active"><a href="buy?productID=${l.id}"><i class="icon_bag_alt"></i></a></li>
                                             <li class="quick-view"><a href="#">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
@@ -158,6 +161,7 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
+
                                         </div>
                                         <div class="product-price">
                                             <span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span>
@@ -232,7 +236,7 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="w-icon active"><a href="buy?productID=${l.id}"><i class="icon_bag_alt"></i></a></li>
                                             <li class="quick-view"><a href="#">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
@@ -244,6 +248,7 @@
                                         </a>
                                         <div class="product-price">
                                             <fmt:formatNumber pattern="###,###,###" value="${l.saleprice}" /> VND
+
                                         </div>
                                         <div class="product-price">
                                             <span><fmt:formatNumber pattern="###,###,###" value="${l.price}" /> VND</span>
@@ -333,6 +338,7 @@
                                         </div>
                                     </div>
                                     <a href="blogdetail?id=${b.id}">
+                                    <a href="blogdetail?blogID=${b.id}">
                                         <h4>${b.title}</h4>
                                     </a>
                                     <!--<p>${b.content} </p>-->
@@ -340,6 +346,50 @@
                             </div>
                         </div>
                     </c:forEach>
+
+
+                    <!--                    <div class="col-lg-4 col-md-6">
+                                            <div class="single-latest-blog">
+                                                <img src="img/latest-2.jpg" alt="">
+                                                <div class="latest-text">
+                                                    <div class="tag-list">
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-calendar-o"></i>
+                                                            May 4,2019
+                                                        </div>
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-comment-o"></i>
+                                                            5
+                                                        </div>
+                                                    </div>
+                                                    <a href="#">
+                                                        <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
+                                                    </a>
+                                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="single-latest-blog">
+                                                <img src="img/latest-3.jpg" alt="">
+                                                <div class="latest-text">
+                                                    <div class="tag-list">
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-calendar-o"></i>
+                                                            May 4,2019
+                                                        </div>
+                                                        <div class="tag-item">
+                                                            <i class="fa fa-comment-o"></i>
+                                                            5
+                                                        </div>
+                                                    </div>
+                                                    <a href="#">
+                                                        <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
+                                                    </a>
+                                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                                                </div>
+                                            </div>
+                                        </div>-->
                 </div>
 
                 <div class="benefit-items">

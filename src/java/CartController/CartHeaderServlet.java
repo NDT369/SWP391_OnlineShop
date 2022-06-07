@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package CartController;
 
-import dal.BlogDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,15 +14,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Blog;
 import model.Cart;
 import model.Product;
 
 /**
  *
- * @author Pham Minh Giang
+ * @author MSI
  */
-public class HomeServlet extends HttpServlet {
+public class CartHeaderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +40,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");            
+            out.println("<title>Servlet CartHeaderServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CartHeaderServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,14 +61,8 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO p = new ProductDAO();
-        BlogDAO b = new BlogDAO();
-        List<Product> listTop = p.getSaleProduct();
-        List<Product> listNew = p.getNewProduct();
-        List<Blog> blog = b.getAll();
-        
-        
-        List<Product> listProduct = p.getAll();
+        ProductDAO dao = new ProductDAO();
+        List<Product> listProduct = dao.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
         if(arr != null){
@@ -83,11 +75,7 @@ public class HomeServlet extends HttpServlet {
         
         Cart cart = new Cart(txt, listProduct);
         request.setAttribute("cart", cart);
-        request.setAttribute("blog", blog);
-        request.setAttribute("listTop", listTop);
-        request.setAttribute("listNew", listNew);
-//        request.setAttribute("pageInclude", "homepage.jsp");
-        request.getRequestDispatcher("homepage.jsp").forward(request, response);
+        request.getRequestDispatcher("header.jsp").forward(request, response);
     }
 
     /**
