@@ -221,10 +221,17 @@ public class ProductDAO extends DBContext {
             ps.setInt(1, productID);
             rs = ps.executeQuery();
             if (rs.next()) {
+                Brand brand = new Brand(rs.getInt(18), rs.getString(19), rs.getBoolean(20));
+                Category category = new Category(rs.getInt(21), rs.getString(22), rs.getBoolean(23));
+                OperatingSystem os = new OperatingSystem(rs.getInt(24), rs.getString(25), rs.getBoolean(26));
+                RAM ram = new RAM(rs.getInt(27), rs.getString(28), rs.getBoolean(29));
+                CPU cpu = new CPU(rs.getInt(30), rs.getString(31), rs.getBoolean(32));
+                Display display = new Display(rs.getInt(33), rs.getString(34), rs.getBoolean(35));
+                Capacity capaciry = new Capacity(rs.getInt(36), rs.getString(37), rs.getBoolean(38));
+                Card card = new Card(rs.getInt(39), rs.getString(40), rs.getBoolean(41));
                 p = new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7),
-                        rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11),
-                        rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15),
+                        brand, category, os, ram, cpu, display, capaciry, card,
                         rs.getString(16), rs.getBoolean(17));
             }
 

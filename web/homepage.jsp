@@ -42,7 +42,7 @@
         </div>
         <!-- Header Section Begin -->
         <c:set value="${cart}" var="c"/>
-        <%@include file="Components/header.jsp" %>
+        <%--<%@include file="Components/header.jsp" %>--%>
         <!-- Header End -->
 
         <!-- Hero Section Begin -->
