@@ -73,6 +73,13 @@
         <servlet-class>controller.BlogDetailServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< Updated upstream
+=======
+        <servlet-name>UserProfileServlet</servlet-name>
+        <servlet-class>CustomerController.UserProfileServlet</servlet-class>
+         </servlet>
+    <servlet>
+>>>>>>> Stashed changes
         <servlet-name>ChangePassServlet</servlet-name>
         <servlet-class>AccountController.ChangePassServlet</servlet-class>
     </servlet>
