@@ -58,7 +58,7 @@ public class BlogDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("blogID");
+        String id = request.getParameter("id");
         BlogDAO b = new BlogDAO();
         Blog blog = b.getBlogByID(id);
         request.setAttribute("blog", blog);

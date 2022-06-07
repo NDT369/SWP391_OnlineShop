@@ -58,7 +58,7 @@ public class ProductDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("productID");
+        String id = request.getParameter("id");
         ProductDAO d = new ProductDAO();
         Product product = d.getProductByID(id);
         
