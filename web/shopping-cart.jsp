@@ -35,8 +35,8 @@
         </div>
 
         <!-- Header Section Begin -->
-        <c:set value="${cart}" var="c"/>
-        <%@include file="Components/header.jsp"  %>
+        <%--<c:set value="${cart}" var="c"/>--%>
+        <%@include file="Components/header.jsp"%>
         <!-- Header End -->
 
         <!-- Breadcrumb Section Begin -->

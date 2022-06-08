@@ -87,7 +87,7 @@
     <servlet>
         <servlet-name>SearchBlogServlet</servlet-name>
         <servlet-class>controller.SearchBlogServlet</servlet-class>
-        </servlet>
+    </servlet>
     <servlet>
         <servlet-name>BuyDetailServlet</servlet-name>
         <servlet-class>CartController.BuyDetailServlet</servlet-class>
@@ -107,6 +107,10 @@
     <servlet>
         <servlet-name>ProcessServlet</servlet-name>
         <servlet-class>CartController.ProcessServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuyListServlet</servlet-name>
+        <servlet-class>CartController.BuyListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -187,7 +191,7 @@
     <servlet-mapping>
         <servlet-name>SearchBlogServlet</servlet-name>
         <url-pattern>/searchblog</url-pattern>
-        </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BuyDetailServlet</servlet-name>
         <url-pattern>/buydetail</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>ProcessServlet</servlet-name>
         <url-pattern>/process</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyListServlet</servlet-name>
+        <url-pattern>/buylist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

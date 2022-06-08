@@ -41,7 +41,7 @@
             <div class="loader"></div>
         </div>
         <!-- Header Section Begin -->
-        <c:set value="${cart}" var="c"/>
+        <%--<c:set value="${cart}" var="c"/>--%>
         <%@include file="Components/header.jsp" %>
         <!-- Header End -->
 

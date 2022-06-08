@@ -45,7 +45,8 @@
         </div>
 
         <!-- Header Section Begin -->
-        <%@include file="Components/header.jsp" %>
+        <c:set value="${cart}" var="c"/>
+        <%@include file="Components/header.jsp"%>
         <!-- Header End -->
 
         <!-- Breadcrumb Section Begin -->
@@ -220,7 +221,7 @@
                                                     <i class="icon_heart_alt"></i>
                                                 </div>
                                                 <ul>
-                                                    <li class="w-icon active"><a href=""><i class="icon_bag_alt"></i></a></li>
+                                                    <li class="w-icon active"><a href="buylist?id=${p.id}"><i class="icon_bag_alt"></i></a></li>
                                                     <li class="quick-view"><a href="#">+ Quick View</a></li>
                                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                                 </ul>
