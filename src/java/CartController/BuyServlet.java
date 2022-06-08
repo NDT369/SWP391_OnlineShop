@@ -47,7 +47,7 @@ public class BuyServlet extends HttpServlet {
                 }
             }
         }
-        String productID = request.getParameter("productID");
+        String productID = request.getParameter("id");
         
         if(txt.isEmpty()){
             txt = productID +":1";
