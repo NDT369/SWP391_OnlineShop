@@ -297,7 +297,7 @@
                                     <script type="text/javascript">
                                         function buyDetail(productID) {
                                             var q = document.getElementById("num").value;
-                                            document.addCart.action = "buydetail?productID=" + productID + "&num=" + q;
+                                            document.addCart.action = "buydetail?id=" + productID + "&num=" + q;
                                             document.addCart.submit();
                                         }
                                     </script>

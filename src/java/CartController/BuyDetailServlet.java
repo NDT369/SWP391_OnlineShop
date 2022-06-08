@@ -47,17 +47,17 @@ public class BuyDetailServlet extends HttpServlet {
                 }
             }
         }
-        String productID = request.getParameter("productID");
+        String id = request.getParameter("id");
         String num = request.getParameter("num");
         if (txt.isEmpty()) {
-            txt = productID + ":" + num;
+            txt = id + ":" + num;
         } else {
-            txt += "," + productID + ":" + num;
+            txt += "," + id + ":" + num;
         }
         Cookie c = new Cookie("cart", txt);
         c.setMaxAge(60 * 5);
         response.addCookie(c);
-        String path = "productdetail?productID="+productID;
+        String path = "productdetail?id="+id;
 //        request.getRequestDispatcher("home").forward(request, response);
         response.sendRedirect(path);
     }

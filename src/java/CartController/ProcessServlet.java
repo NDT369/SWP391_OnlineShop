@@ -79,18 +79,18 @@ public class ProcessServlet extends HttpServlet {
         
         Cart cart = new Cart(txt, listProduct);
         String num_raw = request.getParameter("num");
-        String productID_raw = request.getParameter("productID");
-        int productID, num;
+        String id_raw = request.getParameter("id");
+        int id, num;
         try {
             num = Integer.parseInt(num_raw);
-            productID = Integer.parseInt(productID_raw);
-            Product product = dao.getProductByID(productID);
+            id = Integer.parseInt(id_raw);
+            Product product = dao.getProductByID(id);
             int numStore = product.getQuantity();
-            if(num == -1 && (cart.getQuantityByID(productID) <= 1)){
-                cart.deleteItem(productID);
+            if(num == -1 && (cart.getQuantityByID(id) <= 1)){
+                cart.deleteItem(id);
             }
             else{
-                if(num==1 && cart.getQuantityByID(productID) >= numStore){
+                if(num==1 && cart.getQuantityByID(id) >= numStore){
                     num = 0;
                 }
                 double price = product.getSaleprice();
@@ -144,16 +144,16 @@ public class ProcessServlet extends HttpServlet {
             }
         }
         
-        String productID = request.getParameter("productID");
-        String[] productIDs = txt.split(",");
+        String id = request.getParameter("id");
+        String[] ids = txt.split(",");
         String out = "";
-        for (int i = 0; i < productIDs.length; i++) {
-            String[] s = productIDs[i].split(":");
-            if (!s[0].equals(productID)) {
+        for (int i = 0; i < ids.length; i++) {
+            String[] s = ids[i].split(":");
+            if (!s[0].equals(id)) {
                 if (out.isEmpty()) {
-                    out = productIDs[i];
+                    out = ids[i];
                 } else {
-                    txt += "," + productIDs[i];
+                    txt += "," + ids[i];
                 }
             }
         }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -86,16 +86,16 @@
                                                                                                             <input type="text" value="${i.quantity}">
                                                                                                         </div>-->
                                                     <div class="">
-                                                        <a href="process?num=-1&productID=${i.product.id}"><button class="btn btn-secondary">-</button></a> 
+                                                        <a href="process?num=-1&id=${i.product.id}"><button class="btn btn-secondary">-</button></a> 
                                                         <strong>${i.quantity}</strong>
-                                                        <a href="process?num=1&productID=${i.product.id}"><button class="btn btn-secondary">+</button></a>
+                                                        <a href="process?num=1&id=${i.product.id}"><button class="btn btn-secondary">+</button></a>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="total-price first-row"><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice*i.quantity}" />VND</td>
 
                                     <form action="process" method="post">
-                                        <input type="hidden" name="productID" value="${i.product.id}"/>
+                                        <input type="hidden" name="id" value="${i.product.id}"/>
                                         <!--<td class="close-td first-row"><i class="ti-close"></i></td>-->
                                         <td class="close-td first-row"><input class="ti-close" type="submit" value="X"/></td>
                                     </form>

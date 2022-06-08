@@ -28,17 +28,17 @@ public class Cart {
         this.item = item;
     }
 
-    private Item getItemByID(int productID) {
+    private Item getItemByID(int id) {
         for (Item i : item) {
-            if (i.getProduct().getId() == productID) {
+            if (i.getProduct().getId() == id) {
                 return i;
             }
         }
         return null;
     }
 
-    public int getQuantityByID(int productID) {
-        return getItemByID(productID).getQuantity();
+    public int getQuantityByID(int id) {
+        return getItemByID(id).getQuantity();
     }
     
     public int getTotalQuantity() {
@@ -59,9 +59,9 @@ public class Cart {
         }
     }
 
-    public void deleteItem(int productID) {
-        if (getItemByID(productID) != null) {
-            item.remove(getItemByID(productID));
+    public void deleteItem(int id) {
+        if (getItemByID(id) != null) {
+            item.remove(getItemByID(id));
         }
     }
 
@@ -73,9 +73,9 @@ public class Cart {
         return total;
     }
 
-    public Product getProductByID(int productID, List<Product> list) {
+    public Product getProductByID(int id, List<Product> list) {
         for (Product p : list) {
-            if(p.getId() == productID){
+            if(p.getId() == id){
                 return p;
             }
         }
@@ -89,10 +89,10 @@ public class Cart {
                 String[] s1 = txt.split(",");
                 for (String s : s1) {
                     String[] s2 = s.split(":");
-                     int productID = Integer.parseInt(s2[0]);
+                     int id = Integer.parseInt(s2[0]);
                      int quantity = Integer.parseInt(s2[1]);
                      
-                     Product product = getProductByID(productID, list);
+                     Product product = getProductByID(id, list);
                      Item item = new Item(product, quantity, product.getSaleprice());
                      addItem(item);
                 }

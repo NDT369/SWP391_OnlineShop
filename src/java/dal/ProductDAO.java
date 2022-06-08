@@ -205,9 +205,7 @@ public class ProductDAO extends DBContext {
     
     public Product getProductByID(int productID) {
         Product p = new Product();
-        String sql = "select p.Product_ID, p.Product_Name, p.Product_Price, p.Product_SalePrice, p.Product_Quantity, p.Product_ImgURL,\n"
-                + "p.Product_Description, b.Brand_Name, cat.Category_Name, o.OS_Name, r.RAM_Name,\n"
-                + "cpu.CPU_Name, d.Display_Name, cap.Capacity_Name, car.Card_Name, p.Product_CreateDate, p.Product_Status from Product p \n"
+        String sql = "select * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"
                 + "join Category cat on p.Category_ID = cat.Category_ID\n"
                 + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
@@ -215,7 +213,7 @@ public class ProductDAO extends DBContext {
                 + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID where p.Product_ID = ?" ;
+                + "join Card car on p.Card_ID = car.Card_ID where p.Product_ID = ?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, productID);

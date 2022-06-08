@@ -42,7 +42,7 @@
         </div>
         <!-- Header Section Begin -->
         <c:set value="${cart}" var="c"/>
-        <%--<%@include file="Components/header.jsp" %>--%>
+        <%@include file="Components/header.jsp" %>
         <!-- Header End -->
 
         <!-- Hero Section Begin -->
@@ -149,7 +149,7 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="buy?productID=${l.id}"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="w-icon active"><a href="buy?id=${l.id}"><i class="icon_bag_alt"></i></a></li>
                                             <li class="quick-view"><a href="#">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
@@ -236,7 +236,7 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="buy?productID=${l.id}"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="w-icon active"><a href="buy?id=${l.id}"><i class="icon_bag_alt"></i></a></li>
                                             <li class="quick-view"><a href="#">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
