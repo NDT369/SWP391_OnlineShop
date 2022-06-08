@@ -98,7 +98,7 @@
                                                     <!--                                                    <td class="si-close">
                                                                                                             <i class="ti-close"></i>
                                                                                                         </td>-->
-                                                    
+
                                                 </tr>
                                             </c:forEach>  
                                             <!--                                                        <tr>
@@ -133,6 +133,7 @@
             </div>
         </div>
     </div>
+
     <div class="nav-item">
         <div class="container">
             <div class="nav-depart">
@@ -162,16 +163,35 @@
                             <li><a href="#">Kid's</a></li>
                         </ul>
                     </li>
-                    <li><a href="./blog.html">Blog</a></li>
+                    <li><a href="blog">Blog</a></li>
                     <li><a href="./contact.html">Contact</a></li>
                     <li><a href="#">Pages</a>
                         <ul class="dropdown">
-                            <li><a href="./blog-details.html">Blog Details</a></li>
+                            <c:if test="${sessionScope.account!=null}"> 
+                                <li><a href="userprofile">User Profile</a></li>
+                                </c:if>
+
                             <li><a href="./shopping-cart.html">Shopping Cart</a></li>
                             <li><a href="./check-out.html">Checkout</a></li>
-                            <li><a href="./faq.html">Faq</a></li>
-                            <li><a href="./register.html">Register</a></li>
-                            <li><a href="./login.html">Login</a></li>
+                                <c:if test="${sessionScope.account!=null}">       
+                                <li><a href="changepass">Change Password</a></li>
+                                </c:if> 
+                                <c:if test="${sessionScope.account==null}"> 
+                                <li><a href="register">Register</a></li>
+                                </c:if>
+                                <c:set value="${sessionScope.account}" var="a"></c:set>
+                                <c:if test="${a.getRole().getRoleName().toLowerCase().equals('admin')}">
+                                <li><a href="admindashboard">Admin DashBoard</a></li>
+                                </c:if>
+                                <c:if test="${a.getRole().getRoleName().toLowerCase().equals('saler')}">
+                                <li><a href="saledashboard">Sale DashBoard</a></li>
+                                </c:if>
+                                <c:if test="${a.getRole().getRoleName().toLowerCase().equals('marketer')}">
+                                <li><a href="marketingdashboard">Marketing DashBoard</a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.account!=null}">
+                                <li><a href="logout">Logout</a></li>
+                                </c:if>
                         </ul>
                     </li>
                 </ul>

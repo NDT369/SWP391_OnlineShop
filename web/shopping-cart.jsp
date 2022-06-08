@@ -243,6 +243,7 @@
         </footer>
         <!-- Footer Section End -->
 
+        <%@include file="Components/footer.jsp" %>
         <!-- Js Plugins -->
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

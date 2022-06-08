@@ -59,8 +59,9 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("pageInclude", "changepass.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+//        request.setAttribute("pageInclude", "changepass.jsp");
+        request.getRequestDispatcher("changepass.jsp").forward(request, response);
+//        response.sendRedirect("changepass.jsp");
 
     }
 
@@ -88,18 +89,15 @@ public class ChangePassServlet extends HttpServlet {
                 dao.changePass(a.getUsername(), newPass1);
 
                 request.setAttribute("success", "Change password successfully");
-                request.setAttribute("pageInclude", "changepass.jsp");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("changepass.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Password incorrect!");
-                request.setAttribute("pageInclude", "changepass.jsp");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("changepass.jsp").forward(request, response);
             }
 
         } else {
             request.setAttribute("error", "Current password incorrect!!");
-            request.setAttribute("pageInclude", "changepass.jsp");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("changepass.jsp").forward(request, response);
 
         }
 

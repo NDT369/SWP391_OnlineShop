@@ -58,8 +58,9 @@ public class ResetPassServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("pageInclude", "resetpass.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+//        request.setAttribute("pageInclude", "resetpass.jsp");
+        request.getRequestDispatcher("resetpass.jsp").forward(request, response);
+//        response.sendRedirect("resetpass.jsp");
     }
 
     /**
@@ -84,13 +85,11 @@ public class ResetPassServlet extends HttpServlet {
             sendEmail.sendResetPass(a, pass);
             dao.changePass(userName, pass);
             request.setAttribute("send", "Check your mail, login and change password");
-            request.setAttribute("pageInclude", "resetpass.jsp");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("resetpass.jsp").forward(request, response);
 
         } else {
             request.setAttribute("error", "Username or Email incorrect!");
-            request.setAttribute("pageInclude", "resetpass.jsp");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("resetpass.jsp").forward(request, response);
         }
     }
 
