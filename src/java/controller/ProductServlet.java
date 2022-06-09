@@ -70,13 +70,13 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO p = new ProductDAO();
-        CategoryDAO c = new CategoryDAO();
+        CategoryDAO cate = new CategoryDAO();
         BrandDAO b = new BrandDAO();
         DisplayDAO d = new DisplayDAO();
         CPUDAO cpu = new CPUDAO();
         
 
-        List<Category> categoryList = c.getAll();
+        List<Category> categoryList = cate.getAll();
         List<Brand> brandList = b.getAll();
         List<Display> displayList = d.getAll();
         List<CPU> cpuList = cpu.getAll();
