@@ -3,16 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/CartController/BuyDetailServlet.java</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/CartController/CartHeaderServlet.java</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/web/cartcontact.jsp</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/CartController/CartContactServlet.java</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/web/product.jsp</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/web/Components/header.jsp</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/CartController/BuyListServlet.java</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/controller/ProductDetailServlet.java</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/controller/ProductServlet.java</file>
-            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/web/shopping-cart.jsp</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/CartController/BuyServlet.java</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/web/productdetails.jsp</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/controller/LoginServlet.java</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/CartController/CartContactServlet.java</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/filter/AuthorizationFilter.java</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/controller/HomeServlet.java</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/web/cartcontact.jsp</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/controller/ProductServlet.java</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/web/login.jsp</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/web/homepage.jsp</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/CartController/BuyListServlet.java</file>
+            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/CartController/BuyDetailServlet.java</file>
         </group>
     </open-files>
 </project-private>

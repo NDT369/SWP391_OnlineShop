@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Product;
 
 /**
@@ -33,6 +34,8 @@ public class BuyServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+     
         ProductDAO dao = new ProductDAO();
         List<Product> listProduct =dao.getAll();
 
@@ -60,6 +63,7 @@ public class BuyServlet extends HttpServlet {
         response.addCookie(c);
 //        request.getRequestDispatcher("home").forward(request, response);
         response.sendRedirect("home");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

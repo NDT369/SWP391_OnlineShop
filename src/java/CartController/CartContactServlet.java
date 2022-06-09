@@ -61,8 +61,9 @@ public class CartContactServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO p = new ProductDAO();
-         List<Product> listProduct = p.getAll();
+    
+       ProductDAO p = new ProductDAO();
+       List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
         if(arr != null){
@@ -72,7 +73,6 @@ public class CartContactServlet extends HttpServlet {
                 }
             }
         }
-        
         Cart cart = new Cart(txt, listProduct);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cartcontact.jsp").forward(request, response);
