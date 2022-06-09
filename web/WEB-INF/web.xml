@@ -116,6 +116,10 @@
         <servlet-name>CartContactServlet</servlet-name>
         <servlet-class>CartController.CartContactServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartCompletionServlet</servlet-name>
+        <servlet-class>CartController.CartCompletionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>CartContactServlet</servlet-name>
         <url-pattern>/cartcontact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartCompletionServlet</servlet-name>
+        <url-pattern>/cartcompletion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

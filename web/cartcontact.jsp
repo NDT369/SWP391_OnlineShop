@@ -50,7 +50,7 @@
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
-            <form action="#" class="checkout-form">
+            <form action="cartcompletion" class="checkout-form">
                 <div class="row">
                     <div class="col-lg-6">
                         
@@ -59,20 +59,20 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <label for="fir">Name<span>*</span></label>
-                                <input type="text" id="fir" value="${a.name}">
+                                <input type="text" name="name" id="fir" value="${a.name}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="street">Address<span>*</span></label>
-                                <input type="text" id="street" class="street-first" value="${a.address}">
+                                <input type="text" name="address" id="street" class="street-first" value="${a.address}">
                                
                             </div>
                             <div class="col-lg-6">
                                 <label for="email">Email Address<span>*</span></label>
-                                <input type="text" id="email" value="${a.email}">
+                                <input type="text" name="email" id="email" value="${a.email}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="phone">Phone<span>*</span></label>
-                                <input type="text" id="phone" value="${a.phone}">
+                                <input type="text" name="phone" id="phone" value="${a.phone}">
                             </div>
                         </div>
                     </div>
