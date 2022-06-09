@@ -252,7 +252,7 @@ public class ProductDAO extends DBContext {
         return total;
     }
 
-    public List<Product> listProPaging(int index) {
+public List<Product> listProPaging(int index) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"
@@ -288,8 +288,7 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.getSaleProduct();
-        int total = p.getTotalProduct();
-        System.out.println(list.get(0).toString());
+        List<Product> list = p.listProPaging(2);
+        System.out.println(list.size());
     }
 }

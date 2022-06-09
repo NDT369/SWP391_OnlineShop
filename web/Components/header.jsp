@@ -95,24 +95,10 @@
                                                             <h6>${i.product.name}</h6>
                                                         </div>
                                                     </td>
-                                                    <!--                                                    <td class="si-close">
-                                                                                                            <i class="ti-close"></i>
-                                                                                                        </td>-->
-
+   
                                                 </tr>
                                             </c:forEach>  
-                                            <!--                                                        <tr>
-                                                                                                        <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                                                                                        <td class="si-text">
-                                                                                                            <div class="product-selected">
-                                                                                                                <p><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" /> VND x ${i.quantity}</p>
-                                                                                                                <h6>Kabino Bedside Table</h6>
-                                                                                                            </div>
-                                                                                                        </td>
-                                                                                                        <td class="si-close">
-                                                                                                            <i class="ti-close"></i>
-                                                                                                        </td>
-                                                                                                    </tr>-->
+                                          
                                         </tbody>
                                     </table>
                                 </div>
@@ -122,7 +108,7 @@
                                 </div>
                                 <div class="select-button">
                                     <a href="shoppingcart" class="primary-btn view-card">VIEW CART</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    <a href="cartcontact" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
 
