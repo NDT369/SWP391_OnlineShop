@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                        <a href="home"><i class="fa fa-home"></i> Home</a>
                         <a href="./shop.html">Shop</a>
                         <span>Check Out</span>
                     </div>
@@ -87,7 +87,7 @@
                                     <c:forEach items="${ca.item}" var="i">
                                     <li class="fw-normal">${i.product.name} x ${i.quantity}<span><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" /> VND</span></li>
                                     </c:forEach>
-                                    <li class="total-price">Total <span><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" /> </span></li>
+                                    <li style="font-size: 25px" class="total-price">Total <span><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" /> </span></li>
                                 </ul>
                                 <div class="order-btn">
                                     <button type="submit" class="site-btn place-btn">Place Order</button>
