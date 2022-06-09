@@ -95,10 +95,10 @@
                                                             <h6>${i.product.name}</h6>
                                                         </div>
                                                     </td>
-   
+
                                                 </tr>
                                             </c:forEach>  
-                                          
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -155,16 +155,13 @@
                         <ul class="dropdown">
                             <c:if test="${sessionScope.account!=null}"> 
                                 <li><a href="userprofile">User Profile</a></li>
-                                </c:if>
+                                <li><a href="shoppingcart">Shopping Cart</a></li>
+                                <li><a href="cartcontact">Checkout</a></li>
+                            </c:if>
 
-                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="./check-out.html">Checkout</a></li>
-                                <c:if test="${sessionScope.account!=null}">       
-                                <li><a href="changepass">Change Password</a></li>
-                                </c:if> 
-                                <c:if test="${sessionScope.account==null}"> 
+                            <c:if test="${sessionScope.account==null}"> 
                                 <li><a href="register">Register</a></li>
-                                </c:if>
+                            </c:if>
                                 <c:set value="${sessionScope.account}" var="a"></c:set>
                                 <c:if test="${a.getRole().getRoleName().toLowerCase().equals('admin')}">
                                 <li><a href="admindashboard">Admin DashBoard</a></li>

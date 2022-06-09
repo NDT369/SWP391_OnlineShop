@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Product;
 
 /**
@@ -33,33 +34,45 @@ public class BuyDetailServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO dao = new ProductDAO();
-        List<Product> listProduct = dao.getAll();
+             String id = request.getParameter("id");
+        String num = request.getParameter("num");
+        HttpSession session = request.getSession();
 
-        Cookie[] arr = request.getCookies();
-        String txt = "";
-        if (arr != null) {
-            for (Cookie o : arr) {
-                if (o.getName().equals("cart")) {
-                    txt += o.getValue();
-                    o.setMaxAge(0);
-                    response.addCookie(o);
+        String path = "productdetail?id=" + id;
+        session.setAttribute("path", path);
+        String check;
+
+        if (session.getAttribute("account") == null) {
+            check = "no";
+            session.setAttribute("check", check);
+            response.sendRedirect("login");
+        } else {
+
+            ProductDAO dao = new ProductDAO();
+            List<Product> listProduct = dao.getAll();
+
+            Cookie[] arr = request.getCookies();
+            String txt = "";
+            if (arr != null) {
+                for (Cookie o : arr) {
+                    if (o.getName().equals("cart")) {
+                        txt += o.getValue();
+                        o.setMaxAge(0);
+                        response.addCookie(o);
+                    }
                 }
             }
+
+            if (txt.isEmpty()) {
+                txt = id + ":" + num;
+            } else {
+                txt += "," + id + ":" + num;
+            }
+            Cookie c = new Cookie("cart", txt);
+            c.setMaxAge(60 * 5);
+            response.addCookie(c);
+            response.sendRedirect(path);
         }
-        String id = request.getParameter("id");
-        String num = request.getParameter("num");
-        if (txt.isEmpty()) {
-            txt = id + ":" + num;
-        } else {
-            txt += "," + id + ":" + num;
-        }
-        Cookie c = new Cookie("cart", txt);
-        c.setMaxAge(60 * 5);
-        response.addCookie(c);
-        String path = "productdetail?id="+id;
-//        request.getRequestDispatcher("home").forward(request, response);
-        response.sendRedirect(path);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
