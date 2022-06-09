@@ -288,7 +288,7 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.getSaleProduct();
+        List<Product> list = p.listProPaging(1);
         int total = p.getTotalProduct();
         System.out.println(list.get(0).toString());
     }

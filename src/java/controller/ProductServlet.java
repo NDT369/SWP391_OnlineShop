@@ -5,6 +5,10 @@
  */
 package controller;
 
+import dal.BrandDAO;
+import dal.CPUDAO;
+import dal.CategoryDAO;
+import dal.DisplayDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +17,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Brand;
+import model.CPU;
+import model.Category;
+import model.Display;
 import model.Product;
 
 /**
@@ -60,6 +68,17 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO p = new ProductDAO();
+        CategoryDAO c = new CategoryDAO();
+        BrandDAO b = new BrandDAO();
+        DisplayDAO d = new DisplayDAO();
+        CPUDAO cpu = new CPUDAO();
+        
+
+        List<Category> categoryList = c.getAll();
+        List<Brand> brandList = b.getAll();
+        List<Display> displayList = d.getAll();
+        List<CPU> cpuList = cpu.getAll();
+
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
@@ -71,10 +90,15 @@ public class ProductServlet extends HttpServlet {
         if (total % 9 != 0) {
             page += 1;
         }
-        List<Product> list = p.listProPaging(index);
-        
+        List<Product> productList = p.listProPaging(index);
+
+        request.setAttribute("cpuList", cpuList);
+        request.setAttribute("displayList", displayList);
+        request.setAttribute("brandList", brandList);
+        request.setAttribute("categoryList", categoryList);
+        request.setAttribute("index", index);
         request.setAttribute("page", page);
-        request.setAttribute("productList", list);
+        request.setAttribute("productList", productList);
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 

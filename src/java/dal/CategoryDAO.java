@@ -9,25 +9,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import model.Brand;
+import model.Category;
 
 /**
  *
  * @author Pham Minh Giang
  */
-public class BrandDAO extends DBContext {
+public class CategoryDAO extends DBContext {
 
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public List<Brand> getAll() {
-        List<Brand> list = new ArrayList<>();
-        String sql = "select * from Brand";
+    public List<Category> getAll() {
+        List<Category> list = new ArrayList<>();
+        String sql = "select * from Category";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Brand(rs.getInt(1), rs.getString(2), rs.getBoolean(3)));
+                list.add(new Category(rs.getInt(1), rs.getString(2), rs.getBoolean(3)));
             }
         } catch (Exception e) {
         }
