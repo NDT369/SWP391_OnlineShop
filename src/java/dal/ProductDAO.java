@@ -7,6 +7,7 @@ package dal;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import model.Account;
@@ -14,8 +15,10 @@ import model.Brand;
 import model.CPU;
 import model.Capacity;
 import model.Card;
+import model.Cart;
 import model.Category;
 import model.Display;
+import model.Item;
 import model.OperatingSystem;
 import model.Product;
 import model.RAM;
@@ -202,7 +205,7 @@ public class ProductDAO extends DBContext {
         }
         return p;
     }
-    
+
     public Product getProductByID(int productID) {
         Product p = new Product();
         String sql = "select * from Product p \n"
@@ -252,7 +255,7 @@ public class ProductDAO extends DBContext {
         return total;
     }
 
-public List<Product> listProPaging(int index) {
+    public List<Product> listProPaging(int index) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"
@@ -286,10 +289,102 @@ public List<Product> listProPaging(int index) {
         return list;
     }
 
+    public int addOrder(int accountID, String name, String address, String email, String phone, String note, Cart cart) {
+        LocalDate curDate = LocalDate.now();
+        String date = curDate.toString();
+        int orderID = 0;
+        try {
+            // add order
+            String sql = "INSERT INTO [dbo].[Order]\n"
+                    + "           ([Account_ID]\n"
+                    + "           ,[Order_Date]\n"
+                    + "           ,[CustomerName]\n"
+                    + "           ,[Address]\n"
+                    + "           ,[Phone]\n"
+                    + "           ,[Email]\n"
+                    + "           ,[TotalMoney]\n"
+                    + "           ,[Order_Note]\n"
+                    + "           ,[Order_Status])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, accountID);
+            ps.setString(2, date);
+            ps.setString(3, name);
+            ps.setString(4, address);
+            ps.setString(5, phone);
+            ps.setString(6, email);
+            ps.setDouble(7, cart.getTotalPrice());
+            ps.setString(8, note);
+            ps.setInt(9, 1);
+            ps.executeUpdate();
+
+            // take orderID
+            String sql1 = "SELECT TOP 1 [Order_ID]\n"
+                    + "      ,[Account_ID]\n"
+                    + "      ,[Order_Date]\n"
+                    + "      ,[CustomerName]\n"
+                    + "      ,[Address]\n"
+                    + "      ,[Phone]\n"
+                    + "      ,[Email]\n"
+                    + "      ,[TotalMoney]\n"
+                    + "      ,[Order_Note]\n"
+                    + "      ,[Order_Status]\n"
+                    + "  FROM [PROJECT_SWP391_SUMMER2022].[dbo].[Order]\n"
+                    + "  order by Order_ID desc";
+            PreparedStatement ps1 = connection.prepareStatement(sql1);
+            rs = ps1.executeQuery();
+
+            if (rs.next()) {
+                orderID = rs.getInt(1);
+                for (Item i : cart.getItem()) {
+                    String sql2 = "INSERT INTO [dbo].[OrderDetail]\n"
+                            + "           ([Order_ID]\n"
+                            + "           ,[Product_ID]\n"
+                            + "           ,[Quantity]\n"
+                            + "           ,[Price])\n"
+                            + "     VALUES\n"
+                            + "           (?\n"
+                            + "           ,?\n"
+                            + "           ,?\n"
+                            + "           ,?)";
+                    PreparedStatement ps2 = connection.prepareStatement(sql2);
+                    ps2.setInt(1, orderID);
+                    ps2.setInt(2, i.getProduct().getId());
+                    ps2.setInt(3, i.getQuantity());
+                    ps2.setDouble(4, i.getPrice());
+                    ps2.executeUpdate();
+                }
+            }
+            // update quantity of product
+            String sql3 = "UPDATE [dbo].[Product]\n"
+                    + "SET [Product_Quantity] = Product_Quantity - ?\n"
+                    + "WHERE Product_ID = ?";
+            PreparedStatement ps3 = connection.prepareStatement(sql3);
+            for (Item i : cart.getItem()) {
+                ps3.setInt(1, i.getQuantity());
+                ps3.setInt(2, i.getProduct().getId());
+                ps3.executeUpdate();
+            }
+            
+        } catch (Exception e) {
+        }
+       return orderID;
+    }
+
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
         List<Product> list = p.listProPaging(1);
         int total = p.getTotalProduct();
         System.out.println(list.get(0).toString());
     }
+
 }

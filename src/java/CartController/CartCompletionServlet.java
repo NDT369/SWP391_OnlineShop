@@ -5,12 +5,20 @@
  */
 package CartController;
 
+import AccountController.SendEmail;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
+import model.Cart;
+import model.Product;
 
 /**
  *
@@ -70,7 +78,42 @@ public class CartCompletionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String note = request.getParameter("note");
+        
+        ProductDAO dao = new ProductDAO();
+        List<Product> listProduct = dao.getAll();
+
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) {
+                if (o.getName().equals("cart")) {
+                    txt += o.getValue();
+                }
+            }
+        }
+        Cart cart = new Cart(txt, listProduct);
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("account");
+        if (a == null) {
+            response.sendRedirect("login");
+        } else {
+            SendEmail sendEmail = new SendEmail();
+            String code = sendEmail.randomAlphaNumeric(9);
+            int orderID = dao.addOrder(a.getAccountID(), name, address, email, phone, note, cart);
+            sendEmail.sendCartCompletion(orderID, email, name, phone, address);
+            Cookie c = new Cookie("cart", "");
+            c.setMaxAge(0);
+            response.addCookie(c);
+//            request.getRequestDispatcher("home").forward(request, response);
+            response.sendRedirect("home");
+
+        }
     }
 
     /**
@@ -82,5 +125,6 @@ public class CartCompletionServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
 
 }

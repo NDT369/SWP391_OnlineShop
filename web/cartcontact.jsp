@@ -50,7 +50,7 @@
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
-            <form action="cartcompletion" class="checkout-form">
+            <form action="cartcompletion" method="POST" class="checkout-form">
                 <div class="row">
                     <div class="col-lg-6">
                         
@@ -73,6 +73,11 @@
                             <div class="col-lg-6">
                                 <label for="phone">Phone<span>*</span></label>
                                 <input type="text" name="phone" id="phone" value="${a.phone}">
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="Note">Note<span></span></label>
+                                <input type="text" name="note" id="phone" >
+                                <!--<textarea type="text" name="note" rows="4" cols="50"></textarea>-->
                             </div>
                         </div>
                     </div>

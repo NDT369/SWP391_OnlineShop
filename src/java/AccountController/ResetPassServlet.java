@@ -81,7 +81,7 @@ public class ResetPassServlet extends HttpServlet {
         Account a = dao.getAccountByEmailUsername(userName, email);
         if (a != null) {
             SendEmail sendEmail = new SendEmail();
-            String pass = sendEmail.getRandom();
+            String pass = sendEmail.randomAlphaNumeric(6);
             sendEmail.sendResetPass(a, pass);
             dao.changePass(userName, pass);
             request.setAttribute("send", "Check your mail, login and change password");
