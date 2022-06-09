@@ -6,14 +6,18 @@
 package controller;
 
 import dal.BlogDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Blog;
+import model.Cart;
+import model.Product;
 
 /**
  *
@@ -61,6 +65,19 @@ public class BlogServlet extends HttpServlet {
             throws ServletException, IOException {
         BlogDAO b = new BlogDAO();
         List<Blog> list = b.getAll();
+        ProductDAO p = new ProductDAO();
+        List<Product> listProduct = p.getAll();      
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for (Cookie c : arr) {
+                if(c.getName().equals("cart")){
+                    txt += c.getValue();
+                }
+            }
+        }
+         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
         request.setAttribute("listBlog", list);
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }

@@ -6,13 +6,18 @@
 package controller;
 
 import dal.BlogDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Blog;
+import model.Cart;
+import model.Product;
 
 /**
  *
@@ -61,6 +66,19 @@ public class BlogDetailServlet extends HttpServlet {
         String id = request.getParameter("id");
         BlogDAO b = new BlogDAO();
         Blog blog = b.getBlogByID(id);
+               ProductDAO p = new ProductDAO();
+        List<Product> listProduct = p.getAll();      
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for (Cookie c : arr) {
+                if(c.getName().equals("cart")){
+                    txt += c.getValue();
+                }
+            }
+        }
+         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
         request.setAttribute("blog", blog);
         request.getRequestDispatcher("blogdetails.jsp").forward(request, response);
     }

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import model.Brand;
 import model.CPU;
 import model.Category;
 import model.Display;
+import model.Cart;
 import model.Product;
 
 /**
@@ -97,6 +99,21 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("brandList", brandList);
         request.setAttribute("categoryList", categoryList);
         request.setAttribute("index", index);
+        
+        List<Product> list = p.listProPaging(index);
+        List<Product> listProduct = p.getAll();      
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for (Cookie c : arr) {
+                if(c.getName().equals("cart")){
+                    txt += c.getValue();
+                }
+            }
+        }
+         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
+        
         request.setAttribute("page", page);
         request.setAttribute("productList", productList);
         request.getRequestDispatcher("product.jsp").forward(request, response);

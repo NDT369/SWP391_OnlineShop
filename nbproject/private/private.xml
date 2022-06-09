@@ -4,10 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Gitt/SWP391_OnlineShop/web/Components/Paging.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/model/Product.java</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/homepage.jsp</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/dal/DisplayDAO.java</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/dal/ProductDAO.java</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/dal/CPUDAO.java</file>
             <file>file:/C:/Gitt/SWP391_OnlineShop/web/product.jsp</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/dal/CategoryDAO.java</file>
             <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/controller/ProductServlet.java</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/dal/BrandDAO.java</file>
         </group>
     </open-files>
 </project-private>

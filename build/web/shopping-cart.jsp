@@ -124,7 +124,7 @@
                                         <!--<li class="subtotal">Subtotal <span>$240.00</span></li>-->
                                         <li class="cart-total">Total <span><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" />VND</span></li>
                                     </ul>
-                                    <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                                    <a href="cartcontact" class="proceed-btn">PROCEED TO CHECK OUT</a>
                                 </div>
                             </div>
                         </div>

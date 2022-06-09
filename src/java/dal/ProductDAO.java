@@ -252,7 +252,7 @@ public class ProductDAO extends DBContext {
         return total;
     }
 
-    public List<Product> listProPaging(int index) {
+public List<Product> listProPaging(int index) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"

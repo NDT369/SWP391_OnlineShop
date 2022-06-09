@@ -112,6 +112,10 @@
         <servlet-name>BuyListServlet</servlet-name>
         <servlet-class>CartController.BuyListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartContactServlet</servlet-name>
+        <servlet-class>CartController.CartContactServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>BuyListServlet</servlet-name>
         <url-pattern>/buylist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartContactServlet</servlet-name>
+        <url-pattern>/cartcontact</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
