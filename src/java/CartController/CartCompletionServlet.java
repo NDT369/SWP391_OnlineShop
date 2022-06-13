@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Account;
 import model.Cart;
+import model.OrderDetail;
 import model.Product;
 
 /**
@@ -104,9 +105,11 @@ public class CartCompletionServlet extends HttpServlet {
             response.sendRedirect("login");
         } else {
             SendEmail sendEmail = new SendEmail();
-            String code = sendEmail.randomAlphaNumeric(9);
+//            String code = sendEmail.randomAlphaNumeric(9);
             int orderID = dao.addOrder(a.getAccountID(), name, address, email, phone, note, cart);
-            sendEmail.sendCartCompletion(orderID, email, name, phone, address);
+            List<OrderDetail> listOrderDetail = dao.getOrderDetail(orderID);
+            sendEmail.sendCartCompletion(a, orderID, email, name, phone, address, listOrderDetail);
+            
             Cookie c = new Cookie("cart", "");
             c.setMaxAge(0);
             response.addCookie(c);

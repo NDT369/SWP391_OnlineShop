@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    String username = request.getParameter("username");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         AccountDAO ad = new AccountDAO();
@@ -83,9 +83,9 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
-            String check = (String) session.getAttribute("check");
             session.setAttribute("account", account);
-            if (check == null) {
+            String path = (String) session.getAttribute("path");
+            if (path == null) {
                 if (account.getRole().getRoleName().equalsIgnoreCase("admin")) {
                     response.sendRedirect("admindashboard");
                 } else if (account.getRole().getRoleName().equalsIgnoreCase("saler")) {
@@ -95,11 +95,12 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     response.sendRedirect("home");
                 }
-            } else {
-                session.removeAttribute("check");
-                String path = (String) session.getAttribute("path");
+            }
+            else{
+                session.removeAttribute("path");
                 response.sendRedirect(path);
             }
+
         }
 
     }

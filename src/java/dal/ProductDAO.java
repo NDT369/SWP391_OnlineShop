@@ -20,6 +20,7 @@ import model.Category;
 import model.Display;
 import model.Item;
 import model.OperatingSystem;
+import model.OrderDetail;
 import model.Product;
 import model.RAM;
 
@@ -374,10 +375,10 @@ public class ProductDAO extends DBContext {
                 ps3.setInt(2, i.getProduct().getId());
                 ps3.executeUpdate();
             }
-            
+
         } catch (Exception e) {
         }
-       return orderID;
+        return orderID;
     }
 
     public static void main(String[] args) {
@@ -385,6 +386,28 @@ public class ProductDAO extends DBContext {
         List<Product> list = p.listProPaging(1);
         int total = p.getTotalProduct();
         System.out.println(list.get(0).toString());
+    }
+
+    public List<OrderDetail> getOrderDetail(int orderID ) {
+        String sql = "select od.Order_ID, p.Product_Name, p.Product_SalePrice, od.Quantity, p.Product_ImgURL from OrderDetail od\n"
+                + "join Product p on p.Product_ID = od.Product_ID\n"
+                + "where Order_ID = ?";
+        List<OrderDetail> list = new ArrayList<>();
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(new OrderDetail(orderID,
+                        rs.getString(2), 
+                        rs.getDouble(3),
+                        rs.getInt(4), 
+                        rs.getString(5)));
+            }
+            return list;
+        } catch (Exception e) {
+        }
+        return null;
     }
 
 }

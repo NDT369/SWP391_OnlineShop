@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb-text product-more">
-                            <a href="./home.html"><i class="fa fa-home"></i> Home</a>
+                            <a href="home"><i class="fa fa-home"></i> Home</a>
                             <a href="./shop.html">Shop</a>
                             <span>Detail</span>
                         </div>
@@ -297,7 +297,7 @@
                                     <script type="text/javascript">
                                         function buyDetail(productID) {
                                             var q = document.getElementById("num").value;
-                                            document.addCart.action = "buydetail?id=" + productID + "&num=" + q;
+                                            document.addCart.action = "buy?id=" + productID + "&num=" + q+"&p=detail";
                                             document.addCart.submit();
                                         }
                                     </script>

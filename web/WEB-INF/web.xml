@@ -89,10 +89,6 @@
         <servlet-class>controller.SearchBlogServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BuyDetailServlet</servlet-name>
-        <servlet-class>CartController.BuyDetailServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>BuyServlet</servlet-name>
         <servlet-class>CartController.BuyServlet</servlet-class>
     </servlet>
@@ -107,10 +103,6 @@
     <servlet>
         <servlet-name>ProcessServlet</servlet-name>
         <servlet-class>CartController.ProcessServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>BuyListServlet</servlet-name>
-        <servlet-class>CartController.BuyListServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartContactServlet</servlet-name>
@@ -201,10 +193,6 @@
         <url-pattern>/searchblog</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BuyDetailServlet</servlet-name>
-        <url-pattern>/buydetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>BuyServlet</servlet-name>
         <url-pattern>/buy</url-pattern>
     </servlet-mapping>
@@ -219,10 +207,6 @@
     <servlet-mapping>
         <servlet-name>ProcessServlet</servlet-name>
         <url-pattern>/process</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>BuyListServlet</servlet-name>
-        <url-pattern>/buylist</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartContactServlet</servlet-name>

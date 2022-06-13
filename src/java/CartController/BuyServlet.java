@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Product;
 
 /**
@@ -33,33 +34,55 @@ public class BuyServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         ProductDAO dao = new ProductDAO();
-        List<Product> listProduct =dao.getAll();
+        List<Product> listProduct = dao.getAll();
+        String p = request.getParameter("p");
+        String index = request.getParameter("index");
+        String id = request.getParameter("id");
+        String num = request.getParameter("num");
 
-        Cookie[] arr = request.getCookies();
-        String txt = "";
-        if (arr != null) {
-            for (Cookie o : arr) {
-                if (o.getName().equals("cart")) {
-                    txt += o.getValue();
-                    o.setMaxAge(0);
-                    response.addCookie(o);
+        String path = "";
+        if (p.equals("home")) {
+            path = "home";
+            session.setAttribute("path", path);
+        }
+        if (p.equals("product")) {
+            path = "product?index=" + index;
+            session.setAttribute("path", path);
+        }
+        if (p.equals("detail")) {
+            path = "productdetail?id=" + id;
+            session.setAttribute("path", path);
+        }
+
+        if (session.getAttribute("account") == null) {
+            response.sendRedirect("login");
+        } 
+        else {
+            Cookie[] arr = request.getCookies();
+            String txt = "";
+            if (arr != null) {
+                for (Cookie o : arr) {
+                    if (o.getName().equals("cart")) {
+                        txt += o.getValue();
+                        o.setMaxAge(0);
+                        response.addCookie(o);
+                    }
                 }
             }
+
+            if (txt.isEmpty()) {
+                txt = id + ":" + num;
+            } else {
+                txt += "," + id + ":" + num;
+            }
+            Cookie c = new Cookie("cart", txt);
+            c.setMaxAge(60 * 5);
+            response.addCookie(c);
+            response.sendRedirect(path);
         }
-        String id = request.getParameter("id");
-        
-        if(txt.isEmpty()){
-            txt = id +":1";
-        }
-        else{
-            txt += ","+id+":1";
-        }
-        Cookie c = new Cookie("cart", txt);
-        c.setMaxAge(60*5);
-        response.addCookie(c);
-//        request.getRequestDispatcher("home").forward(request, response);
-        response.sendRedirect("home");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
