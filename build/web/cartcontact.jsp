@@ -32,79 +32,82 @@
     <body>
         <%@include file="Components/header.jsp"%>
         <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text product-more">
-                        <a href="home"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Check Out</span>
+        <div class="breacrumb-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-text product-more">
+                            <a href="home"><i class="fa fa-home"></i> Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Check Out</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Breadcrumb Section Begin -->
+        <!-- Breadcrumb Section Begin -->
 
-    <!-- Shopping Cart Section Begin -->
-    <section class="checkout-section spad">
-        <div class="container">
-            <form action="cartcompletion" method="POST" class="checkout-form">
-                <div class="row">
-                    <div class="col-lg-6">
-                        
-                        <c:set value="${sessionScope.account}" var="a"/>
-                        <h4>Biiling Details</h4>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <label for="fir">Name<span>*</span></label>
-                                <input type="text" name="name" id="fir" value="${a.name}">
+        <!-- Shopping Cart Section Begin -->
+
+        <section class="checkout-section spad">
+            <div class="container">
+                <form action="cartcompletion" method="POST" class="checkout-form">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <c:set value="${sessionScope.account}" var="a"/>
+                            <h4>Biiling Details</h4>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="fir">Name<span>*</span></label>
+                                    <input type="text" name="name" id="fir" value="${a.name}">
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="street">Address<span>*</span></label>
+                                    <input type="text" name="address" id="street" class="street-first" value="${a.address}">
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="email">Email Address<span>*</span></label>
+                                    <input type="text" name="email" id="email" value="${a.email}">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="phone">Phone<span>*</span></label>
+                                    <input type="text" name="phone" id="phone" value="${a.phone}">
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="Note">Note<span></span></label>
+                                    <input type="text" name="note" id="phone" >
+                                    <!--<textarea type="text" name="note" rows="4" cols="50"></textarea>-->
+                                </div>
                             </div>
-                            <div class="col-lg-12">
-                                <label for="street">Address<span>*</span></label>
-                                <input type="text" name="address" id="street" class="street-first" value="${a.address}">
-                               
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="email">Email Address<span>*</span></label>
-                                <input type="text" name="email" id="email" value="${a.email}">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="phone">Phone<span>*</span></label>
-                                <input type="text" name="phone" id="phone" value="${a.phone}">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="Note">Note<span></span></label>
-                                <input type="text" name="note" id="phone" >
-                                <!--<textarea type="text" name="note" rows="4" cols="50"></textarea>-->
+                            <div class="cart-buttons">
+                                <a href="shoppingcart" class="primary-btn continue-shop">Return Shopping Cart</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                     
-                        <div class="place-order">
-                            <c:set value="${cart}" var="ca"/>
-                            <h4>Your Order</h4>
-                            <div class="order-total">
-                                <ul class="order-table">
-                                    <li>Product <span>Total</span></li>
-                                    <c:forEach items="${ca.item}" var="i">
-                                    <li class="fw-normal">${i.product.name} x ${i.quantity}<span><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" /> VND</span></li>
-                                    </c:forEach>
-                                    <li style="font-size: 25px" class="total-price">Total <span><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" /> </span></li>
-                                </ul>
-                                <div class="order-btn">
-                                    <button type="submit" class="site-btn place-btn">Place Order</button>
+                        <div class="col-lg-6">
+
+                            <div class="place-order">
+                                <c:set value="${cart}" var="ca"/>
+                                <h4>Your Order</h4>
+                                <div class="order-total">
+                                    <ul class="order-table">
+                                        <li>Product <span>Total</span></li>
+                                            <c:forEach items="${ca.item}" var="i">
+                                            <li class="fw-normal">${i.product.name} x ${i.quantity}<span><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" /> VND</span></li>
+                                            </c:forEach>
+                                        <li style="font-size: 25px" class="total-price">Total <span><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" /> </span></li>
+                                    </ul>
+                                    <div class="order-btn">
+                                        <button type="submit" class="site-btn place-btn">Place Order</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    </section>
-    <!-- Shopping Cart Section End -->
-    <%@include file="Components/footer.jsp"%>
+                </form>
+            </div>
+        </section>
+        <!-- Shopping Cart Section End -->
+        <%@include file="Components/footer.jsp"%>
     </body>
 </html>
