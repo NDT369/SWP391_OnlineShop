@@ -34,6 +34,15 @@
         <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <style>
+            .pi-pic{
+                height: 250px;
+            }
+            .pi-text{
+                height: 200px;
+            }
+        </style>
+
     </head>
     <body>
         <!-- Page Preloder -->
@@ -338,10 +347,10 @@
                                         </div>
                                     </div>
                                     <a href="blogdetail?id=${b.id}">
-                                    <a href="blogdetail?blogID=${b.id}">
-                                        <h4>${b.title}</h4>
-                                    </a>
-                                    <!--<p>${b.content} </p>-->
+                                        <a href="blogdetail?blogID=${b.id}">
+                                            <h4>${b.title}</h4>
+                                        </a>
+                                        <!--<p>${b.content} </p>-->
                                 </div>
                             </div>
                         </div>
