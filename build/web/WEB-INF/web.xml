@@ -136,6 +136,10 @@
         <servlet-name>FullTextSearchServlet</servlet-name>
         <servlet-class>controller.FullTextSearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FeedbackServlet</servlet-name>
+        <servlet-class>controller.FeedbackServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -263,6 +267,10 @@
     <servlet-mapping>
         <servlet-name>FullTextSearchServlet</servlet-name>
         <url-pattern>/fulltextsearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackServlet</servlet-name>
+        <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

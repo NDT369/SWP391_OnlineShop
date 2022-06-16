@@ -69,10 +69,10 @@
                         <div class="col-lg-3">
                             <form id="f" action="filter">
 
-                            <div class="filter-widget">
-                                <h4 class="fw-title">Categories</h4>
-                                <ul class="filter-catagories">
-                                    <div class="fw-brand-check">
+                                <div class="filter-widget">
+                                    <h4 class="fw-title">Categories</h4>
+                                    <ul class="filter-catagories">
+                                        <div class="fw-brand-check">
                                         <c:forEach items="${sessionScope.categoryList}" var="l">
                                             <div class="bc-item">
                                                 <label >
@@ -135,13 +135,13 @@
                             </div>
                             <input type="submit" value="FILTER">
                         </form>
-                            
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="product-pic-zoom">
-                                        <img class="product-big-img" src="${p.imgURL}" alt="">
+
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="product-pic-zoom">
+                                    <img class="product-big-img" src="${p.imgURL}" alt="">
                                     <div class="zoom-icon">
                                         <i class="fa fa-search-plus"></i>
                                     </div>
@@ -259,7 +259,7 @@
                                         <a data-toggle="tab" href="#tab-2" role="tab">SPECIFICATIONS</a>
                                     </li>
                                     <li>
-                                        <a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews (02)</a>
+                                        <a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews</a>
                                     </li>
                                 </ul>
                             </div>
@@ -271,15 +271,6 @@
                                                 <div class="col-lg-7">
                                                     <h5>Introduction</h5>
                                                     <p>${p.description}</p>
-                                                    <!--                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                                                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                                                                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                                                                            aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
-                                                                                                        <h5>Features</h5>
-                                                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                                                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                                                                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                                                                            aliquip ex ea commodo consequat. Duis aute irure dolor in </p>-->
                                                 </div>
                                                 <!--                                                <div class="col-lg-5">
                                                                                                     <img src="img/product-single/tab-desc.jpg" alt="">
@@ -346,69 +337,50 @@
                                             </table>
                                         </div>
                                     </div>
+                                    <!--comment-->
                                     <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                         <div class="customer-review-option">
-                                            <h4>2 Comments</h4>
-                                            <div class="comment-option">
-                                                <div class="co-item">
-                                                    <div class="avatar-pic">
-                                                        <img src="img/product-single/avatar-1.png" alt="">
-                                                    </div>
-                                                    <div class="avatar-text">
-                                                        <div class="at-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
+                                            <h4>Customer Comments</h4>
+                                            <c:forEach items="${requestScope.feedbackList}" var="feedback">
+                                                <div class="comment-option">
+                                                    <div class="co-item">
+                                                        <div class="avatar-pic">
+                                                            <!--<img src="img/product-single/avatar-1.png" alt="">-->
                                                         </div>
-                                                        <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
-                                                        <div class="at-reply">Nice !</div>
-                                                    </div>
-                                                </div>
-                                                <div class="co-item">
-                                                    <div class="avatar-pic">
-                                                        <img src="img/product-single/avatar-2.png" alt="">
-                                                    </div>
-                                                    <div class="avatar-text">
-                                                        <div class="at-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
+                                                        <div class="avatar-text">
+                                                            <h5>${feedback.account.name}<span>${feedback.createDate}</span></h5>
+                                                            <div class="at-reply">${feedback.content}</div>
                                                         </div>
-                                                        <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                        <div class="at-reply">Nice !</div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="personal-rating">
-                                                <h6>Your Ratind</h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            </div>
+                                            </c:forEach>
+
+                                            <!--                                            <div class="personal-rating">
+                                                                                            <h6>Your Ratind</h6>
+                                                                                            <div class="rating">
+                                                                                                <i class="fa fa-star"></i>
+                                                                                                <i class="fa fa-star"></i>
+                                                                                                <i class="fa fa-star"></i>
+                                                                                                <i class="fa fa-star"></i>
+                                                                                                <i class="fa fa-star-o"></i>
+                                                                                            </div>
+                                                                                        </div>-->
+
                                             <div class="leave-comment">
-                                                <h4>Leave A Comment</h4>
-                                                <form action="#" class="comment-form">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <input type="text" placeholder="Name">
+                                                
+                                                <c:if test="${requestScope.check==true}">
+                                                    <h4>Leave A Comment</h4>
+                                                    <form action="feedback" class="comment-form">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <input name="productID" value="${requestScope.product.id}" hidden/>
+                                                                <textarea placeholder="Messages" name="comment"></textarea>
+                                                                <button type="submit" class="site-btn">Send message</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-6">
-                                                            <input type="text" placeholder="Email">
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <textarea placeholder="Messages"></textarea>
-                                                            <button type="submit" class="site-btn">Send message</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </c:if>
+
                                             </div>
                                         </div>
                                     </div>

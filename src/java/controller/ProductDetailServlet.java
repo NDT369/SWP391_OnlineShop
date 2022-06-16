@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.FeedbackDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +15,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
 import model.Cart;
+import model.Feedback;
 import model.Product;
 
 /**
@@ -40,7 +44,7 @@ public class ProductDetailServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductDetailsServlet</title>");            
+            out.println("<title>Servlet ProductDetailsServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ProductDetailsServlet at " + request.getContextPath() + "</h1>");
@@ -61,21 +65,38 @@ public class ProductDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        FeedbackDAO f = new FeedbackDAO();
+
         String id = request.getParameter("id");
         ProductDAO d = new ProductDAO();
         Product product = d.getProductByID(id);
         List<Product> listProduct = d.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
-        if(arr != null){
+        if (arr != null) {
             for (Cookie c : arr) {
-                if(c.getName().equals("cart")){
+                if (c.getName().equals("cart")) {
                     txt += c.getValue();
                 }
             }
         }
+        int productID = Integer.parseInt(id);
+
+        Account account = new Account();
+        account = (Account) session.getAttribute("account");
+        int acountID = 0;
+        if (account != null) {
+            acountID = account.getAccountID();
+        }
+
+        boolean check = f.checkFeedback(acountID, productID);
         
+        List<Feedback> feedbackList = f.getAllFeedbackByProID(productID);
+
         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("feedbackList", feedbackList);
+        request.setAttribute("check", check);
         request.setAttribute("cart", cart);
         request.setAttribute("product", product);
         request.getRequestDispatcher("productdetails.jsp").forward(request, response);
