@@ -35,6 +35,13 @@
             .clearfix{
                 float: right;
             }
+            .pi-pic{
+                height: 250px;
+            }
+            .pi-text{
+                height: 200px;
+            }
+
         </style>
 
     </head>
@@ -68,92 +75,106 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
-                        <div class="filter-widget">
-                            <h4 class="fw-title">Categories</h4>
-                            <ul class="filter-catagories">
-                                <div class="fw-brand-check">
-                                    <c:forEach items="${requestScope.categoryList}" var="l">
-                                        <div class="bc-item">
-                                            <label >
-                                                ${l.name}
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                    </c:forEach>
-                                </div> 
-                            </ul>
-                        </div>
-                        <div class="filter-widget">
-                            <h4 class="fw-title">Brand</h4>
-                            <ul class="filter-catagories">
-                                <div class="fw-brand-check">
-                                    <c:forEach items="${requestScope.brandList}" var="l">
-                                        <div class="bc-item">
-                                            <label >
-                                                ${l.name}
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                    </c:forEach>
-                                </div> 
-                            </ul>
-                        </div>
-                        <div class="filter-widget">
-                            <h4 class="fw-title">Display</h4>
-                            <ul class="filter-catagories">
-                                <div class="fw-brand-check">
-                                    <c:forEach items="${requestScope.displayList}" var="l">
-                                        <div class="bc-item">
-                                            <label >
-                                                ${l.name}
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                    </c:forEach>
-                                </div> 
-                            </ul>
-                        </div>
-                        <div class="filter-widget">
-                            <h4 class="fw-title">CPU</h4>
-                            <ul class="filter-catagories">
-                                <div class="fw-brand-check">
-                                    <c:forEach items="${requestScope.cpuList}" var="l">
-                                        <div class="bc-item">
-                                            <label >
-                                                ${l.name}
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                    </c:forEach>
-                                </div> 
-                            </ul>
-                        </div>
+
+                        <!--start sider-->
+                        <c:set value="${sessionScope.choice}" var="choice"/>
+                        <form id="f" action="filter">
+
+                            <div class="filter-widget">
+                                <h4 class="fw-title">Categories</h4>
+                                <ul class="filter-catagories">
+                                    <div class="fw-brand-check">
+                                        <c:forEach items="${sessionScope.categoryList}" var="l">
+                                            <c:set value="${l.name}" var="name"/>
+                                            <div class="bc-item">
+                                                <label >
+                                                    <input type="radio" value="${l.name}" name="category" <c:if test="${requestScope.category.equals(name)}"></c:if> > 
+                                                    ${l.name}
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </c:forEach>
+                                    </div> 
+                                </ul>
+                            </div>
+                            <div class="filter-widget">
+                                <h4 class="fw-title">Brand</h4>
+                                <ul class="filter-catagories">
+                                    <div class="fw-brand-check">
+                                        <c:forEach items="${sessionScope.brandList}" var="l">
+                                            <div class="bc-item">
+                                                <label >
+                                                    ${l.name}
+                                                    <input type="radio" name="brand" value="${l.name}" >
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </c:forEach>
+                                    </div> 
+                                </ul>
+                            </div>
+                            <div class="filter-widget">
+                                <h4 class="fw-title">Display</h4>
+                                <ul class="filter-catagories">
+                                    <div class="fw-brand-check">
+                                        <c:forEach items="${sessionScope.displayList}" var="l">
+                                            <div class="bc-item">
+                                                <label >
+                                                    ${l.name}
+                                                    <input type="radio" name="display" value="${l.name}" >
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </c:forEach>
+                                    </div> 
+                                </ul>
+                            </div>
+                            <div class="filter-widget">
+                                <h4 class="fw-title">CPU</h4>
+                                <ul class="filter-catagories">
+                                    <div class="fw-brand-check">
+                                        <c:forEach items="${sessionScope.cpuList}" var="l">
+                                            <div class="bc-item">
+                                                <label >
+                                                    ${l.name}
+                                                    <input type="radio" name="cpu" value="${l.name}" >
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </c:forEach>
+                                    </div> 
+                                </ul>
+                            </div>
+                            <input type="submit" value="FILTER" class="primary-btn">
+                        </form>
+                        <!--end sider-->
+
                     </div>
                     <div class="col-lg-9 order-1 order-lg-2">
                         <div class="product-show-option">
                             <div class="row">
                                 <div class="col-lg-7 col-md-7">
+                                    
                                     <div class="select-option">
-                                        <select class="sorting">
-                                            <option value="">Default Sorting</option>
-                                            <option value="">Sort by Price</option>
-                                            <option value="">Sort by Date</option>
-                                            <option value="">Sort by SaleOff</option>
-                                        </select>
+                                        <form action="sort">
+                                            <select class="sorting" name="sort">
+                                                <option value="">Default Sorting</option>
+                                                <option value="1" <c:if test="${requestScope.sort.equals('1')}">selected</c:if> >Sort ascending by price</option>
+                                                <option value="2" <c:if test="${requestScope.sort.equals('2')}">selected</c:if> >Sort descending by price</option>
+                                            </select>
+                                            <input type="submit" value="Sort" class="primary-btn">
+                                        </form>
                                     </div>
+                                    
                                 </div>
-                                <div class="col-lg-5 col-md-5 text-right">
-                                    <%@include file="Components/Paging.jsp" %>
-                                </div>
+<!--                                <div class="col-lg-5 col-md-5 text-right">
+                                    
+                                </div>-->
                             </div>
                         </div>
                         <div class="product-list">
                             <div class="row">
-                                <c:forEach items="${requestScope.productList}" var="p">
+                            <c:forEach items="${sessionScope.productList}" var="p">
                                     <div class="col-lg-4 col-sm-6">
                                         <div class="product-item">
                                             <div class="pi-pic">

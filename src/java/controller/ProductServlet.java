@@ -18,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Brand;
 import model.CPU;
 import model.Category;
@@ -69,13 +70,14 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        
         ProductDAO p = new ProductDAO();
         CategoryDAO cate = new CategoryDAO();
         BrandDAO b = new BrandDAO();
         DisplayDAO d = new DisplayDAO();
         CPUDAO cpu = new CPUDAO();
         
-
         List<Category> categoryList = cate.getAll();
         List<Brand> brandList = b.getAll();
         List<Display> displayList = d.getAll();
@@ -94,10 +96,11 @@ public class ProductServlet extends HttpServlet {
         }
         List<Product> productList = p.listProPaging(index);
 
-        request.setAttribute("cpuList", cpuList);
-        request.setAttribute("displayList", displayList);
-        request.setAttribute("brandList", brandList);
-        request.setAttribute("categoryList", categoryList);
+        session.setAttribute("cpuList", cpuList);
+        session.setAttribute("displayList", displayList);
+        session.setAttribute("brandList", brandList);
+        session.setAttribute("categoryList", categoryList);
+        
         request.setAttribute("index", index);
         
         List<Product> list = p.listProPaging(index);
@@ -115,7 +118,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("cart", cart);
         
         request.setAttribute("page", page);
-        request.setAttribute("productList", productList);
+        session.setAttribute("productList", productList);
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 

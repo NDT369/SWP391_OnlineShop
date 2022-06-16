@@ -60,9 +60,12 @@
                 <div class="col-lg-7 col-md-7">
                     <div class="advanced-search">
                         <button type="button" class="category-btn">All Categories</button>
+
                         <div class="input-group">
-                            <input type="text" placeholder="What do you need?">
-                            <button type="button"><i class="ti-search"></i></button>
+                            <form action="fulltextsearch">
+                                <input type="text" placeholder="What do you need?" name="search" value="${search}">
+                                <button type="submit"><i class="ti-search"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -90,9 +93,10 @@
                                                             <h6>${i.product.name}</h6>
                                                         </div>
                                                     </td>
+
                                                 </tr>
                                             </c:forEach>  
-                                          
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -168,6 +172,7 @@
                                 <li><a href="marketingdashboard">Marketing DashBoard</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.account!=null}">
+                                <li><a href="myorder?AccountID=${sessionScope.account.accountID}">My Order</a></li>
                                 <li><a href="logout">Logout</a></li>
                                 </c:if>
                         </ul>
