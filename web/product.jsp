@@ -167,9 +167,9 @@
                                     </div>
                                     
                                 </div>
-                                <div class="col-lg-5 col-md-5 text-right">
-                                    <%@include file="Components/Paging.jsp" %>
-                                </div>
+<!--                                <div class="col-lg-5 col-md-5 text-right">
+                                    
+                                </div>-->
                             </div>
                         </div>
                         <div class="product-list">
