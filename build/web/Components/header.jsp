@@ -68,7 +68,12 @@
                 </div>
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
-                        
+                        <li class="heart-icon">
+                            <!--                                    <a href="#">
+                                                                    <i class="icon_heart_alt"></i>
+                                                                    <span>1</span>
+                                                                </a>-->
+                        </li>
                         <c:set value="${cart}" var="c"/>
 
                         <li class="cart-icon">
@@ -90,6 +95,7 @@
                                                             <h6>${i.product.name}</h6>
                                                         </div>
                                                     </td>
+   
                                                 </tr>
                                             </c:forEach>  
                                           
@@ -149,11 +155,13 @@
                         <ul class="dropdown">
                             <c:if test="${sessionScope.account!=null}"> 
                                 <li><a href="userprofile">User Profile</a></li>
-                                <li><a href="shoppingcart">Shopping Cart</a></li>
-                                <li><a href="cartcontact">Checkout</a></li>
-                                 <li><a href="changepass">Change Password</a></li>
-                            </c:if>
-      
+                                </c:if>
+
+                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                            <li><a href="./check-out.html">Checkout</a></li>
+                                <c:if test="${sessionScope.account!=null}">       
+                                <li><a href="changepass">Change Password</a></li>
+                                </c:if> 
                                 <c:if test="${sessionScope.account==null}"> 
                                 <li><a href="register">Register</a></li>
                                 </c:if>

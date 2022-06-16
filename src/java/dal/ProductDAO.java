@@ -43,8 +43,7 @@ public class ProductDAO extends DBContext {
                 + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID \n"
-                + "where p.Product_Quantity > 0";
+                + "join Card car on p.Card_ID = car.Card_ID\n";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -267,7 +266,7 @@ public class ProductDAO extends DBContext {
                 + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Quantity > 0 order by Product_ID offset ? row fetch next 9 rows only";
+                + "join Card car on p.Card_ID = car.Card_ID order by Product_ID offset ? row fetch next 9 rows only";
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, (index - 1) * 9);
@@ -367,7 +366,6 @@ public class ProductDAO extends DBContext {
                 }
             }
             // update quantity of product
-            
             String sql3 = "UPDATE [dbo].[Product]\n"
                     + "SET [Product_Quantity] = Product_Quantity - ?\n"
                     + "WHERE Product_ID = ?";
@@ -390,7 +388,7 @@ public class ProductDAO extends DBContext {
         System.out.println(list.get(0).toString());
     }
 
-    public List<OrderDetail> getOrderDetail(int orderID) {
+    public List<OrderDetail> getOrderDetail(int orderID ) {
         String sql = "select od.Order_ID, p.Product_Name, p.Product_SalePrice, od.Quantity, p.Product_ImgURL from OrderDetail od\n"
                 + "join Product p on p.Product_ID = od.Product_ID\n"
                 + "where Order_ID = ?";
@@ -399,11 +397,11 @@ public class ProductDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, orderID);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            while(rs.next()){
                 list.add(new OrderDetail(orderID,
-                        rs.getString(2),
+                        rs.getString(2), 
                         rs.getDouble(3),
-                        rs.getInt(4),
+                        rs.getInt(4), 
                         rs.getString(5)));
             }
             return list;
