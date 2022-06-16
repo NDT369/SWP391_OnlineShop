@@ -90,7 +90,6 @@
                                                             <h6>${i.product.name}</h6>
                                                         </div>
                                                     </td>
-   
                                                 </tr>
                                             </c:forEach>  
                                           
