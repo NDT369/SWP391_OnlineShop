@@ -166,21 +166,6 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-5 col-md-5 text-right">
-                                    <div class="clearfix">
-                                        <ul class="pagination">
-                                            <c:if test="${requestScope.index>1}">
-                                                <li class="page-item"><a href="fulltextsearch?search=${search}&index=${index-1}" class="page-link">Previous</a></li>
-                                                </c:if>
-                                                <c:forEach begin="1" end="${requestScope.page}" var="i">
-                                                <li class="page-item"><a href="fulltextsearch?search=${search}&index=${i}" class="page-link">${i}</a></li>
-                                                </c:forEach>
-                                                <c:if test="${requestScope.index < requestScope.page}">
-                                                <li class="page-item"><a href="fulltextsearch?search=${search}&index=${index+1}" class="page-link">Next</a></li>
-                                                </c:if>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="product-list">

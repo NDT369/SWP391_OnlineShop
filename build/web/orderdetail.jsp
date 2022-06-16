@@ -64,24 +64,21 @@
                     <th>Order ID</th>
                     <th>Product Name</th>
                     <th>Product Image</th>
-                    <th>Category</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>Buy</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${requestScope.orderDetailList}" var="o">
                     <tr>
-                        <td>${o.getOrderID()}</td>
-                        <td>${o.getProduct().getName()}</td>
-                        <td><img src="${o.getProduct().getImgURL()}" alt="" style="width: 120px; height: 100px;"/> </td>
-                        <td>${o.getProduct().getCategory().getName()}</td>
-                        <td>${o.getPrice()}</td>
-                        <td>${o.getQuantity()}</td>
-                        <td><a href="productdetail?id=${o.getProduct().id}">Buy</a></td>
-                        
-                </c:forEach>
+                        <td>${o.orderID}</td>
+                        <td>${o.nameProduct}</td>
+                        <td><img src="${o.imgURL}" alt="" style="width: 120px; height: 100px;"/> </td>
+                        <td> <fmt:formatNumber pattern="###,###,###" value="${o.price}" /> VND</td>
+                        <td>${o.quantity}</td>
+
+
+                    </c:forEach>
             </tbody>
         </table>
 
@@ -89,15 +86,15 @@
             <ul class="pagination">
                 <c:if test="${requestScope.index>1}">
                     <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i-1}" class="page-link">Previous</a></li>
-                </c:if>
-                
+                    </c:if>
+
                 <c:forEach begin="1" end="${requestScope.page}" var="i">
                     <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i}" class="page-link">${i}</a></li>
-                </c:forEach>
-                <c:if test="${requestScope.index < requestScope.page}">
+                    </c:forEach>
+                    <c:if test="${requestScope.index < requestScope.page}">
                     <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i+1}" class="page-link">Next</a></li>
-                </c:if>
-                
+                    </c:if>
+
             </ul>
         </div>
         <!--end body-->

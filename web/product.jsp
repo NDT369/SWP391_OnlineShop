@@ -88,7 +88,7 @@
                                             <c:set value="${l.name}" var="name"/>
                                             <div class="bc-item">
                                                 <label >
-                                                    <input type="radio" value="${l.name}" name="category" <c:if test="${requestScope.category.equals(name)}"></c:if> > 
+                                                    <input type="radio" value="${l.name}" name="category" <c:if test="${l.name.equals(requestScope.category)}">checked</c:if> > 
                                                     ${l.name}
                                                     <span class="checkmark"></span>
                                                 </label>
@@ -105,7 +105,7 @@
                                             <div class="bc-item">
                                                 <label >
                                                     ${l.name}
-                                                    <input type="radio" name="brand" value="${l.name}" >
+                                                    <input type="radio" name="brand" value="${l.name}" <c:if test="${l.name.equals(requestScope.brand)}">checked</c:if>>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -121,7 +121,7 @@
                                             <div class="bc-item">
                                                 <label >
                                                     ${l.name}
-                                                    <input type="radio" name="display" value="${l.name}" >
+                                                    <input type="radio" name="display" value="${l.name}" <c:if test="${l.name.equals(requestScope.display)}">checked</c:if> >
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -137,7 +137,7 @@
                                             <div class="bc-item">
                                                 <label >
                                                     ${l.name}
-                                                    <input type="radio" name="cpu" value="${l.name}" >
+                                                    <input type="radio" name="cpu" value="${l.name}" <c:if test="${l.name.equals(requestScope.cpuu)}">checked</c:if>>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>

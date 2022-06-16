@@ -383,6 +383,8 @@ public class ProductDAO extends DBContext {
         } catch (Exception e) {
         }
         return orderID;
+    }
+    
     public List<Product> filter(String cate, String brand, String display, String cpu) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product p  \n"
@@ -476,7 +478,7 @@ public class ProductDAO extends DBContext {
         }
         return list;
     }
-
+    
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
         List<Product> list = p.fulltextSearch("so huu");

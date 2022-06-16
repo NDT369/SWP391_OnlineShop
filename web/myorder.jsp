@@ -82,7 +82,7 @@
                         <td>${o.getAddress()}</td>
                         <td>${o.getPhone()}</td>
                         <td>${o.getEmail()}</td>
-                        <td>${o.getMoney()}</td>
+                        <td><fmt:formatNumber pattern="###,###,###" value="${o.getMoney()}" /> VND</td>
                         <td>${o.getNote()}</td>
                         <td>
                             <c:if test="${o.isStatus()== true}">Successful</c:if>
