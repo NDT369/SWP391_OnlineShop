@@ -65,7 +65,7 @@ public class CartCompletionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /**
@@ -106,16 +106,15 @@ public class CartCompletionServlet extends HttpServlet {
         } else {
             SendEmail sendEmail = new SendEmail();
 //            String code = sendEmail.randomAlphaNumeric(9);
-            int orderID = dao.addOrder(a.getAccountID(), name, address, email, phone, note, cart);
             double totalPrice = cart.getTotalPrice();
+            int orderID = dao.addOrder(a.getAccountID(), name, address, email, phone, note, cart);
             List<OrderDetail> listOrderDetail = dao.getOrderDetail(orderID);
             sendEmail.sendCartCompletion(a, orderID, email, name, phone, address, listOrderDetail);
             
             Cookie c = new Cookie("cart", "");
             c.setMaxAge(0);
             response.addCookie(c);
-//            request.getRequestDispatcher("home").forward(request, response);
-              request.setAttribute("orderid", orderID);
+             request.setAttribute("orderid", orderID);
               request.setAttribute("name", name);
               request.setAttribute("address", address);
               request.setAttribute("email", email);
@@ -124,6 +123,7 @@ public class CartCompletionServlet extends HttpServlet {
               request.setAttribute("totalprice", totalPrice);
               request.setAttribute("listorder", listOrderDetail);
             request.getRequestDispatcher("cartcompletion.jsp").forward(request, response);
+            
 
         }
     }

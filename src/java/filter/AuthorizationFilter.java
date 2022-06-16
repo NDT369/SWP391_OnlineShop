@@ -166,9 +166,7 @@ public class AuthorizationFilter implements Filter {
                 }
             }
         }
-        if(url.contains("changepass") || url.contains("userprofile")
-         || url.contains("cartcontact")||url.contains("cartcompletion")||
-             url.contains("shoppingcart")){
+        if(url.equals("/changepass") || url.equals("/userprofile")){
             if(a==null){
                  httpResponse.sendRedirect("login");
             }else{
