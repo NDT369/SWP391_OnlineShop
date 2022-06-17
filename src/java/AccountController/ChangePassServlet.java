@@ -6,14 +6,19 @@
 package AccountController;
 
 import dal.AccountDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Account;
+import model.Cart;
+import model.Product;
 
 /**
  *
@@ -60,6 +65,19 @@ public class ChangePassServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        request.setAttribute("pageInclude", "changepass.jsp");
+        ProductDAO p = new ProductDAO();
+        List<Product> listProduct = p.getAll();
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie c : arr) {
+                if (c.getName().equals("cart")) {
+                    txt += c.getValue();
+                }
+            }
+        }
+        Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
         request.getRequestDispatcher("changepass.jsp").forward(request, response);
 //        response.sendRedirect("changepass.jsp");
 
@@ -82,7 +100,7 @@ public class ChangePassServlet extends HttpServlet {
         String oldPass = request.getParameter("oldPass");
         String newPass1 = request.getParameter("newPass");
         String confirmPass = request.getParameter("confirmPass");
-        
+
         Account a1 = dao.getAccountByUser(a.getUsername());
         if (oldPass.equals(a1.getPassword())) {
             if (newPass1.equals(confirmPass)) {

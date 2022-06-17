@@ -99,7 +99,7 @@
                                                         </div>
                                                     </td>
 
-   
+
                                                 </tr>
                                             </c:forEach>  
 
@@ -130,47 +130,36 @@
                 <div class="depart-btn">
                     <i class="ti-menu"></i>
                     <span>All departments</span>
-                    <ul class="depart-hover">
-                        <li class="active"><a href="#">Women’s Clothing</a></li>
-                        <li><a href="#">Men’s Clothing</a></li>
-                        <li><a href="#">Underwear</a></li>
-                        <li><a href="#">Kid's Clothing</a></li>
-                        <li><a href="#">Brand Fashion</a></li>
-                        <li><a href="#">Accessories/Shoes</a></li>
-                        <li><a href="#">Luxury Brands</a></li>
-                        <li><a href="#">Brand Outdoor Apparel</a></li>
-                    </ul>
+                    <!--                    <ul class="depart-hover">
+                                            <li class="active"><a href="#">Women’s Clothing</a></li>
+                                            <li><a href="#">Men’s Clothing</a></li>
+                                            <li><a href="#">Underwear</a></li>
+                                            <li><a href="#">Kid's Clothing</a></li>
+                                            <li><a href="#">Brand Fashion</a></li>
+                                            <li><a href="#">Accessories/Shoes</a></li>
+                                            <li><a href="#">Luxury Brands</a></li>
+                                            <li><a href="#">Brand Outdoor Apparel</a></li>
+                                        </ul>-->
                 </div>
             </div>
             <nav class="nav-menu mobile-menu">
                 <ul>
                     <li class="active"><a href="home">Home</a></li>
                     <li><a href="product">Shop</a></li>
-                    <li><a href="#">Collection</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Men's</a></li>
-                            <li><a href="#">Women's</a></li>
-                            <li><a href="#">Kid's</a></li>
-                        </ul>
-                    </li>
+                    <!--                    <li><a href="#">Collection</a>
+                                            <ul class="dropdown">
+                                                <li><a href="#">Men's</a></li>
+                                                <li><a href="#">Women's</a></li>
+                                                <li><a href="#">Kid's</a></li>
+                                            </ul>
+                                        </li>-->
                     <li><a href="blog">Blog</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <!--                    <li><a href="./contact.html">Contact</a></li>-->
                     <li><a href="#">Pages</a>
                         <ul class="dropdown">
-                            <c:if test="${sessionScope.account!=null}"> 
-                                <li><a href="userprofile">User Profile</a></li>
-                                </c:if>
 
-                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="./check-out.html">Checkout</a></li>
-                                <c:if test="${sessionScope.account!=null}">       
-                                <li><a href="changepass">Change Password</a></li>
-                                </c:if> 
-                                <c:if test="${sessionScope.account==null}"> 
-                                <li><a href="register">Register</a></li>
-                                </c:if>
-                                <c:set value="${sessionScope.account}" var="a"></c:set>
-                                <c:if test="${a.getRole().getRoleName().toLowerCase().equals('admin')}">
+                            <c:set value="${sessionScope.account}" var="a"></c:set>
+                            <c:if test="${a.getRole().getRoleName().toLowerCase().equals('admin')}">
                                 <li><a href="admindashboard">Admin DashBoard</a></li>
                                 </c:if>
                                 <c:if test="${a.getRole().getRoleName().toLowerCase().equals('saler')}">
@@ -179,10 +168,20 @@
                                 <c:if test="${a.getRole().getRoleName().toLowerCase().equals('marketer')}">
                                 <li><a href="marketingdashboard">Marketing DashBoard</a></li>
                                 </c:if>
-                                <c:if test="${sessionScope.account!=null}">
+
+                            <c:if test="${sessionScope.account!=null}">  
+                                <li><a href="userprofile">User Profile</a></li>
                                 <li><a href="myorder?AccountID=${sessionScope.account.accountID}">My Order</a></li>
+                                <li><a href="shoppingcart">Shopping Cart</a></li>
+                                <li><a href="cartcontact">Checkout</a></li>
+                                <li><a href="changepass">Change Password</a></li>                                
                                 <li><a href="logout">Logout</a></li>
+                                </c:if> 
+                                <c:if test="${sessionScope.account==null}"> 
+                                <li><a href="register">Register</a></li>
                                 </c:if>
+
+
                         </ul>
                     </li>
                 </ul>

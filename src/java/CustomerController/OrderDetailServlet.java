@@ -6,14 +6,18 @@
 package CustomerController;
 
 import dal.OrderDetailDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cart;
 import model.OrderDetail;
+import model.Product;
 
 /**
  *
@@ -77,6 +81,19 @@ public class OrderDetailServlet extends HttpServlet {
         int index = Integer.parseInt(index_raw);
         int start = (index - 1) * 5;
         int end = Math.min((index * 5), total);
+        ProductDAO p = new ProductDAO();
+        List<Product> listProduct = p.getAll();      
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for (Cookie c : arr) {
+                if(c.getName().equals("cart")){
+                    txt += c.getValue();
+                }
+            }
+        }
+         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
 
         request.setAttribute("orderDetailList", orderDetailList.subList(start, end));
         request.setAttribute("orderID", id);

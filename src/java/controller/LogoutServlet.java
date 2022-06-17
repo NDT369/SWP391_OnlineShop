@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,7 +63,10 @@ public class LogoutServlet extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         if (account != null) {
             session.removeAttribute("account");
-            response.sendRedirect("login");
+            Cookie c = new Cookie("cart", "");
+            c.setMaxAge(0);
+            response.addCookie(c);
+            response.sendRedirect("home");
         }
     }
 

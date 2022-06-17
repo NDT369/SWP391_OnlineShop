@@ -6,14 +6,18 @@
 package CustomerController;
 
 import dal.OrderDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cart;
 import model.Order;
+import model.Product;
 
 /**
  *
@@ -76,6 +80,19 @@ public class MyOrderServlet extends HttpServlet {
         int index = Integer.parseInt(index_raw);
         
         List<Order> list = o.getOrderPaging(accountID, index);
+        ProductDAO p = new ProductDAO();
+        List<Product> listProduct = p.getAll();      
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for (Cookie c : arr) {
+                if(c.getName().equals("cart")){
+                    txt += c.getValue();
+                }
+            }
+        }
+         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
         
         request.setAttribute("index", index);
         request.setAttribute("page", page);
