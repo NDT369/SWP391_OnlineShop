@@ -14,12 +14,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Brand;
 import model.CPU;
+import model.Cart;
 import model.Category;
 import model.Display;
 import model.Product;
@@ -101,6 +103,19 @@ public class FullTextSearchServlet extends HttpServlet {
         int index = Integer.parseInt(index_raw);
         int start = (index-1)*9;
         int end = Math.min((index*9), total);
+        
+        List<Product> listProduct = p.getAll();      
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if(arr != null){
+            for (Cookie c : arr) {
+                if(c.getName().equals("cart")){
+                    txt += c.getValue();
+                }
+            }
+        }
+         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("cart", cart);
 
         session.setAttribute("productList", productList.subList(start, end));
         request.setAttribute("index", index);

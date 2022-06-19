@@ -29,6 +29,19 @@
         <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <style>
+            .successfull{
+                text-align: center;
+            }
+            .successfull img{
+                height: 50px;
+                width: 50px;
+            }
+            .successfull h3{
+                color: green; 
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
 
@@ -46,8 +59,8 @@
         Phone: ${ta.phone}
         </div>
         <p style="color: red;margin-left: 30px;font-weight: bold">Total Price: <fmt:formatNumber pattern="###,###,###" value="${requestScope.totalprice}" /> VND</p>
-        
-        
+
+
         <h4 style="background-color: #E5E5E5; margin-top: 20px; margin-bottom: 20px; margin-left: 10px;margin-right: 10px">Purchased Products</h4>
         <div class="cart-table">
             <table>
@@ -70,27 +83,27 @@
                             <td class="p-price first-row"><fmt:formatNumber pattern="###,###,###" value="${o.price}" />VND</td>
                             <td class="qua-col first-row">
                                 <div class="quantity">
-                                    
+
                                     <div class="">
-                               
+
                                         <strong>${o.quantity}</strong>
-                                       
+
                                     </div>
                                 </div>
                             </td>
                             <td class="total-price first-row"><fmt:formatNumber pattern="###,###,###" value="${o.price*o.quantity}" />VND</td>
 
-                   
-     
-                    </tr>
-                </c:forEach>
+
+
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
-             <div class="cart-buttons">
-              <a href="home" class="primary-btn continue-shop">Continue shopping</a>
-         </div>
+            <div class="cart-buttons">
+                <a href="home" class="primary-btn continue-shop">Continue shopping</a>
+            </div>
         </div>
-               <!-- Partner Logo Section Begin -->
+        <!-- Partner Logo Section Begin -->
         <div class="partner-logo">
             <div class="container">
                 <div class="logo-carousel owl-carousel">
@@ -139,5 +152,5 @@
         <script src="js/jquery.dd.min.js"></script>
         <script src="js/jquery.slicknav.js"></script>
         <script src="js/owl.carousel.min.js"></script>
-        </body>
-        </html>
+    </body>
+</html>

@@ -66,16 +66,18 @@
                     <th>Product Image</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Buy</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${requestScope.orderDetailList}" var="o">
                     <tr>
                         <td>${o.orderID}</td>
-                        <td>${o.nameProduct}</td>
-                        <td><img src="${o.imgURL}" alt="" style="width: 120px; height: 100px;"/> </td>
+                        <td>${o.product.name}</td>
+                        <td><img src="${o.product.imgURL}" alt="" style="width: 120px; height: 100px;"/> </td>
                         <td> <fmt:formatNumber pattern="###,###,###" value="${o.price}" /> VND</td>
                         <td>${o.quantity}</td>
+                        <td><a href="productdetail?id=${o.product.id}">Buy</a></td>
 
 
                     </c:forEach>

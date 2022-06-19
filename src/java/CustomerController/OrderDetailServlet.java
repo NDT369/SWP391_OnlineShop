@@ -6,6 +6,7 @@
 package CustomerController;
 
 import dal.OrderDetailDAO;
+import dal.OrderDetailSDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cart;
 import model.OrderDetail;
+import model.OrderDetailS;
 import model.Product;
 
 /**
@@ -65,9 +67,9 @@ public class OrderDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         String id_raw = request.getParameter("id");
         int id = Integer.parseInt(id_raw);
-        OrderDetailDAO o = new OrderDetailDAO();
+        OrderDetailSDAO o = new OrderDetailSDAO();
 
-        List<OrderDetail> orderDetailList = o.getOrderDetail(id);
+        List<OrderDetailS> orderDetailList = o.getOrderDetail(id);
         int total = orderDetailList.size();
         int page = total / 5;
         if (total % 5 != 0) {
