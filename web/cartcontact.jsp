@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <label for="Note">Note<span></span></label>
-                                        <textarea type="text" name="note" rows="4" cols="50">${sessionScope.note}</textarea>
+                                        <textarea type="text" name="note" rows="4" cols="62"></textarea>
                                     </div>
                                 </div>
                             </c:if>
@@ -108,6 +108,9 @@
                                     </div>
                                 </div>
                             </c:if>
+                            <div class="cart-buttons">
+                                <a href="shoppingcart" class="primary-btn continue-shop">Return Cart Detail</a>
+                            </div>
                         </div>
                         <div class="col-lg-6">
 
