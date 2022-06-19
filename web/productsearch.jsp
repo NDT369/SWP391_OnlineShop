@@ -155,13 +155,12 @@
                                 <div class="col-lg-7 col-md-7">
 
                                     <div class="select-option">
-                                        <form action="sort">
-                                            <select class="sorting" name="sort" id="f">
+                                        <form action="sort" id="filter">
+                                            <select class="sorting" name="sort" onchange="document.getElementById('filter').submit()">
                                                 <option value="">Default Sorting</option>
-                                                <option value="1"  >Sort ascending by price</option>
-                                                <option value="2"  >Sort descending by price</option>
+                                                <option value="1" <c:if test="${requestScope.sort.equals('1')}">selected</c:if>  >Sort ascending by price</option>
+                                                <option value="2" <c:if test="${requestScope.sort.equals('2')}">selected</c:if> >Sort descending by price</option>
                                             </select>
-                                            <input type="submit" value="Sort" class="primary-btn">
                                         </form>
                                     </div>
 

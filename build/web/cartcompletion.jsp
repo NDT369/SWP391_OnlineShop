@@ -29,24 +29,44 @@
         <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <style>
+            .successfull{
+                text-align: center;
+            }
+            .successfull img{
+                height: 50px;
+                width: 50px;
+            }
+            .successfull h3{
+                color: green; 
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
 
         <%@include file="Components/header.jsp" %>
-        <img style="height: 50px; width: 50px;  margin-left: 820px; margin-top: 30px"src="img\tick-xanh.png" alt="">
-        <h3 style="color: green; font-weight: bold; text-align: center">Successfull Order</h3>
+        <div class="successfull">
+            <div>
+                <img  src="img\tick-xanh.png" alt="">
+            </div>
+            <div>
+                <h3>Successfull Order</h3>
+            </div>
+        </div>
+
         <h5 style="margin-left: 10px">Thank you for choosing to buy products from our store!</h5>
         <h4 style="background-color: #E5E5E5; margin-top: 20px; margin-left: 10px;margin-right: 10px">Your Order Information</h4>
         <div style="font-weight: bold; margin-left: 30px; margin-top: 20px">
-        OrderID: ${requestScope.orderid}<br>
-        Name: ${requestScope.name}<br>
-        Address: ${requestScope.address}<br>
-        Email: ${requestScope.email}<br>
-        Phone: ${requestScope.phone}
+            OrderID: ${requestScope.orderid}<br>
+            Name: ${requestScope.name}<br>
+            Address: ${requestScope.address}<br>
+            Email: ${requestScope.email}<br>
+            Phone: ${requestScope.phone}
         </div>
         <p style="color: red;margin-left: 30px;font-weight: bold">Total Price: <fmt:formatNumber pattern="###,###,###" value="${requestScope.totalprice}" /> VND</p>
-        
-        
+
+
         <h4 style="background-color: #E5E5E5; margin-top: 20px; margin-bottom: 20px; margin-left: 10px;margin-right: 10px">Purchased Products</h4>
         <div class="cart-table">
             <table>
@@ -69,27 +89,27 @@
                             <td class="p-price first-row"><fmt:formatNumber pattern="###,###,###" value="${o.price}" />VND</td>
                             <td class="qua-col first-row">
                                 <div class="quantity">
-                                    
+
                                     <div class="">
-                               
+
                                         <strong>${o.quantity}</strong>
-                                       
+
                                     </div>
                                 </div>
                             </td>
                             <td class="total-price first-row"><fmt:formatNumber pattern="###,###,###" value="${o.price*o.quantity}" />VND</td>
 
-                   
-     
-                    </tr>
-                </c:forEach>
+
+
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
-             <div class="cart-buttons">
-              <a href="home" class="primary-btn continue-shop">Continue shopping</a>
-         </div>
+            <div class="cart-buttons">
+                <a href="home" class="primary-btn continue-shop">Continue shopping</a>
+            </div>
         </div>
-               <!-- Partner Logo Section Begin -->
+        <!-- Partner Logo Section Begin -->
         <div class="partner-logo">
             <div class="container">
                 <div class="logo-carousel owl-carousel">
@@ -138,5 +158,5 @@
         <script src="js/jquery.dd.min.js"></script>
         <script src="js/jquery.slicknav.js"></script>
         <script src="js/owl.carousel.min.js"></script>
-        </body>
-        </html>
+    </body>
+</html>

@@ -68,7 +68,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <label for="email">Email Address<span>*</span></label>
-                                <input type="text" name="email" id="email" value="${a.email}">
+                                <input type="email" name="email" id="email" value="${a.email}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="phone">Phone<span>*</span></label>

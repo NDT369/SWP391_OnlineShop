@@ -109,6 +109,8 @@ public class FilterProductServlet extends HttpServlet {
         }
         int start = (index - 1) * 9;
         int end = Math.min(index * 9, total);
+        
+        
 
         // sider
         request.setAttribute("cpuList", cpuList);
