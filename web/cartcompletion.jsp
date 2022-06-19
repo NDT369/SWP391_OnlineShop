@@ -33,16 +33,17 @@
     <body>
 
         <%@include file="Components/header.jsp" %>
+        <c:set value="${sessionScope.temp_ac}" var="ta"/>
         <img style="height: 50px; width: 50px;  margin-left: 820px; margin-top: 30px"src="img\tick-xanh.png" alt="">
         <h3 style="color: green; font-weight: bold; text-align: center">Successfull Order</h3>
         <h5 style="margin-left: 10px">Thank you for choosing to buy products from our store!</h5>
         <h4 style="background-color: #E5E5E5; margin-top: 20px; margin-left: 10px;margin-right: 10px">Your Order Information</h4>
         <div style="font-weight: bold; margin-left: 30px; margin-top: 20px">
         OrderID: ${requestScope.orderid}<br>
-        Name: ${requestScope.name}<br>
-        Address: ${requestScope.address}<br>
-        Email: ${requestScope.email}<br>
-        Phone: ${requestScope.phone}
+        Name: ${ta.name}<br>
+        Address: ${ta.address}<br>
+        Email: ${ta.email}<br>
+        Phone: ${ta.phone}
         </div>
         <p style="color: red;margin-left: 30px;font-weight: bold">Total Price: <fmt:formatNumber pattern="###,###,###" value="${requestScope.totalprice}" /> VND</p>
         

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import Validate.Validate;
 import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -73,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+       HttpSession session = request.getSession();
         String fullname = request.getParameter("fullname");
         String gender_raw = request.getParameter("gender");
         String email = request.getParameter("email");
@@ -85,6 +86,9 @@ public class RegisterServlet extends HttpServlet {
         AccountDAO ad = new AccountDAO();
         Account a = ad.checkUserExist(username);
         Account a1 = ad.checkEmailExist(email);
+        Validate va = new Validate();
+        boolean validateEmail = va.validateEmail(email);
+        boolean validatePhone = va.checkPhone(phone);
         String mess;
         boolean gender;
         if (gender_raw.equals("male")) {
@@ -98,51 +102,62 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("mess", mess);
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } else {
-            if (a1 != null) {
-                mess = "Email already registered";
+            if (validateEmail == false) {
+                mess = "Incorrect email format";
                 request.setAttribute("mess", mess);
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {
-                if (conpass.equals(password) == false) {
-                    mess = "Confirm password incorrect";
+                if (a1 != null) {
+                    mess = "Email already registered";
                     request.setAttribute("mess", mess);
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                 } else {
-                    SendMailRegister sendEmail = new SendMailRegister();
-                    int numberOfCharactor = 8;
-                    String code = sendEmail.randomAlphaNumeric(numberOfCharactor);
+                    if (validatePhone == false) {
+                        mess = "Must be phone number in VietNam";
+                        request.setAttribute("mess", mess);
+                        request.getRequestDispatcher("register.jsp").forward(request, response);
+                    } else {
+                        if (conpass.equals(password) == false) {
+                            mess = "Confirm password incorrect";
+                            request.setAttribute("mess", mess);
+                            request.getRequestDispatcher("register.jsp").forward(request, response);
+                        } else {
+                            SendMailRegister sendEmail = new SendMailRegister();
+                            int numberOfCharactor = 8;
+                            String code = sendEmail.randomAlphaNumeric(numberOfCharactor);
 
-                    Account newAcc = new Account();
-                    newAcc.setName(fullname);
-                    newAcc.setGender(gender);
-                    newAcc.setEmail(email);
-                    newAcc.setPhone(phone);
-                    newAcc.setAddress(address);
-                    newAcc.setUsername(username);
-                    newAcc.setPassword(password);
-                    session.setAttribute("code", code);
-                    session.setAttribute("tempacc", newAcc);
+                            Account newAcc = new Account();
+                            newAcc.setName(fullname);
+                            newAcc.setGender(gender);
+                            newAcc.setEmail(email);
+                            newAcc.setPhone(phone);
+                            newAcc.setAddress(address);
+                            newAcc.setUsername(username);
+                            newAcc.setPassword(password);
+                            session.setAttribute("code", code);
+                            session.setAttribute("tempacc", newAcc);
 
-                    String subject = "Authenticate gmail";
-                    String message = "<!DOCTYPE html>\n"
-                            + "<html lang=\"en\">\n"
-                            + "\n"
-                            + "<head>\n"
-                            + "</head>\n"
-                            + "\n"
-                            + "<body>\n"
-                            + "    <h3 style=\"color: blue;\">Thank you for registering and participating in our program.</h3>\n"
-                            + "    <div>For your and our safety, we want you to make sure that the email you use to sign up is authenticated.</div>\n"
-                            + "    <div>Enter the code below to authenticate.</div><br/>\n"
-                            + "    <div>Code: " + code + "</div>\n"
-                            + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
-                            + "\n"
-                            + "</body>\n"
-                            + "\n"
-                            + "</html>";
-                    SendMailRegister.send(email, subject, message, sendEmail.getUser(), sendEmail.getPass());
-                    response.sendRedirect("verificationemail");
-
+                            String subject = "Authenticate gmail";
+                            String message = "<!DOCTYPE html>\n"
+                                    + "<html lang=\"en\">\n"
+                                    + "\n"
+                                    + "<head>\n"
+                                    + "</head>\n"
+                                    + "\n"
+                                    + "<body>\n"
+                                    + "    <h3 style=\"color: blue;\">Thank you for registering and participating in our program.</h3>\n"
+                                    + "    <div>For your and our safety, we want you to make sure that the email you use to sign up is authenticated.</div>\n"
+                                    + "    <div>Enter the code below to authenticate.</div><br/>\n"
+                                    + "    <div>Code: " + code + "</div>\n"
+                                    + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
+                                    + "\n"
+                                    + "</body>\n"
+                                    + "\n"
+                                    + "</html>";
+                            SendMailRegister.send(email, subject, message, sendEmail.getUser(), sendEmail.getPass());
+                            response.sendRedirect("verificationemail");
+                        }
+                    }
                 }
             }
         }
