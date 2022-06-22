@@ -3,26 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CartController;
+package MarketingController;
 
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Cart;
-import model.Product;
 
 /**
  *
  * @author DUC THINH
  */
-public class CartContactServlet extends HttpServlet {
+public class DeleteProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +35,10 @@ public class CartContactServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CartContactServlet</title>");
+            out.println("<title>Servlet DeleteProductServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CartContactServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteProductServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,21 +56,8 @@ public class CartContactServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        ProductDAO p = new ProductDAO();
-        List<Product> listProduct = p.getAll();
-        Cookie[] arr = request.getCookies();
-        String txt = "";
-        if (arr != null) {
-            for (Cookie c : arr) {
-                if (c.getName().equals("cart")) {
-                    txt += c.getValue();
-                }
-            }
-        }
-            Cart cart = new Cart(txt, listProduct);
-            request.setAttribute("cart", cart);
-            request.getRequestDispatcher("cartcontact.jsp").forward(request, response);
+        String id_raw = request.getParameter("id");
+        int id = Integer.parseInt(id_raw);
         
     }
 

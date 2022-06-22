@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -73,26 +73,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${c.item}" var="i">
-                                        <tr>
-                                            <td class="cart-pic first-row"><img src="${i.product.imgURL}" alt=""></td>
-                                            <td class="cart-title first-row">
-                                                <h5>${i.product.name}</h5>
-                                            </td>
-                                            <td class="p-price first-row"><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" />VND</td>
-                                            <td class="qua-col first-row">
-                                                <div class="quantity">
-                                                    <!--                                                    <div class="pro-qty">
-                                                                                                            <input type="text" value="${i.quantity}">
-                                                                                                        </div>-->
-                                                    <div class="">
-                                                        <a href="process?num=-1&id=${i.product.id}"><button class="btn btn-secondary">-</button></a> 
-                                                        <strong>${i.quantity}</strong>
-                                                        <a href="process?num=1&id=${i.product.id}"><button class="btn btn-secondary">+</button></a>
-                                                    </div>
+                                    
+                                <c:forEach items="${c.item}" var="i">
+
+                                    <tr>
+                                        <td class="cart-pic first-row"><img src="${i.product.imgURL}" alt=""></td>
+                                        <td class="cart-title first-row">
+                                            <h5>${i.product.name}</h5>
+                                        </td>
+                                        <td class="p-price first-row"><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" />VND</td>
+                                        <td class="qua-col first-row">
+                                            <div class="quantity">
+                                                <!--                                                    <div class="pro-qty">
+                                                                                                        <input type="text" value="${i.quantity}">
+                                                                                                    </div>-->
+                                                <div class="">
+                                                    <a href="process?num=-1&id=${i.product.id}"><button class="btn btn-secondary">-</button></a> 
+                                                    <strong>${i.quantity}</strong>
+                                                    <a href="process?num=1&id=${i.product.id}"><button class="btn btn-secondary">+</button></a>
                                                 </div>
-                                            </td>
-                                            <td class="total-price first-row"><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice*i.quantity}" />VND</td>
+                                            </div>
+                                        </td>
+                                        <td class="total-price first-row"><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice*i.quantity}" />VND</td>
 
                                     <form action="process" method="post">
                                         <input type="hidden" name="id" value="${i.product.id}"/>
@@ -110,13 +112,13 @@
                                     <a href="home" class="primary-btn continue-shop">Continue shopping</a>
                                     <!--<a href="#" class="primary-btn up-cart">Update cart</a>-->
                                 </div>
-<!--                                <div class="discount-coupon">
-                                    <h6>Discount Codes</h6>
-                                    <form action="#" class="coupon-form">
-                                        <input type="text" placeholder="Enter your codes">
-                                        <button type="submit" class="site-btn coupon-btn">Apply</button>
-                                    </form>
-                                </div>-->
+                                <!--                                <div class="discount-coupon">
+                                                                    <h6>Discount Codes</h6>
+                                                                    <form action="#" class="coupon-form">
+                                                                        <input type="text" placeholder="Enter your codes">
+                                                                        <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                                                    </form>
+                                                                </div>-->
                             </div>
                             <div class="col-lg-4 offset-lg-4">
                                 <div class="proceed-checkout">
@@ -124,7 +126,10 @@
                                         <!--<li class="subtotal">Subtotal <span>$240.00</span></li>-->
                                         <li style="font-size: 25px" class="cart-total">Total <span><fmt:formatNumber pattern="###,###,###" value="${c.totalPrice}" />VND</span></li>
                                     </ul>
-                                    <a href="cartcontact" class="proceed-btn">PROCEED TO CHECK OUT</a>
+
+                                    <a  href="cartcontact" class="proceed-btn">PROCEED TO CHECK OUT</a>
+
+
                                 </div>
                             </div>
                         </div>

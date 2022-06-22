@@ -111,7 +111,7 @@
     <servlet>
         <servlet-name>CartCompletionServlet</servlet-name>
         <servlet-class>CartController.CartCompletionServlet</servlet-class>
-         </servlet>
+    </servlet>
     <servlet>
         <servlet-name>FilterProductServlet</servlet-name>
         <servlet-class>controller.FilterProductServlet</servlet-class>
@@ -135,6 +135,14 @@
     <servlet>
         <servlet-name>FeedbackServlet</servlet-name>
         <servlet-class>controller.FeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductManageServlet</servlet-name>
+        <servlet-class>MarketingController.ProductManageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>MarketingController.DeleteProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -239,7 +247,7 @@
     <servlet-mapping>
         <servlet-name>CartCompletionServlet</servlet-name>
         <url-pattern>/cartcompletion</url-pattern>
-          </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FilterProductServlet</servlet-name>
         <url-pattern>/filter</url-pattern>
@@ -263,6 +271,14 @@
     <servlet-mapping>
         <servlet-name>FeedbackServlet</servlet-name>
         <url-pattern>/feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductManageServlet</servlet-name>
+        <url-pattern>/productmanage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/deleteproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

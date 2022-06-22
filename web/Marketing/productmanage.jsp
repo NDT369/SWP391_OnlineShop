@@ -1,18 +1,19 @@
 <%-- 
-    Document   : ManagerProduct
-    Created on : Dec 28, 2020, 5:19:02 PM
-    Author     : trinh
+    Document   : productmanage
+    Created on : Jun 22, 2022, 3:46:41 PM
+    Author     : DUC THINH
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>User List</title>
+        <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,10 +23,11 @@
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
         <style>
             img{
-                width: 200px;
+                width: 120px;
                 height: 120px;
             }
         </style>
+    </head>
     <body>
         <div class="container">
             <div class="table-wrapper">
@@ -40,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
+                <table id="table" class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>
@@ -57,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach begin="1" end="5" var="o">
+                        <c:forEach items="${requestScope.productlist}" var="p">
                             <tr>
                                 <td>
                                     <span class="custom-checkbox">
@@ -65,30 +67,31 @@
                                         <label for="checkbox1"></label>
                                     </span>
                                 </td>
-                                <td>1</td>
-                                <td>Giày thể thao</td>
+                                <td>${p.id}</td>
+                                <td>${p.name}</td>
                                 <td>
-                                    <img src="https://image.yes24.vn/Upload/ProductImage/GmarketSport/2058803_L.jpg?width=550&height=550">
+                                    <img src="${p.imgURL}">
                                 </td>
-                                <td>100 $</td>
+                                <td><fmt:formatNumber pattern="###,###,###" value="${p.price}" />VND</td>
                                 <td>
                                     <a href="#editEmployeeModal"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="deleteproduct?id=${p.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        <c:if test="${requestScope.index>1}">
+                            <li class="page-item"><a href="productmanage?index=${index-1}" class="page-link">Previous</a></li>
+                        </c:if>
+                        <c:forEach begin="1" end="${requestScope.page}" var="i">
+                            <li class="page-item" class="${i==index?"active":""}"><a href="productmanage?index=${i}" class="page-link">${i}</a></li>
+                        </c:forEach>
+                        <c:if test="${requestScope.index < requestScope.page}">
+                            <li class="page-item"><a href="productmanage?index=${index+1}" class="page-link">Next</a></li>
+                        </c:if>
                     </ul>
                 </div>
             </div>
@@ -199,7 +202,7 @@
                 </div>
             </div>
         </div>
-    </a>
-    <script src="js/manager.js" type="text/javascript"></script>
-</body>
+
+        <script src="js/manager.js" type="text/javascript"></script>
+    </body>
 </html>
