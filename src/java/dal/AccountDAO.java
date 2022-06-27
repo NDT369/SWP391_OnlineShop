@@ -20,7 +20,8 @@ import model.Role;
  * @author DUC THINH
  */
 public class AccountDAO extends DBContext {
-private PreparedStatement ps;
+
+    private PreparedStatement ps;
     private ResultSet rs;
 
     public Account checkAccount(String username, String password) {
@@ -108,13 +109,16 @@ private PreparedStatement ps;
 
     public List<Account> getByRole(int role) {
         List<Account> list = new ArrayList<>();
-        String sql = "select * from Account where Role_ID = ?";
+        String sql = "select * from Account a \n"
+                + "join Role_Account r on a.Role_ID = r.Role_ID\n"
+                + "where a.Role_ID = " + role;
         try {
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, role);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 Role r = new Role();
                 r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
                 list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
                         rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
             }
@@ -125,13 +129,16 @@ private PreparedStatement ps;
 
     public List<Account> getByStatus(int status) {
         List<Account> list = new ArrayList<>();
-        String sql = "select * from Account where Account_Status = ?";
+        String sql = "select * from Account a\n"
+                + "join Role_Account r on a.Role_ID = r.Role_ID\n"
+                + "where a.Account_Status = " + status;
         try {
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, status);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 Role r = new Role();
                 r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
                 list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
                         rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
             }
@@ -261,19 +268,6 @@ private PreparedStatement ps;
         return list;
     }
 
-//    public List<Integer> getAllStatus() {
-//        List<Integer> list = new ArrayList<>();
-//        String sql = "select DISTINCT Account_Status from Account";
-//        try {
-//            ps = connection.prepareStatement(sql);
-//            rs = ps.executeQuery();
-//            while (rs.next()) {
-//                list.add(rs.getInt(1));
-//            }
-//        } catch (Exception e) {
-//        }
-//        return list;
-//    }
     public Account getAcountByID(int id) {
         String sql = "  select * from Account a\n"
                 + "  join Role_Account r  on a.Role_ID = r.Role_ID\n"
@@ -384,7 +378,7 @@ private PreparedStatement ps;
             ps.setString(1, username);
             rs = ps.executeQuery();
             if (rs.next()) {
-                 Role r = new Role();
+                Role r = new Role();
                 r.setRoleID(rs.getInt(9));
                 Account account = new Account(rs.getInt(1),
                         rs.getString(2),
@@ -478,9 +472,85 @@ private PreparedStatement ps;
         return total;
     }
 
+    // fulltext search : name, email, phone, address for account
+    public List<Account> SearchCustomer(String search) {
+        List<Account> list = new ArrayList<>();
+        String sql = "select * from Account \n"
+                + "where contains(*, '\"*" + search + "*\"') and Role_ID = 2";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getBoolean(5), rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Account> FilterCustomer(int status) {
+        List<Account> list = new ArrayList<>();
+        String sql = "select * from Account a\n"
+                + "join Role_Account r on a.Role_ID = r.Role_ID\n"
+                + "where a.Role_ID =2 and a.Account_Status = " + status;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
+                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Account> getAllCustomer() {
+        List<Account> list = new ArrayList<>();
+        String sql = " select * from Account a\n"
+                + "join Role_Account r on a.Role_ID = r.Role_ID\n"
+                + "where a.Role_ID = 2";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Role r = new Role();
+                r.setRoleID(rs.getInt(9));
+                r.setRoleName(rs.getString(12));
+                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), r, rs.getBoolean(10)));
+            }
+
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Account> sortCustomer(String choice, List<Account> list) {
+        Collections.sort(list, (Account a1, Account a2) -> {
+            if (choice.equals("name")) {
+                return a1.getName().compareTo(a2.getName());
+            }
+            if (choice.equals("email")) {
+                return a1.getEmail().compareTo(a2.getEmail());
+            }
+            if (choice.equals("phone")) {
+                return a1.getPhone().compareTo(a2.getPhone());
+            }
+            return a1.getAccountID() > a2.getAccountID() ? 1 : -1; //To change body of generated lambdas, choose Tools | Templates.
+        });
+        return list;
+    }
+
     public static void main(String[] args) {
         AccountDAO a = new AccountDAO();
-//        List<Account> list = new ArrayList<>();
+        List<Account> list = new ArrayList<>();
 //        list = a.getAll();
 //        for (Account i : list) {
 //            System.out.println(i.toString());
@@ -506,6 +576,9 @@ private PreparedStatement ps;
 //        for (Integer i : list) {
 //            System.out.println(i);
 //        }
+        boolean b = Boolean.parseBoolean("true");
+        System.out.println(b);
+//        System.out.println(a.getByStatus(1).size());
     }
 
 }

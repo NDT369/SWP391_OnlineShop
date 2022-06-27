@@ -14,7 +14,10 @@
     <body>
         <a href="home">HomePage</a>
         <h1>Hello Marketer!</h1>
-        <a href="logout">Logout</a>
+        <a href="logout">Logout</a><br>
+        <a href="postmanage">Manager Post</a><br>
+        <a href="customermanage">Manager Customer</a><br>
+        <a href="slidermanage">Manager Slider</a><br>
         
     </body>
 </html>

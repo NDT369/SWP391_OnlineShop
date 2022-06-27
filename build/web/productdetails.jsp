@@ -133,7 +133,7 @@
                                     </div> 
                                 </ul>
                             </div>
-                            <input type="submit" value="FILTER">
+                            <input type="submit" value="FILTER" class="primary-btn">
                         </form>
 
                     </div>
@@ -141,7 +141,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="product-pic-zoom">
-                                    <img class="product-big-img" src="${p.imgURL}" alt="">
+                                    <img class="product-big-img" src="img/${p.imgURL}" alt="">
                                     <div class="zoom-icon">
                                         <i class="fa fa-search-plus"></i>
                                     </div>
@@ -149,13 +149,13 @@
                                 <div class="product-thumbs">
                                     <div class="product-thumbs-track ps-slider owl-carousel">
                                         <div class="pt active" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src="img/${p.imgURL}" alt=""></div>
                                         <div class="pt" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src="img/${p.imgURL}" alt=""></div>
                                         <div class="pt" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src="img/${p.imgURL}" alt=""></div>
                                         <div class="pt" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src=img/${p.imgURL}" alt=""></div>
                                     </div>
                                 </div>
                             </div>
@@ -166,14 +166,14 @@
                                         <h3>${p.name}</h3>
                                         <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                     </div>
-<!--                                    <div class="pd-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <span>(5)</span>
-                                    </div>-->
+                                    <!--                                    <div class="pd-rating">
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star-o"></i>
+                                                                            <span>(5)</span>
+                                                                        </div>-->
                                     <div class="pd-desc">
                                         <!--                                        <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
                                                                                     sit amet, consectetur adipisicing elit, sed do mod tempor</p>-->
@@ -230,7 +230,7 @@
                                     <script type="text/javascript">
                                         function buyDetail(productID) {
                                             var q = document.getElementById("num").value;
-                                            document.addCart.action = "buy?id=" + productID + "&num=" + q+"&p=detail";
+                                            document.addCart.action = "buy?id=" + productID + "&num=" + q + "&p=detail";
                                             document.addCart.submit();
                                         }
                                     </script>
@@ -367,7 +367,7 @@
                                                                                         </div>-->
 
                                             <div class="leave-comment">
-                                                
+
                                                 <c:if test="${requestScope.check==true}">
                                                     <h4>Leave A Comment</h4>
                                                     <form action="feedback" class="comment-form">

@@ -74,7 +74,7 @@
                     <tr>
                         <td>${o.orderID}</td>
                         <td>${o.product.name}</td>
-                        <td><img src="${o.product.imgURL}" alt="" style="width: 120px; height: 100px;"/> </td>
+                        <td><img src="img/${o.product.imgURL}" alt="" style="width: 120px; height: 100px;"/> </td>
                         <td> <fmt:formatNumber pattern="###,###,###" value="${o.price}" /> VND</td>
                         <td>${o.quantity}</td>
                         <td><a href="productdetail?id=${o.product.id}">Buy</a></td>

@@ -84,7 +84,7 @@
                 <tbody>
                     <c:forEach items="${requestScope.listorder}" var="o">
                         <tr>
-                            <td class="first-row" style="width: 200px ;height: 200px"><img src="${o.imgURL}" alt=""></td>
+                            <td class="first-row" style="width: 200px ;height: 200px"><img src="img/${o.imgURL}" alt=""></td>
                             <td >
                                 <h5>${o.nameProduct}</h5>
                             </td>
