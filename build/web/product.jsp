@@ -93,6 +93,7 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
+                                                    <a href="../../../backup feature SWP/SWP391_OnlineShop/web/productdetails.jsp"></a>
                                         </c:forEach>
                                     </div> 
                                 </ul>

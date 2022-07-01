@@ -111,7 +111,7 @@
     <servlet>
         <servlet-name>CartCompletionServlet</servlet-name>
         <servlet-class>CartController.CartCompletionServlet</servlet-class>
-         </servlet>
+    </servlet>
     <servlet>
         <servlet-name>FilterProductServlet</servlet-name>
         <servlet-class>controller.FilterProductServlet</servlet-class>
@@ -135,6 +135,26 @@
     <servlet>
         <servlet-name>FeedbackServlet</servlet-name>
         <servlet-class>controller.FeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackDetailServlet</servlet-name>
+        <servlet-class>MarketingController.FeedbackDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackListServlet</servlet-name>
+        <servlet-class>MarketingController.FeedbackListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterStatusServlet</servlet-name>
+        <servlet-class>MarketingController.FilterStatusServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchFbServlet</servlet-name>
+        <servlet-class>MarketingController.SearchFbServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortFbServlet</servlet-name>
+        <servlet-class>MarketingController.SortFbServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -239,7 +259,7 @@
     <servlet-mapping>
         <servlet-name>CartCompletionServlet</servlet-name>
         <url-pattern>/cartcompletion</url-pattern>
-          </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FilterProductServlet</servlet-name>
         <url-pattern>/filter</url-pattern>
@@ -263,6 +283,26 @@
     <servlet-mapping>
         <servlet-name>FeedbackServlet</servlet-name>
         <url-pattern>/feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackDetailServlet</servlet-name>
+        <url-pattern>/feedbackdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackListServlet</servlet-name>
+        <url-pattern>/feedbacklist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterStatusServlet</servlet-name>
+        <url-pattern>/fstatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFbServlet</servlet-name>
+        <url-pattern>/searchfb</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortFbServlet</servlet-name>
+        <url-pattern>/sortfb</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

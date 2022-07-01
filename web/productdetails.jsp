@@ -166,14 +166,14 @@
                                         <h3>${p.name}</h3>
                                         <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                     </div>
-<!--                                    <div class="pd-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <span>(5)</span>
-                                    </div>-->
+                                    <!--                                    <div class="pd-rating">
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star-o"></i>
+                                                                            <span>(5)</span>
+                                                                        </div>-->
                                     <div class="pd-desc">
                                         <!--                                        <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
                                                                                     sit amet, consectetur adipisicing elit, sed do mod tempor</p>-->
@@ -230,7 +230,7 @@
                                     <script type="text/javascript">
                                         function buyDetail(productID) {
                                             var q = document.getElementById("num").value;
-                                            document.addCart.action = "buy?id=" + productID + "&num=" + q+"&p=detail";
+                                            document.addCart.action = "buy?id=" + productID + "&num=" + q + "&p=detail";
                                             document.addCart.submit();
                                         }
                                     </script>
@@ -347,10 +347,12 @@
                                                         <div class="avatar-pic">
                                                             <!--<img src="img/product-single/avatar-1.png" alt="">-->
                                                         </div>
-                                                        <div class="avatar-text">
-                                                            <h5>${feedback.account.name}<span>${feedback.createDate}</span></h5>
-                                                            <div class="at-reply">${feedback.content}</div>
-                                                        </div>
+                                                        <c:if test="${feedback.status==true}">
+                                                            <div class="avatar-text">
+                                                                <h5>${feedback.account.name}<span>${feedback.createDate}</span></h5>
+                                                                <div class="at-reply">${feedback.content}</div>
+                                                            </div>
+                                                        </c:if>
                                                     </div>
                                                 </div>
                                             </c:forEach>
@@ -367,7 +369,7 @@
                                                                                         </div>-->
 
                                             <div class="leave-comment">
-                                                
+
                                                 <c:if test="${requestScope.check==true}">
                                                     <h4>Leave A Comment</h4>
                                                     <form action="feedback" class="comment-form">
