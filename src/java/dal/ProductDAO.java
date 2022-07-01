@@ -479,10 +479,8 @@ public class ProductDAO extends DBContext {
     
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.fulltextSearch("so huu");
-        int total = p.getTotalProduct();
-        System.out.println(list.size());
-        System.out.println(list.get(0).toString());
+        List<Product> list = p.getAll();
+        System.out.println(list.get(0).getName());
     }
 
     public List<OrderDetail> getOrderDetail(int orderID ) {
