@@ -18,15 +18,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/elegant-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/nice-select.css" rel="stylesheet" type="text/css"/>
-        <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/slicknav.min.css" rel="stylesheet" type="text/css"/>
+        
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/elegant-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/nice-select.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/slicknav.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="css/themify-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
 
         <style>
