@@ -66,7 +66,10 @@ public class AddPotServlet extends HttpServlet {
         String createdate = request.getParameter("createdate");
         String modifieddate = request.getParameter("modifieddate");
         String status_raw = request.getParameter("status");
-        boolean status = Boolean.parseBoolean(status_raw);
+        boolean status =false;
+        if(status_raw.equals("1")){
+            status = true;
+        }
 
         Blog b = new Blog();
         b.setImgURL(img);

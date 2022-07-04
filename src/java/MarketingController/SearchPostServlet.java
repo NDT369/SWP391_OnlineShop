@@ -60,11 +60,11 @@ public class SearchPostServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+//        HttpSession session = request.getSession();
         String search = request.getParameter("search");
         
         BlogDAO b = new BlogDAO();
-        List<Blog> searchBlog = b.Search(search);
+        List<Blog> searchBlog = b.SearchBlog(search);
 
         String index_raw = request.getParameter("index");
         if (index_raw == null) {

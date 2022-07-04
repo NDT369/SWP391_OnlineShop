@@ -68,16 +68,17 @@ public class BlogDAO extends DBContext {
     }
 
     public void Insert(Blog b) {
-        String sql = "insert into Blog values('?', '?', '?', '?', '?', '?', '?')";
+        String sql = "insert into Blog values('"+b.getImgURL()+"', '"+b.getAuthorName()+"',"
+                + " '"+b.getTitle()+"', '"+b.getContent()+"', '"+b.getCreateDate()+"', '"+b.getModyfieDate()+"', '"+b.isStatus()+"')";
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, b.getImgURL());
-            ps.setString(2, b.getAuthorName());
-            ps.setString(3, b.getTitle());
-            ps.setString(4, b.getContent());
-            ps.setString(5, b.getCreateDate());
-            ps.setString(6, b.getModyfieDate());
-            ps.setBoolean(7, b.isStatus());
+//            ps.setString(1, b.getImgURL());
+//            ps.setString(2, b.getAuthorName());
+//            ps.setString(3, b.getTitle());
+//            ps.setString(4, b.getContent());
+//            ps.setString(5, b.getCreateDate());
+//            ps.setString(6, b.getModyfieDate());
+//            ps.setBoolean(7, b.isStatus());
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -167,6 +168,6 @@ public class BlogDAO extends DBContext {
 
     public static void main(String[] args) {
         BlogDAO b = new BlogDAO();
-        System.out.println(b.filter("tao").size());
+        System.out.println(b.SearchBlog("laptop").size());
     }
 }
