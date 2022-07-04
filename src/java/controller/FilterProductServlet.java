@@ -135,6 +135,7 @@ public class FilterProductServlet extends HttpServlet {
         request.setAttribute("cart", cart);
         // end cart
 
+        request.setAttribute("check", "filter");
         request.setAttribute("page", page);
         session.setAttribute("productList", productList.subList(start, end));
         request.getRequestDispatcher("product.jsp").forward(request, response);

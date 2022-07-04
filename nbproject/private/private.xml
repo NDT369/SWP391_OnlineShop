@@ -12,14 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/orderdetail.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/ManagerProduct.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/MarketingController/DetailPostServlet.java</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/MarketingController/ListPostServlet.java</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/MarketingController/EditPostServlet.java</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/customerlist.jsp</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/customerdetail.jsp</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/sliderlist.jsp</file>
             <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/bloglist.jsp</file>
             <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/blogdetail.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/dal/BlogDAO.java</file>
         </group>
     </open-files>
 </project-private>
