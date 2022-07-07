@@ -87,14 +87,6 @@ public class Product {
         this.price = price;
     }
 
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
     public double getSaleprice() {
         return saleprice;
     }
