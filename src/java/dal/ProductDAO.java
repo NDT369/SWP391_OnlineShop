@@ -12,7 +12,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Account;
 import model.Brand;
 import model.CPU;
@@ -333,6 +336,43 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
+    public List<Product> listProManagePaging(int index) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID\n"
+                + "order by Product_ID offset ? row fetch next 5 rows only";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 5);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
+                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
+                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
+                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
+                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
+                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
+                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
+                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
+                        brand, category, os, ram, cpu, display, capaciry, card,
+                        rs.getString(17), rs.getBoolean(18)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+    
+
     public int addOrder(int accountID, String name, String address, String email, String phone, String note, Cart cart) {
         LocalDate curDate = LocalDate.now();
         String date = curDate.toString();
@@ -501,8 +541,8 @@ public class ProductDAO extends DBContext {
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
                 + "join Card car on p.Card_ID = car.Card_ID\n"
-                + "where freetext(p.Product_Name, '\"*" + search + "*\"') or\n"
-                + "freetext(p.Product_Description, '\"*" + search + "*\"')";
+                + "where contains(p.Product_Name, '\"*" + search + "*\"') or\n"
+                + "contains(p.Product_Description, '\"*" + search + "*\"')";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -527,7 +567,7 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.getAll();
+        List<Product> list = p.listProManagePaging(1);
         System.out.println(list.get(0).getName());
     }
 
@@ -816,12 +856,13 @@ public class ProductDAO extends DBContext {
                 + ", Product_Description = ?, Brand_ID = ?,Category_ID = ?, OS_ID = ?, RAM_ID = ?, CPU_ID = ?, Display_ID = ?, Capacity_ID = ?, Card_ID = ?, "
                 + "Product_CreateDate = ?, Product_Status = ?\n"
                 + "where Product_ID = ? ";
+        double saleprice = p.getPrice() - p.getDiscount()*p.getPrice();
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, p.getName());
             ps.setDouble(2, p.getPrice());
             ps.setFloat(3, p.getDiscount());
-            ps.setDouble(4, p.getSaleprice());
+            ps.setDouble(4, saleprice);
             ps.setInt(5, p.getQuantity());
             ps.setString(6, p.getImgURL());
             ps.setString(7, p.getDescription());

@@ -34,4 +34,16 @@ public class Validate {
         boolean kt = str.matches(reg);
         return kt;
     }
+    
+    public boolean checkDiscount(String discount_raw){
+        try {
+            float discount = Float.parseFloat(discount_raw);
+            if(discount>=0 && discount<=1){
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
 }

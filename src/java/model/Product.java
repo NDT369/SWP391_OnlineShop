@@ -87,6 +87,14 @@ public class Product {
         this.price = price;
     }
 
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
     public double getSaleprice() {
         return saleprice;
     }
@@ -199,10 +207,9 @@ public class Product {
         this.status = status;
     }
 
+    
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", saleprice=" + saleprice + ", quantity=" + quantity + ", imgURL=" + imgURL + ", description=" + description + ", brand=" + brand + ", category=" + category + ", os=" + os + ", ram=" + ram + ", cpu=" + cpu + ", display=" + display + ", capacity=" + capacity + ", card=" + card + ", createdate=" + createdate + ", status=" + status + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", Discont="+ discount+", saleprice=" + saleprice + ", quantity=" + quantity + ", imgURL=" + imgURL + ", description=" + description + ", brand=" + brand + ", category=" + category + ", os=" + os + ", ram=" + ram + ", cpu=" + cpu + ", display=" + display + ", capacity=" + capacity + ", card=" + card + ", createdate=" + createdate + ", status=" + status + '}';
     }
-
-    
 }
