@@ -155,6 +155,8 @@
     <servlet>
         <servlet-name>SortFbServlet</servlet-name>
         <servlet-class>MarketingController.SortFbServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PostListServlet</servlet-name>
         <servlet-class>MarketingController.ListPostServlet</servlet-class>
     </servlet>
@@ -425,6 +427,8 @@
     <servlet-mapping>
         <servlet-name>SortFbServlet</servlet-name>
         <url-pattern>/sortfb</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PostListServlet</servlet-name>
         <url-pattern>/postmanage</url-pattern>
     </servlet-mapping>
