@@ -133,7 +133,7 @@
                                     </div> 
                                 </ul>
                             </div>
-                            <input type="submit" value="FILTER">
+                            <input type="submit" value="FILTER" class="primary-btn">
                         </form>
 
                     </div>
@@ -149,13 +149,13 @@
                                 <div class="product-thumbs">
                                     <div class="product-thumbs-track ps-slider owl-carousel">
                                         <div class="pt active" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src="img/${p.imgURL}" alt=""></div>
                                         <div class="pt" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src="img/${p.imgURL}" alt=""></div>
                                         <div class="pt" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src="img/${p.imgURL}" alt=""></div>
                                         <div class="pt" data-imgbigurl="${p.imgURL}"><img
-                                                src="${p.imgURL}" alt=""></div>
+                                                src=img/${p.imgURL}" alt=""></div>
                                     </div>
                                 </div>
                             </div>

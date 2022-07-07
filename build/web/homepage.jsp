@@ -152,7 +152,7 @@
                             <c:forEach items="${requestScope.listTop}" var="l">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <a href="productdetail?id=${l.id}"><img src="${l.imgURL}" alt=""></a>
+                                        <a href="productdetail?id=${l.id}"><img src="img/${l.imgURL}" alt=""></a>
                                         <div class="sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
@@ -239,7 +239,7 @@
                             <c:forEach items="${requestScope.listNew}" var="l">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <a href="productdetail?id=${l.id}"><img src="${l.imgURL}" alt=""></a>
+                                        <a href="productdetail?id=${l.id}"><img src="img/${l.imgURL}" alt=""></a>
                                         <div class="sale">New</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
@@ -334,7 +334,7 @@
                     <c:forEach items="${requestScope.blog}" var="b">
                         <div class="col-lg-4 col-md-6">
                             <div class="single-latest-blog">
-                                <img src="${b.imgURL}" alt="">
+                                <img src="img/${b.imgURL}" alt="">
                                 <div class="latest-text">
                                     <div class="tag-list">
                                         <div class="tag-item">

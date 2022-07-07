@@ -53,6 +53,16 @@ public class Product {
         this.status = status;
     }
 
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    
+
     public int getId() {
         return id;
     }

@@ -53,7 +53,7 @@
                                 <span>${b.modyfieDate}</span>
                             </div>
                             <div class="blog-large-pic">
-                                <img src="${b.imgURL}" alt="">
+                                <img src="img/${b.imgURL}" alt="">
                             </div>
                             <div class="blog-detail-desc">
                                 <p>${b.content}

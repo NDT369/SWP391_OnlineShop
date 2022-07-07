@@ -107,9 +107,9 @@
                                                 <label >
                                                     ${l.name}
                                                     <input type="radio" name="brand" value="${l.name}" <c:if test="${l.name.equals(requestScope.brand)}">checked</c:if>>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
                                         </c:forEach>
                                     </div> 
                                 </ul>
@@ -123,9 +123,9 @@
                                                 <label >
                                                     ${l.name}
                                                     <input type="radio" name="display" value="${l.name}" <c:if test="${l.name.equals(requestScope.display)}">checked</c:if> >
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
                                         </c:forEach>
                                     </div> 
                                 </ul>
@@ -139,9 +139,9 @@
                                                 <label >
                                                     ${l.name}
                                                     <input type="radio" name="cpu" value="${l.name}" <c:if test="${l.name.equals(requestScope.cpuu)}">checked</c:if>>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
                                         </c:forEach>
                                     </div> 
                                 </ul>
@@ -155,26 +155,26 @@
                         <div class="product-show-option">
                             <div class="row">
                                 <div class="col-lg-7 col-md-7">
-                                    
+
                                     <div class="select-option">
                                         <form action="sort" id="filter">
                                             <select class="sorting" name="sort" onchange="document.getElementById('filter').submit()">
                                                 <option value="">Default Sorting</option>
                                                 <option value="1" <c:if test="${requestScope.sort.equals('1')}">selected</c:if>  >Sort ascending by price</option>
                                                 <option value="2" <c:if test="${requestScope.sort.equals('2')}">selected</c:if> >Sort descending by price</option>
-                                            </select>
-                                        </form>
+                                                </select>
+                                            </form>
+                                        </div>
+
                                     </div>
-                                    
+                                    <!--                                <div class="col-lg-5 col-md-5 text-right">
+                                                                        
+                                                                    </div>-->
                                 </div>
-<!--                                <div class="col-lg-5 col-md-5 text-right">
-                                    
-                                </div>-->
                             </div>
-                        </div>
-                        <div class="product-list">
-                            <div class="row">
-                            <c:forEach items="${sessionScope.productList}" var="p">
+                            <div class="product-list">
+                                <div class="row">
+                                <c:forEach items="${sessionScope.productList}" var="p">
                                     <div class="col-lg-4 col-sm-6">
                                         <div class="product-item">
                                             <div class="pi-pic">
@@ -183,11 +183,11 @@
                                                 <div class="icon">
                                                     <i class="icon_heart_alt"></i>
                                                 </div>
-                                                
+
                                                 <ul>
                                                     <li class="w-icon active"><a href="buy?id=${p.id}&num=1&p=product&index=${index}"><i class="icon_bag_alt"></i></a></li>
-<!--                                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a><i class="icon_bag_alt"></i></li>
-                                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
+                                                    <!--                                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a><i class="icon_bag_alt"></i></li>
+                                                                                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
                                                 </ul>
                                             </div>
                                             <div class="pi-text">
@@ -207,7 +207,71 @@
                                 </c:forEach>
                             </div>
                         </div>
-                        <%@include file="Components/Paging.jsp" %>
+
+                        <c:if test="${requestScope.check.equals('list')}">
+                            <div class="clearfix">
+                                <ul class="pagination">
+                                    <c:if test="${requestScope.index>1}">
+                                        <li class="page-item"><a href="product?index=${index-1}" class="page-link">Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${requestScope.page}" var="i">
+                                        <li class="page-item"><a href="product?index=${i}" class="page-link">${i}</a></li>
+                                        </c:forEach>
+                                        <c:if test="${requestScope.index < requestScope.page}">
+                                        <li class="page-item"><a href="product?index=${index+1}" class="page-link">Next</a></li>
+                                        </c:if>
+                                </ul>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${requestScope.check.equals('sort')}">
+                            <div class="clearfix">
+                                <ul class="pagination">
+                                    <c:if test="${requestScope.index>1}">
+                                        <li class="page-item"><a href="sort?sort=${requestScope.sort}&index=${index-1}" class="page-link">Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${requestScope.page}" var="i">
+                                        <li class="page-item"><a href="sort?sort=${requestScope.sort}&index=${i}" class="page-link">${i}</a></li>
+                                        </c:forEach>
+                                        <c:if test="${requestScope.index < requestScope.page}">
+                                        <li class="page-item"><a href="sort?sort=${requestScope.sort}&index=${index+1}" class="page-link">Next</a></li>
+                                        </c:if>
+                                </ul>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${requestScope.check.equals('filter')}">
+                            <div class="clearfix">
+                                <ul class="pagination">
+                                    <c:if test="${requestScope.index>1}">
+                                        <li class="page-item"><a href="filter?category=${category}&brand=${brand}&display=${display}&cpu=${cpuu}&index=${index-1}" class="page-link">Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${requestScope.page}" var="i">
+                                        <li class="page-item"><a href="filter?category=${category}&brand=${brand}&display=${display}&cpu=${cpuu}&index=${i}" class="page-link">${i}</a></li>
+                                        </c:forEach>
+                                        <c:if test="${requestScope.index < requestScope.page}">
+                                        <li class="page-item"><a href="filter?category=${category}&brand=${brand}&display=${display}&cpu=${cpuu}&index=${index+1}" class="page-link">Next</a></li>
+                                        </c:if>
+                                </ul>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${requestScope.check.equals('search')}">
+                            <div class="clearfix">
+                                <ul class="pagination">
+                                    <c:if test="${requestScope.index>1}">
+                                        <li class="page-item"><a href="fulltextsearch?search=${search}&index=${index-1}" class="page-link">Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${requestScope.page}" var="i">
+                                        <li class="page-item"><a href="fulltextsearch?search=${search}&index=${i}" class="page-link">${i}</a></li>
+                                        </c:forEach>
+                                        <c:if test="${requestScope.index < requestScope.page}">
+                                        <li class="page-item"><a href="fulltextsearch?search=${search}&index=${index+1}" class="page-link">Next</a></li>
+                                        </c:if>
+                                </ul>
+                            </div>
+                        </c:if>
+
                     </div>
                 </div>
             </div>

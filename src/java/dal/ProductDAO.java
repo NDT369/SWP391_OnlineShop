@@ -36,7 +36,7 @@ import model.RAM;
  */
 public class ProductDAO extends DBContext {
 
-    private PreparedStatement ps;
+ private PreparedStatement ps;
     private ResultSet rs;
 
     public List<Product> getAll() {
@@ -761,7 +761,6 @@ public class ProductDAO extends DBContext {
             ps.executeUpdate();
         } catch (SQLException ex) {
         }
-
     }
 
     public List<Product> getListProductByBrandIdOrStatus(String brandid, String status) {
