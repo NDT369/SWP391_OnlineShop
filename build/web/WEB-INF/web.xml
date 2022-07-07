@@ -274,6 +274,10 @@
         <servlet-name>ProductEditServlet</servlet-name>
         <servlet-class>MarketingController.ProductEditServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductManageServlet</servlet-name>
+        <servlet-class>MarketingController.ProductManageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -511,6 +515,10 @@
     <servlet-mapping>
         <servlet-name>FilterOrderServlet</servlet-name>
         <url-pattern>/filterorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductManageServlet</servlet-name>
+        <url-pattern>/productmanage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditProductServlet</servlet-name>
