@@ -13,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Brand;
 import model.CPU;
 import model.Capacity;
@@ -28,7 +27,7 @@ import model.RAM;
  *
  * @author DUC THINH
  */
-public class ProductManageServlet extends HttpServlet {
+public class ProductDetailManageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +46,10 @@ public class ProductManageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductManageServlet</title>");
+            out.println("<title>Servlet ProductDetailManageServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductManageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProductDetailManageServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,23 +67,12 @@ public class ProductManageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String id_raw = request.getParameter("id");
+        String index = request.getParameter("index");
+        int id = Integer.parseInt(id_raw);
         ProductDAO pd = new ProductDAO();
-        String index_raw = request.getParameter("index");
-        HttpSession session = request.getSession();
-
-        int total = pd.getAllProductManage().size();
-        int page = total / 5;
-        if (total % 5 != 0) {
-            page += 1;
-        }
-        if (index_raw == null) {
-            index_raw = "1";
-        }
-
-        int index = Integer.parseInt(index_raw);
-        int start = (index - 1) * 5;
-        int end = Math.min((index * 5), total);
-        List<Product> productList = pd.getAllProductManage();
+        Product p = (Product) pd.getProductByID(id);
         List<Brand> brandList = pd.getAllBrand();
         List<Category> categoryList = pd.getAllCategory();
         List<OperatingSystem> osList = pd.getAllOS();
@@ -93,8 +81,6 @@ public class ProductManageServlet extends HttpServlet {
         List<Display> displayList = pd.getAllDisplay();
         List<Capacity> capacityList = pd.getAllCapacity();
         List<Card> cardList = pd.getAllCard();
-        session.setAttribute("listproduct", productList);
-        request.setAttribute("productlist", productList.subList(start, end));
         request.setAttribute("brandlist", brandList);
         request.setAttribute("categorylist", categoryList);
         request.setAttribute("oslist", osList);
@@ -104,9 +90,9 @@ public class ProductManageServlet extends HttpServlet {
         request.setAttribute("capacitylist", capacityList);
         request.setAttribute("cardlist", cardList);
         request.setAttribute("index", index);
-        request.setAttribute("page", page);
-        request.setAttribute("type", "default");
-        request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
+        request.setAttribute("product", p);
+        request.getRequestDispatcher("Marketing/productdetailmanage.jsp").forward(request, response);
+
     }
 
     /**
@@ -120,48 +106,7 @@ public class ProductManageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        ProductDAO pd = new ProductDAO();
-        String status_raw = request.getParameter("status");
-        String productID_raw = request.getParameter("id");
-        String index_raw = request.getParameter("index");
-        String sort_raw = request.getParameter("sort");
-        String type = request.getParameter("type");
-        String brandid = request.getParameter("brandid");
-        String statusfilter = request.getParameter("statusfilter");
-        String search = request.getParameter("search");
-        int status;
-        int productId = Integer.parseInt(productID_raw);
-        if (status_raw.equals("ON")) {
-            status = 0;
-            pd.UpdateProductStatus(status, productId);
-        }
-        if (status_raw.equals("OFF")) {
-            status = 1;
-            pd.UpdateProductStatus(status, productId);
-        }
-        if (type.equals("default")) {
-            response.sendRedirect("productmanage?index=" + index_raw);
-        }
-        if (type.equals("filter")) {
-            if (brandid != null) {
-                response.sendRedirect("filterproduct?brandid=" + brandid + "&index=" + index_raw);
-            }
-        }
-        if (type.equals("statusfilter")) {
-            if (statusfilter != null) {
-                response.sendRedirect("filterproduct?statusfilter=" + statusfilter + "&index=" + index_raw);
-            }
-        }
-        if(type.equals("sort")){
-            List<Product> productList = pd.getAllProductManage();
-            session.setAttribute("listproduct", productList);
-            response.sendRedirect("sortproduct?sort=" + sort_raw + "&index=" + index_raw);
-        }
-        if(type.equals("search")){
-            response.sendRedirect("productsearch?search=" + search + "&index=" + index_raw);
-        }
-
+        processRequest(request, response);
     }
 
     /**

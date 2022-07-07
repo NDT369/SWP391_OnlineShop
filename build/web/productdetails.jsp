@@ -141,7 +141,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="product-pic-zoom">
-                                    <img class="product-big-img" src="${p.imgURL}" alt="">
+                                    <img class="product-big-img" src="img/${p.imgURL}" alt="">
                                     <div class="zoom-icon">
                                         <i class="fa fa-search-plus"></i>
                                     </div>

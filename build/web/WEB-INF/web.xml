@@ -156,6 +156,34 @@
         <servlet-name>SortFbServlet</servlet-name>
         <servlet-class>MarketingController.SortFbServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProductServlet</servlet-name>
+        <servlet-class>MarketingController.EditProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>MarketingController.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortProductServlet</servlet-name>
+        <servlet-class>MarketingController.SortProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterServlet</servlet-name>
+        <servlet-class>MarketingController.FilterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductSearchServlet</servlet-name>
+        <servlet-class>MarketingController.ProductSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDetailManageServlet</servlet-name>
+        <servlet-class>MarketingController.ProductDetailManageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductEditServlet</servlet-name>
+        <servlet-class>MarketingController.ProductEditServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -303,6 +331,34 @@
     <servlet-mapping>
         <servlet-name>SortFbServlet</servlet-name>
         <url-pattern>/sortfb</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductServlet</servlet-name>
+        <url-pattern>/editproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/addproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortProductServlet</servlet-name>
+        <url-pattern>/sortproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterServlet</servlet-name>
+        <url-pattern>/filterproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductSearchServlet</servlet-name>
+        <url-pattern>/productsearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDetailManageServlet</servlet-name>
+        <url-pattern>/productdetailmanage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductEditServlet</servlet-name>
+        <url-pattern>/productedit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

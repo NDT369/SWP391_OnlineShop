@@ -178,7 +178,7 @@
                                     <div class="col-lg-4 col-sm-6">
                                         <div class="product-item">
                                             <div class="pi-pic">
-                                                <a href="productdetail?id=${p.id}"><img src="${p.imgURL}" alt=""></a>
+                                                <a href="productdetail?id=${p.id}"><img src="img/${p.imgURL}" alt=""></a>
                                                 <div class="sale pp-sale">Sale</div>
                                                 <div class="icon">
                                                     <i class="icon_heart_alt"></i>
