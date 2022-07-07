@@ -34,7 +34,7 @@ public class OrderDetailSDAO extends DBContext{
                 Product p = new Product();
                 p.setId(rs.getInt(2));
                 p.setName(rs.getString(6));
-                p.setImgURL(rs.getString(10));
+                p.setImgURL(rs.getString(11));
                 list.add(new OrderDetailS(rs.getInt(1), p, rs.getInt(3), rs.getDouble(4)));
             }
             return list;

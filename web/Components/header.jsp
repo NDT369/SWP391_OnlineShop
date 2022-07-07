@@ -50,13 +50,13 @@
     <div class="container">
         <div class="inner-header">
             <div class="row">
-                <div class="col-lg-2 col-md-2">
+<!--                <div class="col-lg-2 col-md-2">
                     <div class="logo">
                         <a href="home">
                             <img src="../img/logo.png" alt="">
                         </a>
                     </div>
-                </div>
+                </div>-->
                 <div class="col-lg-7 col-md-7">
                     <div class="advanced-search">
                         <button type="button" class="category-btn">All Categories</button>

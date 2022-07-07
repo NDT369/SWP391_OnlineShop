@@ -13,6 +13,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
+    private float discount;
     private double saleprice;
     private int quantity;
     private String imgURL;
@@ -31,10 +32,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, double price, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status) {
+    public Product(int id, String name, double price, float discount, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.discount = discount;
         this.saleprice = saleprice;
         this.quantity = quantity;
         this.imgURL = imgURL;
@@ -50,6 +52,16 @@ public class Product {
         this.createdate = createdate;
         this.status = status;
     }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    
 
     public int getId() {
         return id;

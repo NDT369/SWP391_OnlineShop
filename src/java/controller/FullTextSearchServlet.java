@@ -118,10 +118,11 @@ public class FullTextSearchServlet extends HttpServlet {
         request.setAttribute("cart", cart);
 
         session.setAttribute("productList", productList.subList(start, end));
+        request.setAttribute("check", "search");
         request.setAttribute("index", index);
         request.setAttribute("page", page);
         request.setAttribute("search", search);
-        request.getRequestDispatcher("productsearch.jsp").forward(request, response);
+        request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 
     /**

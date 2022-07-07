@@ -71,17 +71,19 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
+
         ProductDAO p = new ProductDAO();
         CategoryDAO cate = new CategoryDAO();
         BrandDAO b = new BrandDAO();
         DisplayDAO d = new DisplayDAO();
         CPUDAO cpu = new CPUDAO();
-        
+
         List<Category> categoryList = cate.getAll();
         List<Brand> brandList = b.getAll();
         List<Display> displayList = d.getAll();
         List<CPU> cpuList = cpu.getAll();
+
+        List<Product> productList = p.getAll();
 
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
@@ -94,31 +96,33 @@ public class ProductServlet extends HttpServlet {
         if (total % 9 != 0) {
             page += 1;
         }
-        List<Product> productList = p.listProPaging(index);
+        int start = (index-1)*9;
+        int end = Math.min(index*9, total);
 
         session.setAttribute("cpuList", cpuList);
         session.setAttribute("displayList", displayList);
         session.setAttribute("brandList", brandList);
         session.setAttribute("categoryList", categoryList);
-        
-        request.setAttribute("index", index);
-        
+
         List<Product> list = p.listProPaging(index);
-        List<Product> listProduct = p.getAll();      
+        List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
-        if(arr != null){
+        if (arr != null) {
             for (Cookie c : arr) {
-                if(c.getName().equals("cart")){
+                if (c.getName().equals("cart")) {
                     txt += c.getValue();
                 }
             }
         }
-         Cart cart = new Cart(txt, listProduct);
+        Cart cart = new Cart(txt, listProduct);
+
         request.setAttribute("cart", cart);
-        
+
+        request.setAttribute("check", "list");
+        request.setAttribute("index", index);
         request.setAttribute("page", page);
-        session.setAttribute("productList", productList);
+        session.setAttribute("productList", productList.subList(start, end));
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 
