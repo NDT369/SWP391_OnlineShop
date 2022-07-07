@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Order;
 
 /**
@@ -59,10 +60,12 @@ public class SortOrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         OrderDAO od = new OrderDAO();
         
         String sort = request.getParameter("sort");
-        List<Order> sortOrder = od.sortOrder(sort, od.getAll());
+        List<Order> list = (List<Order>) session.getAttribute("orderList");
+        List<Order> sortOrder = od.sortOrder(sort, list);
         
         String index_raw = request.getParameter("index");
         if (index_raw == null) {

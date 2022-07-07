@@ -39,7 +39,7 @@ public class ListOrderServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ListOrderServlet</title>");            
+            out.println("<title>Servlet ListOrderServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ListOrderServlet at " + request.getContextPath() + "</h1>");
@@ -60,11 +60,9 @@ public class ListOrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession session = request.getSession();
         OrderDAO od = new OrderDAO();
-        
         List<Order> listOrder = od.getAll();
-        
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
@@ -75,14 +73,15 @@ public class ListOrderServlet extends HttpServlet {
         if (total % 5 != 0) {
             page += 1;
         }
-        int start = (index-1)*5;
-        int end = Math.min((index*5), total);
-        
+        int start = (index - 1) * 5;
+        int end = Math.min((index * 5), total);
+
+        session.setAttribute("orderList", listOrder);
         request.setAttribute("check", "list");
         request.setAttribute("index", index);
         request.setAttribute("page", page);
         request.setAttribute("listOrder", listOrder.subList(start, end));
-        
+
         request.getRequestDispatcher("Sale/orderlist.jsp").forward(request, response);
     }
 

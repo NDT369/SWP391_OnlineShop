@@ -5,18 +5,15 @@
             <url>src/java/MarketingController/FilterCustomerServlet.java</url>
             <bookmark id="1">
                 <name/>
-                <line>63</line>
+                <line>65</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/customerlist.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/customerdetail.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/sliderlist.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/bloglist.jsp</file>
-            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Marketing/blogdetail.jsp</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/src/java/model/OrderDetailS.java</file>
+            <file>file:/C:/Gitt/SWP391_OnlineShop/web/Sale/orderdetail.jsp</file>
         </group>
     </open-files>
 </project-private>

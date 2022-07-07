@@ -66,7 +66,8 @@ public class SortCustomerServlet extends HttpServlet {
         AccountDAO ad = new AccountDAO();
         
         String sort = request.getParameter("sort");
-        List<Account> sortCustomer = ad.sortCustomer(sort, ad.getAllCustomer());
+        List<Account> list = (List<Account>) session.getAttribute("customerList");
+        List<Account> sortCustomer = ad.sortCustomer(sort, list);
         
         String index_raw = request.getParameter("index");
         if (index_raw == null) {

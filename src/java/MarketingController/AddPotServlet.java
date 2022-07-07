@@ -58,6 +58,8 @@ public class AddPotServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
 
         String img = request.getParameter("image");
         String author = request.getParameter("author");
@@ -66,8 +68,8 @@ public class AddPotServlet extends HttpServlet {
         String createdate = request.getParameter("createdate");
         String modifieddate = request.getParameter("modifieddate");
         String status_raw = request.getParameter("status");
-        boolean status =false;
-        if(status_raw.equals("1")){
+        boolean status = false;
+        if (status_raw.equals("1")) {
             status = true;
         }
 
@@ -79,7 +81,7 @@ public class AddPotServlet extends HttpServlet {
         b.setCreateDate(createdate);
         b.setModyfieDate(modifieddate);
         b.setStatus(status);
-        
+
         BlogDAO bd = new BlogDAO();
         bd.Insert(b);
 

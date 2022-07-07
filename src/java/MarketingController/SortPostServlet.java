@@ -67,7 +67,8 @@ public class SortPostServlet extends HttpServlet {
         BlogDAO b = new BlogDAO();
         
         String sort = request.getParameter("sort");
-        List<Blog> sortBlog = b.Sort(sort, b.getAll());
+        List<Blog> list = (List<Blog>) session.getAttribute("blogList");
+        List<Blog> sortBlog = b.Sort(sort, list);
         
         String index_raw = request.getParameter("index");
         if (index_raw == null) {

@@ -5,7 +5,8 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,16 +21,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/elegant-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/nice-select.css" rel="stylesheet" type="text/css"/>
-        <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/slicknav.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="css/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
+        
         <style>
             img{
                 width: 350px;
@@ -44,9 +38,6 @@
             }
             .table-title{
                 background-color: #e7ab3c;
-            }
-            .container{
-                font-size: 15px;
             }
             .pagination li.active a, .pagination li.active a.page-link {
                 background: #e7ab3c;
@@ -149,7 +140,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Slider</b></h2>
+                            <h2 style="color: white">Manage <b>Slider</b></h2>
                         </div>
                         <div class="col-sm-6">
                         </div>
@@ -200,7 +191,7 @@
                                             <input type="submit" name="status" value="On" style="background-color: orange; color: white; border-color: lightgray">
                                         </c:if>
                                         <c:if test="${l.status == false}">
-                                            <input type="submit" name="status" value="Off">
+                                            <input type="submit" name="status" value="Off" style="background-color: red; color: white; border-color: lightgray">
                                         </c:if>
                                     </form>
                                 </td>
@@ -264,7 +255,7 @@
                 </c:if>
 
             </div>
-            <a href="marketingdashboard"><button type="button" class="btn btn-primary">Back to home</button></a>
+            <a href="marketingdashboard"><button type="button" class="btn btn-primary" style="font-size: 18px; background-color: #e7ab3c">Back to Marketing Dashboard</button></a>
 
         </div>
         <!-- Edit Modal HTML -->

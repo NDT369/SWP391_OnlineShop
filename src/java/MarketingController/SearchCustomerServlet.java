@@ -62,7 +62,9 @@ public class SearchCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String search = request.getParameter("search");
-        
+         if (search == null || search == "") {
+            response.sendRedirect("customermanage");
+        }
         AccountDAO ad = new AccountDAO();
         List<Account> searchCustomer = ad.SearchCustomer(search);
 
@@ -79,6 +81,7 @@ public class SearchCustomerServlet extends HttpServlet {
         int start = (index-1)*5;
         int end = Math.min((index*5), total);
         
+        session.setAttribute("customerList", searchCustomer);
         request.setAttribute("check", "search");
         request.setAttribute("search", search);
         request.setAttribute("index", index);

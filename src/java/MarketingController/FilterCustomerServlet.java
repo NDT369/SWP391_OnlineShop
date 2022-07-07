@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Account;
 
 /**
@@ -60,17 +61,15 @@ public class FilterCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String status = request.getParameter("status");
-        List<Account> filterCustomer = new ArrayList<>();
-
-        AccountDAO ad = new AccountDAO();
         if (status.equals("all")) {
-            filterCustomer = ad.getAllCustomer();
-        } else {
-            int statuss = Integer.parseInt(status);
-            filterCustomer = ad.FilterCustomer(statuss);
+            response.sendRedirect("customermanage");
         }
-        
+        AccountDAO ad = new AccountDAO();
+        int statuss = Integer.parseInt(status);
+        List<Account> filterCustomer = ad.FilterCustomer(statuss);
+
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
@@ -84,6 +83,7 @@ public class FilterCustomerServlet extends HttpServlet {
         int start = (index - 1) * 5;
         int end = Math.min((index * 5), total);
 
+        session.setAttribute("customerList", filterCustomer);
         request.setAttribute("status", status);
         request.setAttribute("check", "filter");
         request.setAttribute("index", index);

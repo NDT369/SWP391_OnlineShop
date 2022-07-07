@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Order;
 
 /**
@@ -38,7 +39,7 @@ public class FilterOrderServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FilterOrderServlet</title>");            
+            out.println("<title>Servlet FilterOrderServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet FilterOrderServlet at " + request.getContextPath() + "</h1>");
@@ -59,13 +60,14 @@ public class FilterOrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        HttpSession session = request.getSession();
         String from = request.getParameter("from");
         String to = request.getParameter("to");
-        
+
         OrderDAO od = new OrderDAO();
         List<Order> filterOrder = od.getOrderByOrderDate(from, to);
-        
+
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
@@ -76,19 +78,19 @@ public class FilterOrderServlet extends HttpServlet {
         if (total % 5 != 0) {
             page += 1;
         }
-        int start = (index-1)*5;
-        int end = Math.min((index*5), total);
-        
+        int start = (index - 1) * 5;
+        int end = Math.min((index * 5), total);
+
+        session.setAttribute("orderList", filterOrder);
         request.setAttribute("from", from);
         request.setAttribute("to", to);
         request.setAttribute("check", "filter");
         request.setAttribute("index", index);
         request.setAttribute("page", page);
         request.setAttribute("listOrder", filterOrder.subList(start, end));
-        
+
         request.getRequestDispatcher("Sale/orderlist.jsp").forward(request, response);
-        
-        
+
     }
 
     /**

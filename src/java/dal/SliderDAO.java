@@ -79,7 +79,7 @@ public class SliderDAO extends DBContext {
     }
 
     public void UpdateInfo(int id, String title, String imgURL, String content) {
-        String sql = "update Slider set Title = '" + title + "', Content = '" + content + "',"
+        String sql = "update Slider set Title = N'" + title + "', Content = N'" + content + "',"
                 + " ImgURL = '" + imgURL + "' where Slide_ID = " + id;
         try {
             ps = connection.prepareStatement(sql);

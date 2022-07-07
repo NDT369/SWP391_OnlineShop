@@ -5,7 +5,8 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,15 +21,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/elegant-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/nice-select.css" rel="stylesheet" type="text/css"/>
-        <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/slicknav.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="css/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
 
         <style>
@@ -210,7 +203,7 @@
                                 <td>${l.phone}</td>
                                 <td>${l.address}</td>
                                 <td>
-                                    <form action="editpost" method="post" >
+                                    <form action="editcustomer" method="post" >
                                         <input value="${l.accountID}" name="id" hidden>
                                         <c:if test="${l.status == true}">
                                             <input type="submit" name="status" value="Active" style="background-color: #e7ab3c; color: white; border-color: lightgray">

@@ -58,6 +58,9 @@ public class EditCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        
         String id_raw = request.getParameter("id");
         String name = request.getParameter("name");
         String gender_raw = request.getParameter("gender");
@@ -88,7 +91,19 @@ public class EditCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String status_raw = request.getParameter("status");
+        String id_raw = request.getParameter("id");
+        
+        int id = Integer.parseInt(id_raw);
+        String status = "0";
+        if (status_raw.equals("InActive")) {
+            status = "1";
+        }
+        AccountDAO a = new AccountDAO();
+        a.UpdateUserStatus(id_raw, status);
+
+        response.sendRedirect("customermanage");
     }
 
     /**

@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Blog;
 
 /**
@@ -60,14 +61,15 @@ public class FilterPostServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BlogDAO b = new BlogDAO();
+        HttpSession session = request.getSession();
+        
         String author = request.getParameter("author");
-        List<Blog> filterBlog = new ArrayList<>();
-        if (author.equals("all")) {
-            filterBlog = b.getAll();
-        } else {
-            filterBlog = b.filter(author);
+        
+        if(author.equals("all")){
+            response.sendRedirect("postmanage");
         }
+        BlogDAO b = new BlogDAO();
+        List<Blog> filterBlog = b.filter(author);
 
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
@@ -82,6 +84,7 @@ public class FilterPostServlet extends HttpServlet {
         int start = (index - 1) * 5;
         int end = Math.min((index * 5), total);
 
+        session.setAttribute("blogList", filterBlog);
         request.setAttribute("author", author);
         request.setAttribute("check", "filter");
         request.setAttribute("index", index);

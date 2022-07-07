@@ -62,6 +62,9 @@ public class SearchSliderServlet extends HttpServlet {
         
         String search = request.getParameter("search");
         
+        if (search == null || search == "") {
+            response.sendRedirect("slidermanage");
+        }
         SliderDAO ad = new SliderDAO();
         List<Slider> searchSlider = ad.searchSlider(search);
 

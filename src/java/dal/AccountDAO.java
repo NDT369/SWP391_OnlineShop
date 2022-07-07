@@ -428,9 +428,9 @@ public class AccountDAO extends DBContext {
     }
 
     public void updateInfor(String id, String name, boolean gender, String email, String phone, String address) {
-        String sql = "update Account set Name = '" + name + "',"
-                + " Gender = '" + gender + "', Email='" + email + "', Phone = '" + phone + "',"
-                + " Address = '" + address + "' where Account_ID = " + id;
+        String sql = "update Account set Name = N'" + name + "',"
+                + " Gender = '" + gender + "', Email= N'" + email + "', Phone = '" + phone + "',"
+                + " Address = N'" + address + "' where Account_ID = " + id;
         try {
             ps = connection.prepareStatement(sql);
             ps.executeUpdate();

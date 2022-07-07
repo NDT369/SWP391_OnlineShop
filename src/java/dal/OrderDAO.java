@@ -135,7 +135,7 @@ public class OrderDAO extends DBContext {
                 return o1.getDate().compareTo(o2.getDate());
             }
             if (choice.equals("name")) {
-                return o1.getName().compareTo(o2.getName());
+                return o2.getName().compareTo(o1.getName());
             }
             if (choice.equals("cost")) {
                 return o1.getMoney() > o2.getMoney() ? 1 : -1;

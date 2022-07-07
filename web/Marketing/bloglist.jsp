@@ -4,7 +4,8 @@
     Author     : Pham Minh Giang
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +19,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
 
@@ -47,6 +48,7 @@
 
     </head>
     <body>
+        
         <header class="header-section">
             <div class="header-top">
                 <div class="container">
@@ -135,7 +137,7 @@
                 </div>
             </div>
         </header>
-                                    
+
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -216,7 +218,7 @@
                     </tbody>
                 </table>
 
-                    <!--paging-->
+                <!--paging-->
                 <c:if test="${requestScope.check.equals('list')}">
                     <div class="clearfix">
                         <ul class="pagination">
@@ -233,6 +235,7 @@
                         </ul>
                     </div>
                 </c:if>
+
                 <c:if test="${requestScope.check.equals('search')}">
                     <div class="clearfix">
                         <ul class="pagination">
@@ -249,6 +252,7 @@
                         </ul>
                     </div>
                 </c:if>
+
                 <c:if test="${requestScope.check.equals('sort')}">
                     <div class="clearfix">
                         <ul class="pagination">
@@ -265,6 +269,7 @@
                         </ul>
                     </div>
                 </c:if>
+
                 <c:if test="${requestScope.check.equals('filter')}">
                     <div class="clearfix">
                         <ul class="pagination">
@@ -281,13 +286,14 @@
                         </ul>
                     </div>
                 </c:if>
-                    <!--end paging-->
+
+                <!--end paging-->
 
             </div>
-            <a href="marketingdashboard"><button type="button" class="btn btn-primary" style="font-size: 18px; background-color: #e7ab3c">Back to home</button></a>
+            <a href="marketingdashboard"><button type="button" class="btn btn-primary" style="font-size: 18px; background-color: #e7ab3c">Back to Marketing Dashboard</button></a>
 
         </div>
-                            
+
         <!-- Edit Modal HTML -->
         <div id="addPost" class="modal fade">
             <div class="modal-dialog">
@@ -338,7 +344,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Edit Modal HTML -->
         <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">
@@ -388,8 +394,8 @@
             </div>
         </div>
         <!-- Edit Modal HTML -->
-        
-        
+
+
         <footer class="footer-section" style="margin-top: 30px">
             <div class="container">
                 <div class="row">
@@ -459,8 +465,7 @@
             </div>
         </footer>
 
-        <script src="../js/manager.js" type="text/javascript"></script>
-        
+
     </body>
 
 </html>

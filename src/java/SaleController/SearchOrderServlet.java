@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Order;
 
 /**
@@ -59,7 +60,14 @@ public class SearchOrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
         String search = request.getParameter("search");
+        
+        if (search == null || search == "") {
+            response.sendRedirect("ordermanage");
+        }
         
         OrderDAO od = new OrderDAO();
         List<Order> searchOrder = od.searchOrder(search);
@@ -77,6 +85,7 @@ public class SearchOrderServlet extends HttpServlet {
         int start = (index-1)*5;
         int end = Math.min((index*5), total);
         
+        session.setAttribute("orderList", searchOrder);
         request.setAttribute("check", "search");
         request.setAttribute("search", search);
         request.setAttribute("index", index);

@@ -39,7 +39,7 @@ public class SearchPostServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchPostServlet</title>");            
+            out.println("<title>Servlet SearchPostServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SearchPostServlet at " + request.getContextPath() + "</h1>");
@@ -60,11 +60,13 @@ public class SearchPostServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         String search = request.getParameter("search");
-        
+        if (search == null || search == "") {
+            response.sendRedirect("postmanage");
+        }
         BlogDAO b = new BlogDAO();
-        List<Blog> searchBlog = b.SearchBlog(search);
+        List<Blog> searchBlog = b.Search(search);
 
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
@@ -76,9 +78,10 @@ public class SearchPostServlet extends HttpServlet {
         if (total % 5 != 0) {
             page += 1;
         }
-        int start = (index-1)*5;
-        int end = Math.min((index*5), total);
-        
+        int start = (index - 1) * 5;
+        int end = Math.min((index * 5), total);
+
+        session.setAttribute("blogList", searchBlog);
         request.setAttribute("check", "search");
         request.setAttribute("search", search);
         request.setAttribute("index", index);

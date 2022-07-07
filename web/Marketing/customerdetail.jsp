@@ -19,16 +19,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/elegant-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/nice-select.css" rel="stylesheet" type="text/css"/>
-        <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/slicknav.min.css" rel="stylesheet" type="text/css"/>
+
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="css/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
 
         <style>
@@ -173,15 +165,15 @@
                             <input style="font-size: 15px" type="text" class="form-control" required name="name" value="${c.name}">
                         </div>
                         <div class="form-group">
-                            <label>Gender</label>
-                            <select name="gender">
+                            <label>Gender</label><br>
+                            <select style="font-size: 15px" name="gender">
                                 <option value="true" <c:if test="${c.gender == true}">selected</c:if> >Male</option>
                                 <option value="false" <c:if test="${c.gender == false}">selected</c:if> >Female</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                           <input style="font-size: 15px" type="email" class="form-control" required name="email" value="${c.email}" >
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input style="font-size: 15px" type="email" class="form-control" required name="email" value="${c.email}" >
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
@@ -195,8 +187,8 @@
                             <label>Status</label>
                             <input class="form-control"
                                    <c:if test="${c.status == true}">value="Active"</c:if>
-                                   <c:if test="${c.status == false}">value="Deactive"</c:if>
-                                style="font-size: 15px"   readonly>
+                                   <c:if test="${c.status == false}">value="InActive"</c:if>
+                                   style="font-size: 15px"   readonly>
                         </div>					
 
                         <div class="modal-footer">
@@ -204,8 +196,8 @@
                         </div>
                     </form>
                 </div>
-                <a href="customermanage" ><button style="font-size: 18px; background-color: #e7ab3c" type="button" class="btn btn-primary">Back to customer manage</button></a><br><br>  
             </div>
+            <a href="customermanage" ><button style="font-size: 18px; background-color: #e7ab3c" type="button" class="btn btn-primary">Back to customer manage</button></a><br><br>  
         </div>
 
         <footer class="footer-section" style="margin-top: 30px">

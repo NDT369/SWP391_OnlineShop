@@ -20,15 +20,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/elegant-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/nice-select.css" rel="stylesheet" type="text/css"/>
-        <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/slicknav.min.css" rel="stylesheet" type="text/css"/>
+
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="css/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
 
         <style>
@@ -62,12 +55,12 @@
             form input{
                 size: 25px;
             }
-            
+
         </style>
 
     </head>
     <body>
-        
+
         <header class="header-section">
             <div class="header-top">
                 <div class="container">
@@ -156,7 +149,7 @@
                 </div>
             </div>
         </header>
-                                    
+
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -182,8 +175,7 @@
                         </div>
                         <div class="form-group">
                             <label>Image</label>
-                            <input style="font-size: 15px" name="image" type="file" class="form-control" >
-                            <input  name="image" type="file" class="form-control" hidden="${b.imgURL}"><br>
+                            <input style="font-size: 15px" name="image" type="file" class="form-control" hidden="${b.imgURL}">
                             <img src="img/Blog/${b.imgURL}">
                         </div>
                         <div class="form-group">
@@ -208,7 +200,7 @@
                     </div>
                 </form>
             </div>
-            <a href="postmanage" ><button style="font-size: 18px; background-color: #e7ab3c" type="button" class="btn btn-primary">Back to post manage</button></a><br><br>
+            <a href="postmanage" ><button style="font-size: 18px; background-color: #e7ab3c" type="button" class="btn btn-primary">Back to Post Manage</button></a><br><br>
 
         </div>
 

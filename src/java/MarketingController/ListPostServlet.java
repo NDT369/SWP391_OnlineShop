@@ -60,6 +60,7 @@ public class ListPostServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
         
         BlogDAO b = new BlogDAO();
@@ -79,6 +80,7 @@ public class ListPostServlet extends HttpServlet {
         int start = (index-1)*5;
         int end = Math.min((index*5), total);
         
+        session.setAttribute("blogList", listBlog);
         session.setAttribute("listAuthor", listAuthor);
         request.setAttribute("check", "list");
         request.setAttribute("index", index);

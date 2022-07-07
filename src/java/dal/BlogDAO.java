@@ -68,8 +68,8 @@ public class BlogDAO extends DBContext {
     }
 
     public void Insert(Blog b) {
-        String sql = "insert into Blog values('"+b.getImgURL()+"', '"+b.getAuthorName()+"',"
-                + " '"+b.getTitle()+"', '"+b.getContent()+"', '"+b.getCreateDate()+"', '"+b.getModyfieDate()+"', '"+b.isStatus()+"')";
+        String sql = "insert into Blog values('"+b.getImgURL()+"', N'"+b.getAuthorName()+"',"
+                + " N'"+b.getTitle()+"', N'"+b.getContent()+"', '"+b.getCreateDate()+"', '"+b.getModyfieDate()+"', '"+b.isStatus()+"')";
         try {
             ps = connection.prepareStatement(sql);
 //            ps.setString(1, b.getImgURL());
@@ -87,7 +87,7 @@ public class BlogDAO extends DBContext {
     public List<Blog> Search(String search) {
         List<Blog> list = new ArrayList<>();
         String sql = "select * from Blog\n"
-                + "where freetext(*,'\"*" + search + "*\"')";
+                + "where contains(*,'\"*" + search + "*\"')";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -148,8 +148,8 @@ public class BlogDAO extends DBContext {
     }
 
     public void Update(int id, String title, String image, String author, String content, String create, String modify) {
-        String sql = "update Blog set  ImgURL ='" + image + "',  AuthorName = '" + author + "', Title = '" + title + "' ,"
-                + "Content ='" + content + "', CreateDate = '" + create + "', ModifiedDate = '" + modify + "' where Blog_ID = " + id;
+        String sql = "update Blog set  ImgURL ='" + image + "',  AuthorName = N'" + author + "', Title = N'" + title + "' ,"
+                + "Content =N'" + content + "', CreateDate = '" + create + "', ModifiedDate = '" + modify + "' where Blog_ID = " + id;
         try {
             ps = connection.prepareStatement(sql);
             ps.executeUpdate();

@@ -79,6 +79,7 @@ public class ListCustomerServlet extends HttpServlet {
         int start = (index-1)*5;
         int end = Math.min((index*5), total);
         
+        session.setAttribute("customerList", listCustomer);
         request.setAttribute("check", "list");
         request.setAttribute("index", index);
         request.setAttribute("page", page);
