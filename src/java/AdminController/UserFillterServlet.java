@@ -8,7 +8,6 @@ package AdminController;
 import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +20,7 @@ import model.Account;
  *
  * @author Pham Minh Giang
  */
-public class UserSearchServlet extends HttpServlet {
+public class UserFillterServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class UserSearchServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserSearchServlet</title>");
+            out.println("<title>Servlet UserFillterServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserSearchServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UserFillterServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,30 +61,35 @@ public class UserSearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String search = request.getParameter("search");
-
         AccountDAO a = new AccountDAO();
-        List<Account> list = a.SearchUser(search);
-
+        String gender = request.getParameter("gender");
+        String role = request.getParameter("role");
+        String status = request.getParameter("status");
+        
+        List<Account> listFilter = a.fillter(gender, role, status);
+        
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
         }
         int index = Integer.parseInt(index_raw);
-        int total = list.size();
+        int total = listFilter.size();
         int page = total / 5;
         if (total % 5 != 0) {
             page += 1;
         }
         int start = (index - 1) * 5;
         int end = Math.min((index * 5), total);
-
-        session.setAttribute("listUser", list);
-        request.setAttribute("check", "search");
-        request.setAttribute("search", search);
+        
+        request.setAttribute("gender", gender);
+        request.setAttribute("role", role);
+        request.setAttribute("status", status);
+        
+        session.setAttribute("listUser", listFilter);
+        request.setAttribute("check", "fillter");
         request.setAttribute("index", index);
         request.setAttribute("page", page);
-        request.setAttribute("UserList", list.subList(start, end));
+        request.setAttribute("UserList", listFilter.subList(start, end));
         request.getRequestDispatcher("Admin/userlist.jsp").forward(request, response);
     }
 
@@ -100,30 +104,7 @@ public class UserSearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-//        HttpSession session = request.getSession();
-//        List<String> list = new ArrayList<>();
-//        Object o = session.getAttribute("ListFillter");
-//        if (o != null) {
-//            list = (List<String>) o;
-//        } else {
-//            list = new ArrayList<>();
-//        }
-//
-//        String gender = "";
-//        String role = "";
-//        String status = "";
-//        gender = request.getParameter("gender");
-//        role = request.getParameter("role");
-//        status = request.getParameter("status");
-//
-//        request.setAttribute("gender", gender);
-//        request.setAttribute("role", role);
-//        request.setAttribute("status", status);
-//        AccountDAO a = new AccountDAO();
-//        List<Account> listFilter = a.fillter(gender, role, status);
-//        request.setAttribute("listFilter", listFilter);
-        request.getRequestDispatcher("Admin/userlist.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

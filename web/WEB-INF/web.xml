@@ -280,6 +280,18 @@
         <servlet-name>ProductManageServlet</servlet-name>
         <servlet-class>MarketingController.ProductManageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserSortServlet</servlet-name>
+        <servlet-class>AdminController.UserSortServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserFillterServlet</servlet-name>
+        <servlet-class>AdminController.UserFillterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>AdminController.AddUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -551,6 +563,18 @@
     <servlet-mapping>
         <servlet-name>ProductEditServlet</servlet-name>
         <url-pattern>/productedit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSortServlet</servlet-name>
+        <url-pattern>/sortuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserFillterServlet</servlet-name>
+        <url-pattern>/fillteruser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUserServlet</servlet-name>
+        <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

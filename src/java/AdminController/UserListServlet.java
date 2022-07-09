@@ -63,42 +63,26 @@ public class UserListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
         AccountDAO a = new AccountDAO();
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
+        }
+        int total = a.getTotalAccount();
+        int page = total / 5;
+        if (total % 5 != 0) {
+            page += 1;
         }
         int index = Integer.parseInt(index_raw);
         List<Account> listAccount = a.listPaging(index);
         List<Integer> listGender = a.getAllGender();
         List<Role> listRole = a.getAllRole();
 
-        int total = a.getTotalAccount();
-        int page = total / 5;
-        if (total % 5 != 0) {
-            page += 1;
-        }
-
-        String gender = "";
-        String role = "";
-        String status = "";
-        if (request.getParameter("gender") != null) {
-            gender = request.getParameter("gender");
-        }
-        if (request.getParameter("role") != null) {
-            role = request.getParameter("role");
-        }
-        if (request.getParameter("status") != null) {
-            status = request.getParameter("status");
-        }
-
-        request.setAttribute("gender", gender);
-        request.setAttribute("role", role);
-        request.setAttribute("status", status);
-
+        session.setAttribute("listUser", a.getAll());
+        request.setAttribute("check", "list");
         request.setAttribute("page", page);
-        request.setAttribute("sort", "");
+        request.setAttribute("index", index);
         request.setAttribute("GenderList", listGender);
         request.setAttribute("RoleList", listRole);
         request.setAttribute("UserList", listAccount);
@@ -116,51 +100,7 @@ public class UserListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AccountDAO a = new AccountDAO();
-        List<Account> list = a.getAll();
-
-        String search = "";
-        search = request.getParameter("search");
-        if (!search.equals("")) {
-            for (int i = list.size() - 1; i >= 0; i--) {
-                if (!list.get(i).getName().toLowerCase().contains(search.toLowerCase())
-                        && !list.get(i).getEmail().toLowerCase().contains(search.toLowerCase())
-                        && !list.get(i).getPhone().toLowerCase().contains(search.toLowerCase())) {
-                    list.remove(list.get(i));
-                }
-            }
-        }
-
-        String gender = "";
-        String role = "";
-        String status = "";
-        if (request.getParameter("gender") != null && !request.getParameter("gender").equals("")) {
-            gender = request.getParameter("gender");
-
-        }
-        if (request.getParameter("role") != null && !request.getParameter("role").equals("")) {
-            role = request.getParameter("role");
-        }
-        if (request.getParameter("status") != null && !request.getParameter("status").equals("")) {
-            status = request.getParameter("status");
-        }
-
-        request.setAttribute("gender", gender);
-        request.setAttribute("role", role);
-        request.setAttribute("status", status);
-        request.setAttribute("search", search);
-
-        List<Account> listFilter = a.fillter(gender, role, status, list);
-
-        String sort_raw = "";
-        if (request.getParameter("sort") != null && !request.getParameter("sort").equals("")) {
-            sort_raw = request.getParameter("sort");
-        }
-
-        listFilter = a.getAllSort(sort_raw, listFilter);
-        request.setAttribute("sort", sort_raw);
-        request.setAttribute("UserList", listFilter);
-        request.getRequestDispatcher("Admin/userlist.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
