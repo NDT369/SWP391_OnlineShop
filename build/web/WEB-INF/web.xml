@@ -292,6 +292,34 @@
         <servlet-name>AddUserServlet</servlet-name>
         <servlet-class>AdminController.AddUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListSettingServlet</servlet-name>
+        <servlet-class>AdminController.ListSettingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchSettingServlet</servlet-name>
+        <servlet-class>AdminController.SearchSettingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FillterSettingServlet</servlet-name>
+        <servlet-class>AdminController.FillterSettingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortSettingServlet</servlet-name>
+        <servlet-class>AdminController.SortSettingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSettingServlet</servlet-name>
+        <servlet-class>AdminController.AddSettingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditSettingServlet</servlet-name>
+        <servlet-class>AdminController.EditSettingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailSettingServlet</servlet-name>
+        <servlet-class>AdminController.DetailSettingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -575,6 +603,34 @@
     <servlet-mapping>
         <servlet-name>AddUserServlet</servlet-name>
         <url-pattern>/adduser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListSettingServlet</servlet-name>
+        <url-pattern>/settingmanage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchSettingServlet</servlet-name>
+        <url-pattern>/searchsetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FillterSettingServlet</servlet-name>
+        <url-pattern>/filltersetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortSettingServlet</servlet-name>
+        <url-pattern>/sortsetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSettingServlet</servlet-name>
+        <url-pattern>/addsetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSettingServlet</servlet-name>
+        <url-pattern>/editsetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailSettingServlet</servlet-name>
+        <url-pattern>/settingdetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
