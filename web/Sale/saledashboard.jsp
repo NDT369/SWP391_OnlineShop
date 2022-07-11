@@ -15,5 +15,6 @@
         <a href="home">HomePage</a>
         <h1>Hello Saler</h1>
         <a href="logout">Logout</a>
+        <a href="ordermanage">Mamager Orders</a>
     </body>
 </html>

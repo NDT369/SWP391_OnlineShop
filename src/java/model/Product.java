@@ -13,6 +13,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
+    private float discount;
     private double saleprice;
     private int quantity;
     private String imgURL;
@@ -31,10 +32,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, double price, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status) {
+    public Product(int id, String name, double price, float discount, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.discount = discount;
         this.saleprice = saleprice;
         this.quantity = quantity;
         this.imgURL = imgURL;
@@ -50,6 +52,16 @@ public class Product {
         this.createdate = createdate;
         this.status = status;
     }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    
 
     public int getId() {
         return id;
@@ -187,10 +199,9 @@ public class Product {
         this.status = status;
     }
 
+    
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", saleprice=" + saleprice + ", quantity=" + quantity + ", imgURL=" + imgURL + ", description=" + description + ", brand=" + brand + ", category=" + category + ", os=" + os + ", ram=" + ram + ", cpu=" + cpu + ", display=" + display + ", capacity=" + capacity + ", card=" + card + ", createdate=" + createdate + ", status=" + status + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", Discont="+ discount+", saleprice=" + saleprice + ", quantity=" + quantity + ", imgURL=" + imgURL + ", description=" + description + ", brand=" + brand + ", category=" + category + ", os=" + os + ", ram=" + ram + ", cpu=" + cpu + ", display=" + display + ", capacity=" + capacity + ", card=" + card + ", createdate=" + createdate + ", status=" + status + '}';
     }
-
-    
 }

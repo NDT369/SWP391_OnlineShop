@@ -83,7 +83,7 @@
                                     <c:forEach items="${requestScope.listBlog}" var="b">
                                         <a href="#" class="rb-item">
                                             <div class="rb-pic">
-                                                <img src="${b.imgURL}" alt="">
+                                                <img src="img/${b.imgURL}" alt="">
                                             </div>
                                             <div class="rb-text">
                                                 <h6>${b.title}</h6>
@@ -142,10 +142,10 @@
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="blog-item">
                                         <div class="bi-pic">
-                                            <img src="${b.imgURL}" alt="">
+                                            <img src="img/${b.imgURL}" alt="">
                                         </div>
                                         <div class="bi-text">
-                                            <a href="blogdetail?blogID=${b.id}">
+                                            <a href="blogdetail?id=${b.id}">
                                                 <h4>${b.title}</h4>
                                             </a>
                                             <!--<p>travel <span>- May 19, 2019</span></p>-->

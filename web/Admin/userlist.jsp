@@ -84,12 +84,6 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <!--                            <th>
-                                                                                            <span class="custom-checkbox">
-                                                                                                <input type="checkbox" id="selectAll">
-                                                                                                <label for="selectAll"></label>
-                                                                                            </span>
-                                                        </th>-->
                             <th>User ID</th>
                             <th>Full Name</th>
                             <th>Gender</th>
