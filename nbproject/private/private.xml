@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/web/shopping-cart.jsp</file>
-            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/CartController/CartContactServlet.java</file>
-            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/controller/HomeServlet.java</file>
-            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/controller/ProductServlet.java</file>
-            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/web/Marketing/productmanage.jsp</file>
-            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/model/Product.java</file>
-            <file>file:/C:/Git/GitHub/SWP391_OnlineShop/src/java/MarketingController/ProductManageServlet.java</file>
+            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/web/productdetails.jsp</file>
+            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/dal/FeedbackDAO.java</file>
+            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/web/feedbacklist.jsp</file>
+            <file>file:/C:/Users/MSI/OneDrive/Desktop/SWP%20Project/SWP391_OnlineShop/src/java/MarketingController/FeedbackListServlet.java</file>
         </group>
     </open-files>
 </project-private>
