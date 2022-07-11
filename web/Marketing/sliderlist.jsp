@@ -181,9 +181,9 @@
                                 <td>${l.id}</td>
                                 <td>${l.title}</td>
                                 <td>
-                                    <img src="${l.imgURL}">
+                                    <img src="img/Slider/${l.imgURL}">
                                 </td>
-                                <td>${l.content}...</td>
+                                <td>${l.content.substring(0,80)}...</td>
                                 <td>
                                     <form action="editslider" method="post" >
                                         <input value="${l.id}" name="id" hidden>

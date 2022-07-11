@@ -170,7 +170,7 @@
                         <div class="form-group">
                             <label>Image</label>
                             <input  name="image" type="file" class="form-control" hidden="${s.imgURL}">
-                            <img src="img/${s.imgURL}">
+                            <img src="img/Slider/${s.imgURL}">
                         </div>
                         <div class="form-group">
                             <label>Content</label>
