@@ -21,8 +21,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
 
         <style>
             img{
@@ -166,7 +173,7 @@
                     </div>
                 </div>
 
-                <form action="editpost">
+                <form action="editpost" enctype="multipart/form-data">
                     <div class="modal-body">	
                         <input  name="id" value="${b.id}" hidden> 
                         <div class="form-group">
@@ -175,9 +182,10 @@
                         </div>
                         <div class="form-group">
                             <label>Image</label>
-                            <input style="font-size: 15px" name="image" type="file" class="form-control" hidden="${b.imgURL}">
-                            <img src="img/Blog/${b.imgURL}">
+                            <input style="font-size: 15px" name="image" type="file" class="form-control" >
+                            <img src="img/${b.imgURL}">
                         </div>
+                        
                         <div class="form-group">
                             <label>Author</label>
                             <input style="font-size: 15px" class="form-control" required name="author" value="${b.authorName}" >

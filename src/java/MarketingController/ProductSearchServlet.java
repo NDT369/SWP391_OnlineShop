@@ -71,6 +71,9 @@ public class ProductSearchServlet extends HttpServlet {
          ProductDAO pd = new ProductDAO();
         String index_raw = request.getParameter("index");
         String search = request.getParameter("search");
+        if(search == null || search == ""){
+            response.sendRedirect("productmanage");
+        }
         HttpSession session = request.getSession();
         List<Product> productList = pd.fulltextSearch(search);
         int total = productList.size();

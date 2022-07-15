@@ -41,6 +41,9 @@
             .pi-text{
                 height: 200px;
             }
+            data-setbg{
+                width: 100%;
+            }
         </style>
 
     </head>
@@ -59,39 +62,55 @@
             <div class="hero-items owl-carousel">
                 <!--slide list-->
                 <%--<c:forEach items="" var="">--%>
-                <div class="single-hero-items set-bg" data-setbg="https://i0.wp.com/jawwaby.club/wp-content/uploads/2022/05/Best-2-in-1-Laptop-for-2022.jpg?fit=1200%2C630&ssl=1">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <!--<span>Bag,kids</span>-->
-                                <h1>Our Achievements</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore</p>
-                                <a href="blog" class="primary-btn">View</a>
-                            </div>
-                        </div>
-                        <!--                        <div class="off-card">
-                                                    <h2>Sale <span>50%</span></h2>
-                                                </div>-->
-                    </div>
-                </div>
-                <div class="single-hero-items set-bg" data-setbg="https://assets1.ignimgs.com/2019/05/17/laptopsmoon-blogroll-1558134085315_160w.jpg?width=1280">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <span>Bag,kids</span>
-                                <h1>Black friday</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore</p>
-                                <a href="product" class="primary-btn">Shop Now</a>
-                            </div>
-                        </div>
-                        <div class="off-card">
-                            <h2>Sale <span>50%</span></h2>
-                        </div>
-                    </div>
-                </div>
+                <!--                <div class="single-hero-items set-bg" data-setbg="https://i0.wp.com/jawwaby.club/wp-content/uploads/2022/05/Best-2-in-1-Laptop-for-2022.jpg?fit=1200%2C630&ssl=1">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <span>Bag,kids</span>
+                                                <h1>Our Achievements</h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                                    incididunt ut labore et dolore</p>
+                                                <a href="blog" class="primary-btn">View</a>
+                                            </div>
+                                        </div>
+                                                                <div class="off-card">
+                                                                    <h2>Sale <span>50%</span></h2>
+                                                                </div>
+                                    </div>
+                                </div>
+                                <div class="single-hero-items set-bg" data-setbg="https://assets1.ignimgs.com/2019/05/17/laptopsmoon-blogroll-1558134085315_160w.jpg?width=1280">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <span>Bag,kids</span>
+                                                <h1>Black friday</h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                                    incididunt ut labore et dolore</p>
+                                                <a href="product" class="primary-btn">Shop Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="off-card">
+                                            <h2>Sale <span>50%</span></h2>
+                                        </div>
+                                    </div>
+                                </div>-->
                 <%--</c:forEach>--%>
+                <c:forEach items="${requestScope.slider}" var="s">
+                    <c:if test="${s.status == true}">
+                        <div class="single-hero-items set-bg" data-setbg="img/${s.imgURL}">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <h1>${s.title}</h1>
+
+                                        <a href="#" class="primary-btn">View Detail</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+
+                </c:forEach>
             </div>
         </section>
         <!-- Hero Section End -->
@@ -159,8 +178,8 @@
                                         </div>
                                         <ul>
                                             <li class="w-icon active"><a href="buy?id=${l.id}&num=1&p=home"><i class="icon_bag_alt"></i></a></li>
-<!--                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
+                                            <!--                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                                                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
                                         </ul>
                                     </div>
                                     <div class="pi-text">
@@ -246,8 +265,8 @@
                                         </div>
                                         <ul>
                                             <li class="w-icon active"><a href="buy?id=${l.id}&num=1&p=home"><i class="icon_bag_alt"></i></a></li>
-<!--                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
+                                            <!--                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                                                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>-->
                                         </ul>
                                     </div>
                                     <div class="pi-text">
@@ -321,7 +340,7 @@
         <!-- Instagram Section End -->
 
         <!-- Latest Blog Section Begin -->
-        <section class="latest-blog spad" >
+<!--        <section class="latest-blog spad" >
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -350,14 +369,14 @@
                                         <a href="blogdetail?blogID=${b.id}">
                                             <h4>${b.title}</h4>
                                         </a>
-                                        <!--<p>${b.content} </p>-->
+                                        <p>${b.content} </p>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
 
 
-                    <!--                    <div class="col-lg-4 col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <div class="single-latest-blog">
                                                 <img src="img/latest-2.jpg" alt="">
                                                 <div class="latest-text">
@@ -398,7 +417,7 @@
                                                     <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
                                                 </div>
                                             </div>
-                                        </div>-->
+                                        </div>
                 </div>
 
                 <div class="benefit-items">
@@ -439,7 +458,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
         <!-- Latest Blog Section End -->
 
         <!-- Partner Logo Section Begin -->
@@ -491,6 +510,13 @@
         <script src="js/jquery.slicknav.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
+
+<!--        <script>
+            function myFunction() {
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            }
+        </script>-->
 
     </body>
 </html>

@@ -316,7 +316,7 @@
                                         </td>
                                         <td>
                                             <a href="productdetailmanage?id=${p.id}&index=${requestScope.index}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                            <a href="productdetail?id=${p.id}"><i class="material-icons" data-toggle="tooltip" title="View Detail">remove_red_eye</i></a>
+                                            
                                         </td>
 
                                     </tr>

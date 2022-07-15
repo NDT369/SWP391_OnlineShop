@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        
         <style>
             table td{
                 padding-right: 10px; 
@@ -191,7 +192,7 @@
                                 <input name="image" type="file" class="form-control" value="${p.imgURL}"/>
                                 <input name="oldimage" value="${p.imgURL}" hidden/>
                                 <br>
-                                <img src="img/${p.imgURL}" style="width: 100px; height: 90px; max-width: none">
+                                <img src="img/${p.imgURL}" style="width: 320px; height: 240px; max-width: none">
 
                             </div>
                             <div class="form-group">
@@ -406,6 +407,7 @@
                         </c:if>
                         <div class="modal-footer" style="margin-top: 30px">
                             <a href="productmanage?index=${requestScope.index}"><button type="button" class="btn btn-primary" style="background-color: #e7ab3c;color: white;margin-right: 0%">Back to ListProduct</button></a>
+                            <input name="index" value="${requestScope.index}" hidden/>
                             <input onclick="send()" type="submit"  class="btn btn-success" value="SAVE" style="background-color: #e7ab3c;margin-left: 78%">
                         </div>
                     </form>

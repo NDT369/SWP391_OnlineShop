@@ -26,18 +26,14 @@
                     <a href="login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                 </c:if>
                 <c:if test="${sessionScope.account!=null}">       
-                    <a class="login-panel"><i class="fa fa-user"></i>Hello ${sessionScope.account.name}</a> -
-
-
+                    <a class="login-panel"><i class="fa fa-user"></i>Hello ${sessionScope.account.name}</a>
                 </c:if> 
-                <!--                        <div class="lan-selector">
-                                            <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                                                <option value='yt' data-image="../img/flag-1.jpg" data-imagecss="flag yt"
-                                                        data-title="English">English</option>
-                                                <option value='yu' data-image="../img/flag-2.jpg" data-imagecss="flag yu"
-                                                        data-title="Bangladesh">German </option>
-                                            </select>
-                                        </div>-->
+<!--                <div class="lan-selector">
+                    <label class="switch">
+                        <input type="checkbox" onclick="myFunction()">
+                        <span class="slider round"></span>
+                    </label> 
+                </div>-->
                 <div class="top-social">
                     <a href="#"><i class="ti-facebook"></i></a>
                     <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -47,16 +43,17 @@
             </div>
         </div>
     </div>
+ 
     <div class="container">
         <div class="inner-header">
             <div class="row">
-<!--                <div class="col-lg-2 col-md-2">
-                    <div class="logo">
-                        <a href="home">
-                            <img src="../img/logo.png" alt="">
-                        </a>
-                    </div>
-                </div>-->
+                <!--                <div class="col-lg-2 col-md-2">
+                                    <div class="logo">
+                                        <a href="home">
+                                            <img src="../img/logo.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>-->
                 <div class="col-lg-7 col-md-7">
                     <div class="advanced-search">
                         <button type="button" class="category-btn">All Categories</button>
@@ -91,7 +88,7 @@
                                         <tbody>
                                             <c:forEach items="${c.item}" var="i">
                                                 <tr>
-                                                    <td class="si-pic"><img src="${i.product.imgURL}" alt=""></td>
+                                                    <td class="si-pic"><img src="img/${i.product.imgURL}" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p><fmt:formatNumber pattern="###,###,###" value="${i.product.saleprice}" /> VND x ${i.quantity}</p>

@@ -92,33 +92,33 @@
                                         </a>
                                     </c:forEach>
 
-<!--                                    <a href="#" class="rb-item">
-                                        <div class="rb-pic">
-                                            <img src="img/blog/recent-2.jpg" alt="">
-                                        </div>
-                                        <div class="rb-text">
-                                            <h6>The Personality Trait That Makes...</h6>
-                                            <p>Fashion <span>- May 19, 2019</span></p>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="rb-item">
-                                        <div class="rb-pic">
-                                            <img src="img/blog/recent-3.jpg" alt="">
-                                        </div>
-                                        <div class="rb-text">
-                                            <h6>The Personality Trait That Makes...</h6>
-                                            <p>Fashion <span>- May 19, 2019</span></p>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="rb-item">
-                                        <div class="rb-pic">
-                                            <img src="img/blog/recent-4.jpg" alt="">
-                                        </div>
-                                        <div class="rb-text">
-                                            <h6>The Personality Trait That Makes...</h6>
-                                            <p>Fashion <span>- May 19, 2019</span></p>
-                                        </div>
-                                    </a>-->
+                                    <!--                                    <a href="#" class="rb-item">
+                                                                            <div class="rb-pic">
+                                                                                <img src="img/blog/recent-2.jpg" alt="">
+                                                                            </div>
+                                                                            <div class="rb-text">
+                                                                                <h6>The Personality Trait That Makes...</h6>
+                                                                                <p>Fashion <span>- May 19, 2019</span></p>
+                                                                            </div>
+                                                                        </a>
+                                                                        <a href="#" class="rb-item">
+                                                                            <div class="rb-pic">
+                                                                                <img src="img/blog/recent-3.jpg" alt="">
+                                                                            </div>
+                                                                            <div class="rb-text">
+                                                                                <h6>The Personality Trait That Makes...</h6>
+                                                                                <p>Fashion <span>- May 19, 2019</span></p>
+                                                                            </div>
+                                                                        </a>
+                                                                        <a href="#" class="rb-item">
+                                                                            <div class="rb-pic">
+                                                                                <img src="img/blog/recent-4.jpg" alt="">
+                                                                            </div>
+                                                                            <div class="rb-text">
+                                                                                <h6>The Personality Trait That Makes...</h6>
+                                                                                <p>Fashion <span>- May 19, 2019</span></p>
+                                                                            </div>
+                                                                        </a>-->
                                 </div>
                             </div>
                             <div class="blog-tags">
@@ -139,19 +139,22 @@
                         <div class="row">
 
                             <c:forEach items="${requestScope.listBlog}" var="b">
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="blog-item">
-                                        <div class="bi-pic">
-                                            <img src="img/${b.imgURL}" alt="">
-                                        </div>
-                                        <div class="bi-text">
-                                            <a href="blogdetail?id=${b.id}">
-                                                <h4>${b.title}</h4>
-                                            </a>
-                                            <!--<p>travel <span>- May 19, 2019</span></p>-->
+                                <c:if test="${b.status==true}">
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="blog-item">
+                                            <div class="bi-pic">
+                                                <img src="img/${b.imgURL}" alt="">
+                                            </div>
+                                            <div class="bi-text">
+                                                <a href="blogdetail?id=${b.id}">
+                                                    <h4>${b.title}</h4>
+                                                </a>
+                                                <!--<p>travel <span>- May 19, 2019</span></p>-->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </c:if>
+
                             </c:forEach>
 
 

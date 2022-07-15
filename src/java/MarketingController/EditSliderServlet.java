@@ -61,12 +61,16 @@ public class EditSliderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        
         String id_raw = request.getParameter("id");
         String title = request.getParameter("title");
         String image = request.getParameter("image");
+        
         String content = request.getParameter("content");
         int id = Integer.parseInt(id_raw);
+        SliderDAO s = new SliderDAO();
+        if (image == null || image.equals("")) {
+            image = s.getSliderByID(id).getImgURL();
+        }
 
         SliderDAO sd = new SliderDAO();
         sd.UpdateInfo(id, title, image, content);

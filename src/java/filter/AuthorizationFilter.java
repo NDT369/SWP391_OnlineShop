@@ -131,7 +131,7 @@ public class AuthorizationFilter implements Filter {
             }
         }
 
-        if (url.equals("/saledashboard")) {
+        if (url.equals("/saledashboard") || url.contains("ordermanage")) {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
@@ -149,7 +149,8 @@ public class AuthorizationFilter implements Filter {
             }
         }
 
-        if (url.equals("/marketingdashboard")) {
+        if (url.equals("/marketingdashboard")||url.contains("productmanage")||url.contains("postmanage")
+                || url.contains("customermanage")||url.contains("slidermanage")||url.contains("feedbacklist")) {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {

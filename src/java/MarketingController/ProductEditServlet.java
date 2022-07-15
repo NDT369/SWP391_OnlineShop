@@ -99,6 +99,7 @@ public class ProductEditServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String id_raw = request.getParameter("id");
         String name = request.getParameter("name");
+        String index = request.getParameter("index");
         String price_raw = request.getParameter("price");
         String discount_raw = request.getParameter("discount");
         String quantity_raw = request.getParameter("quantity");
@@ -116,11 +117,6 @@ public class ProductEditServlet extends HttpServlet {
         String createdate = request.getParameter("createdate");
         String status_raw = request.getParameter("status");
         boolean status;
-        if (status_raw.equalsIgnoreCase("on")) {
-            status = true;
-        } else {
-            status = false;
-        }
         int id = Integer.parseInt(id_raw);
         int brandid = Integer.parseInt(brand_raw);
         int categoryid = Integer.parseInt(category_raw);
@@ -154,8 +150,16 @@ public class ProductEditServlet extends HttpServlet {
             price = Double.parseDouble(price_raw);
             discount = Float.parseFloat(discount_raw);
             quantity = Integer.parseInt(quantity_raw);
-        } catch (Exception e) {   
+        } catch (Exception e) {
             response.sendRedirect("productdetailmanage?id=" + id);
+        }
+        if (status_raw.equalsIgnoreCase("on")) {
+            status = true;
+            if (quantity == 0) {
+                status = false;
+            }
+        } else {
+            status = false;
         }
         p.setId(id);
         p.setName(name);
@@ -182,12 +186,12 @@ public class ProductEditServlet extends HttpServlet {
             session.setAttribute("product1", p);
             response.sendRedirect("productdetailmanage?id=" + id);
         } else {
-            if (session.getAttribute("product1") != null) {  
+            if (session.getAttribute("product1") != null) {
                 session.removeAttribute("product1");
             }
             ProductDAO pd = new ProductDAO();
             pd.UpdateProduct(p);
-            response.sendRedirect("productdetailmanage?id=" + id);
+            response.sendRedirect("productdetailmanage?id=" + id + "&index=" + index);
         }
     }
 

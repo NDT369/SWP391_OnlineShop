@@ -20,9 +20,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
 
         <style>
             img{
@@ -50,6 +57,7 @@
             }
         </style>
     <body>
+
         <header class="header-section">
             <div class="header-top">
                 <div class="container">
@@ -138,12 +146,13 @@
                 </div>
             </div>
         </header>
+
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2 style="color: white">Manage <b>Customer</b></h2>
+                            <a href="customermanage"><h2 style="color: white">Manage <b>Customer</b></h2></a>
                         </div>
                         <div class="col-sm-6">
                             <!--<a href="#addCustomer" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>-->
@@ -168,9 +177,15 @@
 
                         <form id="sort" action="sortcustomer">
                             Sort by
-                            <select name="sort" onchange="document.getElementById('sort').submit()">
-                                <option value="0">Default</option>
-                                <option value="name" <c:if test="${requestScope.sort.equals('name')}">selected</c:if> >Name</option>
+                        <c:if test="${requestScope.search!=null}">
+                            <input name="search" value="${requestScope.search}" hidden/>
+                        </c:if>
+                        <c:if test="${requestScope.status!=null}">
+                            <input name="status" value="${requestScope.status}" hidden/>
+                        </c:if>
+                        <select name="sort" onchange="document.getElementById('sort').submit()">
+                            <option value="0">Default</option>
+                            <option value="name" <c:if test="${requestScope.sort.equals('name')}">selected</c:if> >Name</option>
                             <option value="email" <c:if test="${requestScope.sort.equals('email')}">selected</c:if> >Email</option>
                             <option value="phone" <c:if test="${requestScope.sort.equals('phone')}">selected</c:if> >Phone</option>
                             </select>

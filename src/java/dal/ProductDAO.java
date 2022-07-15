@@ -49,7 +49,7 @@ public class ProductDAO extends DBContext {
                 + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1";
+                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 and p.Product_Quantity != 0";
 
         try {
             ps = connection.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class ProductDAO extends DBContext {
                 + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1";
+                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 and p.Product_Quantity != 0";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -156,7 +156,7 @@ public class ProductDAO extends DBContext {
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
                 + "join Card car on p.Card_ID = car.Card_ID "
-                + "where p.Product_Status = 1"
+                + "where p.Product_Status = 1 and p.Product_Quantity != 0"
                 + "order by Product_ID DESC";
         try {
             ps = connection.prepareStatement(sql);
@@ -191,7 +191,7 @@ public class ProductDAO extends DBContext {
                 + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 "
+                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 and p.Product_Quantity != 0"
                 + "and cat.Category_Name = '" + cate + "'";
         try {
             ps = connection.prepareStatement(sql);
@@ -288,7 +288,7 @@ public class ProductDAO extends DBContext {
 
     public int getTotalProduct() {
         int total = 0;
-        String sql = "select count(*) from Product";
+        String sql = "select count(*) from Product where Product_Status = 1";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();

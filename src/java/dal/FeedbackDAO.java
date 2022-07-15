@@ -77,13 +77,13 @@ public class FeedbackDAO extends DBContext {
 
     public static void main(String[] args) {
         FeedbackDAO f = new FeedbackDAO();
-        System.out.println(f.getAllFeedbackByProID(2).size());
+        System.out.println(f.fulltextSearch("asus"));
     }
 
     //phu
     public List<Feedbacks> getAllFeedbacks() {
         List<Feedbacks> list = new ArrayList<>();
-        String sql = "select fb.Feedback_ID,fb.Product_ID, p.Product_Name,a.Account_ID, a.Name, fb.Content, fb.CreateDate, fb.Feedback_Status from Feedback fb\n"
+        String sql = "select fb.Feedback_ID,fb.Product_ID, p.Product_Name,a.Account_ID, a.Name,a.Phone, fb.Content, fb.CreateDate, fb.Feedback_Status from Feedback fb\n"
                 + "join Product p on fb.Product_ID=p.Product_ID\n"
                 + "join Account a on a.Account_ID=fb.Account_ID";
         try {
@@ -96,12 +96,13 @@ public class FeedbackDAO extends DBContext {
                 Account a = new Account();
                 a.setAccountID(rs.getInt(4));
                 a.setName(rs.getString(5));
+                a.setPhone(rs.getString(6));
                 list.add(new Feedbacks(rs.getInt(1),
                         p,
                         a,
-                        rs.getString(6),
                         rs.getString(7),
-                        rs.getBoolean(8)));
+                        rs.getString(8),
+                        rs.getBoolean(9)));
             }
         } catch (Exception e) {
         }
@@ -283,4 +284,5 @@ public class FeedbackDAO extends DBContext {
         }
         return list;
     }
+   
 }

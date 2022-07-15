@@ -134,8 +134,8 @@ public class AddProductServlet extends HttpServlet {
             String index_raw = request.getParameter("index");
             List<Product> productList = pd.getAllProductManage();
             int total = productList.size();
-            int page = total / 9;
-            if (total % 9 != 0) {
+            int page = total / 5;
+            if (total % 5 != 0) {
                 page += 1;
             }
             if (index_raw == null) {
@@ -143,8 +143,8 @@ public class AddProductServlet extends HttpServlet {
             }
 
             int index = Integer.parseInt(index_raw);
-            int start = (index - 1) * 9;
-            int end = Math.min((index * 9), total);
+            int start = (index - 1) * 5;
+            int end = Math.min((index * 5), total);
             List<Brand> brandList = pd.getAllBrand();
             List<Category> categoryList = pd.getAllCategory();
             List<OperatingSystem> osList = pd.getAllOS();
@@ -182,8 +182,8 @@ public class AddProductServlet extends HttpServlet {
             String index_raw = request.getParameter("index");
             List<Product> productList = pd.getAllProductManage();
             int total = productList.size();
-            int page = total / 9;
-            if (total % 9 != 0) {
+            int page = total / 5;
+            if (total % 5 != 0) {
                 page += 1;
             }
             if (index_raw == null) {
@@ -191,8 +191,8 @@ public class AddProductServlet extends HttpServlet {
             }
 
             int index = Integer.parseInt(index_raw);
-            int start = (index - 1) * 9;
-            int end = Math.min((index * 9), total);
+            int start = (index - 1) * 5;
+            int end = Math.min((index * 5), total);
             List<Brand> brandList = pd.getAllBrand();
             List<Category> categoryList = pd.getAllCategory();
             List<OperatingSystem> osList = pd.getAllOS();
