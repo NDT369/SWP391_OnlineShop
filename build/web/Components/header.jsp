@@ -28,12 +28,12 @@
                 <c:if test="${sessionScope.account!=null}">       
                     <a class="login-panel"><i class="fa fa-user"></i>Hello ${sessionScope.account.name}</a>
                 </c:if> 
-<!--                <div class="lan-selector">
-                    <label class="switch">
-                        <input type="checkbox" onclick="myFunction()">
-                        <span class="slider round"></span>
-                    </label> 
-                </div>-->
+                <!--                <div class="lan-selector">
+                                    <label class="switch">
+                                        <input type="checkbox" onclick="myFunction()">
+                                        <span class="slider round"></span>
+                                    </label> 
+                                </div>-->
                 <div class="top-social">
                     <a href="#"><i class="ti-facebook"></i></a>
                     <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
- 
+
     <div class="container">
         <div class="inner-header">
             <div class="row">
@@ -127,34 +127,21 @@
                 <div class="depart-btn">
                     <i class="ti-menu"></i>
                     <span>All departments</span>
-                    <!--                    <ul class="depart-hover">
-                                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                                            <li><a href="#">Men’s Clothing</a></li>
-                                            <li><a href="#">Underwear</a></li>
-                                            <li><a href="#">Kid's Clothing</a></li>
-                                            <li><a href="#">Brand Fashion</a></li>
-                                            <li><a href="#">Accessories/Shoes</a></li>
-                                            <li><a href="#">Luxury Brands</a></li>
-                                            <li><a href="#">Brand Outdoor Apparel</a></li>
-                                        </ul>-->
+                    <ul class="depart-hover">
+                        <li><a href="filter?category=Gaming">Laptop Gaming</a></li>
+                        <li><a href="filter?category=Design">Laptop Design</a></li>
+                        <li><a href="filter?category=Office">Laptop Office</a></li>
+                        <li><a href="filter?category=Luxury">Laptop Luxury</a></li>
+                    </ul>
                 </div>
             </div>
             <nav class="nav-menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="home">Home</a></li>
+                    <li><a href="home">Home</a></li>
                     <li><a href="product">Shop</a></li>
-                    <!--                    <li><a href="#">Collection</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Men's</a></li>
-                                                <li><a href="#">Women's</a></li>
-                                                <li><a href="#">Kid's</a></li>
-                                            </ul>
-                                        </li>-->
                     <li><a href="blog">Blog</a></li>
-                    <!--                    <li><a href="./contact.html">Contact</a></li>-->
                     <li><a href="#">Pages</a>
                         <ul class="dropdown">
-
                             <c:set value="${sessionScope.account}" var="a"></c:set>
                             <c:if test="${a.getRole().getRoleName().toLowerCase().equals('admin')}">
                                 <li><a href="admindashboard">Admin DashBoard</a></li>
@@ -177,8 +164,6 @@
                                 <c:if test="${sessionScope.account==null}"> 
                                 <li><a href="register">Register</a></li>
                                 </c:if>
-
-
                         </ul>
                     </li>
                 </ul>

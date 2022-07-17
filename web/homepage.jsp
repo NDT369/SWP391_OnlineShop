@@ -44,6 +44,9 @@
             data-setbg{
                 width: 100%;
             }
+            .product-slider img{
+                height: 240px;
+            }
         </style>
 
     </head>
@@ -102,8 +105,7 @@
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <h1>${s.title}</h1>
-
-                                        <a href="#" class="primary-btn">View Detail</a>
+                                        <a href="sliderdetails?id=${s.id}" class="primary-btn">View Detail</a>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +125,7 @@
                         <div class="single-banner">
                             <img src="https://cdn.techzones.vn/Data/Sites/1/media/tin-t%E1%BB%A9c-/laptop-gaming-choi-game-cua-asus-hay-msi/laptop-gaming-choi-game-cua-asus-hay-msi-1.jpg?w=1920" alt="">
                             <div class="inner-text">
-                                <a href="product?cate=Gaming"><h4>Gaming</h4></a>
+                                <a href="filter?category=Gaming"><h4>Gaming</h4></a>
                             </div>
                         </div>
                     </div>
@@ -131,7 +133,7 @@
                         <div class="single-banner">
                             <img src="https://m.media-amazon.com/images/I/81aO-KQ+MdL._SL1500_.jpg" alt="">
                             <div class="inner-text">
-                                <a href="product?cate=Design"><h4>Design</h4></a>
+                                <a href="filter?category=Design"><h4>Design</h4></a>
                             </div>
                         </div>
                     </div>
@@ -139,7 +141,7 @@
                         <div class="single-banner">
                             <img src="https://m.media-amazon.com/images/I/81hZ0z4l1kS._AC_SL1500_.jpg" alt="">
                             <div class="inner-text">
-                                <a href="product?cate=Office"><h4>Office</h4></a>
+                                <a href="filter?category=Office"><h4>Office</h4></a>
                             </div>
                         </div>
                     </div>
@@ -168,11 +170,11 @@
                             </ul>
                         </div>
                         <div class="product-slider owl-carousel">
-                            <c:forEach items="${requestScope.listTop}" var="l">
+                            <c:forEach items="${requestScope.listSell}" var="l">
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <a href="productdetail?id=${l.id}"><img src="img/${l.imgURL}" alt=""></a>
-                                        <div class="sale">Sale</div>
+                                        <div class="sale">Hot</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -340,8 +342,8 @@
         <!-- Instagram Section End -->
 
         <!-- Latest Blog Section Begin -->
-<!--        <section class="latest-blog spad" >
-            <div class="container">
+        <section class="man-banner spad">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
@@ -350,115 +352,33 @@
                     </div>
                 </div>
                 <div class="row" >
-                    <c:forEach items="${requestScope.blog}" var="b">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-latest-blog">
-                                <img src="img/${b.imgURL}" alt="">
-                                <div class="latest-text">
-                                    <div class="tag-list">
-                                        <div class="tag-item">
-                                            <i class="fa fa-calendar-o"></i>
-                                            May 4,2019
+                    <div class="col-lg-12">
+                        <div class="product-slider owl-carousel">
+                            <c:forEach items="${requestScope.blog}" var="b">
+                                <div class="single-latest-blog">
+                                    <img src="img/${b.imgURL}" alt="">
+                                    <div class="latest-text">
+                                        <div class="tag-list">
+                                            <div class="tag-item">
+                                                <i class="fa fa-calendar-o"></i>
+                                                May 4,2019
+                                            </div>
+                                            <div class="tag-item">
+                                                <i class="fa fa-comment-o"></i>
+                                                5
+                                            </div>
                                         </div>
-                                        <div class="tag-item">
-                                            <i class="fa fa-comment-o"></i>
-                                            5
-                                        </div>
+                                            <a href="blogdetail?id=${b.id}">
+                                                <h4>${b.title}</h4>
+                                            </a>
                                     </div>
-                                    <a href="blogdetail?id=${b.id}">
-                                        <a href="blogdetail?blogID=${b.id}">
-                                            <h4>${b.title}</h4>
-                                        </a>
-                                        <p>${b.content} </p>
                                 </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-latest-blog">
-                                                <img src="img/latest-2.jpg" alt="">
-                                                <div class="latest-text">
-                                                    <div class="tag-list">
-                                                        <div class="tag-item">
-                                                            <i class="fa fa-calendar-o"></i>
-                                                            May 4,2019
-                                                        </div>
-                                                        <div class="tag-item">
-                                                            <i class="fa fa-comment-o"></i>
-                                                            5
-                                                        </div>
-                                                    </div>
-                                                    <a href="#">
-                                                        <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
-                                                    </a>
-                                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-latest-blog">
-                                                <img src="img/latest-3.jpg" alt="">
-                                                <div class="latest-text">
-                                                    <div class="tag-list">
-                                                        <div class="tag-item">
-                                                            <i class="fa fa-calendar-o"></i>
-                                                            May 4,2019
-                                                        </div>
-                                                        <div class="tag-item">
-                                                            <i class="fa fa-comment-o"></i>
-                                                            5
-                                                        </div>
-                                                    </div>
-                                                    <a href="#">
-                                                        <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
-                                                    </a>
-                                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                </div>
-
-                <div class="benefit-items">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="single-benefit">
-                                <div class="sb-icon">
-                                    <img src="img/icon-1.png" alt="">
-                                </div>
-                                <div class="sb-text">
-                                    <h6>Free Shipping</h6>
-                                    <p>For all order over 99$</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="single-benefit">
-                                <div class="sb-icon">
-                                    <img src="img/icon-2.png" alt="">
-                                </div>
-                                <div class="sb-text">
-                                    <h6>Delivery On Time</h6>
-                                    <p>If good have prolems</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="single-benefit">
-                                <div class="sb-icon">
-                                    <img src="img/icon-1.png" alt="">
-                                </div>
-                                <div class="sb-text">
-                                    <h6>Secure Payment</h6>
-                                    <p>100% secure payment</p>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>-->
+        </section>
         <!-- Latest Blog Section End -->
 
         <!-- Partner Logo Section Begin -->
@@ -511,12 +431,12 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
 
-<!--        <script>
-            function myFunction() {
-                var element = document.body;
-                element.classList.toggle("dark-mode");
-            }
-        </script>-->
+        <!--        <script>
+                    function myFunction() {
+                        var element = document.body;
+                        element.classList.toggle("dark-mode");
+                    }
+                </script>-->
 
     </body>
 </html>
