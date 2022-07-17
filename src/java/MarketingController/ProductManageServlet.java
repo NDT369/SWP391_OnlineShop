@@ -72,7 +72,7 @@ public class ProductManageServlet extends HttpServlet {
         String index_raw = request.getParameter("index");
         HttpSession session = request.getSession();
 
-        int total = pd.getAllProductManage().size();
+        int total = pd.getTotalProduct();
         int page = total / 5;
         if (total % 5 != 0) {
             page += 1;
@@ -82,9 +82,9 @@ public class ProductManageServlet extends HttpServlet {
         }
 
         int index = Integer.parseInt(index_raw);
-        int start = (index - 1) * 5;
-        int end = Math.min((index * 5), total);
-        List<Product> productList = pd.getAllProductManage();
+//        int start = (index - 1) * 5;
+//        int end = Math.min((index * 5), total);
+        List<Product> productList = pd.listProManagePaging(index);
         List<Brand> brandList = pd.getAllBrand();
         List<Category> categoryList = pd.getAllCategory();
         List<OperatingSystem> osList = pd.getAllOS();
@@ -93,8 +93,8 @@ public class ProductManageServlet extends HttpServlet {
         List<Display> displayList = pd.getAllDisplay();
         List<Capacity> capacityList = pd.getAllCapacity();
         List<Card> cardList = pd.getAllCard();
-        session.setAttribute("listproduct", productList);
-        request.setAttribute("productlist", productList.subList(start, end));
+//        session.setAttribute("listproduct", productList);
+        request.setAttribute("productlist", productList);
         request.setAttribute("brandlist", brandList);
         request.setAttribute("categorylist", categoryList);
         request.setAttribute("oslist", osList);

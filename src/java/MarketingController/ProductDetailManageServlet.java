@@ -71,6 +71,9 @@ public class ProductDetailManageServlet extends HttpServlet {
         String id_raw = request.getParameter("id");
         String index = request.getParameter("index");
         int id = Integer.parseInt(id_raw);
+        if(index == null){
+            index = "1";
+        }
         ProductDAO pd = new ProductDAO();
         Product p = (Product) pd.getProductByID(id);
         List<Brand> brandList = pd.getAllBrand();

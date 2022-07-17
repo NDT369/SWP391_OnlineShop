@@ -72,8 +72,10 @@ public class ProductSearchServlet extends HttpServlet {
         String index_raw = request.getParameter("index");
         String search = request.getParameter("search");
         HttpSession session = request.getSession();
-        List<Product> productList = pd.fulltextSearch(search);
-        int total = productList.size();
+        if(search == null || search.matches("\\s+") || search.equals("")){
+            response.sendRedirect("productmanage");
+        }
+        int total = pd.getTotalProductBySearch(search);
         int page = total / 5;
         if (total % 5 != 0) {
             page += 1;
@@ -83,8 +85,9 @@ public class ProductSearchServlet extends HttpServlet {
         }
 
         int index = Integer.parseInt(index_raw);
-        int start = (index - 1) * 5;
-        int end = Math.min((index * 5), total);
+//        int start = (index - 1) * 5;
+//        int end = Math.min((index * 5), total);
+        List<Product> productList = pd.ListProductSearch(index, search);
         List<Brand> brandList = pd.getAllBrand();
         List<Category> categoryList = pd.getAllCategory();
         List<OperatingSystem> osList = pd.getAllOS();
@@ -94,7 +97,7 @@ public class ProductSearchServlet extends HttpServlet {
         List<Capacity> capacityList = pd.getAllCapacity();
         List<Card> cardList = pd.getAllCard();
         session.setAttribute("listproduct", productList);
-        request.setAttribute("productlist", productList.subList(start, end));
+        request.setAttribute("productlist", productList);
         request.setAttribute("brandlist", brandList);
         request.setAttribute("categorylist", categoryList);
         request.setAttribute("oslist", osList);

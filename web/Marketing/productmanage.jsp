@@ -60,6 +60,13 @@
             .pagination a:hover:not(.active) {
                 background-color: #eec477;
             </style>
+            <script>
+                function doChange() {
+                   if (confirm("Are you sure to change status of this product?")) {
+                        document.getElementById("frm").submit();
+                    }
+                    }
+             </script>
         </head>
         <body >
             <!--Header-->
@@ -185,15 +192,7 @@
                         </div>
                         <div id="custom">
                             <form action="sortproduct" id="sort">
-                                <c:if test="${requestScope.brandid!=null}">
-                                    <input name="brandid" value="${requestScope.brandid}" hidden/>
-                                </c:if>
-                                <c:if test="${requestScope.statusfilter!=null}">
-                                    <input name="statusfilter" value="${requestScope.statusfilter}" hidden/>
-                                </c:if>
-                                <c:if test="${requestScope.search!=null}">
-                                    <input name="search" value="${requestScope.search}" hidden/>
-                                </c:if>
+                             
                                 Sort by 
                                 <select name="sort" onchange="document.getElementById('sort').submit()">
                                     <option value="0" <c:if test="${requestScope.sort eq '0'}">Selected</c:if>>Default</option>
@@ -268,9 +267,9 @@
                                         <td><fmt:formatNumber pattern="###,###,###" value="${p.saleprice}" />VND</td>
                                         <td>${p.quantity}</td>
                                         <td>
-                                            <form action="productmanage" method="post" name="frm">
+                                            <form action="productmanage" method="post" name="frm" id="frm">
                                                 <c:if test="${p.status == true}">
-                                                    <button type="submit" style="padding: 10px;border: none;background-color: green;color: white">
+                                                    <button onclick="doChange()" type="submit" style="padding: 10px;border: none;background-color: green;color: white">
                                                         <input name="id" value="${p.id}" hidden/>
                                                         <input name="status" value="ON" hidden/>
                                                         <input name="type" value="${requestScope.type}" hidden/>
@@ -291,7 +290,7 @@
                                                     </button>
                                                 </c:if>
                                                 <c:if test="${p.status == false}">
-                                                    <button type="submit" style="padding: 10px;border: none;background-color: red;color: white">
+                                                    <button onclick="doChange()" type="submit" style="padding: 10px;border: none;background-color: red;color: white">
                                                         <input name="id" value="${p.id}" hidden/>
                                                         <input name="status" value="OFF" hidden>
                                                         <input name="type" value="${requestScope.type}" hidden/>                                   
@@ -417,6 +416,9 @@
                             <form action="addproduct" method="post" enctype="multipart/form-data">
                                 <div class="modal-header">						
                                     <h4 class="modal-title">Add Product</h4>
+                                    <c:if test="${requestScope.error!=null}">
+                                        <h6 style="color: red">${requestScope.error}</h6>
+                                    </c:if>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
 
@@ -513,11 +515,7 @@
                                                 </select>
                                             </td>
                                         <tr>
-                                    </table>
-                                    <div class="form-group">
-                                        <label>Create Date</label>
-                                        <input name="createdate" type="date" value="${param.createdate}" class="form-control" required/>
-                                    </div>
+                                    </table>           
                                 </div>
                                 <div class="modal-footer">
                                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

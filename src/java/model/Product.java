@@ -28,11 +28,11 @@ public class Product {
     private Card card;
     private String createdate;
     private boolean status;
-
+    private String modifydate;
     public Product() {
     }
 
-    public Product(int id, String name, double price, float discount, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status) {
+    public Product(int id, String name, double price, float discount, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status, String modifydate) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -51,7 +51,10 @@ public class Product {
         this.card = card;
         this.createdate = createdate;
         this.status = status;
+        this.modifydate = modifydate;
     }
+
+    
 
     public float getDiscount() {
         return discount;
@@ -197,6 +200,14 @@ public class Product {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getModifydate() {
+        return modifydate;
+    }
+
+    public void setModifydate(String modifydate) {
+        this.modifydate = modifydate;
     }
 
     

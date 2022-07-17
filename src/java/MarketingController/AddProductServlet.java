@@ -105,9 +105,8 @@ public class AddProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        String filename = null;
-        String name = request.getParameter("name");
+        HttpSession session = request.getSession();      
+        String name = request.getParameter("name").trim();
         String price_raw = request.getParameter("price");
         String discount_raw = request.getParameter("discount");
         String quantity_raw = request.getParameter("quantity");
@@ -121,7 +120,71 @@ public class AddProductServlet extends HttpServlet {
         String display_raw = request.getParameter("display");
         String capacity_raw = request.getParameter("capacity");
         String card_raw = request.getParameter("card");
-        String createdate = request.getParameter("createdate");
+        ProductDAO pd = new ProductDAO();
+        String index_raw = request.getParameter("index");
+        List<Product> productList = pd.getAllProductManage();
+        int total = productList.size();
+        int page = total / 5;
+        if (total % 5 != 0) {
+            page += 1;
+        }
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+
+        int index = Integer.parseInt(index_raw);
+        int start = (index - 1) * 5;
+        int end = Math.min((index * 5), total);
+        List<Brand> brandList = pd.getAllBrand();
+        List<Category> categoryList = pd.getAllCategory();
+        List<OperatingSystem> osList = pd.getAllOS();
+        List<RAM> ramList = pd.getAllRAM();
+        List<CPU> cpuList = pd.getAllCPU();
+        List<Display> displayList = pd.getAllDisplay();
+        List<Capacity> capacityList = pd.getAllCapacity();
+        List<Card> cardList = pd.getAllCard();
+        session.setAttribute("listproduct", productList);
+        request.setAttribute("productlist", productList.subList(start, end));
+        request.setAttribute("image", image);
+        request.setAttribute("description", description);
+        request.setAttribute("brandid", brand_raw);
+        request.setAttribute("osid", os_raw);
+        request.setAttribute("ramid", ram_raw);
+        request.setAttribute("cpuid", cpu_raw);
+        request.setAttribute("displayid", display_raw);
+        request.setAttribute("capacityid", capacity_raw);
+        request.setAttribute("cardid", card_raw);
+        request.setAttribute("brandlist", brandList);
+        request.setAttribute("categorylist", categoryList);
+        request.setAttribute("oslist", osList);
+        request.setAttribute("ramlist", ramList);
+        request.setAttribute("cpulist", cpuList);
+        request.setAttribute("displaylist", displayList);
+        request.setAttribute("capacitylist", capacityList);
+        request.setAttribute("cardlist", cardList);
+        request.setAttribute("index", index);
+        request.setAttribute("page", page);
+        request.setAttribute("type", "default");
+        String regex = "\\s+";
+        boolean check = name.matches(regex);
+        
+        if(check){
+            request.setAttribute("error", "Name can not empty");
+            request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
+        }else{
+            boolean checkProductExist = false;
+            
+            for(Product pro : productList){
+                if(pro.getName().equalsIgnoreCase(name)){
+                    checkProductExist = true;
+                    break;
+                }
+            }
+            if(checkProductExist){
+                 request.setAttribute("error", "Product is already exist");
+                 request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
+            }
+        }
         double price = 0;
         float discount = 0;
         int quantity = 0;
@@ -130,99 +193,11 @@ public class AddProductServlet extends HttpServlet {
             discount = Float.parseFloat(discount_raw);
             quantity = Integer.parseInt(quantity_raw);
         } catch (Exception e) {
-                        ProductDAO pd = new ProductDAO();
-            String index_raw = request.getParameter("index");
-            List<Product> productList = pd.getAllProductManage();
-            int total = productList.size();
-            int page = total / 9;
-            if (total % 9 != 0) {
-                page += 1;
-            }
-            if (index_raw == null) {
-                index_raw = "1";
-            }
 
-            int index = Integer.parseInt(index_raw);
-            int start = (index - 1) * 9;
-            int end = Math.min((index * 9), total);
-            List<Brand> brandList = pd.getAllBrand();
-            List<Category> categoryList = pd.getAllCategory();
-            List<OperatingSystem> osList = pd.getAllOS();
-            List<RAM> ramList = pd.getAllRAM();
-            List<CPU> cpuList = pd.getAllCPU();
-            List<Display> displayList = pd.getAllDisplay();
-            List<Capacity> capacityList = pd.getAllCapacity();
-            List<Card> cardList = pd.getAllCard();
-            session.setAttribute("listproduct", productList);
-            request.setAttribute("productlist", productList.subList(start, end));
-            request.setAttribute("image", image);
-            request.setAttribute("description", description);
-            request.setAttribute("brandid", brand_raw);
-            request.setAttribute("osid", os_raw);
-            request.setAttribute("ramid", ram_raw);
-            request.setAttribute("cpuid", cpu_raw);
-            request.setAttribute("displayid", display_raw);
-            request.setAttribute("capacityid", capacity_raw);
-            request.setAttribute("cardid", card_raw);
-            request.setAttribute("brandlist", brandList);
-            request.setAttribute("categorylist", categoryList);
-            request.setAttribute("oslist", osList);
-            request.setAttribute("ramlist", ramList);
-            request.setAttribute("cpulist", cpuList);
-            request.setAttribute("displaylist", displayList);
-            request.setAttribute("capacitylist", capacityList);
-            request.setAttribute("cardlist", cardList);
-            request.setAttribute("index", index);
-            request.setAttribute("page", page);
-            request.setAttribute("type", "default");
             request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
         }
         if (quantity < 0 || discount < 0 || discount > 1 || price < 1000) {
-            ProductDAO pd = new ProductDAO();
-            String index_raw = request.getParameter("index");
-            List<Product> productList = pd.getAllProductManage();
-            int total = productList.size();
-            int page = total / 9;
-            if (total % 9 != 0) {
-                page += 1;
-            }
-            if (index_raw == null) {
-                index_raw = "1";
-            }
 
-            int index = Integer.parseInt(index_raw);
-            int start = (index - 1) * 9;
-            int end = Math.min((index * 9), total);
-            List<Brand> brandList = pd.getAllBrand();
-            List<Category> categoryList = pd.getAllCategory();
-            List<OperatingSystem> osList = pd.getAllOS();
-            List<RAM> ramList = pd.getAllRAM();
-            List<CPU> cpuList = pd.getAllCPU();
-            List<Display> displayList = pd.getAllDisplay();
-            List<Capacity> capacityList = pd.getAllCapacity();
-            List<Card> cardList = pd.getAllCard();
-            session.setAttribute("listproduct", productList);
-            request.setAttribute("productlist", productList.subList(start, end));
-            request.setAttribute("image", image);
-            request.setAttribute("description", description);
-            request.setAttribute("brandid", brand_raw);
-            request.setAttribute("osid", os_raw);
-            request.setAttribute("ramid", ram_raw);
-            request.setAttribute("cpuid", cpu_raw);
-            request.setAttribute("displayid", display_raw);
-            request.setAttribute("capacityid", capacity_raw);
-            request.setAttribute("cardid", card_raw);
-            request.setAttribute("brandlist", brandList);
-            request.setAttribute("categorylist", categoryList);
-            request.setAttribute("oslist", osList);
-            request.setAttribute("ramlist", ramList);
-            request.setAttribute("cpulist", cpuList);
-            request.setAttribute("displaylist", displayList);
-            request.setAttribute("capacitylist", capacityList);
-            request.setAttribute("cardlist", cardList);
-            request.setAttribute("index", index);
-            request.setAttribute("page", page);
-            request.setAttribute("type", "default");
             request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
         } else {
             int brandid = Integer.parseInt(brand_raw);
@@ -264,9 +239,6 @@ public class AddProductServlet extends HttpServlet {
             p.setDisplay(d);
             p.setCapacity(cap);
             p.setCard(car);
-            p.setCreatedate(createdate);
-            ProductDAO pd = new ProductDAO();
- 
             pd.addNewProduct(p);
             response.sendRedirect("productmanage");
         }

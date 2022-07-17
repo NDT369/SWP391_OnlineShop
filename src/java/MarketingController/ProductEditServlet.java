@@ -116,6 +116,7 @@ public class ProductEditServlet extends HttpServlet {
         String createdate = request.getParameter("createdate");
         String status_raw = request.getParameter("status");
         boolean status;
+
         if (status_raw.equalsIgnoreCase("on")) {
             status = true;
         } else {
@@ -150,13 +151,32 @@ public class ProductEditServlet extends HttpServlet {
         cap.setId(capacityid);
         Card car = new Card();
         car.setId(cardid);
+        
+        String regex = "\\s+";
+        boolean check = name.matches(regex);
+        
+        if(check){
+            session.setAttribute("error", "Name can not empty");
+            response.sendRedirect("productdetailmanage?id=" + id);
+        }else{
         try {
             price = Double.parseDouble(price_raw);
+        } catch (Exception e) {   
+            response.sendRedirect("productdetailmanage?id=" + id);
+        }
+        
+        try {   
             discount = Float.parseFloat(discount_raw);
+        } catch (Exception e) {  
+            response.sendRedirect("productdetailmanage?id=" + id);
+        }
+        
+         try {
             quantity = Integer.parseInt(quantity_raw);
         } catch (Exception e) {   
             response.sendRedirect("productdetailmanage?id=" + id);
         }
+ 
         p.setId(id);
         p.setName(name);
         p.setPrice(price);
@@ -185,9 +205,13 @@ public class ProductEditServlet extends HttpServlet {
             if (session.getAttribute("product1") != null) {  
                 session.removeAttribute("product1");
             }
+            if(session.getAttribute("error") != null){
+                session.removeAttribute("error");
+            }
             ProductDAO pd = new ProductDAO();
             pd.UpdateProduct(p);
             response.sendRedirect("productdetailmanage?id=" + id);
+        }
         }
     }
 

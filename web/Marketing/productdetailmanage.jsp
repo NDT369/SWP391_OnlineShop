@@ -163,6 +163,9 @@
 
                     <form action="productedit" enctype="multipart/form-data" method="post">
                         <c:if test="${sessionScope.product1 == null}">
+                            <c:if test="${sessionScope.error != null}">
+                                <h5 style="color:red">${sessionScope.error}</h5>
+                            </c:if>
                             <c:set value="${requestScope.product}" var="p"></c:set>
                                 <div class="form-group">
                                     <label>ID</label>
@@ -181,7 +184,7 @@
                                 <label>Discount</label>
                                 <input name="discount" type="text" class="form-control" id="discount" value="${p.discount}" required>
                             </div> 
-                         
+
                             <div class="form-group">
                                 <label>Quantity</label>
                                 <input name="quantity" type="text" class="form-control" id="quantity" value="${p.quantity}" required/>
@@ -269,7 +272,7 @@
                             </table>
                             <div class="form-group">
                                 <label>Create Date</label>
-                                <input name="createdate" type="date" value="${p.createdate}" class="form-control" required/>
+                                <input name="createdate" type="text" value="${p.createdate}" class="form-control" readonly/>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -282,8 +285,15 @@
                                     <input type="radio" name="status" value="OFF" style="margin-right: 20px" checked/> INACTIVE 
                                 </c:if>
                             </div>
+                            <div class="form-group">
+                                <label>Modify Date</label>
+                                <input name="createdate" type="text" value="${p.modifydate}" class="form-control" readonly/>
+                            </div>
                         </c:if>
                         <c:if test="${sessionScope.product1 != null}">
+                            <c:if test="${sessionScope.error != null}">
+                                <h5 style="color: red">${sessionScope.error}</h5>
+                            </c:if>
                             <c:set value="${sessionScope.product1}" var="p"></c:set>
                                 <div class="form-group">
                                     <label>ID</label>
@@ -302,7 +312,7 @@
                                 <label>Discount</label>
                                 <input name="discount" type="text" class="form-control" id="discount" value="${sessionScope.discount}" required>
                             </div> 
-      
+
                             <div class="form-group">
                                 <label>Quantity</label>
                                 <input name="quantity" type="text" class="form-control" id="quantity" value="${p.quantity}" required/>
@@ -390,7 +400,7 @@
                             </table>
                             <div class="form-group">
                                 <label>Create Date</label>
-                                <input name="createdate" type="date" value="${p.createdate}" class="form-control" required/>
+                                <input name="createdate" type="text" value="${p.createdate}" class="form-control" readonly/>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -402,6 +412,10 @@
                                     <input type="radio" name="status" value="ON"/> ACTIVE
                                     <input type="radio" name="status" value="OFF" style="margin-right: 20px" checked/> INACTIVE 
                                 </c:if>
+                            </div>
+                            <div class="form-group">
+                                <label>Modify Date</label>
+                                <input name="createdate" type="text" value="${p.modifydate}" class="form-control" readonly/>
                             </div>
                         </c:if>
                         <div class="modal-footer" style="margin-top: 30px">
@@ -445,8 +459,8 @@
                     alert("quantity must be positive Integer");
                     return;
                 }
-                
-                
+
+
             }
         </script>
 

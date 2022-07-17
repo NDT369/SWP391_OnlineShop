@@ -69,18 +69,18 @@ public class SortProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String sort_raw = request.getParameter("sort");
-        String brandid = request.getParameter("brandid");
-        String statusfilter = request.getParameter("statusfilter");
-        String search = request.getParameter("search");
+        String sort = request.getParameter("sort");
+//        String brandid = request.getParameter("brandid");
+//        String statusfilter = request.getParameter("statusfilter");
+//        String search = request.getParameter("search");
         ProductDAO pd = new ProductDAO();
         HttpSession session = request.getSession();
-        List<Product> listAll = (List<Product>) session.getAttribute("listproduct");
-        List<Product> list = new ArrayList<>();
-        for (Product p : listAll) {
-            list.add(p);
-        }
-        int sort = Integer.parseInt(sort_raw);
+//        List<Product> listAll = (List<Product>) session.getAttribute("listproduct");
+//        List<Product> list = new ArrayList<>();
+//        for (Product p : listAll) {
+//            list.add(p);
+//        }
+      
         List<Product> productList = null;
         List<Brand> brandList = pd.getAllBrand();
         List<Category> categoryList = pd.getAllCategory();
@@ -90,9 +90,9 @@ public class SortProductServlet extends HttpServlet {
         List<Display> displayList = pd.getAllDisplay();
         List<Capacity> capacityList = pd.getAllCapacity();
         List<Card> cardList = pd.getAllCard();
-        request.setAttribute("brandid", brandid);
-        request.setAttribute("statusfilter", statusfilter);
-        request.setAttribute("search", search);
+//        request.setAttribute("brandid", brandid);
+//        request.setAttribute("statusfilter", statusfilter);
+//        request.setAttribute("search", search);
         request.setAttribute("brandlist", brandList);
         request.setAttribute("categorylist", categoryList);
         request.setAttribute("oslist", osList);
@@ -101,31 +101,31 @@ public class SortProductServlet extends HttpServlet {
         request.setAttribute("displaylist", displayList);
         request.setAttribute("capacitylist", capacityList);
         request.setAttribute("cardlist", cardList);
-        if (sort_raw.equals("0")) {
-            String index_raw = request.getParameter("index");
-            int total = listAll.size();
-            int page = total / 5;
-            if (total % 5 != 0) {
-                page += 1;
-            }
-            if (index_raw == null) {
-                index_raw = "1";
-            }
-
-            int index = Integer.parseInt(index_raw);
-            int start = (index - 1) * 5;
-            int end = Math.min((index * 5), total);
-            request.setAttribute("productlist", listAll.subList(start, end));
-            request.setAttribute("index", index);
-            request.setAttribute("type", "sort");
-            request.setAttribute("index", index);
-            request.setAttribute("page", page);
-            request.setAttribute("sort", sort_raw);
-            request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
+        if (sort.equals("0")) {
+//            String index_raw = request.getParameter("index");
+//            int total = listAll.size();
+//            int page = total / 5;
+//            if (total % 5 != 0) {
+//                page += 1;
+//            }
+//            if (index_raw == null) {
+//                index_raw = "1";
+//            }
+//
+//            int index = Integer.parseInt(index_raw);
+//            int start = (index - 1) * 5;
+//            int end = Math.min((index * 5), total);
+//            request.setAttribute("productlist", listAll.subList(start, end));
+//            request.setAttribute("index", index);
+//            request.setAttribute("type", "sort");
+//            request.setAttribute("index", index);
+//            request.setAttribute("page", page);
+//            request.setAttribute("sort", sort_raw);
+            response.sendRedirect("productmanage");
         } else {
-            productList = pd.sortPro(sort_raw, list);
+           
             String index_raw = request.getParameter("index");
-            int total = productList.size();
+            int total = pd.getTotalProduct();
             int page = total / 5;
             if (total % 5 != 0) {
                 page += 1;
@@ -135,15 +135,15 @@ public class SortProductServlet extends HttpServlet {
             }
 
             int index = Integer.parseInt(index_raw);
-            int start = (index - 1) * 5;
-            int end = Math.min((index * 5), total);
-
-            request.setAttribute("productlist", productList.subList(start, end));
+//            int start = (index - 1) * 5;
+//            int end = Math.min((index * 5), total);
+             productList = pd.listProOrder(index, sort);
+            request.setAttribute("productlist", productList);
             request.setAttribute("index", index);
             request.setAttribute("type", "sort");
             request.setAttribute("index", index);
             request.setAttribute("page", page);
-            request.setAttribute("sort", sort_raw);
+            request.setAttribute("sort", sort);
             request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
         }
     }
