@@ -169,7 +169,7 @@
                         <input name="id" value="${c.accountID}" hidden>
                         <div class="form-group">
                             <label>Name</label>
-                            <input style="font-size: 15px" type="text" class="form-control" required name="name" value="${c.name}">
+                            <input style="font-size: 15px" id="name" type="text" class="form-control" required name="name" value="${c.name}">
                         </div>
                         <div class="form-group">
                             <label>Gender</label><br>
@@ -180,15 +180,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input style="font-size: 15px" type="email" class="form-control" required name="email" value="${c.email}" >
+                                <input style="font-size: 15px" id="email" type="email" class="form-control" required name="email" value="${c.email}" >
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
-                            <input style="font-size: 15px" type="tel" class="form-control" required name="phone" value="${c.phone}" >
+                            <input style="font-size: 15px" id="phone" type="tel" class="form-control" required name="phone" value="${c.phone}" >
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <input style="font-size: 15px" type="text" class="form-control" name="address" required value="${c.address}">
+                            <input style="font-size: 15px" id="address" type="text" class="form-control" name="address" required value="${c.address}">
                         </div>					
                         <div class="form-group">
                             <label>Status</label>
@@ -199,13 +199,26 @@
                         </div>					
 
                         <div class="modal-footer">
-                            <input  style="font-size: 18px; background-color: #e7ab3c" type="submit" class="btn btn-info" value="Save">
+                            <input onclick="check()"  style="font-size: 18px; background-color: #e7ab3c" type="submit" class="btn btn-info" value="Save">
                         </div>
                     </form>
                 </div>
             </div>
             <a href="customermanage" ><button style="font-size: 18px; background-color: #e7ab3c" type="button" class="btn btn-primary">Back to customer manage</button></a><br><br>  
         </div>
+
+        <script>
+            function check(){
+                var name = document.getElementById('name');
+                var email = document.getElementById('email');
+                var phone = document.getElementById('phone');
+                var address = document.getElementById('address');
+                if(name.trim() === ""){
+                    alert("Name can not null");
+                    return;
+                }
+            }
+        </script>
 
         <footer class="footer-section" style="margin-top: 30px">
             <div class="container">

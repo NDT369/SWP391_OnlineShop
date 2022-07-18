@@ -42,7 +42,7 @@ public class BlogServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BlogServlet</title>");            
+            out.println("<title>Servlet BlogServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet BlogServlet at " + request.getContextPath() + "</h1>");
@@ -63,22 +63,42 @@ public class BlogServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BlogDAO b = new BlogDAO();
-        List<Blog> list = b.getAll();
+
         ProductDAO p = new ProductDAO();
-        List<Product> listProduct = p.getAll();      
+        List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
-        if(arr != null){
+        if (arr != null) {
             for (Cookie c : arr) {
-                if(c.getName().equals("cart")){
+                if (c.getName().equals("cart")) {
                     txt += c.getValue();
                 }
             }
         }
-         Cart cart = new Cart(txt, listProduct);
+        Cart cart = new Cart(txt, listProduct);
         request.setAttribute("cart", cart);
-        request.setAttribute("listBlog", list);
+
+        BlogDAO b = new BlogDAO();
+        List<Blog> list = b.getAll1();
+        
+        String index_raw = request.getParameter("index");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+        int index = Integer.parseInt(index_raw);
+        int total = list.size();
+        int page = total / 6;
+        if (total % 6 != 0) {
+            page += 1;
+        }
+        int start = (index - 1) * 6;
+        int end = Math.min((index * 6), total);
+
+        request.setAttribute("check", "list");
+        request.setAttribute("index", index);
+        request.setAttribute("page", page);
+        request.setAttribute("listBlog", list.subList(start, end));
+
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 

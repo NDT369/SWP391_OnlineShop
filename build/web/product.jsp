@@ -78,6 +78,7 @@
 
                         <!--start sider-->
                         <c:set value="${sessionScope.choice}" var="choice"/>
+                        
                         <form id="f" action="filter">
 
                             <div class="filter-widget">
@@ -157,8 +158,8 @@
                                 <div class="col-lg-7 col-md-7">
 
                                     <div class="select-option">
-                                        <form action="sort" id="filter">
-                                            <select class="sorting" name="sort" onchange="document.getElementById('filter').submit()">
+                                        <form action="sort" id="sort">
+                                            <select class="sorting" name="sort" onchange="document.getElementById('sort').submit()">
                                                 <option value="">Default Sorting</option>
                                                 <option value="1" <c:if test="${requestScope.sort.equals('1')}">selected</c:if>  >Sort ascending by price</option>
                                                 <option value="2" <c:if test="${requestScope.sort.equals('2')}">selected</c:if> >Sort descending by price</option>

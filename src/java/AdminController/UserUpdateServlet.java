@@ -78,7 +78,7 @@ public class UserUpdateServlet extends HttpServlet {
 //        request.setAttribute("RoleList", listRole);
 //        request.setAttribute("StatusList", listStatus);
 //        request.setAttribute("UserList", listAccount);
-        response.sendRedirect("userlist");
+        response.sendRedirect("userdetail?id=" + id_raw);
     }
 
     /**

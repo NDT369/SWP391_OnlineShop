@@ -527,6 +527,7 @@
                     </div>
                 </div>
             </div>
+                                    
             <script>
                 function send() {
                     var price_raw = document.getElementById('price');

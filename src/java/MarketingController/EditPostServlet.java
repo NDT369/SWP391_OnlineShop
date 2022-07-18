@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -44,7 +46,7 @@ public class EditPostServlet extends HttpServlet {
      */
     private static final long SerialVersionUID = 1L;
     private static final String UPLOAD_DIR = "img";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -74,40 +76,6 @@ public class EditPostServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        String id_raw = request.getParameter("id");
-        String title = request.getParameter("title");
-        String image = request.getParameter("image");
-        String author = request.getParameter("author");
-        String content = request.getParameter("content");
-        String create = request.getParameter("create");
-        String modify = request.getParameter("modify");
-        int id = Integer.parseInt(id_raw);
-        BlogDAO b = new BlogDAO();
-        if (image == null || image.equals("")) {
-            image = b.getBlogByID(id_raw).getImgURL();
-        }
-
-        b.Update(id, title, image, author, content, create, modify);
-
-        Blog blog = b.getBlogByID(id_raw);
-
-        request.setAttribute("blog", blog);
-        request.getRequestDispatcher("Marketing/blogdetail.jsp").forward(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String status_raw = request.getParameter("status");
@@ -142,9 +110,58 @@ public class EditPostServlet extends HttpServlet {
         request.setAttribute("page", page);
         request.setAttribute("listBlog", listBlog.subList(start, end));
         request.getRequestDispatcher("Marketing/bloglist.jsp").forward(request, response);
+
     }
 
-       private String uploadFile(HttpServletRequest request) throws IOException, ServletException {
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+
+        String filename = null;
+
+        String id_raw = request.getParameter("id");
+        String title = request.getParameter("title");
+        String image = uploadFile(request);
+        String author = request.getParameter("author");
+        String content = request.getParameter("content");
+        int id = Integer.parseInt(id_raw);
+        BlogDAO b = new BlogDAO();
+        if (image == null || image.equals("")) {
+            image = b.getBlogByID(id_raw).getImgURL();
+        }
+
+        if (author.trim().equals("") || title.trim().equals("")
+                || content.trim().equals("")) {
+            
+            Blog blog = b.getBlogByID(id_raw);
+            request.setAttribute("blog", blog);
+            request.getRequestDispatcher("Marketing/blogdetail.jsp").forward(request, response);
+            
+        } else {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            String date = dtf.format(LocalDate.now()).toString();
+            b.Update(id, title, image, author, content, date);
+
+            Blog blog = b.getBlogByID(id_raw);
+
+            request.setAttribute("blog", blog);
+            request.getRequestDispatcher("Marketing/blogdetail.jsp").forward(request, response);
+        }
+
+    }
+
+    private String uploadFile(HttpServletRequest request) throws IOException, ServletException {
         String fileName = "";
         try {
             Part filePart = request.getPart("image");
@@ -191,6 +208,7 @@ public class EditPostServlet extends HttpServlet {
 
         return null;
     }
+
     /**
      * Returns a short description of the servlet.
      *

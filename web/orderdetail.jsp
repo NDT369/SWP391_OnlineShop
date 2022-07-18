@@ -43,7 +43,7 @@
                 text-align: center;
             }
             .clearfix{
-                margin-left:   1000px;
+                margin-left:   1200px;
                 margin-top: 20px;
                 margin-bottom: 50px;
             }
@@ -56,49 +56,51 @@
 
         <!--body-->
         <h2 class="myorder">Order Information</h2>
-        <h4></h4>
 
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Product Name</th>
-                    <th>Product Image</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Buy</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${requestScope.orderDetailList}" var="o">
+        <div class="row">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td>${o.orderID}</td>
-                        <td>${o.product.name}</td>
-                        <td><img src="img/${o.product.imgURL}" alt="" style="width: 120px; height: 100px;"/> </td>
-                        <td> <fmt:formatNumber pattern="###,###,###" value="${o.price}" /> VND</td>
-                        <td>${o.quantity}</td>
-                        <td><a href="productdetail?id=${o.product.id}">Buy</a></td>
+                        <th>Order ID</th>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Buy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${requestScope.orderDetailList}" var="o">
+                        <tr>
+                            <td>${o.orderID}</td>
+                            <td>${o.product.name}</td>
+                            <td><img src="img/${o.product.imgURL}" alt="" style="width: 120px; height: 100px;"/> </td>
+                            <td> <fmt:formatNumber pattern="###,###,###" value="${o.price}" /> VND</td>
+                            <td>${o.quantity}</td>
+                            <td><a href="productdetail?id=${o.product.id}">Buy</a></td>
 
 
-                    </c:forEach>
-            </tbody>
-        </table>
+                        </c:forEach>
+                </tbody>
+            </table>
 
-        <div class="clearfix">
-            <ul class="pagination">
-                <c:if test="${requestScope.index>1}">
-                    <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i-1}" class="page-link">Previous</a></li>
-                    </c:if>
+            <div class="clearfix">
+                <ul class="pagination">
+                    <c:if test="${requestScope.index>1}">
+                        <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i-1}" class="page-link">Previous</a></li>
+                        </c:if>
 
-                <c:forEach begin="1" end="${requestScope.page}" var="i">
-                    <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i}" class="page-link">${i}</a></li>
-                    </c:forEach>
-                    <c:if test="${requestScope.index < requestScope.page}">
-                    <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i+1}" class="page-link">Next</a></li>
-                    </c:if>
+                    <c:forEach begin="1" end="${requestScope.page}" var="i">
+                        <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i}" class="page-link">${i}</a></li>
+                        </c:forEach>
+                        <c:if test="${requestScope.index < requestScope.page}">
+                        <li class="page-item"><a href="orderdetail?id=${requestScope.orderID}&index=${i+1}" class="page-link">Next</a></li>
+                        </c:if>
 
-            </ul>
+                </ul>
+            </div>
         </div>
+
         <!--end body-->
 
         <!--footer-->

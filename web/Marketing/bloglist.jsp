@@ -217,7 +217,7 @@
                                 <td>${l.content.substring(0,80)}...</td>
                                 <td>${l.authorName}</td>
                                 <td>
-                                    <form action="editpost" method="post" >
+                                    <form action="editpost" method="get" >
                                         <input value="${l.id}" name="id" hidden>
                                         <c:if test="${l.status == true}">
                                             <input type="submit" name="status" value="On" style="background-color: #e7ab3c; color: white; border-color: lightgray">
@@ -315,7 +315,7 @@
         <div id="addPost" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="addpost" method="get">
+                    <form action="addpost" method="post" enctype="multipart/form-data">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add new Post</h4>
                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
@@ -335,15 +335,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
-                                <textarea name="content" class="form-control" required></textarea>
+                                <textarea name="content" class="form-control"  required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>CreateDate</label>
-                                <input name="createdate" type="date" class="form-control" required>
+                                <input name="createdate" type="date" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label>ModifiedDate</label>
-                                <input name="modifieddate" type="date" class="form-control" required>
+                                <input name="modifieddate" type="date" class="form-control" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>

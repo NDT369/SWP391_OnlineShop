@@ -61,8 +61,27 @@ public class SearchBlogServlet extends HttpServlet {
             throws ServletException, IOException {
         String search = request.getParameter("search");
         BlogDAO b = new BlogDAO();
-        List<Blog> list = b.SearchBlog(search);
-        request.setAttribute("listBlog", list);
+        List<Blog> listSearch = b.SearchBlog(search);
+        
+        String index_raw = request.getParameter("index");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+        int index = Integer.parseInt(index_raw);
+        int total = listSearch.size();
+        int page = total / 6;
+        if (total % 6 != 0) {
+            page += 1;
+        }
+        int start = (index - 1) * 6;
+        int end = Math.min((index * 6), total);
+
+        request.setAttribute("search", search);
+        request.setAttribute("check", "search");
+        request.setAttribute("index", index);
+        request.setAttribute("page", page);
+        request.setAttribute("listBlog", listSearch.subList(start, end));
+        
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 

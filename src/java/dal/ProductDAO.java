@@ -55,18 +55,18 @@ public class ProductDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
 
         } catch (Exception e) {
@@ -90,18 +90,18 @@ public class ProductDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
 
         } catch (Exception e) {
@@ -113,36 +113,6 @@ public class ProductDAO extends DBContext {
         ProductDAO p = new ProductDAO();
         List<Product> list = new ArrayList<>();
         List<Integer> listID = new ArrayList<>();
-//        String sql = "select  top(5) * from Product p \n"
-//                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
-//                + "join Category cat on p.Category_ID = cat.Category_ID\n"
-//                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
-//                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
-//                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
-//                + "join Display d on p.Display_ID = d.Display_ID\n"
-//                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-//                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 and p.Product_Quantity != 0";
-//        try {
-//            ps = connection.prepareStatement(sql);
-//            rs = ps.executeQuery();
-//            while (rs.next()) {
-//                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-//                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-//                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-//                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-//                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-//                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-//                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-//                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
-//                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
-//                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
-//                        brand, category, os, ram, cpu, display, capaciry, card,
-//                        rs.getString(17), rs.getBoolean(18)));
-//
-//            }
-//
-//        } catch (Exception e) {
-//        }
         String sql = "select top(10) p.Product_ID, count(p.Product_ID) as Countt from OrderDetail o \n"
                 + "join Product p on o.Product_ID = p.Product_ID\n"
                 + "where p.Product_Status = 1\n"
@@ -180,18 +150,18 @@ public class ProductDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
 
         } catch (Exception e) {
@@ -209,24 +179,24 @@ public class ProductDAO extends DBContext {
                 + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
                 + "join Display d on p.Display_ID = d.Display_ID\n"
                 + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 and p.Product_Quantity != 0"
+                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 "
                 + "and cat.Category_Name = '" + cate + "'";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
 
         } catch (Exception e) {
@@ -249,18 +219,18 @@ public class ProductDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
-                p = new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                p = (new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
 
             }
 
@@ -285,18 +255,18 @@ public class ProductDAO extends DBContext {
             ps.setInt(1, productID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
-                p = new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                p = (new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
 
         } catch (Exception e) {
@@ -306,7 +276,50 @@ public class ProductDAO extends DBContext {
 
     public int getTotalProduct() {
         int total = 0;
-        String sql = "select count(*) from Product where Product_Status = 1";
+        String sql = "select count(*) from Product";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
+    public int getTotalProductByBrand(String id) {
+        int total = 0;
+        String sql = "select count(*) from Product where Brand_ID = " + id;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
+    public int getTotalProductByStatus(String status) {
+        int total = 0;
+        String sql = "select count(*) from Product where Product_Status = " + status;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
+    public int getTotalProductBySearch(String search) {
+        int total = 0;
+        String sql = "select count(*) from Product where contains(Product_Name, '\"*" + search + "*\"') or\n"
+                + "contains(Product_Description, '\"*" + search + "*\"')";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -336,18 +349,18 @@ public class ProductDAO extends DBContext {
             ps.setInt(1, (index - 1) * 9);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
         } catch (Exception e) {
         }
@@ -371,18 +384,145 @@ public class ProductDAO extends DBContext {
             ps.setInt(1, (index - 1) * 5);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Product> listProOrder(int index, String sort) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID\n"
+                + "where 1 = 1";
+//                + "order by Product_ID offset ? row fetch next 5 rows only";
+        if (sort.equals("1")) {
+            sql += "order by p.Product_Price offset ? row fetch next 5 rows only";
+        }
+        if (sort.equals("2")) {
+            sql += "order by p.Product_Price DESC offset ? row fetch next 5 rows only";
+        }
+        if (sort.equals("3")) {
+            sql += "order by p.Product_Name offset ? row fetch next 5 rows only";
+        }
+        if (sort.equals("4")) {
+            sql += "order by p.Product_Name DESC offset ? row fetch next 5 rows only";
+        }
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 5);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
+                        brand, category, os, ram, cpu, display, capaciry, card,
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Product> ListProductByBrandIdOrStatus(int index, String brandid, String status) {
+        String sql = "select * from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID where 1=1";
+        if (brandid != null && brandid != "") {
+            int id = Integer.parseInt(brandid);
+            sql += "and p.Brand_ID = " + id + " order by Product_ID offset ? row fetch next 5 rows only";
+        }
+        if (status != null && status != "") {
+            int s = Integer.parseInt(status);
+            sql += "and p.Product_Status =" + s + " order by Product_ID offset ? row fetch next 5 rows only";
+        }
+        List<Product> list = new ArrayList<>();
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 5);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
+                        brand, category, os, ram, cpu, display, capaciry, card,
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Product> ListProductSearch(int index, String search) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID\n"
+                + "where contains(p.Product_Name, '\"*" + search + "*\"') or\n"
+                + "contains(p.Product_Description, '\"*" + search + "*\"')"
+                + "order by Product_ID offset ? row fetch next 5 rows only";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 5);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
+                        brand, category, os, ram, cpu, display, capaciry, card,
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
         } catch (Exception e) {
         }
@@ -508,18 +648,18 @@ public class ProductDAO extends DBContext {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand b = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU c = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display d = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand b = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU c = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display d = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(4), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         b, category, os, ram, c, d, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
         } catch (Exception e) {
         }
@@ -559,22 +699,24 @@ public class ProductDAO extends DBContext {
                 + "join Card car on p.Card_ID = car.Card_ID\n"
                 + "where contains(p.Product_Name, '\"*" + search + "*\"') or\n"
                 + "contains(p.Product_Description, '\"*" + search + "*\"')";
+
         try {
             ps = connection.prepareStatement(sql);
+
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
         } catch (Exception e) {
         }
@@ -583,8 +725,8 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.getSaleProduct();
-        System.out.println(list.toString());
+        List<Product> list = p.listProManagePaging(1);
+        System.out.println(list.get(0).getName());
     }
 
     public List<OrderDetail> getOrderDetail(int orderID) {
@@ -754,8 +896,10 @@ public class ProductDAO extends DBContext {
     }
 
     public void addNewProduct(Product p) {
-        String sql = "insert into Product values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)";
+        String sql = "insert into Product values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,null)";
         p.setSaleprice(p.getPrice() - p.getPrice() * p.getDiscount());
+        LocalDate curDate = java.time.LocalDate.now();
+        String date = curDate.toString();
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, p.getName());
@@ -773,7 +917,7 @@ public class ProductDAO extends DBContext {
             ps.setInt(13, p.getDisplay().getId());
             ps.setInt(14, p.getCapacity().getId());
             ps.setInt(15, p.getCard().getId());
-            ps.setString(16, p.getCreatedate());
+            ps.setString(16, date);
             ps.executeUpdate();
         } catch (SQLException ex) {
         }
@@ -803,18 +947,18 @@ public class ProductDAO extends DBContext {
 
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
         } catch (Exception e) {
         }
@@ -838,18 +982,18 @@ public class ProductDAO extends DBContext {
             ps.setInt(1, status);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(19), rs.getString(20), rs.getBoolean(21));
-                Category category = new Category(rs.getInt(22), rs.getString(23), rs.getBoolean(24));
-                OperatingSystem os = new OperatingSystem(rs.getInt(25), rs.getString(26), rs.getBoolean(27));
-                RAM ram = new RAM(rs.getInt(28), rs.getString(29), rs.getBoolean(30));
-                CPU cpu = new CPU(rs.getInt(31), rs.getString(32), rs.getBoolean(33));
-                Display display = new Display(rs.getInt(34), rs.getString(35), rs.getBoolean(36));
-                Capacity capaciry = new Capacity(rs.getInt(37), rs.getString(38), rs.getBoolean(39));
-                Card card = new Card(rs.getInt(40), rs.getString(41), rs.getBoolean(42));
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
                         rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
                         brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18)));
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
             }
         } catch (Exception e) {
         }
@@ -870,9 +1014,11 @@ public class ProductDAO extends DBContext {
     public void UpdateProduct(Product p) {
         String sql = "update Product set Product_Name = ?, Product_Price = ?, Discount = ?, Product_SalePrice = ?, Product_Quantity = ?, Product_ImgURL = ?\n"
                 + ", Product_Description = ?, Brand_ID = ?,Category_ID = ?, OS_ID = ?, RAM_ID = ?, CPU_ID = ?, Display_ID = ?, Capacity_ID = ?, Card_ID = ?, "
-                + "Product_CreateDate = ?, Product_Status = ?\n"
+                + "Product_Status = ?,Product_ModifyDate = ?\n"
                 + "where Product_ID = ? ";
         double saleprice = p.getPrice() - p.getDiscount() * p.getPrice();
+        LocalDate curDate = java.time.LocalDate.now();
+        String date = curDate.toString();
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, p.getName());
@@ -890,8 +1036,8 @@ public class ProductDAO extends DBContext {
             ps.setInt(13, p.getDisplay().getId());
             ps.setInt(14, p.getCapacity().getId());
             ps.setInt(15, p.getCard().getId());
-            ps.setString(16, p.getCreatedate());
-            ps.setBoolean(17, p.isStatus());
+            ps.setBoolean(16, p.isStatus());
+            ps.setString(17, date);
             ps.setInt(18, p.getId());
             ps.executeUpdate();
         } catch (Exception e) {

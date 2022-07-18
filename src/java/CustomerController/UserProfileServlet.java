@@ -5,6 +5,7 @@
  */
 package CustomerController;
 
+import Validate.Validate;
 import dal.AccountDAO;
 import dal.ProductDAO;
 import java.io.IOException;
@@ -65,17 +66,17 @@ public class UserProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO p = new ProductDAO();
-        List<Product> listProduct = p.getAll();      
+        List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
-        if(arr != null){
+        if (arr != null) {
             for (Cookie c : arr) {
-                if(c.getName().equals("cart")){
+                if (c.getName().equals("cart")) {
                     txt += c.getValue();
                 }
             }
         }
-         Cart cart = new Cart(txt, listProduct);
+        Cart cart = new Cart(txt, listProduct);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("userprofile.jsp").forward(request, response);
     }
@@ -91,6 +92,11 @@ public class UserProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+
+        Validate v = new Validate();
+
         String id = request.getParameter("id");
         String name = request.getParameter("fullname");
         String gender = request.getParameter("gender");
@@ -103,15 +109,33 @@ public class UserProfileServlet extends HttpServlet {
         } else {
             gender_role = false;
         }
+        if (v.checkPhone(phone) == false || v.validateEmail(email) == false
+                || name.trim().equals("") || email.trim().equals("")
+                || phone.trim().equals("") || address.trim().equals("")) {
+            ProductDAO p = new ProductDAO();
+            List<Product> listProduct = p.getAll();
+            Cookie[] arr = request.getCookies();
+            String txt = "";
+            if (arr != null) {
+                for (Cookie c : arr) {
+                    if (c.getName().equals("cart")) {
+                        txt += c.getValue();
+                    }
+                }
+            }
+            Cart cart = new Cart(txt, listProduct);
+            request.setAttribute("cart", cart);
+            request.getRequestDispatcher("userprofile.jsp").forward(request, response);
+        } else {
+            AccountDAO a = new AccountDAO();
+            a.updateInfor(id, name, gender_role, email, phone, address);
 
-        AccountDAO a = new AccountDAO();
-        a.updateInfor(id, name, gender_role, email, phone, address);
+            HttpSession session = request.getSession();
+            Account account = a.getAcountByID(Integer.parseInt(id));
+            session.setAttribute("account", account);
+            request.getRequestDispatcher("userprofile.jsp").forward(request, response);
+        }
 
-        HttpSession session = request.getSession();
-        AccountDAO ad = new AccountDAO();
-        Account account = ad.getAcountByID(Integer.parseInt(id));
-        session.setAttribute("account", account);
-        response.sendRedirect("home");
     }
 
     /**

@@ -173,7 +173,7 @@
                     </div>
                 </div>
 
-                <form action="editpost" enctype="multipart/form-data">
+                <form action="editpost" method="post" enctype="multipart/form-data">
                     <div class="modal-body">	
                         <input  name="id" value="${b.id}" hidden> 
                         <div class="form-group">
@@ -185,7 +185,7 @@
                             <input style="font-size: 15px" name="image" type="file" class="form-control" >
                             <img src="img/${b.imgURL}">
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Author</label>
                             <input style="font-size: 15px" class="form-control" required name="author" value="${b.authorName}" >
@@ -196,11 +196,11 @@
                         </div>
                         <div class="form-group">
                             <label>Create Date</label>
-                            <input style="font-size: 15px" type="date" class="form-control" name="create" required value="${b.createDate}">
+                            <input style="font-size: 15px" type="date" class="form-control" name="create" required value="${b.createDate}" readonly>
                         </div>					
                         <div class="form-group">
                             <label>Modify Date</label>
-                            <input style="font-size: 15px" type="date" class="form-control" name="modify" required value="${b.modyfieDate}">
+                            <input style="font-size: 15px" type="date" class="form-control" name="modify" required value="${b.modyfieDate}" readonly>
                         </div>					
                     </div>
                     <div class="modal-footer">

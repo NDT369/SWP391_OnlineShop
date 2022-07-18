@@ -106,6 +106,7 @@ public class AddProductServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        
         String filename = null;
         String name = request.getParameter("name");
         String price_raw = request.getParameter("price");

@@ -167,7 +167,7 @@
                     </div>
                 </div>
 
-                <form action="editslider">
+                <form action="editslider" method="post" enctype="multipart/form-data">
                     <div class="modal-body">	
                         <input  name="id" value="${s.id}" hidden> 
                         <div class="form-group">

@@ -226,9 +226,9 @@
                                     <c:if test="${a.getRole().getRoleID()== 2}">Customer</c:if>
                                     <c:if test="${a.getRole().getRoleID()== 3}">Sale</c:if>
                                     <c:if test="${a.getRole().getRoleID()== 4}">Marketing</c:if>
-                                </td>
-                                <td>
-                                    <form action="userupdate" method="post" >
+                                    </td>
+                                    <td>
+                                        <form action="userupdate" method="post" >
                                             <input value="${a.getAccountID()}" name="id" hidden>
                                         <c:if test="${a.isStatus()== true}">
                                             <input type="submit" name="status" value="Active" style="background-color: #e7ab3c; color: white; border-color: lightgray">
@@ -329,15 +329,15 @@
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>User Name</label>
-                                <input name="username" type="text" class="form-control" required>
+                                <input name="username" type="text" id="username" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>PassWord</label>
-                                <input name="password" type="text" class="form-control" required>
+                                <input name="password" type="text" id="password" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input name="name" type="text" class="form-control" required>
+                                <input name="name" type="text" id="name" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Gender</label>
@@ -348,15 +348,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input name="email" type="email" class="form-control" required>
+                                <input name="email" type="email" id="email" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input name="phone" type="tel" class="form-control" required>
+                                <input name="phone" type="tel" id="phone" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <input name="address" type="text" class="form-control" required>
+                                <input name="address" type="text" id="address" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Role</label>
@@ -377,13 +377,51 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <input onclick="check()" type="submit" class="btn btn-success" value="Add">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <!-- Edit Modal HTML -->
+
+        <script>
+            function check() {
+                var username = document.getElementById('username');
+                var password = document.getElementById('password');
+                var name = document.getElementById('name');
+                var email = document.getElementById('email');
+                var phone = document.getElementById('phone');
+                var address = document.getElementById('address');
+                if (username.trim() == "") {
+                    alert("UserName can not null");
+                    return;
+                }
+                if (password.trim() == "") {
+                    alert("Password can not null");
+                    return;
+                }
+                if (name.trim() == "") {
+                    alert("Name can not null");
+                    return;
+                }
+                if (email.trim() == "") {
+                    alert("Email can not null");
+                    return;
+                }
+                if (phone.trim() == "") {
+                    alert("Phone can not null");
+                    return;
+                }
+                if (address.trim() == "") {
+                    alert("Address can not null");
+                    return;
+                }
+                alert("add user");
+                return;
+            }
+
+        </script>
 
         <footer class="footer-section" style="margin-top: 30px">
             <div class="container">

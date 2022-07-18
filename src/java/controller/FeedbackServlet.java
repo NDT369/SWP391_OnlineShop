@@ -68,15 +68,16 @@ public class FeedbackServlet extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
 
         String comment = request.getParameter("comment");
-        Feedback f = new Feedback();
-        f.setProductID(productID);
-        f.setAccount(account);
-        f.setContent(comment);
-        
-        FeedbackDAO fd = new FeedbackDAO();
-        fd.addFeedback(f);
-        
-        request.getRequestDispatcher("productdetail?id="+productID).forward(request, response);
+        if (!comment.trim().equals("") && comment != null) {
+            Feedback f = new Feedback();
+            f.setProductID(productID);
+            f.setAccount(account);
+            f.setContent(comment);
+
+            FeedbackDAO fd = new FeedbackDAO();
+            fd.addFeedback(f);
+        }
+        response.sendRedirect("productdetail?id=" + productID);
     }
 
     /**
