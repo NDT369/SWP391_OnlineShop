@@ -64,6 +64,8 @@ public class SortCustomerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         AccountDAO ad = new AccountDAO();
+        String search = request.getParameter("search");
+        String status = request.getParameter("status");
         
         String sort = request.getParameter("sort");
         List<Account> list = (List<Account>) session.getAttribute("customerList");
@@ -82,6 +84,9 @@ public class SortCustomerServlet extends HttpServlet {
         int start = (index-1)*5;
         int end = Math.min((index*5), total);
         
+        
+        request.setAttribute("search", search);
+        request.setAttribute("status", status);
         request.setAttribute("check", "sort");
         request.setAttribute("sort", sort);
         request.setAttribute("index", index);

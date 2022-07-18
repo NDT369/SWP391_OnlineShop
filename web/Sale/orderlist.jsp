@@ -145,7 +145,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2 style="color: white">Manage <b>Order</b></h2>
+                            <a href="ordermanage"><h2 style="color: white">Manage <b>Order</b></h2></a>
                         </div>
                         <div class="col-sm-6">
                         </div>
@@ -166,6 +166,15 @@
 
                     <form id="sort" action="sortorder">
                         Sort by
+                         <c:if test="${requestScope.search!=null}">
+                            <input name="search" value="${requestScope.search}" hidden/>
+                        </c:if>
+                        <c:if test="${requestScope.from!=null}">
+                            <input name="from" value="${requestScope.from}" hidden/>
+                        </c:if>
+                        <c:if test="${requestScope.to!=null}">
+                            <input name="to" value="${requestScope.to}" hidden/>
+                        </c:if>
                         <select name="sort" onchange="document.getElementById('sort').submit()">
                             <option value="0">Default</option>
                             <option value="date" <c:if test="${requestScope.sort.equals('date')}">selected</c:if> >Order Date</option>

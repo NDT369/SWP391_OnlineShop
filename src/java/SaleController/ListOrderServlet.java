@@ -63,6 +63,7 @@ public class ListOrderServlet extends HttpServlet {
         HttpSession session = request.getSession();
         OrderDAO od = new OrderDAO();
         List<Order> listOrder = od.getAll();
+        
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";

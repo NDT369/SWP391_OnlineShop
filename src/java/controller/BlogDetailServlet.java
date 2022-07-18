@@ -65,20 +65,23 @@ public class BlogDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         BlogDAO b = new BlogDAO();
+        
         Blog blog = b.getBlogByID(id);
-               ProductDAO p = new ProductDAO();
-        List<Product> listProduct = p.getAll();      
+        
+        ProductDAO p = new ProductDAO();
+        List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
-        if(arr != null){
+        if (arr != null) {
             for (Cookie c : arr) {
-                if(c.getName().equals("cart")){
+                if (c.getName().equals("cart")) {
                     txt += c.getValue();
                 }
             }
         }
-         Cart cart = new Cart(txt, listProduct);
+        Cart cart = new Cart(txt, listProduct);
         request.setAttribute("cart", cart);
+        
         request.setAttribute("blog", blog);
         request.getRequestDispatcher("blogdetails.jsp").forward(request, response);
     }

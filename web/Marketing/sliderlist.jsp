@@ -20,10 +20,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
-        
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+
         <style>
             img{
                 width: 350px;
@@ -42,10 +49,10 @@
             .pagination li.active a, .pagination li.active a.page-link {
                 background: #e7ab3c;
             }
-            
+
         </style>
     <body>
-        
+
         <header class="header-section">
             <div class="header-top">
                 <div class="container">
@@ -134,19 +141,19 @@
                 </div>
             </div>
         </header>
-        
+
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2 style="color: white">Manage <b>Slider</b></h2>
+                            <a href="slidermanage"><h2 style="color: white">Manage <b>Slider</b></h2></a>
                         </div>
                         <div class="col-sm-6">
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="head">
                     <form action="searchslider">
                         <input name="search" type="text"  placeholder="Text in here" value="${requestScope.search}">
@@ -163,29 +170,29 @@
                         </form>
 
                     </div><br>
-                
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Image</th>
-                            <th>Content</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Content</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <c:forEach items="${requestScope.listSlider}" var="l">
                             <tr>
                                 <td>${l.id}</td>
                                 <td>${l.title}</td>
                                 <td>
-                                    <img src="${l.imgURL}">
+                                    <img src="img/${l.imgURL}">
                                 </td>
-                                <td>${l.content}...</td>
+                                <td>${l.content.substring(0,80)}...</td>
                                 <td>
-                                    <form action="editslider" method="post" >
+                                    <form action="editslider" method="get" >
                                         <input value="${l.id}" name="id" hidden>
                                         <c:if test="${l.status == true}">
                                             <input type="submit" name="status" value="On" style="background-color: orange; color: white; border-color: lightgray">
@@ -198,11 +205,11 @@
                                 <td>
                                     <a href="sliderdetail?id=${l.id}" class="edit" data-toggle="modal" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 </td>
-                                </tr>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-                
+
                 <c:if test="${requestScope.check.equals('list')}">
                     <div class="clearfix">
                         <ul class="pagination">
@@ -362,9 +369,9 @@
                 </div>
             </div>
         </div>
-    
-    
-    <footer class="footer-section" style="margin-top: 30px">
+
+
+        <footer class="footer-section" style="margin-top: 30px">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
@@ -432,6 +439,6 @@
                 </div>
             </div>
         </footer>
-    <script src="js/manager.js" type="text/javascript"></script>
-</body>
+        <script src="js/manager.js" type="text/javascript"></script>
+    </body>
 </html>

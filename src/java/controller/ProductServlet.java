@@ -84,6 +84,7 @@ public class ProductServlet extends HttpServlet {
         List<CPU> cpuList = cpu.getAll();
 
         List<Product> productList = p.getAll();
+        session.setAttribute("listProduct", productList);
 
         String index_raw = request.getParameter("index");
         if (index_raw == null) {

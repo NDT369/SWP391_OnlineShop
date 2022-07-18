@@ -14,10 +14,12 @@
     <body>
         <a href="home">HomePage</a>
         <h1>Hello Marketer!</h1>
+        <a href="productmanage">Manage Product</a><br>
+        <a href="postmanage">Manage Post</a><br>
+        <a href="customermanage">Manage Customer</a><br>
+        <a href="slidermanage">Manage Slider</a><br>
+        <a href="feedbacklist">Manage Feedback</a><br>
         <a href="logout">Logout</a><br>
-        <a href="postmanage">Manager Post</a><br>
-        <a href="customermanage">Manager Customer</a><br>
-        <a href="slidermanage">Manager Slider</a><br>
         
     </body>
 </html>

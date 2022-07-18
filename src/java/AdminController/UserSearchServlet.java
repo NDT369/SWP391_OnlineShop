@@ -61,10 +61,31 @@ public class UserSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String search = request.getParameter("search");
+
         AccountDAO a = new AccountDAO();
         List<Account> list = a.SearchUser(search);
-        request.setAttribute("UserList", list);
+
+        String index_raw = request.getParameter("index");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+        int index = Integer.parseInt(index_raw);
+        int total = list.size();
+        int page = total / 5;
+        if (total % 5 != 0) {
+            page += 1;
+        }
+        int start = (index - 1) * 5;
+        int end = Math.min((index * 5), total);
+
+        session.setAttribute("listUser", list);
+        request.setAttribute("check", "search");
+        request.setAttribute("search", search);
+        request.setAttribute("index", index);
+        request.setAttribute("page", page);
+        request.setAttribute("UserList", list.subList(start, end));
         request.getRequestDispatcher("Admin/userlist.jsp").forward(request, response);
     }
 
@@ -99,7 +120,6 @@ public class UserSearchServlet extends HttpServlet {
 //        request.setAttribute("gender", gender);
 //        request.setAttribute("role", role);
 //        request.setAttribute("status", status);
-
 //        AccountDAO a = new AccountDAO();
 //        List<Account> listFilter = a.fillter(gender, role, status);
 //        request.setAttribute("listFilter", listFilter);

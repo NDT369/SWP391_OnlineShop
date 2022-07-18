@@ -43,7 +43,7 @@
                 text-align: center;
             }
             .clearfix{
-                margin-left:   1000px;
+                margin-left:   1200px;
                 margin-top: 20px;
                 margin-bottom: 50px;
             }
@@ -57,52 +57,58 @@
 
         <!--body-->
         <h2 class="myorder">My Order</h2>
-
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Order Date</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Total money</th>
-                    <th>Note</th>
-                    <th>Status</th>
-                    <th>Detail</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${requestScope.orderList}" var="o">
+        <div class="row">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td>${o.getOrderID()}</td>
-                        <td>${o.getDate()}</td>
-                        <td>${o.getName()}</td>
-                        <td>${o.getAddress()}</td>
-                        <td>${o.getPhone()}</td>
-                        <td>${o.getEmail()}</td>
-                        <td><fmt:formatNumber pattern="###,###,###" value="${o.getMoney()}" /> VND</td>
-                        <td>${o.getNote()}</td>
-                        <td>
-                            <c:if test="${o.isStatus()== true}">Successful</c:if>
-                            <c:if test="${o.isStatus()== false}">Fail</c:if>
-                            </td>
-                            <td> <a href="orderdetail?id=${o.getOrderID()}">Detail</a> </td>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Total money</th>
+                        <th>Note</th>
+                        <th>Status</th>
+                        <th>Detail</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-
-        <div class="clearfix">
-            <ul class="pagination">
-                <li class="page-item"><a href="myorder?AccountID=${sessionScope.account.accountID}&index=${index-1}" class="page-link">Previous</a></li>
-                <c:forEach begin="1" end="${requestScope.page}" var="i">
-                    <li class="page-item"><a href="myorder?AccountID=${sessionScope.account.accountID}&index=${i}" class="page-link">${i}</a></li>
+                </thead>
+                <tbody>
+                    <c:forEach items="${requestScope.orderList}" var="o">
+                        <tr>
+                            <td>${o.getOrderID()}</td>
+                            <td>${o.getDate()}</td>
+                            <td>${o.getName()}</td>
+                            <td>${o.getAddress()}</td>
+                            <td>${o.getPhone()}</td>
+                            <td>${o.getEmail()}</td>
+                            <td><fmt:formatNumber pattern="###,###,###" value="${o.getMoney()}" /> VND</td>
+                            <td>${o.getNote()}</td>
+                            <td>
+                                <c:if test="${o.isStatus()== true}">Successful</c:if>
+                                <c:if test="${o.isStatus()== false}">Fail</c:if>
+                                </td>
+                                <td> <a href="orderdetail?id=${o.getOrderID()}">Detail</a> </td>
+                        </tr>
                     </c:forEach>
-                <li class="page-item"><a href="myorder?AccountID=${sessionScope.account.accountID}&index=${index+1}" class="page-link">Next</a></li>
-            </ul>
+                </tbody>
+            </table>
+
+            <div class="clearfix">
+                <ul class="pagination">
+                    <c:if test="${requestScope.index>1}">
+                        <li class="page-item"><a href="myorder?AccountID=${sessionScope.account.accountID}&index=${index-1}" class="page-link">Previous</a></li>
+                        </c:if>
+                        <c:forEach begin="1" end="${requestScope.page}" var="i">
+                        <li class="page-item"><a href="myorder?AccountID=${sessionScope.account.accountID}&index=${i}" class="page-link">${i}</a></li>
+                        </c:forEach>
+                        <c:if test="${requestScope.index < requestScope.page}">
+                        <li class="page-item"><a href="myorder?AccountID=${sessionScope.account.accountID}&index=${index+1}" class="page-link">Next</a></li>
+                        </c:if>
+                </ul>
+            </div>
         </div>
+
         <!--end body-->
 
         <!--footer-->

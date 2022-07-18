@@ -5,6 +5,7 @@
  */
 package MarketingController;
 
+import Validate.Validate;
 import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,7 +38,7 @@ public class EditCustomerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditCustomerServlet</title>");            
+            out.println("<title>Servlet EditCustomerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditCustomerServlet at " + request.getContextPath() + "</h1>");
@@ -60,24 +61,34 @@ public class EditCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        
+        AccountDAO ad = new AccountDAO();
+        Validate v = new Validate();
         String id_raw = request.getParameter("id");
         String name = request.getParameter("name");
         String gender_raw = request.getParameter("gender");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
-        
         int id = Integer.parseInt(id_raw);
         boolean gender = Boolean.parseBoolean(gender_raw);
-        
-        AccountDAO ad = new AccountDAO();
-        ad.updateInfor(id_raw, name, gender, email, phone, address);
-        
-        Account a = ad.getAcountByID(id);
-        
-        request.setAttribute("Customer", a);
-        request.getRequestDispatcher("Marketing/customerdetail.jsp").forward(request, response);
+
+        Account account = null;
+        account = ad.checkEmailExist(email);
+
+        if (v.checkPhone(phone) == false || v.validateEmail(email) == false
+                || account != null
+                || name.trim().equals("") || email.trim().equals("")
+                || phone.trim().equals("") || address.trim().equals("")) {
+            Account a = ad.getAcountByID(id);
+            request.setAttribute("Customer", a);
+            request.getRequestDispatcher("Marketing/customerdetail.jsp").forward(request, response);
+        } else {
+            ad.updateInfor(id_raw, name, gender, email, phone, address);
+            Account a = ad.getAcountByID(id);
+            request.setAttribute("Customer", a);
+            request.getRequestDispatcher("Marketing/customerdetail.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -91,10 +102,10 @@ public class EditCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String status_raw = request.getParameter("status");
         String id_raw = request.getParameter("id");
-        
+
         int id = Integer.parseInt(id_raw);
         String status = "0";
         if (status_raw.equals("InActive")) {

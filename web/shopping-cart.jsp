@@ -77,7 +77,7 @@
                                 <c:forEach items="${c.item}" var="i">
 
                                     <tr>
-                                        <td class="cart-pic first-row"><img src="${i.product.imgURL}" alt=""></td>
+                                        <td class="cart-pic first-row"><img src="img/${i.product.imgURL}" alt=""></td>
                                         <td class="cart-title first-row">
                                             <h5>${i.product.name}</h5>
                                         </td>

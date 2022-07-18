@@ -331,6 +331,49 @@ public class ProductDAO extends DBContext {
         return total;
     }
 
+    public int getTotalProductByBrand(String id) {
+        int total = 0;
+        String sql = "select count(*) from Product where Brand_ID = " + id;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
+    public int getTotalProductByStatus(String status) {
+        int total = 0;
+        String sql = "select count(*) from Product where Product_Status = " + status;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
+    public int getTotalProductBySearch(String search) {
+        int total = 0;
+        String sql = "select count(*) from Product where contains(Product_Name, '\"*" + search + "*\"') or\n"
+                + "contains(Product_Description, '\"*" + search + "*\"')";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
     public List<Product> listProPaging(int index) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product p \n"
@@ -491,7 +534,8 @@ public class ProductDAO extends DBContext {
         }
         return list;
     }
-        public List<Product> ListProductSearch(int index,String search) {
+
+    public List<Product> ListProductSearch(int index, String search) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"
@@ -527,8 +571,6 @@ public class ProductDAO extends DBContext {
         }
         return list;
     }
-    
-    
 
     public int addOrder(int accountID, String name, String address, String email, String phone, String note, Cart cart) {
         LocalDate curDate = LocalDate.now();

@@ -40,7 +40,7 @@ public class UserUpdateServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserUpdateServlet</title>");            
+            out.println("<title>Servlet UserUpdateServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UserUpdateServlet at " + request.getContextPath() + "</h1>");
@@ -65,25 +65,20 @@ public class UserUpdateServlet extends HttpServlet {
         String status_raw = request.getParameter("status");
         String id_raw = request.getParameter("id");
         AccountDAO a = new AccountDAO();
-        if(status_raw != null){
-        a.UpdateUserStatus(id_raw,status_raw);
-        }
-        if(role_id!=null){
+
+        if (role_id != null) {
             a.UpdateUserRole(id_raw, role_id);
         }
-        
-        
+
 //        List<Account> listAccount = a.getAll();
 //        List<Integer> listGender = a.getAllGender();
 //        List<Role> listRole = a.getAllRole();
 //        List<Integer> listStatus = a.getAllStatus();
- 
 //        request.setAttribute("GenderList", listGender);
 //        request.setAttribute("RoleList", listRole);
 //        request.setAttribute("StatusList", listStatus);
 //        request.setAttribute("UserList", listAccount);
-        
-        response.sendRedirect("userlist");
+        response.sendRedirect("userdetail?id=" + id_raw);
     }
 
     /**
@@ -97,7 +92,17 @@ public class UserUpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id_raw = request.getParameter("id");
+        String status_raw = request.getParameter("status");
+
+        String status = "0";
+        if (status_raw.equals("Deactive")) {
+            status = "1";
+        }
+        AccountDAO a = new AccountDAO();
+        a.UpdateUserStatus(id_raw, status);
+        response.sendRedirect("userlist");
+
     }
 
     /**

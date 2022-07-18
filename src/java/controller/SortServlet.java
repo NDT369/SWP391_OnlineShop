@@ -81,7 +81,7 @@ public class SortServlet extends HttpServlet {
         DisplayDAO d = new DisplayDAO();
         CPUDAO cpu = new CPUDAO();
 
-        List<Product> productList = p.getAll();
+        List<Product> productList = (List<Product>) session.getAttribute("listProduct");
         String sort = request.getParameter("sort");
         productList = p.sortPro(sort, productList);
 

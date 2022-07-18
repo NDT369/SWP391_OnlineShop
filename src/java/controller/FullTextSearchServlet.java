@@ -91,7 +91,15 @@ public class FullTextSearchServlet extends HttpServlet {
         String search = request.getParameter("search");
         String index_raw = request.getParameter("index");
 
-        List<Product> productList = p.fulltextSearch(search);
+        List<Product> productList = null;
+        if(search != null && search!= ""){
+           productList = p.fulltextSearch(search);
+        }else{
+           response.sendRedirect("home");
+        }
+         
+        session.setAttribute("listProduct", productList);
+        
         int total = productList.size();
         int page = total / 9;
         if (total % 9 != 0) {
@@ -114,7 +122,7 @@ public class FullTextSearchServlet extends HttpServlet {
                 }
             }
         }
-         Cart cart = new Cart(txt, listProduct);
+        Cart cart = new Cart(txt, listProduct);
         request.setAttribute("cart", cart);
 
         session.setAttribute("productList", productList.subList(start, end));

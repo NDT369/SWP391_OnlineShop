@@ -20,8 +20,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <!--        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+                <link href="css/manager.css" rel="stylesheet" type="text/css"/>-->
+
         <link href="css/manager.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+
 
         <style>
             img{
@@ -48,7 +59,7 @@
 
     </head>
     <body>
-        
+
         <header class="header-section">
             <div class="header-top">
                 <div class="container">
@@ -143,7 +154,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2 style="color: white">Manage <b>Post</b></h2>
+                            <a href="postmanage"><h2 style="color: white">Manage <b>Post</b></h2></a>
                         </div>
                         <div class="col-sm-6">
                             <a href="#addPost"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Post</span></a>
@@ -169,6 +180,12 @@
 
                     <form id="sort" action="sortpost">
                         Sort by
+                        <c:if test="${requestScope.search!=null}">
+                            <input name="search" value="${requestScope.search}" hidden/>
+                        </c:if>
+                        <c:if test="${requestScope.author!=null}">
+                            <input name="author" value="${requestScope.author}" hidden/>
+                        </c:if>
                         <select name="sort" onchange="document.getElementById('sort').submit()">
                             <option value="0">Default</option>
                             <option value="1" <c:if test="${requestScope.sort.equals('1')}">selected</c:if> >Increase by date</option>
@@ -195,12 +212,12 @@
                                 <td>${l.id}</td>
                                 <td>${l.title}</td>
                                 <td>
-                                    <img src="img/Blog/${l.imgURL}">
+                                    <img src="img/${l.imgURL}">
                                 </td>
                                 <td>${l.content.substring(0,80)}...</td>
                                 <td>${l.authorName}</td>
                                 <td>
-                                    <form action="editpost" method="post" >
+                                    <form action="editpost" method="get" >
                                         <input value="${l.id}" name="id" hidden>
                                         <c:if test="${l.status == true}">
                                             <input type="submit" name="status" value="On" style="background-color: #e7ab3c; color: white; border-color: lightgray">
@@ -298,7 +315,7 @@
         <div id="addPost" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="addpost" method="get">
+                    <form action="addpost" method="post" enctype="multipart/form-data">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add new Post</h4>
                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
@@ -318,15 +335,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
-                                <textarea name="content" class="form-control" required></textarea>
+                                <textarea name="content" class="form-control"  required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>CreateDate</label>
-                                <input name="createdate" type="date" class="form-control" required>
+                                <input name="createdate" type="date" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label>ModifiedDate</label>
-                                <input name="modifieddate" type="date" class="form-control" required>
+                                <input name="modifieddate" type="date" class="form-control" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -344,57 +361,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="add" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input name="name" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Image</label>
-                                <input name="image" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input name="price" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Title</label>
-                                <textarea name="title" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach begin="1" end="3" var="o">
-                                        <option value="1">Giày Adidas</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Modal HTML -->
-
 
         <footer class="footer-section" style="margin-top: 30px">
             <div class="container">

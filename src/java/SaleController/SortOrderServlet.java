@@ -62,6 +62,9 @@ public class SortOrderServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         OrderDAO od = new OrderDAO();
+        String search = request.getParameter("search");
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
         
         String sort = request.getParameter("sort");
         List<Order> list = (List<Order>) session.getAttribute("orderList");
@@ -80,6 +83,9 @@ public class SortOrderServlet extends HttpServlet {
         int start = (index-1)*5;
         int end = Math.min((index*5), total);
         
+        request.setAttribute("search", search);
+        request.setAttribute("from", from);
+        request.setAttribute("to", to);
         request.setAttribute("check", "sort");
         request.setAttribute("sort", sort);
         request.setAttribute("index", index);

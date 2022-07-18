@@ -99,6 +99,7 @@ public class ProductEditServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String id_raw = request.getParameter("id");
         String name = request.getParameter("name");
+        String index = request.getParameter("index");
         String price_raw = request.getParameter("price");
         String discount_raw = request.getParameter("discount");
         String quantity_raw = request.getParameter("quantity");
@@ -173,7 +174,7 @@ public class ProductEditServlet extends HttpServlet {
         
          try {
             quantity = Integer.parseInt(quantity_raw);
-        } catch (Exception e) {   
+        } catch (Exception e) {
             response.sendRedirect("productdetailmanage?id=" + id);
         }
  
@@ -202,7 +203,7 @@ public class ProductEditServlet extends HttpServlet {
             session.setAttribute("product1", p);
             response.sendRedirect("productdetailmanage?id=" + id);
         } else {
-            if (session.getAttribute("product1") != null) {  
+            if (session.getAttribute("product1") != null) {
                 session.removeAttribute("product1");
             }
             if(session.getAttribute("error") != null){
@@ -210,7 +211,7 @@ public class ProductEditServlet extends HttpServlet {
             }
             ProductDAO pd = new ProductDAO();
             pd.UpdateProduct(p);
-            response.sendRedirect("productdetailmanage?id=" + id);
+            response.sendRedirect("productdetailmanage?id=" + id + "&index=" + index);
         }
         }
     }

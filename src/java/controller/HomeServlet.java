@@ -7,6 +7,7 @@ package controller;
 
 import dal.BlogDAO;
 import dal.ProductDAO;
+import dal.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Blog;
 import model.Cart;
 import model.Product;
+import model.Slider;
 
 /**
  *
@@ -65,9 +67,11 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         ProductDAO p = new ProductDAO();
         BlogDAO b = new BlogDAO();
-        List<Product> listTop = p.getSaleProduct();
+        SliderDAO s = new SliderDAO();
+        List<Product> listSell = p.getSaleProduct();
         List<Product> listNew = p.getNewProduct();
         List<Blog> blog = b.getAll();
+        List<Slider> slider = s.getAll();
         
         
         List<Product> listProduct = p.getAll();
@@ -82,9 +86,10 @@ public class HomeServlet extends HttpServlet {
         }
         
         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("slider", slider);
         request.setAttribute("cart", cart);
         request.setAttribute("blog", blog);
-        request.setAttribute("listTop", listTop);
+        request.setAttribute("listSell", listSell);
         request.setAttribute("listNew", listNew);
 //        request.setAttribute("pageInclude", "homepage.jsp");
         request.getRequestDispatcher("homepage.jsp").forward(request, response);

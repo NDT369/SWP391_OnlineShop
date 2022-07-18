@@ -70,6 +70,7 @@ public class ProductDetailServlet extends HttpServlet {
 
         String id = request.getParameter("id");
         ProductDAO d = new ProductDAO();
+        
         Product product = d.getProductByID(id);
         List<Product> listProduct = d.getAll();
         Cookie[] arr = request.getCookies();
@@ -94,7 +95,18 @@ public class ProductDetailServlet extends HttpServlet {
         
         List<Feedback> feedbackList = f.getAllFeedbackByProID(productID);
 
+        String cate = d.getProductByID(id).getCategory().getName();
+        
+        List<Product> listRelate = d.getProductByCate(cate);
+        for (Product p : listRelate) {
+            if(p.getId() == product.getId()){
+                listRelate.remove(p);
+                break;
+            }
+        }
+        
         Cart cart = new Cart(txt, listProduct);
+        request.setAttribute("listRelate", listRelate);
         request.setAttribute("feedbackList", feedbackList);
         request.setAttribute("check", check);
         request.setAttribute("cart", cart);
