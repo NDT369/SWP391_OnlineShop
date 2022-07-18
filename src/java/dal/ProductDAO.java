@@ -331,48 +331,7 @@ public class ProductDAO extends DBContext {
         return total;
     }
 
-    public int getTotalProductByBrand(String id) {
-        int total = 0;
-        String sql = "select count(*) from Product where Brand_ID = " + id;
-        try {
-            ps = connection.prepareStatement(sql);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                total = rs.getInt(1);
-            }
-        } catch (Exception e) {
-        }
-        return total;
-    }
 
-    public int getTotalProductByStatus(String status) {
-        int total = 0;
-        String sql = "select count(*) from Product where Product_Status = " + status;
-        try {
-            ps = connection.prepareStatement(sql);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                total = rs.getInt(1);
-            }
-        } catch (Exception e) {
-        }
-        return total;
-    }
-
-    public int getTotalProductBySearch(String search) {
-        int total = 0;
-        String sql = "select count(*) from Product where contains(Product_Name, '\"*" + search + "*\"') or\n"
-                + "contains(Product_Description, '\"*" + search + "*\"')";
-        try {
-            ps = connection.prepareStatement(sql);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                total = rs.getInt(1);
-            }
-        } catch (Exception e) {
-        }
-        return total;
-    }
 
     public List<Product> listProPaging(int index) {
         List<Product> list = new ArrayList<>();
