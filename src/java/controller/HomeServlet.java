@@ -6,6 +6,10 @@
 package controller;
 
 import dal.BlogDAO;
+import dal.BrandDAO;
+import dal.CPUDAO;
+import dal.CategoryDAO;
+import dal.DisplayDAO;
 import dal.ProductDAO;
 import dal.SliderDAO;
 import java.io.IOException;
@@ -16,8 +20,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Blog;
+import model.Brand;
+import model.CPU;
 import model.Cart;
+import model.Category;
+import model.Display;
 import model.Product;
 import model.Slider;
 
@@ -65,6 +74,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         ProductDAO p = new ProductDAO();
         BlogDAO b = new BlogDAO();
         SliderDAO s = new SliderDAO();
@@ -84,6 +94,21 @@ public class HomeServlet extends HttpServlet {
                 }
             }
         }
+        
+        CategoryDAO cate = new CategoryDAO();
+        BrandDAO br = new BrandDAO();
+        DisplayDAO d = new DisplayDAO();
+        CPUDAO cpu = new CPUDAO();
+        
+        List<Category> categoryList = cate.getAll();
+        List<Brand> brandList = br.getAll();
+        List<Display> displayList = d.getAll();
+        List<CPU> cpuList = cpu.getAll();
+        
+        session.setAttribute("cpuList", cpuList);
+        session.setAttribute("displayList", displayList);
+        session.setAttribute("brandList", brandList);
+        session.setAttribute("categoryList", categoryList);
         
         Cart cart = new Cart(txt, listProduct);
         request.setAttribute("slider", slider);
