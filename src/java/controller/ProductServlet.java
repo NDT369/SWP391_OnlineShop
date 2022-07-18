@@ -78,10 +78,7 @@ public class ProductServlet extends HttpServlet {
         DisplayDAO d = new DisplayDAO();
         CPUDAO cpu = new CPUDAO();
 
-        List<Category> categoryList = cate.getAll();
-        List<Brand> brandList = b.getAll();
-        List<Display> displayList = d.getAll();
-        List<CPU> cpuList = cpu.getAll();
+        
 
         List<Product> productList = p.getAll();
         session.setAttribute("listProduct", productList);
@@ -100,10 +97,7 @@ public class ProductServlet extends HttpServlet {
         int start = (index-1)*9;
         int end = Math.min(index*9, total);
 
-        session.setAttribute("cpuList", cpuList);
-        session.setAttribute("displayList", displayList);
-        session.setAttribute("brandList", brandList);
-        session.setAttribute("categoryList", categoryList);
+        
 
         List<Product> list = p.listProPaging(index);
         List<Product> listProduct = p.getAll();
