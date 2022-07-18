@@ -29,7 +29,9 @@ public class Product {
     private String createdate;
     private boolean status;
     private String modifydate;
+   
     public Product() {
+ 
     }
 
     public Product(int id, String name, double price, float discount, double saleprice, int quantity, String imgURL, String description, Brand brand, Category category, OperatingSystem os, RAM ram, CPU cpu, Display display, Capacity capacity, Card card, String createdate, boolean status, String modifydate) {

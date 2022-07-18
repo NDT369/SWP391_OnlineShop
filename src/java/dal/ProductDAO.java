@@ -110,36 +110,24 @@ public class ProductDAO extends DBContext {
     }
 
     public List<Product> getSaleProduct() {
+        ProductDAO p = new ProductDAO();
         List<Product> list = new ArrayList<>();
-        String sql = "select  top(5) * from Product p \n"
-                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
-                + "join Category cat on p.Category_ID = cat.Category_ID\n"
-                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
-                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
-                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
-                + "join Display d on p.Display_ID = d.Display_ID\n"
-                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
-                + "join Card car on p.Card_ID = car.Card_ID where p.Product_Status = 1 and p.Product_Quantity != 0";
+        List<Integer> listID = new ArrayList<>();
+        String sql = "select top(10) p.Product_ID, count(p.Product_ID) as Countt from OrderDetail o \n"
+                + "join Product p on o.Product_ID = p.Product_ID\n"
+                + "where p.Product_Status = 1\n"
+                + "group by p.Product_ID\n"
+                + "order by Countt desc";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
-                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
-                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
-                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
-                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
-                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
-                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
-                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
-                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
-                        brand, category, os, ram, cpu, display, capaciry, card,
-                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
-
+                listID.add(rs.getInt(1));
             }
-
         } catch (Exception e) {
+        }
+        for (Integer i : listID) {
+            list.add(p.getProductByID(i));
         }
         return list;
 
@@ -147,7 +135,7 @@ public class ProductDAO extends DBContext {
 
     public List<Product> getNewProduct() {
         List<Product> list = new ArrayList<>();
-        String sql = "select  top(5) * from Product p \n"
+        String sql = "select  top(10) * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"
                 + "join Category cat on p.Category_ID = cat.Category_ID\n"
                 + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
@@ -1056,5 +1044,4 @@ public class ProductDAO extends DBContext {
         } catch (Exception e) {
         }
     }
-
 }
