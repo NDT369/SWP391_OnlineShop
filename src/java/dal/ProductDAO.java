@@ -5,6 +5,7 @@
  */
 package dal;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -894,8 +895,8 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.listProManagePaging(1);
-        System.out.println(list.get(0).getName());
+        List<String> list = p.get7DayLast();
+        System.out.println(list.get(0));
     }
 
     public List<OrderDetail> getOrderDetail(int orderID) {
@@ -1211,5 +1212,90 @@ public class ProductDAO extends DBContext {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+
+    public List<Product> getProductBuyMost() {
+        List<Product> list = new ArrayList<>();
+        String sql = "select Top 5 SUM(od.Quantity) AS TotalQuantity,p.Product_ID,p.Product_Name,p.Product_Price, p.Product_SalePrice, b.Brand_Name,p.Product_ImgURL from OrderDetail od\n"
+                + "join Product p on od.Product_ID = p.Product_ID\n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "group by p.Product_ID,p.Product_Name,p.Product_Price, p.Product_SalePrice, b.Brand_Name,p.Product_ImgURL\n"
+                + "order by TotalQuantity DESC";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt(2));
+                p.setName(rs.getString(3));
+                p.setPrice(rs.getDouble(4));
+                p.setSaleprice(rs.getDouble(5));
+                Brand b = new Brand();
+                b.setName(rs.getString(6));
+                p.setBrand(b);
+                p.setImgURL(rs.getString(7));
+                list.add(p);
+
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Account> getAccountBuyMost() {
+        List<Account> list = new ArrayList<>();
+        String sql = "select Top 5 count(a.Account_ID) as TongDonHang,a.Account_ID,a.[Name],a.Email,a.Phone,a.[Address] from [Order] o\n"
+                + "join Account a on o.Account_ID = a.Account_ID\n"
+                + "group by a.Account_ID,a.[Name],a.Email,a.Phone,a.[Address]\n"
+                + "order by TongDonHang DESC";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setAccountID(rs.getInt(2));
+                a.setName(rs.getString(3));
+                a.setEmail(rs.getString(4));
+                a.setPhone(rs.getString(5));
+                a.setAddress(rs.getString(6));
+                list.add(a);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<String> get7DayLast() {
+        List<String> list = new ArrayList<>();
+        String sql = "select Top 7 Order_Date from [Order]\n"
+                + "group by  Order_Date \n"
+                + "order by Order_Date DESC";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Integer> getTotalProductEachDayLast() {
+        List<Integer> list = new ArrayList<>();
+        String sql = "select top 7 sum(od.Quantity), o.Order_Date from OrderDetail od\n"
+                + "join [Order] o on od.Order_ID = o.Order_ID\n"
+                + "group by  o.Order_Date \n"
+                + "order by o.Order_Date DESC";
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 }
