@@ -169,9 +169,96 @@ public class OrderDAO extends DBContext {
         return list;
     }
 
+    public int getTotalOrder(int year, int month, int startDay, int endDay) {
+        String sql = "select count(*) from [Order]\n"
+                + "where YEAR(Order_Date) = ? and MONTH(Order_Date) = ? and DAY(Order_Date) between ? and ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, year);
+            st.setInt(2, month);
+            st.setInt(3, startDay);
+            st.setInt(4, endDay);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public List<Order> getListOrder(int year, int month, int startDay, int endDay) {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from [Order]\n"
+                + "where YEAR(Order_Date) = ? and MONTH(Order_Date) = ? and DAY(Order_Date) between ? and ? ";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ps.setInt(3, startDay);
+            ps.setInt(4, endDay);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Order(rs.getInt(1), rs.getInt(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getDouble(8),
+                        rs.getString(9), rs.getBoolean(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Double> sortListOrderAmount(int year, int month, int startDay, int endDay) {
+        List<Double> list = new ArrayList<>();
+        double total = 0.0;
+        String sql = "select top 100 sum(TotalMoney) as Total from [Order] where \n"
+                + "YEAR(Order_Date) = ? and MONTH(Order_Date) = ? and DAY(Order_Date) between ? and ?\n"
+                + "group by Order_Date\n"
+                + "order by Order_Date";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ps.setInt(3, startDay);
+            ps.setInt(4, endDay);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                total = rs.getDouble(1);
+                list.add(total);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<String> getListDateOrder(int year, int month, int startDay, int endDay) {
+        List<String> list = new ArrayList<>();
+        String total = "";
+        String sql = "select top 100 sum(TotalMoney) as Total, Day(Order_Date) as date  from [Order] where \n"
+                + "YEAR(Order_Date) = ? and MONTH(Order_Date) = ? and DAY(Order_Date) between ? and ?\n"
+                + "group by Order_Date\n"
+                + "order by Order_Date";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ps.setInt(3, startDay);
+            ps.setInt(4, endDay);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                total = rs.getString(2);
+                list.add(total);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         OrderDAO o = new OrderDAO();
-        System.out.println("" + o.getTotalOrderByCustomer("1"));
+        System.out.println(o.sortListOrderAmount(2022, 7, 1, 30).get(0));;
 
     }
 }

@@ -288,7 +288,7 @@
                 </c:if>
 
             </div>
-            <a href="saledashboard"><button type="button" style="font-size: 18px; background-color: #e7ab3c" class="btn btn-primary">Back to home</button></a>
+            <a href="saledashboard"><button type="button" style="font-size: 18px; background-color: #e7ab3c" class="btn btn-primary">Back to Sale Dashboard</button></a>
         </div>
 
 

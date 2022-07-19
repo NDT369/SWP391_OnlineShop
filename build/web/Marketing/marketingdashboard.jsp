@@ -37,7 +37,7 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar" style="color: gold">
 
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mktDashboard">
@@ -279,7 +279,7 @@
                         <div class="row">
 
                             <!-- Area Chart -->
-                            <div class="col-xl-8 col-lg-7">
+                            <div class="col-xl-8 col-lg-7" style="width: 100%">
                                 <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div
@@ -291,17 +291,39 @@
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
-   
+                                        <div class="chart-area" >
+<!--                                            <form action="mktDashboard" method="post">
+                                                <b>Year</b><select name="year" >
+                                                    <c:forEach var="i" begin="1990" end="2026">
+                                                    <option value="${i}">${i}</option>
+                                                    </c:forEach>
+                                                </select>
+                                                <b>Month</b><select name="month" >
+                                                    <c:forEach var="i" begin="01" end="12">
+                                                    <option value="${i}">${i}</option>
+                                                    </c:forEach>
+                                                </select>
+                                                <b>Start Day</b><select name="from" >
+                                                    <c:forEach var="i" begin="01" end="31">
+                                                    <option value="${i}">${i}</option>
+                                                    </c:forEach>
+                                                </select>
+                                                <b>End Day</b><select name="to" >
+                                                    <c:forEach var="i" begin="01" end="31">
+                                                    <option value="${i}">${i}</option>
+                                                    </c:forEach>
+                                                </select>
+                                                <input type="submit" value="Filter"/>
+                                            </form>-->
                                             <canvas id="myChart" width="1504px" height="340px"></canvas>
                                             <script>
-                                                const ctx = document.getElementById('myChart');
+                                                const ctx = document.getElementById('myChart').getContext('2d');
                                                 const myChart = new Chart(ctx, {
                                                     type: 'line',
-                                                    var list = ${listday}
                                                     data: {
-                                                        labels: ['hello','hi','kk'],
+                                                        labels: ${listday},
                                                         datasets: [{
-                                                                label: 'quantity',
+                                                                label: 'Revenue',
                                                                 data: ${listquantity},
                                                                 backgroundColor: [
                                                                     'rgba(255, 99, 132, 0.2)',
