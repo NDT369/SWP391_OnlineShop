@@ -146,14 +146,17 @@ public class OrderDAO extends DBContext {
         return list;
     }
 
-    public List<Order> getOrderByOrderDate(String from, String to) {
+    public List<Order> getOrderByOrderDate(String year, String month, String from, String to) {
         List<Order> list = new ArrayList<>();
         String sql = "select * from [Order] where 1=1";
-        if (from != "" && from != null) {
-            sql += "and Order_Date > '" + from + "'";
+        if (year != "" && year != null) {
+            sql += " and YEAR(Order_Date) = " + year + "";
         }
-        if (to != "" && to != null) {
-            sql += "and Order_Date < '" + to + "'";
+        if (month != "" && month != null) {
+            sql += " and MONTH(Order_Date) =" + month + "";
+        }
+        if (from != "" && from != null && to != "" && to != null) {
+            sql += " and DAY(Order_Date) between " + from + " and " + to + "";
         }
         try {
             ps = connection.prepareStatement(sql);
@@ -169,9 +172,131 @@ public class OrderDAO extends DBContext {
         return list;
     }
 
+    
+
+    public int getTotalOrderByOrderDate(String year, String month, String from, String to) {
+        int total = 0;
+        List<Order> list = new ArrayList<>();
+        String sql = "select count(*) from [Order] where 1=1 ";
+//        if (accountID != "" && accountID != null) {
+//            sql += " and Account_ID = '" + accountID + "'";
+//        }
+        if (year != "" && year != null) {
+            sql += " and YEAR(Order_Date) = " + year + "";
+        }
+        if (month != "" && month != null) {
+            sql += " and MONTH(Order_Date) =" + month + "";
+        }
+        if (from != "" && from != null && to != "" && to != null) {
+            sql += " and DAY(Order_Date) between " + from + " and " + to + "";
+        }
+
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
+    public double getTotalEarningByOrderDate(String year, String month, String from, String to) {
+        double total = 0;
+        List<Order> list = new ArrayList<>();
+        String sql = "select  SUM(TotalMoney) from [Order] where 1=1 ";
+//        if (accountID != "" && accountID != null) {
+//            sql += "and Account_ID = '" + accountID + "'";
+//        }
+        if (year != "" && year != null) {
+            sql += " and YEAR(Order_Date) = " + year + "";
+        }
+        if (month != "" && month != null) {
+            sql += " and MONTH(Order_Date) =" + month + "";
+        }
+        if (from != "" && from != null && to != "" && to != null) {
+            sql += " and DAY(Order_Date) between " + from + " and " + to + "";
+        }
+
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getDouble(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
+
     public static void main(String[] args) {
         OrderDAO o = new OrderDAO();
-        System.out.println("" + o.getTotalOrderByCustomer("1"));
-
+        System.out.println(o.getListAmountByDate("2022", "7", "11", "17").size());
     }
+    public List<Double> getListAmountByDate(String year, String month, String from, String to) {
+        List<Double> list = new ArrayList<>();
+//        String sql = "select top 5 sum(TotalMoney) from [Order] where Order_Status=1 ";
+//        if (year != "" && year != null) {
+//            sql += " and YEAR(Order_Date) = " + year + "";
+//        }
+//        if (month != "" && month != null) {
+//            sql += " and MONTH(Order_Date) =" + month + "";
+//        }
+//        if (from != "" && from != null && to != "" && to != null ) {
+//            sql += " and DAY(Order_Date) between "+from+" and "+to+"";
+//        }
+//        sql += " group by Order_Date order by Order_Date desc";
+//        if (accountID != "" && accountID != null) {
+//            sql += "and Account_ID = '" + accountID + "'";
+//        }
+        String sql = "select top 7 sum(TotalMoney) from [Order] where Order_Status=1  and YEAR(Order_Date) =?\n"
+                + "and MONTH(Order_Date) = ? and DAY(Order_Date) between ? and ? group by Order_Date order by Order_Date";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, year);
+            ps.setString(2, month);
+            ps.setString(3, from);
+            ps.setString(4, to);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getDouble(1));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
+
+    public List<String> getListDateByLatest(String year, String month, String from, String to) {
+        List<String> list = new ArrayList<>();
+//        String sql = "select top 5 DAY(Order_Date) as Total from [Order] where Order_Status=1 ";
+//        if (year != "" && year != null) {
+//            sql += " and YEAR(Order_Date) = " + year + "";
+//        }
+//        if (month != "" && month != null) {
+//            sql += " and MONTH(Order_Date) =" + month + "";
+//        }
+//        if (from != "" && from != null && to != "" && to != null ) {
+//            sql += " and DAY(Order_Date) between "+from+" and "+to+"";
+//        }
+//        sql += " group by Order_Date order by Order_Date desc";
+        String sql = "select top 7 DAY(Order_Date) as Total from [Order] where Order_Status=1  and YEAR(Order_Date) =?\n"
+                + "and MONTH(Order_Date) = ? and DAY(Order_Date) between ? and ? group by Order_Date order by Order_Date ";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, year);
+            ps.setString(2, month);
+            ps.setString(3, from);
+            ps.setString(4, to);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
 }
