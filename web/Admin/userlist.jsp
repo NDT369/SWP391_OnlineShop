@@ -101,7 +101,7 @@
                     </div>
                     <nav class="nav-menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="home">Home</a></li>
+                            <li><a href="home">Home</a></li>
                             <li><a href="product">Shop</a></li>
                             <!--                    <li><a href="#">Collection</a>
                                                     <ul class="dropdown">
