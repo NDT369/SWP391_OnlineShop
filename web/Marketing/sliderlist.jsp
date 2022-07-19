@@ -49,8 +49,15 @@
             .pagination li.active a, .pagination li.active a.page-link {
                 background: #e7ab3c;
             }
-
         </style>
+        
+        <script>
+            function doChange() {
+                if (confirm("Are you sure to change status of this Slider?")) {
+                    document.getElementById("frm").submit();
+                }
+            }
+        </script>
     <body>
 
         <header class="header-section">
@@ -192,13 +199,13 @@
                                 </td>
                                 <td>${l.content.substring(0,80)}...</td>
                                 <td>
-                                    <form action="editslider" method="get" >
+                                    <form action="editslider" method="get" id="frm">
                                         <input value="${l.id}" name="id" hidden>
                                         <c:if test="${l.status == true}">
-                                            <input type="submit" name="status" value="On" style="background-color: orange; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="On" style="background-color: orange; color: white; border-color: lightgray">
                                         </c:if>
                                         <c:if test="${l.status == false}">
-                                            <input type="submit" name="status" value="Off" style="background-color: red; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="Off" style="background-color: red; color: white; border-color: lightgray">
                                         </c:if>
                                     </form>
                                 </td>

@@ -101,7 +101,7 @@ public class HomeServlet extends HttpServlet {
         CPUDAO cpu = new CPUDAO();
         
         List<Category> categoryList = cate.getAll();
-        List<Brand> brandList = br.getAll();
+        List<Brand> brandList = br .getAll();
         List<Display> displayList = d.getAll();
         List<CPU> cpuList = cpu.getAll();
         

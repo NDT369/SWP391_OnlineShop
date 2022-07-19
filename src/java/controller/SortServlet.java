@@ -72,46 +72,27 @@ public class SortServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         HttpSession session = request.getSession();
-
         ProductDAO p = new ProductDAO();
-        CategoryDAO cate = new CategoryDAO();
-        BrandDAO b = new BrandDAO();
-        DisplayDAO d = new DisplayDAO();
-        CPUDAO cpu = new CPUDAO();
-
-        List<Product> productList = (List<Product>) session.getAttribute("listProduct");
         String sort = request.getParameter("sort");
-        productList = p.sortPro(sort, productList);
-
-        List<Category> categoryList = cate.getAll();
-        List<Brand> brandList = b.getAll();
-        List<Display> displayList = d.getAll();
-        List<CPU> cpuList = cpu.getAll();
-
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
         }
         int index = Integer.parseInt(index_raw);
 
-        int total = productList.size();
+        int total = p.getTotalProduct();
         int page = total / 9;
         if (total % 9 != 0) {
             page += 1;
         }
-        int start = (index - 1) * 9;
-        int end = Math.min(index * 9, total);
+        if (sort.equals("0")) {
+            response.sendRedirect("product");
+        }
+        List<Product> productList = p.ListProductSortPaging(index, sort);
 
-        // sider
-        request.setAttribute("cpuList", cpuList);
-        request.setAttribute("displayList", displayList);
-        request.setAttribute("brandList", brandList);
-        request.setAttribute("categoryList", categoryList);
-        request.setAttribute("index", index);
-        //end sider
-
+//        int start = (index - 1) * 9;
+//        int end = Math.min(index * 9, total);
         // cart
         List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
@@ -130,7 +111,8 @@ public class SortServlet extends HttpServlet {
         request.setAttribute("check", "sort");
         request.setAttribute("sort", sort);
         request.setAttribute("page", page);
-        session.setAttribute("productList", productList.subList(start, end));
+        request.setAttribute("index", index);
+        session.setAttribute("productList", productList);
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 

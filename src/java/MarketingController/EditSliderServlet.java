@@ -133,6 +133,12 @@ public class EditSliderServlet extends HttpServlet {
             image = s.getSliderByID(id).getImgURL();
         }
         if (title.trim().equals("") || content.trim().equals("")) {
+            if(title.trim().equals("")){
+                request.setAttribute("titleMess", "Title can not empty!");
+            }
+            if(content.trim().equals("")){
+                request.setAttribute("contentMess", "Content can not empty!");
+            }
             Slider slider = s.getSliderByID(id);
             request.setAttribute("slider", slider);
             request.getRequestDispatcher("Marketing/sliderdetail.jsp").forward(request, response);

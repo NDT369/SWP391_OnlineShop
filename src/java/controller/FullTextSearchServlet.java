@@ -73,34 +73,11 @@ public class FullTextSearchServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         ProductDAO p = new ProductDAO();
-        CategoryDAO cate = new CategoryDAO();
-        BrandDAO b = new BrandDAO();
-        DisplayDAO d = new DisplayDAO();
-        CPUDAO cpu = new CPUDAO();
-
-        List<Category> categoryList = cate.getAll();
-        List<Brand> brandList = b.getAll();
-        List<Display> displayList = d.getAll();
-        List<CPU> cpuList = cpu.getAll();
-
-        session.setAttribute("cpuList", cpuList);
-        session.setAttribute("displayList", displayList);
-        session.setAttribute("brandList", brandList);
-        session.setAttribute("categoryList", categoryList);
 
         String search = request.getParameter("search");
         String index_raw = request.getParameter("index");
 
-        List<Product> productList = null;
-        if(search != null && search!= ""){
-           productList = p.fulltextSearch(search);
-        }else{
-           response.sendRedirect("home");
-        }
-         
-        session.setAttribute("listProduct", productList);
-        
-        int total = productList.size();
+        int total = p.getTotalProductBySearch(search);
         int page = total / 9;
         if (total % 9 != 0) {
             page += 1;
@@ -109,8 +86,15 @@ public class FullTextSearchServlet extends HttpServlet {
             index_raw = "1";
         }
         int index = Integer.parseInt(index_raw);
-        int start = (index-1)*9;
-        int end = Math.min((index*9), total);
+        
+        if(search == null && search == ""){
+            response.sendRedirect("home");
+        }
+        List<Product> productList = p.ListProductSearchPaging(index, search);
+         
+        session.setAttribute("listProduct", productList);
+//        int start = (index-1)*9;
+//        int end = Math.min((index*9), total);
         
         List<Product> listProduct = p.getAll();      
         Cookie[] arr = request.getCookies();
@@ -125,7 +109,7 @@ public class FullTextSearchServlet extends HttpServlet {
         Cart cart = new Cart(txt, listProduct);
         request.setAttribute("cart", cart);
 
-        session.setAttribute("productList", productList.subList(start, end));
+        session.setAttribute("productList", productList);
         request.setAttribute("check", "search");
         request.setAttribute("index", index);
         request.setAttribute("page", page);

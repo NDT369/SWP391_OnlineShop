@@ -56,6 +56,15 @@
                 background: #e7ab3c;
             }
         </style>
+
+        <script>
+            function doChange() {
+                if (confirm("Are you sure to change status of this Customer?")) {
+                    document.getElementById("frm").submit();
+                }
+            }
+        </script>
+
     <body>
 
         <header class="header-section">
@@ -218,13 +227,13 @@
                                 <td>${l.phone}</td>
                                 <td>${l.address}</td>
                                 <td>
-                                    <form action="editcustomer" method="post" >
+                                    <form action="editcustomer" method="post" id="frm">
                                         <input value="${l.accountID}" name="id" hidden>
                                         <c:if test="${l.status == true}">
-                                            <input type="submit" name="status" value="Active" style="background-color: #e7ab3c; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="Active" style="background-color: #e7ab3c; color: white; border-color: lightgray">
                                         </c:if>
                                         <c:if test="${l.status == false}">
-                                            <input type="submit" name="status" value="InActive" style="background-color: red; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="InActive" style="background-color: red; color: white; border-color: lightgray">
                                         </c:if>
                                     </form>
                                 </td>

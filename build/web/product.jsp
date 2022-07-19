@@ -160,9 +160,11 @@
                                     <div class="select-option">
                                         <form action="sort" id="sort">
                                             <select class="sorting" name="sort" onchange="document.getElementById('sort').submit()">
-                                                <option value="">Default Sorting</option>
+                                                <option value="0">Default Sorting</option>
                                                 <option value="1" <c:if test="${requestScope.sort.equals('1')}">selected</c:if>  >Sort ascending by price</option>
                                                 <option value="2" <c:if test="${requestScope.sort.equals('2')}">selected</c:if> >Sort descending by price</option>
+                                                <option value="3" <c:if test="${requestScope.sort.equals('3')}">selected</c:if> >Sort ascending by name</option>
+                                                <option value="4" <c:if test="${requestScope.sort.equals('4')}">selected</c:if> >Sort descending by name</option>
                                                 </select>
                                             </form>
                                         </div>

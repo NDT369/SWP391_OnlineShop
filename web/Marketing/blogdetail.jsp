@@ -179,6 +179,7 @@
                         <div class="form-group">
                             <label>Title</label>
                             <input style="font-size: 15px" type="text" class="form-control" required name="title" value="${b.title}">
+                            <p style="color: red">${requestScope.titleMess}</p>
                         </div>
                         <div class="form-group">
                             <label>Image</label>
@@ -189,10 +190,12 @@
                         <div class="form-group">
                             <label>Author</label>
                             <input style="font-size: 15px" class="form-control" required name="author" value="${b.authorName}" >
+                            <p style="color: red">${requestScope.authorMess}</p>
                         </div>
                         <div class="form-group">
                             <label>Content</label>
                             <textarea style="font-size: 15px" class="form-control" name="content" required >${b.content}</textarea>
+                            <p style="color: red">${requestScope.contentMess}</p>
                         </div>
                         <div class="form-group">
                             <label>Create Date</label>

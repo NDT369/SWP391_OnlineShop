@@ -287,8 +287,8 @@ public class ProductDAO extends DBContext {
         }
         return total;
     }
-    
-       public int getTotalProductByBrand(String id) {
+
+    public int getTotalProductByBrand(String id) {
         int total = 0;
         String sql = "select count(*) from Product where Brand_ID = " + id;
         try {
@@ -301,7 +301,7 @@ public class ProductDAO extends DBContext {
         }
         return total;
     }
-       
+
     public int getTotalProductByStatus(String status) {
         int total = 0;
         String sql = "select count(*) from Product where Product_Status = " + status;
@@ -315,8 +315,8 @@ public class ProductDAO extends DBContext {
         }
         return total;
     }
-    
-        public int getTotalProductBySearch(String search) {
+
+    public int getTotalProductBySearch(String search) {
         int total = 0;
         String sql = "select count(*) from Product where contains(Product_Name, '\"*" + search + "*\"') or\n"
                 + "contains(Product_Description, '\"*" + search + "*\"')";
@@ -331,7 +331,41 @@ public class ProductDAO extends DBContext {
         return total;
     }
 
+    public int getTotalProductByFillter(String category, String brand, String display, String cpu) {
+        int total = 0;
+        String sql = "select count(*) from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID\n"
+                + "where 1=1";
 
+        if (category != null && category != "") {
+            sql += " and cat.Category_Name = '" + category + "'";
+        }
+        if (brand != null && brand != "") {
+            sql += " and b.Brand_Name = '" + brand + "'";
+        }
+        if (display != null && display != "") {
+            sql += " and d.Display_Name = '" + display + "'";
+        }
+        if (cpu != null && cpu != "") {
+            sql += " and cpu.CPU_Name = '" + cpu + "'";
+        }
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return total;
+    }
 
     public List<Product> listProPaging(int index) {
         List<Product> list = new ArrayList<>();
@@ -403,8 +437,8 @@ public class ProductDAO extends DBContext {
         }
         return list;
     }
-    
-    public List<Product> listProOrder(int index,String sort) {
+
+    public List<Product> listProOrder(int index, String sort) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"
@@ -417,16 +451,16 @@ public class ProductDAO extends DBContext {
                 + "join Card car on p.Card_ID = car.Card_ID\n"
                 + "where 1 = 1";
 //                + "order by Product_ID offset ? row fetch next 5 rows only";
-        if(sort.equals("1")){
+        if (sort.equals("1")) {
             sql += "order by p.Product_Price offset ? row fetch next 5 rows only";
         }
-        if(sort.equals("2")){
+        if (sort.equals("2")) {
             sql += "order by p.Product_Price DESC offset ? row fetch next 5 rows only";
         }
-        if(sort.equals("3")){
+        if (sort.equals("3")) {
             sql += "order by p.Product_Name offset ? row fetch next 5 rows only";
         }
-        if(sort.equals("4")){
+        if (sort.equals("4")) {
             sql += "order by p.Product_Name DESC offset ? row fetch next 5 rows only";
         }
         try {
@@ -451,7 +485,55 @@ public class ProductDAO extends DBContext {
         }
         return list;
     }
-    
+
+    public List<Product> ListProductSortPaging(int index, String sort) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID\n"
+                + "where 1 = 1";
+//                + "order by Product_ID offset ? row fetch next 5 rows only";
+        if (sort.equals("1")) {
+            sql += "order by p.Product_Price offset ? row fetch next 9 rows only";
+        }
+        if (sort.equals("2")) {
+            sql += "order by p.Product_Price DESC offset ? row fetch next 9 rows only";
+        }
+        if (sort.equals("3")) {
+            sql += "order by p.Product_Name offset ? row fetch next 9 rows only";
+        }
+        if (sort.equals("4")) {
+            sql += "order by p.Product_Name DESC offset ? row fetch next 9 rows only";
+        }
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 9);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
+                        brand, category, os, ram, cpu, display, capaciry, card,
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public List<Product> ListProductByBrandIdOrStatus(int index, String brandid, String status) {
         String sql = "select * from Product p \n"
                 + "join Brand b on p.Brand_ID = b.Brand_ID\n"
@@ -511,6 +593,91 @@ public class ProductDAO extends DBContext {
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, (index - 1) * 5);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
+                        brand, category, os, ram, cpu, display, capaciry, card,
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Product> ListProductSearchPaging(int index, String search) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID\n"
+                + "where contains(p.Product_Name, '\"*" + search + "*\"') or\n"
+                + "contains(p.Product_Description, '\"*" + search + "*\"')"
+                + "order by Product_ID offset ? row fetch next 9 rows only";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 9);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
+                Category category = new Category(rs.getInt(23), rs.getString(24), rs.getBoolean(25));
+                OperatingSystem os = new OperatingSystem(rs.getInt(26), rs.getString(27), rs.getBoolean(28));
+                RAM ram = new RAM(rs.getInt(29), rs.getString(30), rs.getBoolean(31));
+                CPU cpu = new CPU(rs.getInt(32), rs.getString(33), rs.getBoolean(34));
+                Display display = new Display(rs.getInt(35), rs.getString(36), rs.getBoolean(37));
+                Capacity capaciry = new Capacity(rs.getInt(38), rs.getString(39), rs.getBoolean(40));
+                Card card = new Card(rs.getInt(41), rs.getString(42), rs.getBoolean(43));
+                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3),
+                        rs.getFloat(4), rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8),
+                        brand, category, os, ram, cpu, display, capaciry, card,
+                        rs.getString(17), rs.getBoolean(18), rs.getString(19)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Product> ListProductFillterPaging(int index, String categoryy, String brandd, String displayy, String cpuu) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product p \n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
+                + "join Category cat on p.Category_ID = cat.Category_ID\n"
+                + "join OperatingSystem o on p.OS_ID = o.OS_ID\n"
+                + "join RAM r on p.RAM_ID = r.RAM_ID\n"
+                + "join CPU cpu on p.CPU_ID = cpu.CPU_ID\n"
+                + "join Display d on p.Display_ID = d.Display_ID\n"
+                + "join Capacity cap on p.Capacity_ID = cap.Capacity_ID\n"
+                + "join Card car on p.Card_ID = car.Card_ID\n"
+                + "where 1=1";
+        if (categoryy != null && categoryy != "") {
+            sql += " and cat.Category_Name = '" + categoryy + "'";
+        }
+        if (brandd != null && brandd != "") {
+            sql += " and b.Brand_Name = '" + brandd + "'";
+        }
+        if (displayy != null && displayy != "") {
+            sql += " and d.Display_Name = '" + displayy + "'";
+        }
+        if (cpuu != null && cpuu != "") {
+            sql += " and cpu.CPU_Name = '" + cpuu + "'";
+        }
+        sql += " order by p.Product_ID offset ? row fetch next 9 rows only";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, (index - 1) * 9);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
@@ -701,10 +868,10 @@ public class ProductDAO extends DBContext {
                 + "join Card car on p.Card_ID = car.Card_ID\n"
                 + "where contains(p.Product_Name, '\"*" + search + "*\"') or\n"
                 + "contains(p.Product_Description, '\"*" + search + "*\"')";
-               
+
         try {
             ps = connection.prepareStatement(sql);
-    
+
             rs = ps.executeQuery();
             while (rs.next()) {
                 Brand brand = new Brand(rs.getInt(20), rs.getString(21), rs.getBoolean(22));
@@ -919,7 +1086,7 @@ public class ProductDAO extends DBContext {
             ps.setInt(13, p.getDisplay().getId());
             ps.setInt(14, p.getCapacity().getId());
             ps.setInt(15, p.getCard().getId());
-            ps.setString(16,date);
+            ps.setString(16, date);
             ps.executeUpdate();
         } catch (SQLException ex) {
         }

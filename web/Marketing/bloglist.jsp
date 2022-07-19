@@ -56,6 +56,14 @@
                 background: #e7ab3c;
             }
         </style>
+        
+        <script>
+            function doChange() {
+                if (confirm("Are you sure to change status of this Post?")) {
+                    document.getElementById("frm").submit();
+                }
+            }
+        </script>
 
     </head>
     <body>
@@ -217,13 +225,13 @@
                                 <td>${l.content.substring(0,80)}...</td>
                                 <td>${l.authorName}</td>
                                 <td>
-                                    <form action="editpost" method="get" >
+                                    <form action="editpost" method="get" id="frm">
                                         <input value="${l.id}" name="id" hidden>
                                         <c:if test="${l.status == true}">
-                                            <input type="submit" name="status" value="On" style="background-color: #e7ab3c; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="On" style="background-color: #e7ab3c; color: white; border-color: lightgray">
                                         </c:if>
                                         <c:if test="${l.status == false}">
-                                            <input type="submit" name="status" value="Off" style="background-color: red; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="Off" style="background-color: red; color: white; border-color: lightgray">
                                         </c:if>
                                     </form>
                                 </td>

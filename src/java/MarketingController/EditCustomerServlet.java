@@ -9,6 +9,7 @@ import Validate.Validate;
 import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -72,13 +73,40 @@ public class EditCustomerServlet extends HttpServlet {
         int id = Integer.parseInt(id_raw);
         boolean gender = Boolean.parseBoolean(gender_raw);
 
-        Account account = null;
-        account = ad.checkEmailExist(email);
-
+        boolean checkmail = true;
+        Account account = ad.getAcountByID(id);
+        List<Account> list = ad.getAll();
+        for (Account a : list) {
+            if(a.getAccountID() == id){
+                list.remove(a);
+                break;
+            }
+        }
+        for (Account a : list) {
+            if (a.getEmail().equals(email)) {
+                checkmail = false;
+            }
+        }
+        System.out.println(checkmail);
         if (v.checkPhone(phone) == false || v.validateEmail(email) == false
-                || account != null
+                || checkmail == false
                 || name.trim().equals("") || email.trim().equals("")
                 || phone.trim().equals("") || address.trim().equals("")) {
+            if (checkmail == false) {
+                request.setAttribute("emailMess", "Email is already exist!");
+            }
+            if (name.trim().equals("")) {
+                request.setAttribute("nameMess", "Name can not empty!");
+            }
+            if (email.trim().equals("")) {
+                request.setAttribute("emailMess", "Email can not empty!");
+            }
+            if (phone.trim().equals("")) {
+                request.setAttribute("phoneMess", "Phone can not empty!");
+            }
+            if (address.trim().equals("")) {
+                request.setAttribute("addressMess", "Address can not empty!");
+            }
             Account a = ad.getAcountByID(id);
             request.setAttribute("Customer", a);
             request.getRequestDispatcher("Marketing/customerdetail.jsp").forward(request, response);

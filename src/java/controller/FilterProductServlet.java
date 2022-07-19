@@ -84,42 +84,24 @@ public class FilterProductServlet extends HttpServlet {
         request.setAttribute("cpuu", cpuu);
 
         ProductDAO p = new ProductDAO();
-        CategoryDAO cate = new CategoryDAO();
-        BrandDAO b = new BrandDAO();
-        DisplayDAO d = new DisplayDAO();
-        CPUDAO cpu = new CPUDAO();
-
-        List<Category> categoryList = cate.getAll();
-        List<Brand> brandList = b.getAll();
-        List<Display> displayList = d.getAll();
-        List<CPU> cpuList = cpu.getAll();
-
-        List<Product> productList = p.filter(category,brand,display,cpuu);
-
+        
         String index_raw = request.getParameter("index");
         if (index_raw == null) {
             index_raw = "1";
         }
         int index = Integer.parseInt(index_raw);
 
-        int total = productList.size();
+        int total = p.getTotalProductByFillter(category, brand, display, cpuu);
         int page = total / 9;
         if (total % 9 != 0) {
             page += 1;
         }
-        int start = (index - 1) * 9;
-        int end = Math.min(index * 9, total);
-        
-        
 
-        // sider
-        request.setAttribute("cpuList", cpuList);
-        request.setAttribute("displayList", displayList);
-        request.setAttribute("brandList", brandList);
-        request.setAttribute("categoryList", categoryList);
-        request.setAttribute("index", index);
-        //end sider
+        List<Product> productList = p.ListProductFillterPaging(index, category, brand, display, cpuu);
 
+//        int start = (index - 1) * 9;
+//        int end = Math.min(index * 9, total);
+        
         // cart
         List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
@@ -137,7 +119,8 @@ public class FilterProductServlet extends HttpServlet {
 
         request.setAttribute("check", "filter");
         request.setAttribute("page", page);
-        session.setAttribute("productList", productList.subList(start, end));
+        request.setAttribute("index", index);
+        session.setAttribute("productList", productList);
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 

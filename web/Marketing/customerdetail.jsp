@@ -170,6 +170,7 @@
                         <div class="form-group">
                             <label>Name</label>
                             <input style="font-size: 15px" id="name" type="text" class="form-control" required name="name" value="${c.name}">
+                            <p style="color: red">${requestScope.nameMess}</p>
                         </div>
                         <div class="form-group">
                             <label>Gender</label><br>
@@ -181,14 +182,17 @@
                             <div class="form-group">
                                 <label>Email</label>
                                 <input style="font-size: 15px" id="email" type="email" class="form-control" required name="email" value="${c.email}" >
+                            <p style="color: red">${requestScope.emailMess}</p>
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
                             <input style="font-size: 15px" id="phone" type="tel" class="form-control" required name="phone" value="${c.phone}" >
+                            <p style="color: red">${requestScope.phoneMess}</p>
                         </div>
                         <div class="form-group">
                             <label>Address</label>
                             <input style="font-size: 15px" id="address" type="text" class="form-control" name="address" required value="${c.address}">
+                            <p style="color: red">${requestScope.addressMess}</p>
                         </div>					
                         <div class="form-group">
                             <label>Status</label>
@@ -208,12 +212,12 @@
         </div>
 
         <script>
-            function check(){
+            function check() {
                 var name = document.getElementById('name');
                 var email = document.getElementById('email');
                 var phone = document.getElementById('phone');
                 var address = document.getElementById('address');
-                if(name.trim() === ""){
+                if (name.trim() === "") {
                     alert("Name can not null");
                     return;
                 }

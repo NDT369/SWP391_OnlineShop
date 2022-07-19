@@ -46,6 +46,15 @@
                 font-size: 15px;
             }
         </style>
+        
+        <script>
+            function doChange() {
+                if (confirm("Are you sure to change status of this User?")) {
+                    document.getElementById("frm").submit();
+                }
+            }
+        </script>
+        
     </head>
 
     <body>
@@ -228,13 +237,13 @@
                                     <c:if test="${a.getRole().getRoleID()== 4}">Marketing</c:if>
                                     </td>
                                     <td>
-                                        <form action="userupdate" method="post" >
+                                        <form action="userupdate" method="post" id="frm" >
                                             <input value="${a.getAccountID()}" name="id" hidden>
                                         <c:if test="${a.isStatus()== true}">
-                                            <input type="submit" name="status" value="Active" style="background-color: #e7ab3c; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="Active" style="background-color: #e7ab3c; color: white; border-color: lightgray">
                                         </c:if>
                                         <c:if test="${a.isStatus()== false}">
-                                            <input type="submit" name="status" value="Deactive" style="background-color: red; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="Deactive" style="background-color: red; color: white; border-color: lightgray">
                                         </c:if>
                                     </form>
                                 </td>

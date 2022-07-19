@@ -94,10 +94,9 @@ public class ProductServlet extends HttpServlet {
         if (total % 9 != 0) {
             page += 1;
         }
-        int start = (index-1)*9;
-        int end = Math.min(index*9, total);
-
         
+//        int start = (index-1)*9;
+//        int end = Math.min(index*9, total);
 
         List<Product> list = p.listProPaging(index);
         List<Product> listProduct = p.getAll();
@@ -117,7 +116,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("check", "list");
         request.setAttribute("index", index);
         request.setAttribute("page", page);
-        session.setAttribute("productList", productList.subList(start, end));
+        session.setAttribute("productList", list);
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 

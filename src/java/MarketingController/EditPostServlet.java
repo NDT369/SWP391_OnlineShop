@@ -143,6 +143,15 @@ public class EditPostServlet extends HttpServlet {
 
         if (author.trim().equals("") || title.trim().equals("")
                 || content.trim().equals("")) {
+            if(author.trim().equals("")){
+                request.setAttribute("authorMess", "Author can not empty!");
+            }
+            if(title.trim().equals("")){
+                request.setAttribute("titleMess", "Title can not empty!");
+            }
+            if(content.trim().equals("")){
+                request.setAttribute("contentMess", "Content can not empty!");
+            }
             
             Blog blog = b.getBlogByID(id_raw);
             request.setAttribute("blog", blog);

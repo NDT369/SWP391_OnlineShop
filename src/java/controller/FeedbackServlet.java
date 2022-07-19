@@ -78,6 +78,7 @@ public class FeedbackServlet extends HttpServlet {
             fd.addFeedback(f);
         }
         response.sendRedirect("productdetail?id=" + productID);
+
     }
 
     /**

@@ -173,6 +173,7 @@
                         <div class="form-group">
                             <label>Title</label>
                             <input type="text" class="form-control" required name="title" value="${s.title}">
+                            <p style="color: red">${requestScope.titleMess}</p>
                         </div>
                         <div class="form-group">
                             <label>Image</label>
@@ -182,6 +183,7 @@
                         <div class="form-group">
                             <label>Content</label>
                             <textarea class="form-control" name="content" required >${s.content}</textarea>
+                            <p style="color: red">${requestScope.contentMess}</p>
                         </div>
                     </div>
                     <div class="modal-footer">

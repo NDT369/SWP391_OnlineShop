@@ -109,9 +109,20 @@ public class UserProfileServlet extends HttpServlet {
         } else {
             gender_role = false;
         }
+        AccountDAO a = new AccountDAO();
         if (v.checkPhone(phone) == false || v.validateEmail(email) == false
                 || name.trim().equals("") || email.trim().equals("")
                 || phone.trim().equals("") || address.trim().equals("")) {
+            if (name.trim().equals("")) {
+                request.setAttribute("nameMess", "Name can not empty!");
+            }
+            if (phone.trim().equals("")) {
+                request.setAttribute("phoneMess", "Phone can not empty!");
+            }
+            if (address.trim().equals("")) {
+                request.setAttribute("addressMess", "Address can not empty!");
+            }
+
             ProductDAO p = new ProductDAO();
             List<Product> listProduct = p.getAll();
             Cookie[] arr = request.getCookies();
@@ -127,7 +138,6 @@ public class UserProfileServlet extends HttpServlet {
             request.setAttribute("cart", cart);
             request.getRequestDispatcher("userprofile.jsp").forward(request, response);
         } else {
-            AccountDAO a = new AccountDAO();
             a.updateInfor(id, name, gender_role, email, phone, address);
 
             HttpSession session = request.getSession();

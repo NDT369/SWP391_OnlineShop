@@ -85,6 +85,7 @@
                                 <div class="group-input">
                                     <label for="con-pass">Full Name</label>
                                     <input type="text" name="fullname" id="con-pass" value="${a.name}" required>
+                                    <p style="color: red">${requestScope.nameMess}</p>
                                 </div>
                                 <div id="select" style="font-size: 20px">
                                     <label for="con-pass">Gender</label>
@@ -104,10 +105,12 @@
                                 <div class="group-input">
                                     <label for="con-pass">Phone</label>
                                     <input type="text" name="phone" id="con-pass" value="${a.phone}" required>
+                                    <p style="color: red">${requestScope.phoneMess}</p>
                                 </div>
                                 <div class="group-input">
                                     <label for="con-pass">Address</label>
                                     <input type="text" name="address"id="con-pass" value="${a.address}" required>
+                                    <p style="color: red">${requestScope.addressMess}</p>
                                 </div>
                                 <button type="submit" class="site-btn register-btn">Save Change</button>
                             </form>
