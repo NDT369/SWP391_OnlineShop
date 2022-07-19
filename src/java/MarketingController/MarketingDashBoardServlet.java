@@ -5,12 +5,17 @@
  */
 package MarketingController;
 
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
+import model.Product;
 
 /**
  *
@@ -56,6 +61,24 @@ public class MarketingDashBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProductDAO pd = new ProductDAO();
+        List<Product> listPro =  pd.getProductBuyMost();
+        List<Account> listAcc = pd.getAccountBuyMost();
+         request.setAttribute("listproduct", listPro);
+         request.setAttribute("listaccount", listAcc);
+         List<String> listDay = new ArrayList<>();
+         List<String> listDayTemp = pd.get7DayLast();
+         for (int i = listDayTemp.size()-1; i  >= 0; i--) {
+            listDay.add(listDayTemp.get(i));
+        }
+         
+         List<Integer> list = new ArrayList<>();
+         List<Integer> listQuantityPro = pd.getTotalProductEachDayLast();
+        for (int i = listQuantityPro.size()-1; i  >= 0; i--) {
+            list.add(listQuantityPro.get(i));
+        }
+         request.setAttribute("listday", listDay);
+         request.setAttribute("listquantity", list);
         request.getRequestDispatcher("Marketing/marketingdashboard.jsp").forward(request, response);
     }
 
