@@ -145,6 +145,29 @@ public class OrderDAO extends DBContext {
 
         return list;
     }
+    
+    public List<Order> getOrderByOrderDate(String from , String to) {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from [Order] where 1=1";
+        if (from != "" && from != null) {
+            sql += " and Order_Date >= '" + from + "'";
+        }
+        if (to != "" && to != null) {
+            sql += " and Order_Date >= '" + to + "'";
+        }
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Order(rs.getInt(1), rs.getInt(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getDouble(8),
+                        rs.getString(9), rs.getBoolean(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public List<Order> getOrderByOrderDate(String year, String month, String from, String to) {
         List<Order> list = new ArrayList<>();
