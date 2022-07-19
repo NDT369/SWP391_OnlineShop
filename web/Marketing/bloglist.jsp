@@ -228,10 +228,10 @@
                                     <form action="editpost" method="get" id="frm">
                                         <input value="${l.id}" name="id" hidden>
                                         <c:if test="${l.status == true}">
-                                            <input onclick="doChange()" type="submit" name="status" value="On" style="background-color: #e7ab3c; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="On" style="background-color: #e7ab3c; color: white; border-color: lightgray" readonly>
                                         </c:if>
                                         <c:if test="${l.status == false}">
-                                            <input onclick="doChange()" type="submit" name="status" value="Off" style="background-color: red; color: white; border-color: lightgray">
+                                            <input onclick="doChange()" type="submit" name="status" value="Off" style="background-color: red; color: white; border-color: lightgray" readonly>
                                         </c:if>
                                     </form>
                                 </td>
