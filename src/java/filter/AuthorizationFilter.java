@@ -112,8 +112,10 @@ public class AuthorizationFilter implements Filter {
         String url = httpRequest.getServletPath();
         HttpSession session = httpRequest.getSession();
         Account a = (Account) session.getAttribute("account");
-
-        if (url.equals("/admindashboard") || url.equals("/userdetail") || url.equals("/userlist")) {
+//Admin
+        if (url.contains("admindashboard") || url.contains("userdetail") || url.contains("userlist")
+            || url.equals("/search")||url.contains("fillteruser")
+            || url.contains("sortuser")) {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
@@ -130,8 +132,9 @@ public class AuthorizationFilter implements Filter {
                 }
             }
         }
-
-        if (url.equals("/saledashboard") || url.contains("ordermanage")) {
+//Sale
+        if (url.contains("saledashboard") || url.contains("ordermanage")||url.contains("ordermanagedetail")||
+            url.contains("searchorder")||url.contains("filterorder")||url.contains("sortorder")) {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
@@ -148,12 +151,14 @@ public class AuthorizationFilter implements Filter {
                 }
             }
         }
-
+        
+// Marketing
         if (url.contains("marketingdashboard")||url.contains("productmanage")||url.contains("productdetailmanage")||
             url.contains("sortproduct")||url.contains("filterproduct")||url.contains("productsearch")||
             url.contains("postmanage")||url.contains("searchpost")||url.contains("filterpost") || url.contains("sortpost")||url.contains("postdetail")|| 
-            url.contains("customermanage")||url.contains("customerdetail")||url.contains("searchcustomer")||url.contains("filtercustomer")||url.contains("sortcustomer")||
-            url.contains("slidermanage")||url.contains("feedbacklist")) {
+            url.contains("customermanage")||url.contains("customerdetail")||url.contains("searchcustomer")||url.contains("filtercustomer")||url.contains("sortcustomer")||        
+            url.contains("slidermanage")||url.contains("searchslider")|| url.contains("filterslider")||url.contains("sliderdetail")||
+            url.contains("feedbacklist")||url.contains("sortfb")||url.contains("filterstatus")||url.contains("searchfb")||url.contains("feedbackdetail")){
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
@@ -170,6 +175,7 @@ public class AuthorizationFilter implements Filter {
                 }
             }
         }
+        
         if (url.contains("changepass") || url.contains("userprofile")
                 || url.contains("myorder") || url.contains("orderdetail")
                 || url.contains("cartcontact")||url.contains("shoppingcart")
