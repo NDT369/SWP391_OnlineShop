@@ -149,8 +149,11 @@ public class AuthorizationFilter implements Filter {
             }
         }
 
-        if (url.equals("/marketingdashboard")||url.contains("productmanage")||url.contains("postmanage")
-                || url.contains("customermanage")||url.contains("slidermanage")||url.contains("feedbacklist")) {
+        if (url.contains("marketingdashboard")||url.contains("productmanage")||url.contains("productdetailmanage")||
+            url.contains("sortproduct")||url.contains("filterproduct")||url.contains("productsearch")||
+            url.contains("postmanage")||url.contains("searchpost")||url.contains("filterpost") || url.contains("sortpost")||url.contains("postdetail")|| 
+            url.contains("customermanage")||url.contains("customerdetail")||url.contains("searchcustomer")||url.contains("filtercustomer")||url.contains("sortcustomer")||
+            url.contains("slidermanage")||url.contains("feedbacklist")) {
             if (a == null) {
                 httpResponse.sendRedirect("login");
             } else {
