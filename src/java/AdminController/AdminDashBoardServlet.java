@@ -5,12 +5,19 @@
  */
 package AdminController;
 
+import dal.AccountDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
+import model.Order;
 
 /**
  *
@@ -35,7 +42,7 @@ public class AdminDashBoardServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminDashBoardServlet</title>");            
+            out.println("<title>Servlet AdminDashBoardServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AdminDashBoardServlet at " + request.getContextPath() + "</h1>");
@@ -56,7 +63,23 @@ public class AdminDashBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Admin/admindashboard.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+
+        OrderDAO orderDAO = new OrderDAO();
+        int totalOrder = orderDAO.getTotalOrderByOrderDate("", "","", "");
+        double totalEarning = orderDAO.getTotalEarningByOrderDate( "", "","", "");
+        
+        AccountDAO accountDAO = new AccountDAO();
+        List<Account> listAccount = accountDAO.getAllCustomer();
+
+        request.setAttribute("listAccount", listAccount);
+        request.setAttribute("accountName", account.getName());
+        request.setAttribute("totalOrder", totalOrder);
+        request.setAttribute("totalEarning", totalEarning);
+        request.getRequestDispatcher("Admin/Admin_Dashboard.jsp").forward(request, response);
     }
 
     /**
@@ -70,7 +93,39 @@ public class AdminDashBoardServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+
+//        String accountID = request.getParameter("accountID");
+        String fromDate = request.getParameter("fromDate");
+        String toDate = request.getParameter("toDate");
+        String year = request.getParameter("year");
+        String month = request.getParameter("month");
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        OrderDAO orderDAO = new OrderDAO();
+        int totalOrder = 0;
+        double totalEarning = 0;
+        totalOrder = orderDAO.getTotalOrderByOrderDate(year, month,from ,to);
+        totalEarning = orderDAO.getTotalEarningByOrderDate(year, month,from ,to);
+
+        List<Order> listOrder = orderDAO.getOrderByOrderDate(year, month,from ,to);
+        AccountDAO accountDAO = new AccountDAO();
+        List<Account> listAccount = accountDAO.getAllCustomer();
+        List<Double> listAmount = orderDAO.getListAmountByDate(year, month,from ,to);
+        List<String> listDay = orderDAO.getListDateByLatest(year, month,from ,to);
+        
+        
+
+        request.setAttribute("fromDate", fromDate);
+        request.setAttribute("toDate", toDate);
+        request.setAttribute("listAccount", listAccount);
+        request.setAttribute("listAmount", listAmount);
+        request.setAttribute("listDay", listDay);
+        request.setAttribute("accountName", account.getName());
+        request.setAttribute("totalOrder", totalOrder);
+        request.setAttribute("totalEarning", totalEarning);
+        request.getRequestDispatcher("Admin/Admin_Dashboard.jsp").forward(request, response);
     }
 
     /**
