@@ -145,15 +145,15 @@ public class OrderDAO extends DBContext {
 
         return list;
     }
-    
-    public List<Order> getOrderByOrderDate(String from , String to) {
+
+    public List<Order> getOrderByOrderDate(String from, String to) {
         List<Order> list = new ArrayList<>();
         String sql = "select * from [Order] where 1=1";
         if (from != "" && from != null) {
-            sql += " and Order_Date >= '" + from + "'";
+            sql += "and Order_Date > '" + from + "'";
         }
         if (to != "" && to != null) {
-            sql += " and Order_Date >= '" + to + "'";
+            sql += "and Order_Date < '" + to + "'";
         }
         try {
             ps = connection.prepareStatement(sql);
@@ -198,20 +198,6 @@ public class OrderDAO extends DBContext {
             ps.setInt(2, month);
             ps.setInt(3, startDay);
             ps.setInt(4, endDay);
-    public List<Order> getOrderByOrderDate(String year, String month, String from, String to) {
-        List<Order> list = new ArrayList<>();
-        String sql = "select * from [Order] where 1=1";
-        if (year != "" && year != null) {
-            sql += " and YEAR(Order_Date) = " + year + "";
-        }
-        if (month != "" && month != null) {
-            sql += " and MONTH(Order_Date) =" + month + "";
-        }
-        if (from != "" && from != null && to != "" && to != null) {
-            sql += " and DAY(Order_Date) between " + from + " and " + to + "";
-        }
-        try {
-            ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Order(rs.getInt(1), rs.getInt(2),
@@ -268,9 +254,15 @@ public class OrderDAO extends DBContext {
         } catch (Exception e) {
         }
         return list;
-    
+    }
 
-    public int getTotalOrderByOrderDate(String year, String month, String from, String to) {
+    public static void main(String[] args) {
+        OrderDAO o = new OrderDAO();
+        System.out.println(o.sortListOrderAmount(2022, 7, 1, 30).get(0));;
+
+    }
+    
+     public int getTotalOrderByOrderDate(String year, String month, String from, String to) {
         int total = 0;
         List<Order> list = new ArrayList<>();
         String sql = "select count(*) from [Order] where 1=1 ";
@@ -297,8 +289,8 @@ public class OrderDAO extends DBContext {
         }
         return total;
     }
-
-    public double getTotalEarningByOrderDate(String year, String month, String from, String to) {
+     
+     public double getTotalEarningByOrderDate(String year, String month, String from, String to) {
         double total = 0;
         List<Order> list = new ArrayList<>();
         String sql = "select  SUM(TotalMoney) from [Order] where 1=1 ";
@@ -325,13 +317,34 @@ public class OrderDAO extends DBContext {
         }
         return total;
     }
-
-    public static void main(String[] args) {
-        OrderDAO o = new OrderDAO();
-        System.out.println(o.sortListOrderAmount(2022, 7, 1, 30).get(0));;
-
+     
+     public List<Order> getOrderByOrderDate(String year, String month, String from, String to) {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from [Order] where 1=1";
+        if (year != "" && year != null) {
+            sql += " and YEAR(Order_Date) = " + year + "";
+        }
+        if (month != "" && month != null) {
+            sql += " and MONTH(Order_Date) =" + month + "";
+        }
+        if (from != "" && from != null && to != "" && to != null) {
+            sql += " and DAY(Order_Date) between " + from + " and " + to + "";
+        }
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Order(rs.getInt(1), rs.getInt(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getDouble(8),
+                        rs.getString(9), rs.getBoolean(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
-    public List<Double> getListAmountByDate(String year, String month, String from, String to) {
+     
+     public List<Double> getListAmountByDate(String year, String month, String from, String to) {
         List<Double> list = new ArrayList<>();
 //        String sql = "select top 5 sum(TotalMoney) from [Order] where Order_Status=1 ";
 //        if (year != "" && year != null) {
@@ -363,9 +376,8 @@ public class OrderDAO extends DBContext {
         }
         return list;
     }
-    
-
-    public List<String> getListDateByLatest(String year, String month, String from, String to) {
+     
+     public List<String> getListDateByLatest(String year, String month, String from, String to) {
         List<String> list = new ArrayList<>();
 //        String sql = "select top 5 DAY(Order_Date) as Total from [Order] where Order_Status=1 ";
 //        if (year != "" && year != null) {
@@ -395,5 +407,4 @@ public class OrderDAO extends DBContext {
         }
         return list;
     }
-
 }

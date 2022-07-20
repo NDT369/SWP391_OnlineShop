@@ -195,6 +195,7 @@
                                 </select>
                             </div>
                             <input class="btn" type="submit" value="Filter">
+                            <button class="btn"><a href="saledashboard">Reset</a></button>
                         </form>  
                         <!-- Content Row -->
                         <div class="row">
