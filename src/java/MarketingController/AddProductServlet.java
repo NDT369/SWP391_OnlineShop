@@ -165,10 +165,9 @@ public class AddProductServlet extends HttpServlet {
         request.setAttribute("index", index);
         request.setAttribute("page", page);
         request.setAttribute("type", "default");
-        String regex = "\\s+";
-        boolean check = name.matches(regex);
         
-        if(check){
+        
+        if(name==null || name.equals("")){
             request.setAttribute("error", "Name can not empty");
             request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
         }else{

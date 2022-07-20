@@ -61,24 +61,6 @@ public class MarketingDashBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO pd = new ProductDAO();
-//        List<Product> listPro =  pd.getProductBuyMost();
-//        List<Account> listAcc = pd.getAccountBuyMost();
-//         request.setAttribute("listproduct", listPro);
-//         request.setAttribute("listaccount", listAcc);
-//         List<String> listDay = new ArrayList<>();
-//         List<String> listDayTemp = pd.get7DayLast();
-//         for (int i = listDayTemp.size()-1; i  >= 0; i--) {
-//            listDay.add(listDayTemp.get(i));
-//        }
-//         
-//         List<Integer> list = new ArrayList<>();
-//         List<Integer> listQuantityPro = pd.getTotalProductEachDayLast();
-//        for (int i = listQuantityPro.size()-1; i  >= 0; i--) {
-//            list.add(listQuantityPro.get(i));
-//        }
-//         request.setAttribute("listday", listDay);
-//         request.setAttribute("listquantity", list);
         request.getRequestDispatcher("Marketing/marketingdashboard.jsp").forward(request, response);
     }
 

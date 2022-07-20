@@ -75,7 +75,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        HttpSession session = request.getSession();
-        String fullname = request.getParameter("fullname");
+        String fullname = request.getParameter("fullname").trim();
         String gender_raw = request.getParameter("gender");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
@@ -96,7 +96,11 @@ public class RegisterServlet extends HttpServlet {
         } else {
             gender = false;
         }
-
+        if(fullname == null || fullname.equals("")){
+             mess = "Name can not empty!";
+            request.setAttribute("mess", mess);
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }
         if (a != null) {
             mess = "UserName already exist!";
             request.setAttribute("mess", mess);
