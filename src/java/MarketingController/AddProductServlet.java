@@ -58,7 +58,7 @@ public class AddProductServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final long SerialVersionUID = 1L;
+//    private static final long SerialVersionUID = 1L;
     private static final String UPLOAD_DIR = "img";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

@@ -68,10 +68,13 @@ public class ProductManageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("product1")!=null){
+            session.removeAttribute("product1");
+        }
         ProductDAO pd = new ProductDAO();
         String index_raw = request.getParameter("index");
-        HttpSession session = request.getSession();
-
+        
         int total = pd.getTotalProduct();
         int page = total / 5;
         if (total % 5 != 0) {

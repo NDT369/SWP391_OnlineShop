@@ -221,9 +221,9 @@
                                     <option value="1" <c:if test="${requestScope.statusfilter eq '1'}">Selected</c:if>>ON</option>
                                     <option value="0" <c:if test="${requestScope.statusfilter eq '0'}">Selected</c:if>>OFF</option>
                                     </select>
-                                </form>
+                            </form>
 
-                                <form action="productsearch" id="search">
+                            <form action="productsearch" id="search">
                                     <input name="search" type="text" value="${requestScope.search}"/>
                                 <button type="submit">Search</button>
                             </form>
@@ -314,14 +314,10 @@
 
                                         </td>
                                         <td>
-                                            <a href="productdetailmanage?id=${p.id}&index=${requestScope.index}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                            
+                                            <a href="productdetailmanage?id=${p.id}&index=${requestScope.index}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>                                         
                                         </td>
-
                                     </tr>
-
                                 </c:forEach>
-
                             </tbody>
 
                         </table>

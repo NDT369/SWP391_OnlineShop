@@ -102,25 +102,6 @@ public class SortProductServlet extends HttpServlet {
         request.setAttribute("capacitylist", capacityList);
         request.setAttribute("cardlist", cardList);
         if (sort.equals("0")) {
-//            String index_raw = request.getParameter("index");
-//            int total = listAll.size();
-//            int page = total / 5;
-//            if (total % 5 != 0) {
-//                page += 1;
-//            }
-//            if (index_raw == null) {
-//                index_raw = "1";
-//            }
-//
-//            int index = Integer.parseInt(index_raw);
-//            int start = (index - 1) * 5;
-//            int end = Math.min((index * 5), total);
-//            request.setAttribute("productlist", listAll.subList(start, end));
-//            request.setAttribute("index", index);
-//            request.setAttribute("type", "sort");
-//            request.setAttribute("index", index);
-//            request.setAttribute("page", page);
-//            request.setAttribute("sort", sort_raw);
             response.sendRedirect("productmanage");
         } else {
            

@@ -98,7 +98,7 @@ public class ProductEditServlet extends HttpServlet {
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF-8");
         String id_raw = request.getParameter("id");
-        String name = request.getParameter("name");
+        String name = request.getParameter("name").trim();
         String index = request.getParameter("index");
         String price_raw = request.getParameter("price");
         String discount_raw = request.getParameter("discount");
@@ -132,8 +132,8 @@ public class ProductEditServlet extends HttpServlet {
         int displayid = Integer.parseInt(display_raw);
         int capacityid = Integer.parseInt(capacity_raw);
         int cardid = Integer.parseInt(card_raw);
-        double price = -1;
-        float discount = -1;
+        double price = -1.0;
+        float discount = -1.0f;
         int quantity = -1;
         Product p = new Product();
         Brand b = new Brand();
@@ -153,29 +153,25 @@ public class ProductEditServlet extends HttpServlet {
         Card car = new Card();
         car.setId(cardid);
         
-        String regex = "\\s+";
-        boolean check = name.matches(regex);
+
         
-        if(check){
+        if(name == null || name.equals("")){
             session.setAttribute("error", "Name can not empty");
             response.sendRedirect("productdetailmanage?id=" + id);
         }else{
         try {
             price = Double.parseDouble(price_raw);
-        } catch (Exception e) {   
-            response.sendRedirect("productdetailmanage?id=" + id);
+        } catch (Exception e) {      
         }
         
         try {   
             discount = Float.parseFloat(discount_raw);
-        } catch (Exception e) {  
-            response.sendRedirect("productdetailmanage?id=" + id);
+        } catch (Exception e) {     
         }
         
          try {
             quantity = Integer.parseInt(quantity_raw);
-        } catch (Exception e) {
-            response.sendRedirect("productdetailmanage?id=" + id);
+        } catch (Exception e) { 
         }
  
         p.setId(id);
@@ -200,6 +196,10 @@ public class ProductEditServlet extends HttpServlet {
         p.setCreatedate(createdate);
         p.setStatus(status);
         if (quantity < 0 || discount < 0 || discount > 1 || price < 0) {
+             if(session.getAttribute("error") != null){
+                session.removeAttribute("error");
+            }
+            
             session.setAttribute("product1", p);
             response.sendRedirect("productdetailmanage?id=" + id);
         } else {

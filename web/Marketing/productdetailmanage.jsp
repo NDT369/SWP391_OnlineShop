@@ -311,7 +311,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Discount</label>
-                                <input name="discount" type="text" class="form-control" id="discount" value="${sessionScope.discount}" required>
+                                <input name="discount" type="text" class="form-control" id="discount" value="${p.discount}" required>
                             </div> 
 
                             <div class="form-group">
