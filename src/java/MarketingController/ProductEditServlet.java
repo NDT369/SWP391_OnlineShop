@@ -132,9 +132,9 @@ public class ProductEditServlet extends HttpServlet {
         int displayid = Integer.parseInt(display_raw);
         int capacityid = Integer.parseInt(capacity_raw);
         int cardid = Integer.parseInt(card_raw);
-        double price = 0;
-        float discount = 0;
-        int quantity = 0;
+        double price = -1;
+        float discount = -1;
+        int quantity = -1;
         Product p = new Product();
         Brand b = new Brand();
         b.setId(brandid);
@@ -199,7 +199,7 @@ public class ProductEditServlet extends HttpServlet {
         p.setCard(car);
         p.setCreatedate(createdate);
         p.setStatus(status);
-        if (quantity < 0 || discount < 0 || discount > 1 || price < 1000) {
+        if (quantity < 0 || discount < 0 || discount > 1 || price < 0) {
             session.setAttribute("product1", p);
             response.sendRedirect("productdetailmanage?id=" + id);
         } else {

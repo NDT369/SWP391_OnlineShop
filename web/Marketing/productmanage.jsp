@@ -425,7 +425,7 @@
                                 <div class="modal-body">					
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input name="name" type="text" class="form-control" value="${param.name}"required>
+                                        <input name="name" type="text" class="form-control" id="name" value="${param.name}"required>
                                     </div>
                                     <div class="form-group">
                                         <label>Price</label>
@@ -528,14 +528,21 @@
                                     
             <script>
                 function send() {
+                    var name_raw = document.getElementById('name');
+                    var name = (String)name_raw;    
+                    if(name.trim() === ""){
+                        alert("Name can not be empty");
+                        return;
+                    }
+  
                     var price_raw = document.getElementById('price');
                     var price = price_raw.value;
                     if (isNaN(price)) {
                         alert("price must be number");
                         return;
                     }
-                    if (price < 1000) {
-                        alert("price must be >= 1000VND");
+                    if (price < 0) {
+                        alert("price must be >= 0VND");
                         return;
                     }
                     var discount_raw = document.getElementById('discount');
