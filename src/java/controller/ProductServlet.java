@@ -78,8 +78,6 @@ public class ProductServlet extends HttpServlet {
         DisplayDAO d = new DisplayDAO();
         CPUDAO cpu = new CPUDAO();
 
-        
-
         List<Product> productList = p.getAll();
         session.setAttribute("listProduct", productList);
 
@@ -94,10 +92,9 @@ public class ProductServlet extends HttpServlet {
         if (total % 9 != 0) {
             page += 1;
         }
-        
+
 //        int start = (index-1)*9;
 //        int end = Math.min(index*9, total);
-
         List<Product> list = p.listProPaging(index);
         List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
@@ -117,6 +114,9 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("index", index);
         request.setAttribute("page", page);
         session.setAttribute("productList", list);
+        if (session.getAttribute("errorm") != null) {
+            session.removeAttribute("errorm");
+        }
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 

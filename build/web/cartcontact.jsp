@@ -57,8 +57,8 @@
                             <c:set value="${sessionScope.account}" var="a"/>
                             <c:set value="${sessionScope.temp_ac}" var="ta"/>
                             <h4>Biiling Details</h4>
-                            <c:if test="${sessionScope.error != null}">
-                                <h3>${sessionScope.error}</h3>
+                            <c:if test="${sessionScope.errorm != null}">
+                                <h3>${sessionScope.errorm}</h3>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="fir">Name<span>*</span></label>
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </c:if>
-                            <c:if test="${sessionScope.error == null}">
+                            <c:if test="${sessionScope.errorm == null}">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="fir">Name<span>*</span></label>

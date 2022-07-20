@@ -82,8 +82,8 @@ public class CartCompletionServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String name = request.getParameter("name");
-        String address = request.getParameter("address");
+        String name = request.getParameter("name").trim();
+        String address = request.getParameter("address").trim();
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String note = request.getParameter("note");
@@ -97,48 +97,60 @@ public class CartCompletionServlet extends HttpServlet {
         session.setAttribute("note", note);
         boolean checkPhone = va.checkPhone(phone);
         String error;
-        if (checkPhone == false) {
-            error = "Must be phone number in VietNam";
-            session.setAttribute("error", error);
+        if (name == null || name.equals("")) {
+            error = "Name can not empty";
+            session.setAttribute("errorm", error);
             response.sendRedirect("cartcontact");
-        }
+        } else {
+            if (address == null || address.equals("")) {
+                error = "Address can not empty";
+                session.setAttribute("errorm", error);
+                response.sendRedirect("cartcontact");
+            } else {
+                if (checkPhone == false) {
+                    error = "Must be phone number in VietNam";
+                    session.setAttribute("errorm", error);
+                    response.sendRedirect("cartcontact");
+                }
 
-        if (checkPhone == true) {
-            if (session.getAttribute("error") != null) {
-                session.removeAttribute("error");
-            }
-            ProductDAO dao = new ProductDAO();
-            List<Product> listProduct = dao.getAll();
+                if (checkPhone == true) {
+                    if (session.getAttribute("errorm") != null) {
+                        session.removeAttribute("errorm");
+                    }
+                    ProductDAO dao = new ProductDAO();
+                    List<Product> listProduct = dao.getAll();
 
-            Cookie[] arr = request.getCookies();
-            String txt = "";
-            if (arr != null) {
-                for (Cookie o : arr) {
-                    if (o.getName().equals("cart")) {
-                        txt += o.getValue();
+                    Cookie[] arr = request.getCookies();
+                    String txt = "";
+                    if (arr != null) {
+                        for (Cookie o : arr) {
+                            if (o.getName().equals("cart")) {
+                                txt += o.getValue();
+                            }
+                        }
+                    }
+                    Cart cart = new Cart(txt, listProduct);
+                    Account a = (Account) session.getAttribute("account");
+                    if (a == null) {
+                        response.sendRedirect("login");
+                    } else {
+                        SendEmail sendEmail = new SendEmail();
+//            String code = sendEmail.randomAlphaNumeric(9);
+                        double totalPrice = cart.getTotalPrice();
+                        int orderID = dao.addOrder(a.getAccountID(), name, address, email, phone, note, cart);
+                        List<OrderDetail> listOrderDetail = dao.getOrderDetail(orderID);
+                        sendEmail.sendCartCompletion(a, orderID, email, name, phone, address, listOrderDetail);
+
+                        Cookie c = new Cookie("cart", "");
+                        c.setMaxAge(0);
+                        response.addCookie(c);
+                        request.setAttribute("orderid", orderID);
+                        request.setAttribute("note", note);
+                        request.setAttribute("totalprice", totalPrice);
+                        request.setAttribute("listorder", listOrderDetail);
+                        request.getRequestDispatcher("cartcompletion.jsp").forward(request, response);
                     }
                 }
-            }
-            Cart cart = new Cart(txt, listProduct);
-            Account a = (Account) session.getAttribute("account");
-            if (a == null) {
-                response.sendRedirect("login");
-            } else {
-                SendEmail sendEmail = new SendEmail();
-//            String code = sendEmail.randomAlphaNumeric(9);
-                double totalPrice = cart.getTotalPrice();
-                int orderID = dao.addOrder(a.getAccountID(), name, address, email, phone, note, cart);
-                List<OrderDetail> listOrderDetail = dao.getOrderDetail(orderID);
-                sendEmail.sendCartCompletion(a, orderID, email, name, phone, address, listOrderDetail);
-
-                Cookie c = new Cookie("cart", "");
-                c.setMaxAge(0);
-                response.addCookie(c);
-                request.setAttribute("orderid", orderID);
-                request.setAttribute("note", note);
-                request.setAttribute("totalprice", totalPrice);
-                request.setAttribute("listorder", listOrderDetail);
-                request.getRequestDispatcher("cartcompletion.jsp").forward(request, response);
             }
         }
     }

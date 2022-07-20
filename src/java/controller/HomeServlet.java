@@ -53,7 +53,7 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");            
+            out.println("<title>Servlet HomeServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
@@ -82,34 +82,33 @@ public class HomeServlet extends HttpServlet {
         List<Product> listNew = p.getNewProduct();
         List<Blog> blog = b.getAll();
         List<Slider> slider = s.getAll();
-        
-        
+
         List<Product> listProduct = p.getAll();
         Cookie[] arr = request.getCookies();
         String txt = "";
-        if(arr != null){
+        if (arr != null) {
             for (Cookie c : arr) {
-                if(c.getName().equals("cart")){
+                if (c.getName().equals("cart")) {
                     txt += c.getValue();
                 }
             }
         }
-        
+
         CategoryDAO cate = new CategoryDAO();
         BrandDAO br = new BrandDAO();
         DisplayDAO d = new DisplayDAO();
         CPUDAO cpu = new CPUDAO();
-        
+
         List<Category> categoryList = cate.getAll();
-        List<Brand> brandList = br .getAll();
+        List<Brand> brandList = br.getAll();
         List<Display> displayList = d.getAll();
         List<CPU> cpuList = cpu.getAll();
-        
+
         session.setAttribute("cpuList", cpuList);
         session.setAttribute("displayList", displayList);
         session.setAttribute("brandList", brandList);
         session.setAttribute("categoryList", categoryList);
-        
+
         Cart cart = new Cart(txt, listProduct);
         request.setAttribute("slider", slider);
         request.setAttribute("cart", cart);
@@ -117,6 +116,9 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("listSell", listSell);
         request.setAttribute("listNew", listNew);
 //        request.setAttribute("pageInclude", "homepage.jsp");
+        if (session.getAttribute("errorm") != null) {
+            session.removeAttribute("errorm");
+        }
         request.getRequestDispatcher("homepage.jsp").forward(request, response);
     }
 
