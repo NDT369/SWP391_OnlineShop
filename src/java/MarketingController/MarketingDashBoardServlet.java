@@ -61,24 +61,6 @@ public class MarketingDashBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO pd = new ProductDAO();
-        List<Product> listPro =  pd.getProductBuyMost();
-        List<Account> listAcc = pd.getAccountBuyMost();
-         request.setAttribute("listproduct", listPro);
-         request.setAttribute("listaccount", listAcc);
-         List<String> listDay = new ArrayList<>();
-         List<String> listDayTemp = pd.get7DayLast();
-         for (int i = listDayTemp.size()-1; i  >= 0; i--) {
-            listDay.add(listDayTemp.get(i));
-        }
-         
-         List<Integer> list = new ArrayList<>();
-         List<Integer> listQuantityPro = pd.getTotalProductEachDayLast();
-        for (int i = listQuantityPro.size()-1; i  >= 0; i--) {
-            list.add(listQuantityPro.get(i));
-        }
-         request.setAttribute("listday", listDay);
-         request.setAttribute("listquantity", list);
         request.getRequestDispatcher("Marketing/marketingdashboard.jsp").forward(request, response);
     }
 
@@ -93,7 +75,38 @@ public class MarketingDashBoardServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        
+        String year_raw = request.getParameter("year");
+        String month_raw = request.getParameter("month");
+        String startDay_raw = request.getParameter("from");
+        String endDay_raw = request.getParameter("to");
+        
+        ProductDAO pd = new ProductDAO();
+        
+        int year = 0, month = 0, startDay = 0, endDay = 0;
+        try {
+            year = Integer.parseInt(year_raw);
+            month = Integer.parseInt(month_raw);
+            startDay = Integer.parseInt(startDay_raw);
+            endDay = Integer.parseInt(endDay_raw);
+        } catch (Exception e) {
+        }
+        request.setAttribute("year", year);
+        request.setAttribute("month", month);
+        request.setAttribute("startDay", startDay);
+        request.setAttribute("endDay", endDay);
+        
+         List<Product> listPro =  pd.getProductBuyMost(year,month,startDay,endDay);
+         List<Account> listAcc = pd.getAccountBuyMost(year,month,startDay,endDay);
+        request.setAttribute("listproduct", listPro);
+        request.setAttribute("listaccount", listAcc);
+        List<String> listDay = pd.getDay(year, month, startDay, endDay);
+        List<Integer> list = pd.getTotalProductEachDay(year, month, startDay, endDay);
+        request.setAttribute("listday", listDay);
+       request.setAttribute("listquantity", list);
+        request.getRequestDispatcher("Marketing/marketingdashboard.jsp").forward(request, response);
     }
 
     /**

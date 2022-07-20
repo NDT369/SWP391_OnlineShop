@@ -105,7 +105,7 @@ public class AddProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();      
+        HttpSession session = request.getSession();
         String name = request.getParameter("name").trim();
         String price_raw = request.getParameter("price");
         String discount_raw = request.getParameter("discount");
@@ -165,82 +165,82 @@ public class AddProductServlet extends HttpServlet {
         request.setAttribute("index", index);
         request.setAttribute("page", page);
         request.setAttribute("type", "default");
-        String regex = "\\s+";
-        boolean check = name.matches(regex);
-        
-        if(check){
+
+        if (name == null || name.equals("")) {
             request.setAttribute("error", "Name can not empty");
             request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
-        }else{
+        } else {
             boolean checkProductExist = false;
-            
-            for(Product pro : productList){
-                if(pro.getName().equalsIgnoreCase(name)){
+
+            for (Product pro : productList) {
+                if (pro.getName().equalsIgnoreCase(name)) {
                     checkProductExist = true;
                     break;
                 }
             }
-            if(checkProductExist){
-                 request.setAttribute("error", "Product is already exist");
-                 request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
+            if (checkProductExist) {
+                request.setAttribute("error", "Product is already exist");
+                request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
             }
-        }
-        double price = 0;
-        float discount = 0;
-        int quantity = 0;
-        try {
-            price = Double.parseDouble(price_raw);
-            discount = Float.parseFloat(discount_raw);
-            quantity = Integer.parseInt(quantity_raw);
-        } catch (Exception e) {
+            if (checkProductExist == false) {
+                double price = -1;
+                float discount = -1;
+                int quantity = -1;
+                
+                try {
+                    price = Double.parseDouble(price_raw);
+                    quantity = Integer.parseInt(quantity_raw);
+                    quantity = Integer.parseInt(quantity_raw);
+                } catch (Exception e) {
+//                    request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
+                }          
+                if (quantity < 0 || discount < 0 || discount > 1 || price < 0) {
 
-            request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
-        }
-        if (quantity < 0 || discount < 0 || discount > 1 || price < 1000) {
-
-            request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
-        } else {
-            int brandid = Integer.parseInt(brand_raw);
-            int categoryid = Integer.parseInt(category_raw);
-            int osid = Integer.parseInt(os_raw);
-            int ramid = Integer.parseInt(ram_raw);
-            int cpuid = Integer.parseInt(cpu_raw);
-            int displayid = Integer.parseInt(display_raw);
-            int capacityid = Integer.parseInt(capacity_raw);
-            int cardid = Integer.parseInt(card_raw);
-            Product p = new Product();
-            Brand b = new Brand();
-            b.setId(brandid);
-            Category ca = new Category();
-            ca.setId(categoryid);
-            OperatingSystem o = new OperatingSystem();
-            o.setId(osid);
-            RAM r = new RAM();
-            r.setId(ramid);
-            CPU c = new CPU();
-            c.setId(cpuid);
-            Display d = new Display();
-            d.setId(displayid);
-            Capacity cap = new Capacity();
-            cap.setId(capacityid);
-            Card car = new Card();
-            car.setId(cardid);
-            p.setName(name);
-            p.setPrice(price);
-            p.setDiscount(discount);
-            p.setQuantity(quantity);
-            p.setImgURL(image);
-            p.setDescription(description);
-            p.setBrand(b);
-            p.setCategory(ca);
-            p.setOs(o);
-            p.setRam(r);
-            p.setCpu(c);
-            p.setDisplay(d);
-            p.setCapacity(cap);
-            p.setCard(car);
-            pd.addNewProduct(p);
-            response.sendRedirect("productmanage");
+                    request.getRequestDispatcher("Marketing/productmanage.jsp").forward(request, response);
+                } else {
+                    int brandid = Integer.parseInt(brand_raw);
+                    int categoryid = Integer.parseInt(category_raw);
+                    int osid = Integer.parseInt(os_raw);
+                    int ramid = Integer.parseInt(ram_raw);
+                    int cpuid = Integer.parseInt(cpu_raw);
+                    int displayid = Integer.parseInt(display_raw);
+                    int capacityid = Integer.parseInt(capacity_raw);
+                    int cardid = Integer.parseInt(card_raw);
+                    Product p = new Product();
+                    Brand b = new Brand();
+                    b.setId(brandid);
+                    Category ca = new Category();
+                    ca.setId(categoryid);
+                    OperatingSystem o = new OperatingSystem();
+                    o.setId(osid);
+                    RAM r = new RAM();
+                    r.setId(ramid);
+                    CPU c = new CPU();
+                    c.setId(cpuid);
+                    Display d = new Display();
+                    d.setId(displayid);
+                    Capacity cap = new Capacity();
+                    cap.setId(capacityid);
+                    Card car = new Card();
+                    car.setId(cardid);
+                    p.setName(name);
+                    p.setPrice(price);
+                    p.setDiscount(discount);
+                    p.setQuantity(quantity);
+                    p.setImgURL(image);
+                    p.setDescription(description);
+                    p.setBrand(b);
+                    p.setCategory(ca);
+                    p.setOs(o);
+                    p.setRam(r);
+                    p.setCpu(c);
+                    p.setDisplay(d);
+                    p.setCapacity(cap);
+                    p.setCard(car);
+                    pd.addNewProduct(p);
+                    response.sendRedirect("productmanage");
+                }
+            }
         }
     }
 

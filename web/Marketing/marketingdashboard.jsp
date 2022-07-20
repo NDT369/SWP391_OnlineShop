@@ -49,7 +49,7 @@
 
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
-              
+
                 <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Dashboard -->
@@ -91,7 +91,7 @@
                         <ion-icon name="receipt"></ion-icon>                       
                         <span>Manage Feedback</span></a>
                 </li>
-                 <li class="nav-item ">
+                <li class="nav-item ">
                     <a class="nav-link" href="home">
                         <ion-icon name="receipt"></ion-icon>                       
                         <span>Home Page</span></a>
@@ -101,7 +101,7 @@
                         <ion-icon name="receipt"></ion-icon>                       
                         <span>LogOut</span></a>
                 </li>
-    
+
                 <!-- Heading -->
 
 
@@ -123,7 +123,7 @@
                         </button>
 
                         <!-- Topbar Search -->
-         
+
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -164,7 +164,7 @@
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                      aria-labelledby="userDropdown">
-                                    
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -176,7 +176,7 @@
                         </ul>
 
                     </nav>
-                                
+
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
@@ -187,104 +187,116 @@
                             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 
                         </div>
-                        
+
 
                         <!-- Content Row -->
                         <div class="row">
 
                             <!-- Earnings (Monthly) Card Example -->
+
+                            <!-- Earnings (Monthly) Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Total Post</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">${totalPost}</div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--                                <div class="card border-left-success shadow h-100 py-2">
+                                                                    <div class="card-body">
+                                                                        <div class="row no-gutters align-items-center">
+                                                                            <div class="col mr-2">
+                                                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                                    Earnings </div>
+                                                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                                            </div>
+                                                                            <div class="col-auto">
+                                                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
                             </div>
 
                             <!-- Earnings (Monthly) Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
-<!--                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Earnings </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
-                            </div>
-
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-<!--                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                                </div>
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="progress progress-sm mr-2">
-                                                            <div class="progress-bar bg-info" role="progressbar"
-                                                                 style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="card border-left-info shadow h-100 py-2">
+                                                                    <div class="card-body">
+                                                                        <div class="row no-gutters align-items-center">
+                                                                            <div class="col mr-2">
+                                                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                                                                </div>
+                                                                                <div class="row no-gutters align-items-center">
+                                                                                    <div class="col-auto">
+                                                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                                                    </div>
+                                                                                    <div class="col">
+                                                                                        <div class="progress progress-sm mr-2">
+                                                                                            <div class="progress-bar bg-info" role="progressbar"
+                                                                                                 style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                                                 aria-valuemax="100"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-auto">
+                                                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
                             </div>
 
                             <!-- Pending Requests Card Example -->
-<!--                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    Total Orders Success</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="col-xl-3 col-md-6 mb-4">
+                                                            <div class="card border-left-warning shadow h-100 py-2">
+                                                                <div class="card-body">
+                                                                    <div class="row no-gutters align-items-center">
+                                                                        <div class="col mr-2">
+                                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                                                Total Orders Success</div>
+                                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                         </div>
 
                         <!-- Content Row -->
 
                         <div class="row">
-
+                            <form action="marketingdashboard" method="post" style="display: flex ">
+                                <div style="float: right">
+                                    <b>Year</b>
+                                    <!--onchange="this.form.submit()"-->
+                                    <select name="year" >
+                                        <c:forEach var="i" begin="1990" end="2026">
+                                            <option ${i==year?"selected":""} value="${i}">${i}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <b>Month</b><select name="month" >
+                                        <c:forEach var="i" begin="1" end="12">
+                                            <option ${i==month?"selected":""} value="${i}">${i}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <b>Start Day</b><select name="from" >
+                                        <c:forEach var="i" begin="1" end="31">
+                                            <option ${i==startDay?"selected":""} value="${i}">${i}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <b>End Day</b><select name="to" >
+                                        <c:forEach var="i" begin="1" end="31">
+                                            <option ${i==endDay?"selected":""} value="${i}">${i}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <input class="btn" type="submit" value="Filter">
+                            </form> 
                             <!-- Area Chart -->
                             <div class="col-xl-8 col-lg-7" style="width: 100%">
                                 <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Total Product Sell in 7 day last</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Total Product each day</h6>
                                         <div class="dropdown no-arrow">
 
                                         </div>
@@ -292,29 +304,7 @@
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <div class="chart-area" >
-<!--                                            <form action="mktDashboard" method="post">
-                                                <b>Year</b><select name="year" >
-                                                    <c:forEach var="i" begin="1990" end="2026">
-                                                    <option value="${i}">${i}</option>
-                                                    </c:forEach>
-                                                </select>
-                                                <b>Month</b><select name="month" >
-                                                    <c:forEach var="i" begin="01" end="12">
-                                                    <option value="${i}">${i}</option>
-                                                    </c:forEach>
-                                                </select>
-                                                <b>Start Day</b><select name="from" >
-                                                    <c:forEach var="i" begin="01" end="31">
-                                                    <option value="${i}">${i}</option>
-                                                    </c:forEach>
-                                                </select>
-                                                <b>End Day</b><select name="to" >
-                                                    <c:forEach var="i" begin="01" end="31">
-                                                    <option value="${i}">${i}</option>
-                                                    </c:forEach>
-                                                </select>
-                                                <input type="submit" value="Filter"/>
-                                            </form>-->
+
                                             <canvas id="myChart" width="1504px" height="340px"></canvas>
                                             <script>
                                                 const ctx = document.getElementById('myChart').getContext('2d');
@@ -323,7 +313,7 @@
                                                     data: {
                                                         labels: ${listday},
                                                         datasets: [{
-                                                                label: 'Revenue',
+                                                                label: 'Quantity',
                                                                 data: ${listquantity},
                                                                 backgroundColor: [
                                                                     'rgba(255, 99, 132, 0.2)',
@@ -346,9 +336,9 @@
                                                     },
                                                     options: {
                                                         legend: {display: false},
-                                        scales: {
-                                            yAxes: [{ticks: {min: 6, max: 16}}],
-                                        }
+                                                        scales: {
+                                                            yAxes: [{ticks: {min: 6, max: 16}}],
+                                                        }
                                                     }
                                                 });
                                             </script>
@@ -358,46 +348,46 @@
                             </div>
 
                             <!-- Pie Chart -->
-<!--                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                     Card Header - Dropdown 
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                 aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                     Card Body 
-                                    <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2">
-                                            <canvas id="myPieChart"></canvas>
-                                        </div>
-                                        <div class="mt-4 text-center small">
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i> Direct
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Social
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="col-xl-4 col-lg-5">
+                                                            <div class="card shadow mb-4">
+                                                                 Card Header - Dropdown 
+                                                                <div
+                                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                                                    <div class="dropdown no-arrow">
+                                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                                             aria-labelledby="dropdownMenuLink">
+                                                                            <div class="dropdown-header">Dropdown Header:</div>
+                                                                            <a class="dropdown-item" href="#">Action</a>
+                                                                            <a class="dropdown-item" href="#">Another action</a>
+                                                                            <div class="dropdown-divider"></div>
+                                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                 Card Body 
+                                                                <div class="card-body">
+                                                                    <div class="chart-pie pt-4 pb-2">
+                                                                        <canvas id="myPieChart"></canvas>
+                                                                    </div>
+                                                                    <div class="mt-4 text-center small">
+                                                                        <span class="mr-2">
+                                                                            <i class="fas fa-circle text-primary"></i> Direct
+                                                                        </span>
+                                                                        <span class="mr-2">
+                                                                            <i class="fas fa-circle text-success"></i> Social
+                                                                        </span>
+                                                                        <span class="mr-2">
+                                                                            <i class="fas fa-circle text-info"></i> Referral
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                         </div>
 
                         <!-- Content Row -->
@@ -418,9 +408,9 @@
                                                     <th scope="col">ID</th>                                                  
                                                     <th scope="col">Full Name</th>
                                                     <th scope="col">Address</th><!--
--->                                                    <th scope="col">Email</th>
+                                                    -->                                                    <th scope="col">Email</th>
                                                     <th scope="col">Phone Number</th><!--
--->                                                </tr>
+                                                    -->                                                </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="a" items="${listaccount}">
@@ -468,7 +458,7 @@
                                                         <td><b>${i.name}</b></td>
                                                         <td><b>${i.brand.name}</b></td>
                                                         <td><b><fmt:formatNumber pattern="###,###,###"value="${i.price}"/>VND </b></td>
-                                                        
+
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
@@ -484,37 +474,37 @@
                             <div class="col-lg-6 mb-4">
 
                                 <!-- Illustrations -->
-<!--                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                                 src="img/undraw_posting_photo.svg" alt="...">
-                                        </div>
-                                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                            constantly updated collection of beautiful svg images that you can use
-                                            completely free and without attribution!</p>
-                                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                            unDraw &rarr;</a>
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="card shadow mb-4">
+                                                                    <div class="card-header py-3">
+                                                                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <div class="text-center">
+                                                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                                                                 src="img/undraw_posting_photo.svg" alt="...">
+                                                                        </div>
+                                                                        <p>Add some quality, svg illustrations to your project courtesy of <a
+                                                                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                                                                            constantly updated collection of beautiful svg images that you can use
+                                                                            completely free and without attribution!</p>
+                                                                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                                                                            unDraw &rarr;</a>
+                                                                    </div>
+                                                                </div>-->
 
                                 <!-- Approach -->
-<!--                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                            CSS bloat and poor page performance. Custom CSS classes are used to create
-                                            custom components and custom utility classes.</p>
-                                        <p class="mb-0">Before working with this theme, you should become familiar with the
-                                            Bootstrap framework, especially the utility classes.</p>
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="card shadow mb-4">
+                                                                    <div class="card-header py-3">
+                                                                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                                                            CSS bloat and poor page performance. Custom CSS classes are used to create
+                                                                            custom components and custom utility classes.</p>
+                                                                        <p class="mb-0">Before working with this theme, you should become familiar with the
+                                                                            Bootstrap framework, especially the utility classes.</p>
+                                                                    </div>
+                                                                </div>-->
 
                             </div>
                         </div>

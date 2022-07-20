@@ -895,8 +895,8 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<String> list = p.get7DayLast();
-        System.out.println(list.get(0));
+        List<Product> list = p.getProductBuyMost(2022, 7, 1, 30);
+        System.out.println(list.get(0).getName());
     }
 
     public List<OrderDetail> getOrderDetail(int orderID) {
@@ -1214,15 +1214,22 @@ public class ProductDAO extends DBContext {
         }
     }
 
-    public List<Product> getProductBuyMost() {
+    public List<Product> getProductBuyMost(int year, int month, int startDay, int endDay) {
         List<Product> list = new ArrayList<>();
-        String sql = "select Top 5 SUM(od.Quantity) AS TotalQuantity,p.Product_ID,p.Product_Name,p.Product_Price, p.Product_SalePrice, b.Brand_Name,p.Product_ImgURL from OrderDetail od\n"
+        String sql = "select Top 5 SUM(od.Quantity) AS TotalQuantity,p.Product_ID,p.Product_Name,p.Product_Price, p.Product_SalePrice, b.Brand_Name,p.Product_ImgURL,o.Order_Date from OrderDetail od\n"
                 + "join Product p on od.Product_ID = p.Product_ID\n"
-                + "join Brand b on p.Brand_ID = b.Brand_ID\n"
-                + "group by p.Product_ID,p.Product_Name,p.Product_Price, p.Product_SalePrice, b.Brand_Name,p.Product_ImgURL\n"
+                + "join [Order] o on od.Order_ID = o.Order_ID\n"
+                + "join Brand b on p.Brand_ID = b.Brand_ID \n"
+                + "where\n"
+                + "YEAR(o.Order_Date) = ? and MONTH(o.Order_Date) = ? and DAY(o.Order_Date) between ? and ?\n"
+                + "group by p.Product_ID,p.Product_Name,p.Product_Price, p.Product_SalePrice, b.Brand_Name,p.Product_ImgURL,o.Order_Date\n"
                 + "order by TotalQuantity DESC";
         try {
             ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ps.setInt(3, startDay);
+            ps.setInt(4, endDay);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
@@ -1242,14 +1249,20 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
-    public List<Account> getAccountBuyMost() {
+    public List<Account> getAccountBuyMost(int year, int month, int startDay, int endDay) {
         List<Account> list = new ArrayList<>();
         String sql = "select Top 5 count(a.Account_ID) as TongDonHang,a.Account_ID,a.[Name],a.Email,a.Phone,a.[Address] from [Order] o\n"
                 + "join Account a on o.Account_ID = a.Account_ID\n"
+                + "where\n"
+                + "YEAR(o.Order_Date) = ? and MONTH(o.Order_Date) = ? and DAY(o.Order_Date) between ? and ?\n"
                 + "group by a.Account_ID,a.[Name],a.Email,a.Phone,a.[Address]\n"
                 + "order by TongDonHang DESC";
         try {
             ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ps.setInt(3, startDay);
+            ps.setInt(4, endDay);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Account a = new Account();
@@ -1265,16 +1278,22 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
-    public List<String> get7DayLast() {
+    public List<String> getDay(int year, int month, int startDay, int endDay) {
         List<String> list = new ArrayList<>();
-        String sql = "select Top 7 Order_Date from [Order]\n"
-                + "group by  Order_Date \n"
-                + "order by Order_Date DESC";
+        String sql = "select sum(od.Quantity), o.Order_Date,DAY(o.Order_Date) from OrderDetail od\n"
+                + "join [Order] o on od.Order_ID = o.Order_ID\n"
+                + "where\n"
+                + "YEAR(o.Order_Date) = ? and MONTH(o.Order_Date) = ? and DAY(o.Order_Date) between ? and ?\n"
+                + "group by  o.Order_Date ";
         try {
             ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ps.setInt(3, startDay);
+            ps.setInt(4, endDay);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(rs.getString(1));
+                list.add(rs.getString(3));
             }
 
         } catch (Exception e) {
@@ -1282,14 +1301,19 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
-    public List<Integer> getTotalProductEachDayLast() {
+    public List<Integer> getTotalProductEachDay(int year, int month, int startDay, int endDay) {
         List<Integer> list = new ArrayList<>();
-        String sql = "select top 7 sum(od.Quantity), o.Order_Date from OrderDetail od\n"
+        String sql = "select sum(od.Quantity), o.Order_Date,DAY(o.Order_Date) from OrderDetail od\n"
                 + "join [Order] o on od.Order_ID = o.Order_ID\n"
-                + "group by  o.Order_Date \n"
-                + "order by o.Order_Date DESC";
+                + "where\n"
+                + "YEAR(o.Order_Date) = ? and MONTH(o.Order_Date) = ? and DAY(o.Order_Date) between ? and ?\n"
+                + "group by  o.Order_Date ";
         try {
             ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ps.setInt(3, startDay);
+            ps.setInt(4, endDay);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(rs.getInt(1));

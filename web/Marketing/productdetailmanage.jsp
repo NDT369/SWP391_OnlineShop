@@ -436,8 +436,8 @@
                     alert("price must be number");
                     return;
                 }
-                if (price < 1000) {
-                    alert("price must be >= 1000VND");
+                if (price < 0) {
+                    alert("price must be >= 0");
                     return;
                 }
                 var discount_raw = document.getElementById('discount');
